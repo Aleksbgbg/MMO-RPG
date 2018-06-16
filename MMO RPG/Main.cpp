@@ -1,8 +1,10 @@
 #include <SFML/Graphics.hpp>
 
+#include <windows.h>
+
 #include "Game.h"
 
-int main()
+int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszArgument, int nCmdShow)
 {
 	sf::RenderWindow window{ sf::VideoMode{ 1366, 768 }, "MMO RPG" };
 
