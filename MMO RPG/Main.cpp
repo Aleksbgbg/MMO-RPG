@@ -2,6 +2,7 @@
 
 #include <windows.h>
 
+#include "DeltaTime.h"
 #include "Game.h"
 
 int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszArgument, int nCmdShow)
@@ -26,10 +27,11 @@ int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszA
 
 		window.clear();
 
+		DeltaTime::Restart();
+
 		game.Main();
 
 		window.display();
 	}
-
 	return 0;
 }
