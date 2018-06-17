@@ -21,11 +21,13 @@
   <ItemGroup>
     <ClCompile Include="DeltaTime.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DeltaTime.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Graphics.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
