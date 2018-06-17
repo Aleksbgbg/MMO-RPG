@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "Graphics.h"
+
 class Game
 {
 public:
@@ -17,5 +19,6 @@ private:
 	void ComposeFrame();
 
 private:
+	Graphics _gfx;
 	sf::RenderWindow& _window;
 };

@@ -7,7 +7,7 @@
 
 int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszArgument, int nCmdShow)
 {
-	sf::RenderWindow window{ sf::VideoMode{ 1366, 768 }, "MMO RPG" };
+	sf::RenderWindow window{ sf::VideoMode{ Graphics::ScreenWidth, Graphics::ScreenHeight }, "MMO RPG" };
 
 	Game game{ window };
 
@@ -25,13 +25,10 @@ int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszA
 			}
 		}
 
-		window.clear();
-
-		DeltaTime::Restart();
-
 		game.Main();
-
-		window.display();
+		
+		DeltaTime::Restart();
 	}
+
 	return 0;
 }
