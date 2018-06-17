@@ -8,7 +8,7 @@
 class Graphics
 {
 public:
-	Graphics(sf::RenderWindow& window);
+	explicit Graphics(sf::RenderWindow& window);
 
 public:
 	void Begin() const;
