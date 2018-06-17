@@ -2,12 +2,14 @@
 
 sf::Clock DeltaTime::_clock;
 
+float DeltaTime::_value{ 0 };
+
 float DeltaTime::Get()
 {
-	return _clock.getElapsedTime().asSeconds();
+	return _value;
 }
 
 void DeltaTime::Restart()
 {
-	_clock.restart();
+	_value = _clock.restart().asSeconds();
 }
