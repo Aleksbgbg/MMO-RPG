@@ -4,6 +4,7 @@ Graphics::Graphics(sf::RenderWindow& window)
 	:
 	_window{ window }
 {
+	_window.setFramerateLimit(Framerate);
 }
 
 void Graphics::Begin() const
