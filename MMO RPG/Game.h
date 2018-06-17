@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Graphics.h"
+#include "Player.h"
 
 class Game
 {
@@ -21,4 +22,6 @@ private:
 private:
 	Graphics _gfx;
 	sf::RenderWindow& _window;
+
+	Player _player;
 };
