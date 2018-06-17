@@ -29,6 +29,9 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Player.png" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{9B7CD11F-409C-476C-9395-C3BCAB11809F}</ProjectGuid>
