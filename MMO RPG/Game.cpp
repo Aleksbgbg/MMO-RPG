@@ -1,10 +1,18 @@
 #include "Game.h"
+#include "Map.h"
 
 Game::Game(sf::RenderWindow& window)
 	:
 	_gfx{ window },
-	_window{ window }
+	_window{ window },
+	map{_gfx}
+
 {
+	sf::Texture texture;
+	texture.loadFromFile("mapTest.png");
+
+	map.AddTexture(texture);
+	map.AddSprite(23, 16, 16);
 }
 
 void Game::Main()
