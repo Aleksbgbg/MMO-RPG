@@ -13,7 +13,10 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Resource Files\Sprite Sheets">
+    <Filter Include="Resource Files\Sprites">
+      <UniqueIdentifier>{5be3886b-bc3b-4b29-a95c-eaddf44468b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Sprites\Sprite Sheets">
       <UniqueIdentifier>{cbc9e8a1-1de3-4b10-aab8-b7fe4c6bf3fb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -36,6 +39,12 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Libraries\inih\INIReader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Libraries\inih\ini.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DeltaTime.h">
@@ -56,7 +65,12 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Player.png">
-      <Filter>Resource Files\Sprite Sheets</Filter>
+      <Filter>Resource Files\Sprites\Sprite Sheets</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Player Sprite Config.ini">
+      <Filter>Resource Files\Sprites</Filter>
+    </None>
   </ItemGroup>
 </Project>
