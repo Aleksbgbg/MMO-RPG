@@ -2,16 +2,15 @@
 
 #include "DeltaTime.h"
 
-// Horizontal sprite sheet assumed
-Animation::Animation(sf::Sprite& sprite, const sf::Vector2i frameRegion, const int frameCount, const sf::Vector2i startingPosition, const int defaultFrame, const float frameTime)
+Animation::Animation(sf::Sprite& sprite, const SpriteInfo& spriteInfo, const int sheetRow)
 	:
 	_sprite{ sprite },
-	_frameSize{ frameRegion.x / frameCount, frameRegion.y },
-	_startingPosition{ startingPosition },
-	_frameTime{ frameTime },
+	_frameSize{ spriteInfo.frameRegion.x / spriteInfo.frameCount, spriteInfo.frameRegion.y },
+	_startingPosition{ 0, sheetRow * spriteInfo.spriteDimension.y },
+	_frameTime{ spriteInfo.frameTime },
 	_currentFrameRunningTime{ 0.0f },
-	_frameCount{ frameCount },
-	_defaultFrame{ defaultFrame },
+	_frameCount{ spriteInfo.frameCount },
+	_defaultFrame{ spriteInfo.standingFrameIndex },
 	_currentFrame{ 0 },
 	_isStopped{ false }
 {

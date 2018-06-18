@@ -13,16 +13,13 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-<<<<<<< HEAD
     <Filter Include="Resource Files\Map">
       <UniqueIdentifier>{cd09ceab-60ae-4c50-a234-45637a47cf83}</UniqueIdentifier>
-=======
     <Filter Include="Resource Files\Sprites">
       <UniqueIdentifier>{5be3886b-bc3b-4b29-a95c-eaddf44468b3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files\Sprites\Sprite Sheets">
       <UniqueIdentifier>{cbc9e8a1-1de3-4b10-aab8-b7fe4c6bf3fb}</UniqueIdentifier>
->>>>>>> upstream/master
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +48,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
+    <ClCompile Include="SpriteInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -71,6 +69,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
+    <ClInclude Include="SpriteInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

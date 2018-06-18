@@ -17,27 +17,12 @@ Player::Player(Graphics& gfx)
 
 	gfx.Add(_sprite);
 
-	INIReader iniReader{ "Player Sprite Config.ini" };
+	const SpriteInfo spriteInfo{ "Player Sprite Config.ini", _spriteSheet };
 
-	const float animationTime = iniReader.GetReal("Sprite", "AnimationTime", 0);
-
-	const sf::Vector2i spriteDimension{ iniReader.GetInteger("Sprite", "Width", 0), iniReader.GetInteger("Sprite", "Height", 0) };
-
-	const int standingFrameIndex = iniReader.GetInteger("SpriteSheet", "StandingFrameIndex", 0);
-
-	const int leftRow = iniReader.GetInteger("SpriteSheet", "LeftRow", 0);
-	const int rightRow = iniReader.GetInteger("SpriteSheet", "RightRow", 0);
-	const int upRow = iniReader.GetInteger("SpriteSheet", "UpRow", 0);
-	const int downRow = iniReader.GetInteger("SpriteSheet", "DownRow", 0);
-
-	const int frameCount = _spriteSheet.getSize().x / spriteDimension.x;
-
-	const sf::Vector2i frameRegion{ static_cast<int>(_spriteSheet.getSize().x), spriteDimension.y };
-
-	_animations.emplace(Direction::Up, Animation{ _sprite, frameRegion, frameCount, sf::Vector2i{ 0, upRow * spriteDimension.y }, standingFrameIndex, animationTime });
-	_animations.emplace(Direction::Down, Animation{ _sprite, frameRegion, frameCount, sf::Vector2i{ 0, downRow * spriteDimension.y }, standingFrameIndex, animationTime });
-	_animations.emplace(Direction::Left, Animation{ _sprite, frameRegion, frameCount, sf::Vector2i{ 0, leftRow * spriteDimension.y }, standingFrameIndex, animationTime });
-	_animations.emplace(Direction::Right, Animation{ _sprite, frameRegion, frameCount, sf::Vector2i{ 0, rightRow * spriteDimension.y }, standingFrameIndex, animationTime });
+	_animations.emplace(Direction::Up, Animation{ _sprite, spriteInfo, spriteInfo.upRow });
+	_animations.emplace(Direction::Down, Animation{ _sprite, spriteInfo, spriteInfo.downRow });
+	_animations.emplace(Direction::Left, Animation{ _sprite, spriteInfo, spriteInfo.leftRow });
+	_animations.emplace(Direction::Right, Animation{ _sprite, spriteInfo, spriteInfo.rightRow });
 }
 
 void Player::Update()
