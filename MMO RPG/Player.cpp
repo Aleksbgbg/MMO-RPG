@@ -1,6 +1,7 @@
 #include "Player.h"
 
 #include <SFML/Graphics/Texture.hpp>
+#include <SFML/Window/Keyboard.hpp>
 
 Player::Player(Graphics& gfx)
 	:
@@ -18,4 +19,26 @@ Player::Player(Graphics& gfx)
 void Player::Update()
 {
 	_walkAnimation.Update();
+
+	sf::Vector2f movement;
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
+	{
+		movement.y = -1;
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
+	{
+		movement.y = 1;
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+	{
+		movement.x = -1;
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+	{
+		movement.x = 1;
+	}
+
+	_sprite.move(movement);
 }
