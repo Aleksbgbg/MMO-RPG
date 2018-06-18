@@ -27,6 +27,8 @@ Player::Player(Graphics& gfx)
 
 void Player::Update()
 {
+	const bool wasStanding = _movementDirection == Direction::Still;
+
 	sf::Vector2f movement;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
@@ -51,7 +53,24 @@ void Player::Update()
 		movement.x = 1;
 	}
 
-	_sprite.move(movement);
-	
-	_animations.at(_movementDirection).Update();
+	if (movement.x == 0 && movement.y == 0)
+	{
+		if (_movementDirection != Direction::Still)
+		{
+			_animations.at(_movementDirection).Stop();
+		}
+
+		_movementDirection = Direction::Still;
+	}
+	else
+	{
+		if (wasStanding)
+		{
+			_animations.at(_movementDirection).Resume();
+		}
+
+		_sprite.move(movement);
+
+		_animations.at(_movementDirection).Update();
+	}
 }
