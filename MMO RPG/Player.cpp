@@ -3,6 +3,8 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Window/Keyboard.hpp>
 
+#include "INIReader.h"
+
 Player::Player(Graphics& gfx)
 	:
 	_sprite{ _spriteSheet },
@@ -15,10 +17,27 @@ Player::Player(Graphics& gfx)
 
 	gfx.Add(_sprite);
 
-	_animations.emplace(Direction::Up, Animation{ _sprite, sf::Vector2i{ 91, 32 }, 3, sf::Vector2i{ 0, 96 }, 1, 0.3f });
-	_animations.emplace(Direction::Down, Animation{ _sprite, sf::Vector2i{ 91, 32 }, 3, sf::Vector2i{ 0, 0 }, 1, 0.3f });
-	_animations.emplace(Direction::Left, Animation{ _sprite, sf::Vector2i{ 91, 32 }, 3, sf::Vector2i{ 0, 32 }, 1, 0.3f });
-	_animations.emplace(Direction::Right, Animation{ _sprite, sf::Vector2i{ 91, 32 }, 3, sf::Vector2i{ 0, 64 }, 1, 0.3f });
+	INIReader iniReader{ "Player Sprite Config.ini" };
+
+	const float animationTime = iniReader.GetReal("Sprite", "AnimationTime", 0);
+
+	const sf::Vector2i spriteDimension{ iniReader.GetInteger("Sprite", "Width", 0), iniReader.GetInteger("Sprite", "Height", 0) };
+
+	const int standingFrameIndex = iniReader.GetInteger("SpriteSheet", "StandingFrameIndex", 0);
+
+	const int leftRow = iniReader.GetInteger("SpriteSheet", "LeftRow", 0);
+	const int rightRow = iniReader.GetInteger("SpriteSheet", "RightRow", 0);
+	const int upRow = iniReader.GetInteger("SpriteSheet", "UpRow", 0);
+	const int downRow = iniReader.GetInteger("SpriteSheet", "DownRow", 0);
+
+	const int frameCount = _spriteSheet.getSize().x / spriteDimension.x;
+
+	const sf::Vector2i frameRegion{ static_cast<int>(_spriteSheet.getSize().x), spriteDimension.y };
+
+	_animations.emplace(Direction::Up, Animation{ _sprite, frameRegion, frameCount, sf::Vector2i{ 0, upRow * spriteDimension.y }, standingFrameIndex, animationTime });
+	_animations.emplace(Direction::Down, Animation{ _sprite, frameRegion, frameCount, sf::Vector2i{ 0, downRow * spriteDimension.y }, standingFrameIndex, animationTime });
+	_animations.emplace(Direction::Left, Animation{ _sprite, frameRegion, frameCount, sf::Vector2i{ 0, leftRow * spriteDimension.y }, standingFrameIndex, animationTime });
+	_animations.emplace(Direction::Right, Animation{ _sprite, frameRegion, frameCount, sf::Vector2i{ 0, rightRow * spriteDimension.y }, standingFrameIndex, animationTime });
 }
 
 void Player::Update()
