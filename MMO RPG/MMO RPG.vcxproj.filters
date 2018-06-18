@@ -45,6 +45,9 @@
     <ClCompile Include="..\Libraries\inih\ini.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SpriteInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DeltaTime.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
