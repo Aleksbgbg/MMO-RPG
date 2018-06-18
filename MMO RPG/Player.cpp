@@ -15,10 +15,10 @@ Player::Player(Graphics& gfx)
 
 	gfx.Add(_sprite);
 
-	_animations.insert(std::make_pair(Direction::Up, Animation{ _sprite, sf::Vector2i{ 91, 32 }, 3, sf::Vector2i{ 0, 96 }, 1, 0.3f }));
-	_animations.insert(std::make_pair(Direction::Down, Animation{ _sprite, sf::Vector2i{ 91, 32 }, 3, sf::Vector2i{ 0, 0 }, 1, 0.3f }));
-	_animations.insert(std::make_pair(Direction::Left, Animation{ _sprite, sf::Vector2i{ 91, 32 }, 3, sf::Vector2i{ 0, 32 }, 1, 0.3f }));
-	_animations.insert(std::make_pair(Direction::Right, Animation{ _sprite, sf::Vector2i{ 91, 32 }, 3, sf::Vector2i{ 0, 64 }, 1, 0.3f }));
+	_animations.emplace(Direction::Up, Animation{ _sprite, sf::Vector2i{ 91, 32 }, 3, sf::Vector2i{ 0, 96 }, 1, 0.3f });
+	_animations.emplace(Direction::Down, Animation{ _sprite, sf::Vector2i{ 91, 32 }, 3, sf::Vector2i{ 0, 0 }, 1, 0.3f });
+	_animations.emplace(Direction::Left, Animation{ _sprite, sf::Vector2i{ 91, 32 }, 3, sf::Vector2i{ 0, 32 }, 1, 0.3f });
+	_animations.emplace(Direction::Right, Animation{ _sprite, sf::Vector2i{ 91, 32 }, 3, sf::Vector2i{ 0, 64 }, 1, 0.3f });
 }
 
 void Player::Update()
