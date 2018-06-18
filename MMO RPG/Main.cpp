@@ -11,7 +11,7 @@ int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszA
 
 	Game game{ window };
 
-	DeltaTime deltaTime = DeltaTime::Make();
+	DeltaTime& deltaTime = DeltaTime::Make();
 
 	while (window.isOpen())
 	{

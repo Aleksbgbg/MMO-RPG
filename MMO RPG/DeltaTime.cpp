@@ -6,7 +6,7 @@ DeltaTime DeltaTime::_instance{ };
 
 bool DeltaTime::_made{ false };
 
-DeltaTime DeltaTime::Make()
+DeltaTime& DeltaTime::Make()
 {
 	if (_made)
 	{

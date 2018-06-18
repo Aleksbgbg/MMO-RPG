@@ -5,7 +5,7 @@
 class DeltaTime
 {
 public:
-	static DeltaTime Make();
+	static DeltaTime& Make();
 
 	static float Get();
 
