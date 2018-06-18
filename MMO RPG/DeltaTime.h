@@ -5,14 +5,24 @@
 class DeltaTime
 {
 public:
+	static DeltaTime Make();
+
 	static float Get();
 
-	static void Restart();
+private:
+	static DeltaTime _instance;
+	static bool _made;
+
+public:
+	void Restart();
 	
 private:
 	DeltaTime();
 
 private:
-	static sf::Clock _clock;
-	static float _value;
+	float GetValue() const;
+
+private:
+	sf::Clock _clock;
+	float _value;
 };

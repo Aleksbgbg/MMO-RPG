@@ -1,10 +1,35 @@
-#include "DeltaTime.h" 
+#include "DeltaTime.h"
 
-sf::Clock DeltaTime::_clock;
+#include <stdexcept>
 
-float DeltaTime::_value{ 0 };
+DeltaTime DeltaTime::_instance{ };
+
+bool DeltaTime::_made{ false };
+
+DeltaTime DeltaTime::Make()
+{
+	if (_made)
+	{
+		throw std::runtime_error{ "Cannot instantiate a second DeltaTime." };
+	}
+
+	_made = true;
+
+	return _instance;
+}
+
+DeltaTime::DeltaTime()
+	:
+	_value{ 0.0f }
+{
+}
 
 float DeltaTime::Get()
+{
+	return _instance.GetValue();
+}
+
+float DeltaTime::GetValue() const
 {
 	return _value;
 }
