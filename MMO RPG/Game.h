@@ -9,9 +9,6 @@
 class Game
 {
 public:
-	Game(Game&) = delete;
-	Game(Game&&) = delete;
-
 	explicit Game(sf::RenderWindow& window);
 
 	void Main();
