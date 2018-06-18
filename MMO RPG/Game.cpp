@@ -5,12 +5,8 @@ Game::Game(sf::RenderWindow& window)
 	:
 	_gfx{ window },
 	_window{ window },
-<<<<<<< HEAD
-	map{_gfx}
-
-=======
+	map{_gfx},
 	_player{ _gfx }
->>>>>>> upstream/master
 {
 	sf::Texture texture;
 	texture.loadFromFile("mapTest.png");

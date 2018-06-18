@@ -3,11 +3,8 @@
 #include <SFML/Graphics.hpp>
 
 #include "Graphics.h"
-<<<<<<< HEAD
 #include "Map.h"
-=======
 #include "Player.h"
->>>>>>> upstream/master
 
 class Game
 {
@@ -26,10 +23,6 @@ private:
 private:
 	Graphics _gfx;
 	sf::RenderWindow& _window;
-<<<<<<< HEAD
 	Map map;
-=======
-
 	Player _player;
->>>>>>> upstream/master
 };

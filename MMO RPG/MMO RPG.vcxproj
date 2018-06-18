@@ -26,20 +26,15 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Main.cpp" />
-<<<<<<< HEAD
     <ClCompile Include="Map.cpp" />
-=======
     <ClCompile Include="Player.cpp" />
->>>>>>> upstream/master
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="DeltaTime.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
-<<<<<<< HEAD
     <ClInclude Include="Map.h" />
-=======
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
@@ -47,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Player Sprite Config.ini" />
->>>>>>> upstream/master
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
