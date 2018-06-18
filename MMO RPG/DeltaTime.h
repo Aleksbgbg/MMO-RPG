@@ -14,6 +14,13 @@ private:
 	static bool _made;
 
 public:
+	DeltaTime(DeltaTime&) = delete;
+	DeltaTime(DeltaTime&&) = delete;
+
+	DeltaTime operator=(DeltaTime&) = delete;
+	DeltaTime operator=(DeltaTime&&) = delete;
+
+public:
 	void Restart();
 	
 private:
