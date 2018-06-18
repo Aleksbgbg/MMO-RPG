@@ -1,86 +1,109 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Resource Files\Map">
-      <UniqueIdentifier>{cd09ceab-60ae-4c50-a234-45637a47cf83}</UniqueIdentifier>
-    <Filter Include="Resource Files\Sprites">
-      <UniqueIdentifier>{5be3886b-bc3b-4b29-a95c-eaddf44468b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Sprites\Sprite Sheets">
-      <UniqueIdentifier>{cbc9e8a1-1de3-4b10-aab8-b7fe4c6bf3fb}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DeltaTime.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Animation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Libraries\inih\INIReader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Libraries\inih\ini.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Map.cpp">
+    <ClCompile Include="..\Libraries\inih\INIReader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="SpriteInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="DeltaTime.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DeltaTime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Map.h">
     <ClInclude Include="SpriteInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="DeltaTime.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{491ca77b-6743-447a-b3f2-9633d418468c}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{6315227c-9911-4abb-b83d-2a8da01aa73d}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Entities">
+      <UniqueIdentifier>{df5a7e5a-fa8c-483d-a207-9c0485639c8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities">
+      <UniqueIdentifier>{6327cb53-53dd-4861-9cef-eb880d148ba6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework">
+      <UniqueIdentifier>{460f56c9-eb6e-401f-8e45-c3e75884bd27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Framework">
+      <UniqueIdentifier>{de0f7b63-73aa-48ae-aa8d-cc6091252db6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{b5975445-2748-44ce-917e-f884c54b0f48}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Resource Files\Sprite">
+      <UniqueIdentifier>{c5e5935b-d1a0-4d43-8360-3593c479a921}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Sprite\SpriteSheets">
+      <UniqueIdentifier>{e1e04c76-afe6-4cee-bc99-79c25ec130e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Map">
+      <UniqueIdentifier>{a25bd960-313f-4753-8c8d-0bee7227d53a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Player.png">
-      <Filter>Resource Files\Sprites\Sprite Sheets</Filter>
+      <Filter>Resource Files\Sprite\SpriteSheets</Filter>
+    </Image>
+    <Image Include="mapTest.png">
+      <Filter>Resource Files\Map</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="Player Sprite Config.ini">
-      <Filter>Resource Files\Sprites</Filter>
+      <Filter>Resource Files\Sprite</Filter>
+    </None>
+    <None Include="mapTest.json">
+      <Filter>Resource Files\Map</Filter>
     </None>
   </ItemGroup>
 </Project>

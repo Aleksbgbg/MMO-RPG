@@ -40,10 +40,20 @@
     <ClInclude Include="SpriteInfo.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Player.png" />
+    <Image Include="mapTest.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
+    <Image Include="Player.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Player Sprite Config.ini" />
+    <None Include="mapTest.json">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Player Sprite Config.ini">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
