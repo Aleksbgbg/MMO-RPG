@@ -19,17 +19,35 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Libraries\inih\ini.c" />
+    <ClCompile Include="..\Libraries\inih\INIReader.cpp" />
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="DeltaTime.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Main.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="Map.cpp" />
+=======
+    <ClCompile Include="Player.cpp" />
+>>>>>>> upstream/master
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="DeltaTime.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
+<<<<<<< HEAD
     <ClInclude Include="Map.h" />
+=======
+    <ClInclude Include="Player.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Player.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Player Sprite Config.ini" />
+>>>>>>> upstream/master
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -94,7 +112,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Libraries\SFML 2.5\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Libraries\SFML 2.5\include;$(SolutionDir)\Libraries\inih</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -118,7 +136,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Libraries\SFML 2.5\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Libraries\SFML 2.5\include;$(SolutionDir)\Libraries\inih</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>

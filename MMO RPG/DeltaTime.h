@@ -12,5 +12,7 @@ public:
 private:
 	DeltaTime();
 
+private:
 	static sf::Clock _clock;
+	static float _value;
 };

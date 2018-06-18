@@ -5,8 +5,12 @@ Game::Game(sf::RenderWindow& window)
 	:
 	_gfx{ window },
 	_window{ window },
+<<<<<<< HEAD
 	map{_gfx}
 
+=======
+	_player{ _gfx }
+>>>>>>> upstream/master
 {
 	sf::Texture texture;
 	texture.loadFromFile("mapTest.png");
@@ -28,6 +32,7 @@ void Game::Main()
 
 void Game::UpdateModel()
 {
+	_player.Update();
 }
 
 void Game::ComposeFrame()
