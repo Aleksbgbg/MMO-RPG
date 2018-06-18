@@ -43,6 +43,7 @@
     <Image Include="mapTest.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
+    <Image Include="NPCs.png" />
     <Image Include="Player.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>

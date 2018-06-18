@@ -97,6 +97,9 @@
     <Image Include="mapTest.png">
       <Filter>Resource Files\Map</Filter>
     </Image>
+    <Image Include="NPCs.png">
+      <Filter>Resource Files\Sprite\SpriteSheets</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="Player Sprite Config.ini">
