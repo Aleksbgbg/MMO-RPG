@@ -108,5 +108,8 @@
     <None Include="mapTest.json">
       <Filter>Resource Files\Map</Filter>
     </None>
+    <None Include="NPC Sprite Config.ini">
+      <Filter>Resource Files\Sprite</Filter>
+    </None>
   </ItemGroup>
 </Project>

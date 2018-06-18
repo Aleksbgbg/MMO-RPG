@@ -52,6 +52,7 @@
     <None Include="mapTest.json">
       <DeploymentContent>true</DeploymentContent>
     </None>
+    <None Include="NPC Sprite Config.ini" />
     <None Include="Player Sprite Config.ini">
       <DeploymentContent>true</DeploymentContent>
     </None>
