@@ -29,7 +29,10 @@ void Animation::Resume()
 
 void Animation::Stop()
 {
+	currentFrameRunningTime = 0;
+
 	SwitchFrame(defaultFrame);
+
 	isStopped = true;
 }
 
