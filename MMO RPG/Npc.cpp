@@ -1,6 +1,7 @@
 #include "Npc.h"
 #include <SFML/Window/Keyboard.hpp>
 #include "Npc.h"
+#include <random>
 
 Npc::Npc(Graphics& gfx, const sf::Vector2i spriteSheetCoordinate)
 	:
@@ -16,6 +17,15 @@ Npc::Npc(Graphics& gfx, const sf::Vector2i spriteSheetCoordinate)
 	const sf::Vector2i spritesheetDimension{ static_cast<int>(3 * spriteInfo.spriteDimension.x), static_cast<int>(4 * spriteInfo.spriteDimension.y) };
 
 	_sprite = sf::Sprite{ _spriteSheet, sf::IntRect{ spriteSheetCoordinate.x * spritesheetDimension.x, spriteSheetCoordinate.y * spritesheetDimension.y, spritesheetDimension.x, spritesheetDimension.y } };
+
+	{
+		std::mt19937 randomEngine{ std::random_device{ }() };
+
+		const std::uniform_int_distribution<int> xDist{ 0, Graphics::ScreenWidth - 1 };
+		const std::uniform_int_distribution<int> yDist{ 0, Graphics::ScreenHeight - 1 };
+
+		_sprite.setPosition(xDist(randomEngine), yDist(randomEngine));
+	}
 
 	_animations.emplace(Direction::Up, Animation{ _sprite, spriteInfo, spriteInfo.upRow });
 	_animations.emplace(Direction::Down, Animation{ _sprite, spriteInfo, spriteInfo.downRow });
