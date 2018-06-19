@@ -22,6 +22,7 @@
     <ClCompile Include="..\Libraries\inih\ini.c" />
     <ClCompile Include="..\Libraries\inih\INIReader.cpp" />
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="DeltaTime.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
@@ -34,6 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Character.h" />
     <ClInclude Include="DeltaTime.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
