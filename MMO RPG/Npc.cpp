@@ -2,7 +2,7 @@
 
 #include <SFML/Window/Keyboard.hpp>
 
-#include <random>
+#include "Random.h"
 
 Npc::Npc(const sf::Vector2i spriteSheetCoordinate, sf::Texture& spriteSheet)
 	:
@@ -16,14 +16,7 @@ Npc::Npc(const sf::Vector2i spriteSheetCoordinate, sf::Texture& spriteSheet)
 
 	sprite = sf::Sprite{ spriteSheet };
 
-	{
-		std::mt19937 randomEngine{ std::random_device{ }() };
-
-		const std::uniform_int_distribution<int> xDist{ 0, Graphics::ScreenWidth - 1 };
-		const std::uniform_int_distribution<int> yDist{ 0, Graphics::ScreenHeight - 1 };
-
-		sprite.setPosition(xDist(randomEngine), yDist(randomEngine));
-	}
+	sprite.setPosition(Random::Generate(0, Graphics::ScreenWidth - spriteInfo.spriteDimension.x), Random::Generate(0, Graphics::ScreenHeight - spriteInfo.spriteDimension.y));
 
 	animations.emplace(Direction::Up, Animation{ sprite, spriteInfo, spriteInfo.upRow, spriteRegion });
 	animations.emplace(Direction::Down, Animation{ sprite, spriteInfo, spriteInfo.downRow, spriteRegion });
