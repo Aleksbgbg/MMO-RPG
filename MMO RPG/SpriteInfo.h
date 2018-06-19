@@ -7,7 +7,6 @@
 
 struct SpriteInfo
 {
-	SpriteInfo() = default;
 	SpriteInfo(const std::string& filename, const sf::Texture& spriteSheet);
 
 	sf::Vector2u spriteDimension;
