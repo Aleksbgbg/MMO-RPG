@@ -1,22 +1,21 @@
 #include "Npc.h"
 
-#include <SFML/Window/Keyboard.hpp>
-
 #include "Random.h"
 
 Npc::Npc(const sf::Vector2i spriteSheetCoordinate, sf::Texture& spriteSheet)
 	:
+	spriteInfo{ "Npc Sprite Config.ini", spriteSheet },
 	movementDirection{ Direction::Down }
 {
-	const SpriteInfo spriteInfo{ "Npc Sprite Config.ini", spriteSheet };
-
 	const sf::Vector2i spriteSheetDimension{ static_cast<int>(spriteInfo.frameCount * spriteInfo.spriteDimension.x), static_cast<int>(SpriteInfo::RowCount * spriteInfo.spriteDimension.y) };
 
 	const sf::IntRect spriteRegion = sf::IntRect{ spriteSheetCoordinate.x * spriteSheetDimension.x, spriteSheetCoordinate.y * spriteSheetDimension.y, spriteSheetDimension.x, spriteSheetDimension.y };
 
 	sprite = sf::Sprite{ spriteSheet };
 
-	sprite.setPosition(Random::Generate(0, Graphics::ScreenWidth - spriteInfo.spriteDimension.x), Random::Generate(0, Graphics::ScreenHeight - spriteInfo.spriteDimension.y));
+	GenerateTargetPosition();
+
+	sprite.setPosition(targetPosition);
 
 	animations.emplace(Direction::Up, Animation{ sprite, spriteInfo, spriteInfo.upRow, spriteRegion });
 	animations.emplace(Direction::Down, Animation{ sprite, spriteInfo, spriteInfo.downRow, spriteRegion });
@@ -26,30 +25,42 @@ Npc::Npc(const sf::Vector2i spriteSheetCoordinate, sf::Texture& spriteSheet)
 
 void Npc::Update()
 {
+	const sf::Vector2f currentPosition = sprite.getPosition();
+
+	if (currentPosition == targetPosition)
+	{
+		GenerateTargetPosition();
+	}
+
 	const bool wasStanding = movementDirection == Direction::Still;
 
 	sf::Vector2f movement;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
+	if (currentPosition.x != targetPosition.x) // Move towards target x first
 	{
-		movementDirection = Direction::Up;
-		movement.y = -1;
+		if (currentPosition.x > targetPosition.x)
+		{
+			movementDirection = Direction::Left;
+			movement.x = -1;
+		}
+		else
+		{
+			movementDirection = Direction::Right;
+			movement.x = 1;
+		}
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
+	else // Move towards target y, after reaching target x
 	{
-		movementDirection = Direction::Down;
-		movement.y = 1;
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
-	{
-		movementDirection = Direction::Left;
-		movement.x = -1;
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
-	{
-		movementDirection = Direction::Right;
-		movement.x = 1;
+		if (currentPosition.y > targetPosition.y)
+		{
+			movementDirection = Direction::Up;
+			movement.y = -1;
+		}
+		else
+		{
+			movementDirection = Direction::Down;
+			movement.y = 1;
+		}
 	}
 
 	if (movement.x == 0 && movement.y == 0)
@@ -77,4 +88,10 @@ void Npc::Update()
 void Npc::Draw(const Graphics& gfx) const
 {
 	gfx.Draw(sprite);
+}
+
+void Npc::GenerateTargetPosition()
+{
+	targetPosition.x = Random::Generate(0, Graphics::ScreenWidth - spriteInfo.spriteDimension.x);
+	targetPosition.y = Random::Generate(0, Graphics::ScreenHeight - spriteInfo.spriteDimension.y);
 }

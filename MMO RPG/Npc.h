@@ -15,6 +15,9 @@ public:
 	void Draw(const Graphics& gfx) const;
 
 private:
+	void GenerateTargetPosition();
+
+private:
 	enum class Direction
 	{
 		Up,
@@ -26,8 +29,11 @@ private:
 
 private:
 	sf::Sprite sprite;
+	SpriteInfo spriteInfo;
+
+	std::map<Direction, Animation> animations;
 
 	Direction movementDirection;
 
-	std::map<Direction, Animation> animations;
+	sf::Vector2f targetPosition;
 };
