@@ -29,6 +29,7 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Npc.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Random.cpp" />
     <ClCompile Include="SpriteInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -39,6 +40,7 @@
     <ClInclude Include="Map.h" />
     <ClInclude Include="Npc.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Random.h" />
     <ClInclude Include="SpriteInfo.h" />
   </ItemGroup>
   <ItemGroup>
