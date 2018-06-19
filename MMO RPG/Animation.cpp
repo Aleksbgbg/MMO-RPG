@@ -43,6 +43,11 @@ void Animation::Update()
 		currentFrameRunningTime -= frameTime;
 	}
 
+	if (currentFrame == defaultFrame)
+	{
+		NextFrame();
+	}
+
 	SwitchFrame(currentFrame);
 }
 
