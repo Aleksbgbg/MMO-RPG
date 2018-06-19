@@ -2,22 +2,22 @@
 
 Graphics::Graphics(sf::RenderWindow& window)
 	:
-	_window{ window }
+	window{ window }
 {
-	_window.setFramerateLimit(Framerate);
+	window.setFramerateLimit(Framerate);
 }
 
 void Graphics::Begin() const
 {
-	_window.clear();
+	window.clear();
 }
 
 void Graphics::End() const
 {
-	_window.display();
+	window.display();
 }
 
 void Graphics::Draw(const sf::Drawable& drawable) const
 {
-	_window.draw(drawable);
+	window.draw(drawable);
 }

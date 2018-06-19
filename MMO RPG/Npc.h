@@ -25,10 +25,10 @@ private:
 	};
 
 private:
-	sf::Sprite _sprite;
-	sf::Texture _spriteSheet;
+	sf::Sprite sprite;
+	sf::Texture spriteSheet;
 
-	Direction _movementDirection;
+	Direction movementDirection;
 
-	std::map<Direction, Animation> _animations;
+	std::map<Direction, Animation> animations;
 };

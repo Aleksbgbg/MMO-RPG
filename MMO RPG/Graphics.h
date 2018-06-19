@@ -21,5 +21,5 @@ public:
 	static constexpr unsigned int Framerate = 60;
 
 private:
-	sf::RenderWindow& _window;
+	sf::RenderWindow& window;
 };

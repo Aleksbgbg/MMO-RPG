@@ -18,8 +18,8 @@ private:
 	void ComposeFrame();
 
 private:
-	const Graphics _gfx;
-	sf::RenderWindow& _window;
+	const Graphics gfx;
+
 	Map map;
-	Player _player;
+	Player player;
 };

@@ -13,7 +13,7 @@ public:
 	void SwitchFrame(const int frame) const;
 
 	void Resume();
-	void Stop();
+	void Stop();	
 
 	void Update();
 
@@ -21,17 +21,17 @@ private:
 	void NextFrame();
 
 private:
-	sf::Sprite& _sprite;
+	sf::Sprite& sprite;
 
-	const sf::Vector2i _frameSize;
-	const sf::Vector2i _startingPosition;
+	const sf::Vector2i frameSize;
+	const sf::Vector2i startingPosition;
 
-	const float _frameTime;
-	float _currentFrameRunningTime;
+	const float frameTime;
+	float currentFrameRunningTime;
 
-	const int _frameCount;
-	const int _defaultFrame;
-	int _currentFrame;
+	const int frameCount;
+	const int defaultFrame;
+	int currentFrame;
 
-	bool _isStopped;
+	bool isStopped;
 };

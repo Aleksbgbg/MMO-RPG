@@ -2,39 +2,39 @@
 
 #include <stdexcept>
 
-DeltaTime DeltaTime::_instance{ };
+DeltaTime DeltaTime::instance{ };
 
-bool DeltaTime::_made{ false };
+bool DeltaTime::made{ false };
 
 DeltaTime& DeltaTime::Make()
 {
-	if (_made)
+	if (made)
 	{
 		throw std::runtime_error{ "Cannot instantiate a second DeltaTime." };
 	}
 
-	_made = true;
+	made = true;
 
-	return _instance;
+	return instance;
 }
 
 DeltaTime::DeltaTime()
 	:
-	_value{ 0.0f }
+	value{ 0.0f }
 {
 }
 
 float DeltaTime::Get()
 {
-	return _instance.GetValue();
+	return instance.GetValue();
 }
 
 float DeltaTime::GetValue() const
 {
-	return _value;
+	return value;
 }
 
 void DeltaTime::Restart()
 {
-	_value = _clock.restart().asSeconds();
+	value = clock.restart().asSeconds();
 }

@@ -7,73 +7,73 @@
 
 Player::Player()
 	:
-	_sprite{ _spriteSheet },
-	_movementDirection{ Direction::Down }
+	sprite{ spriteSheet },
+	movementDirection{ Direction::Down }
 {
-	if (!_spriteSheet.loadFromFile("Player.png"))
+	if (!spriteSheet.loadFromFile("Player.png"))
 	{
 		throw std::runtime_error{ "Player spritesheet loading not successful." };
 	}
 
-	const SpriteInfo spriteInfo{ "Player Sprite Config.ini", _spriteSheet };
+	const SpriteInfo spriteInfo{ "Player Sprite Config.ini", spriteSheet };
 
-	_animations.emplace(Direction::Up, Animation{ _sprite, spriteInfo, spriteInfo.upRow });
-	_animations.emplace(Direction::Down, Animation{ _sprite, spriteInfo, spriteInfo.downRow });
-	_animations.emplace(Direction::Left, Animation{ _sprite, spriteInfo, spriteInfo.leftRow });
-	_animations.emplace(Direction::Right, Animation{ _sprite, spriteInfo, spriteInfo.rightRow });
+	animations.emplace(Direction::Up, Animation{ sprite, spriteInfo, spriteInfo.upRow });
+	animations.emplace(Direction::Down, Animation{ sprite, spriteInfo, spriteInfo.downRow });
+	animations.emplace(Direction::Left, Animation{ sprite, spriteInfo, spriteInfo.leftRow });
+	animations.emplace(Direction::Right, Animation{ sprite, spriteInfo, spriteInfo.rightRow });
 }
 
 void Player::Update()
 {
-	const bool wasStanding = _movementDirection == Direction::Still;
+	const bool wasStanding = movementDirection == Direction::Still;
 
 	sf::Vector2f movement;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
 	{
-		_movementDirection = Direction::Up;
+		movementDirection = Direction::Up;
 		movement.y = -1;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
 	{
-		_movementDirection = Direction::Down;
+		movementDirection = Direction::Down;
 		movement.y = 1;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
 	{
-		_movementDirection = Direction::Left;
+		movementDirection = Direction::Left;
 		movement.x = -1;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
 	{
-		_movementDirection = Direction::Right;
+		movementDirection = Direction::Right;
 		movement.x = 1;
 	}
 
 	if (movement.x == 0 && movement.y == 0)
 	{
-		if (_movementDirection != Direction::Still)
+		if (movementDirection != Direction::Still)
 		{
-			_animations.at(_movementDirection).Stop();
+			animations.at(movementDirection).Stop();
 		}
 
-		_movementDirection = Direction::Still;
+		movementDirection = Direction::Still;
 	}
 	else
 	{
 		if (wasStanding)
 		{
-			_animations.at(_movementDirection).Resume();
+			animations.at(movementDirection).Resume();
 		}
 
-		_sprite.move(movement);
+		sprite.move(movement);
 
-		_animations.at(_movementDirection).Update();
+		animations.at(movementDirection).Update();
 	}
 }
 
 void Player::Draw(const Graphics& gfx) const
 {
-	gfx.Draw(_sprite);
+	gfx.Draw(sprite);
 }

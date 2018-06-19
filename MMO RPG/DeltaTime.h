@@ -10,8 +10,8 @@ public:
 	static float Get();
 
 private:
-	static DeltaTime _instance;
-	static bool _made;
+	static DeltaTime instance;
+	static bool made;
 
 public:
 	DeltaTime(DeltaTime&) = delete;
@@ -30,6 +30,6 @@ private:
 	float GetValue() const;
 
 private:
-	sf::Clock _clock;
-	float _value;
+	sf::Clock clock;
+	float value;
 };
