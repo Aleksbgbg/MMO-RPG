@@ -13,6 +13,8 @@ struct SpriteInfo
 	sf::Vector2u frameRegion;
 	sf::Vector2u sheetSize;
 
+	static constexpr unsigned int RowCount = 4;
+
 	int leftRow;
 	int rightRow;
 	int upRow;
