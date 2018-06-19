@@ -1,11 +1,12 @@
-#include <iostream>
+#include <SFML/Graphics.hpp>
+
+#include "json.hpp"
+
 #include <fstream>
 #include <string>
-#include <SFML/Graphics.hpp>
+
 #include "Graphics.h"
 #include "Map.h"
-
-#include "../Libraries/json.hpp"
 
 using json = nlohmann::json;
 
@@ -13,11 +14,11 @@ Map::Map()
 {
 	// TODO: Remove hardcoded
 	texture.loadFromFile("mapTest.png");
-	ParseFileToJSON("mapTest.json");
+	ParseFileToJson("mapTest.json");
 	PopulateSpritePositions();
 }
 
-void Map::AddTexture(sf::Texture texture)
+void Map::AddTexture(const sf::Texture& texture)
 {
 	textures.push_back(texture);
 }
@@ -30,40 +31,43 @@ void Map::Draw(const Graphics& gfx)
 	}
 }
 
-void Map::AddSprite(int index, int w, int h)
-
+void Map::AddSprite(const int index, const int width, const int height)
 {
-	// Hey so I heard you like memory
-	spr.setTexture(textures.front());
-	spr.setTextureRect(sf::IntRect(spritePositions[index].x, spritePositions[index].y, w, h));
-	spr.setScale(2.0f, 2.0f);
-	spr.setPosition(0, 0);
-	sprites.push_back(spr);
+	sf::Sprite sprite{ };
+
+	sprite.setTexture(textures.front());
+	sprite.setTextureRect(sf::IntRect{ spritePositions[index].x, spritePositions[index].y, width, height });
+	sprite.setScale(2.0f, 2.0f);
+	sprite.setPosition(0, 0);
+
+	sprites.push_back(sprite);
 }
 
-void Map::ParseFileToJSON(std::string fileName)
+void Map::ParseFileToJson(const std::string& filename)
 {
-	std::ifstream input(fileName);
+	std::ifstream input{ filename };
+
 	if (!input.is_open())
 	{
-		throw std::runtime_error("Could not open file " + fileName);
+		throw std::runtime_error{ "Could not open file " + filename };
 	}
+
 	json = json::parse(input);
 }
 
 void Map::PopulateSpritePositions()
 {
 	// TODO: Maybe move this into it's own method
-	int numOfTilesX = texture.getSize().x / 16;
-	int numOfTilesY = texture.getSize().y / 16;
-	int numOfAllTiles = numOfTilesX * numOfTilesY;
+	const int tilesHorizontal = texture.getSize().x / 16;
+	const int tilesVertical = texture.getSize().y / 16;
+	const int tilesTotal = tilesHorizontal * tilesVertical;
 
 	unsigned int xPos = 0;
 	unsigned int yPos = 0;
 
-	for (int i = 0; i != numOfAllTiles; i++)
+	for (int i = 0; i < tilesTotal; i++)
 	{
-		spritePositions.push_back(sf::Vector2i(xPos, yPos));
+		spritePositions.emplace_back(xPos, yPos);
 
 		xPos += 16;
 

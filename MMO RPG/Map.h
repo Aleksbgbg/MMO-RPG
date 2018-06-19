@@ -1,33 +1,38 @@
 #pragma once
-#include <string>
-#include "../Libraries/json.hpp"
+
 #include <SFML/Graphics.hpp>
+
+#include "json.hpp"
+
+#include <string>
 #include <vector>
-using json = nlohmann::json;
 
 class Map
 {
 public:
 	Map();
-	void AddSprite(int index, int w, int h);
-	void AddTexture(sf::Texture texture);
-	std::vector<sf::Texture> textures;
-	std::vector<sf::Sprite> sprites;
-	sf::Sprite* sprite;
 
-	sf::Sprite spr;
-
+public:
+	void AddSprite(int index, int width, int height);
+	void AddTexture(const sf::Texture& texture);
+	
 	void Draw(const Graphics& gfx);
 
+private:
+	void PopulateSpritePositions();
+	void ParseFileToJson(const std::string& filename);
+	void UnpackData();
 
 private:
-	json json;
+	std::vector<sf::Texture> textures;
+	std::vector<sf::Sprite> sprites;
+
+	nlohmann::json json;
+
 	int width;
 	int height;
 	int layers;
+
 	sf::Texture texture;
 	std::vector<sf::Vector2i> spritePositions;
-	void PopulateSpritePositions();
-	void ParseFileToJSON(std::string fileName);
-	void UnpackData();
 };
