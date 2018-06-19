@@ -2,11 +2,11 @@
 
 #include "DeltaTime.h"
 
-Animation::Animation(sf::Sprite& sprite, const SpriteInfo& spriteInfo, const int sheetRow)
+Animation::Animation(sf::Sprite& sprite, const SpriteInfo& spriteInfo, const int sheetRow, const sf::IntRect spriteRegion)
 	:
 	sprite{ sprite },
 	frameSize{ spriteInfo.frameRegion.x / spriteInfo.frameCount, spriteInfo.frameRegion.y },
-	startingPosition{ 0, sheetRow * spriteInfo.spriteDimension.y },
+	startingPosition{ spriteRegion.left, spriteRegion.top + sheetRow * spriteInfo.spriteDimension.y },
 	frameTime{ spriteInfo.frameTime },
 	currentFrameRunningTime{ 0.0f },
 	frameCount{ spriteInfo.frameCount },

@@ -7,7 +7,7 @@
 class Animation
 {
 public:
-	Animation(sf::Sprite& sprite, const SpriteInfo& spriteInfo, const int sheetRow);
+	Animation(sf::Sprite& sprite, const SpriteInfo& spriteInfo, const int sheetRow, const sf::IntRect spriteRegion);
 
 public:
 	void SwitchFrame(const int frame) const;
