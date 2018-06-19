@@ -11,9 +11,10 @@
 class Player
 {
 public:
-	explicit Player(Graphics& gfx);
+	Player();
 
 	void Update();
+	void Draw(const Graphics& gfx) const;
 
 private:
 	enum class Direction

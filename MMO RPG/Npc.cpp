@@ -3,7 +3,7 @@
 #include "Npc.h"
 #include <random>
 
-Npc::Npc(Graphics& gfx, const sf::Vector2i spriteSheetCoordinate)
+Npc::Npc(const sf::Vector2i spriteSheetCoordinate)
 	:
 	_movementDirection{ Direction::Down }
 {
@@ -31,8 +31,6 @@ Npc::Npc(Graphics& gfx, const sf::Vector2i spriteSheetCoordinate)
 	_animations.emplace(Direction::Down, Animation{ _sprite, spriteInfo, spriteInfo.downRow });
 	_animations.emplace(Direction::Left, Animation{ _sprite, spriteInfo, spriteInfo.leftRow });
 	_animations.emplace(Direction::Right, Animation{ _sprite, spriteInfo, spriteInfo.rightRow });
-
-	gfx.Add(_sprite);
 }
 void Npc::Update()
 {
@@ -82,4 +80,9 @@ void Npc::Update()
 
 		_animations.at(_movementDirection).Update();
 	}
+}
+
+void Npc::Draw(const Graphics& gfx) const
+{
+	gfx.Draw(_sprite);
 }

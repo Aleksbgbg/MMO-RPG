@@ -18,7 +18,7 @@ private:
 	void ComposeFrame();
 
 private:
-	Graphics _gfx;
+	const Graphics _gfx;
 	sf::RenderWindow& _window;
 	Map map;
 	Player _player;

@@ -8,9 +8,11 @@
 class Npc
 {
 public:
-	explicit Npc(Graphics& gfx, sf::Vector2i spriteSheetCoordinate);
+	explicit Npc(sf::Vector2i spriteSheetCoordinate);
 
 	void Update();
+
+	void Draw(const Graphics& gfx) const;
 
 private:
 	enum class Direction

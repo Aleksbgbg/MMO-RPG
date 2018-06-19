@@ -4,9 +4,7 @@
 Game::Game(sf::RenderWindow& window)
 	:
 	_gfx{ window },
-	_window{ window },
-	map{_gfx},
-	_player{ _gfx }
+	_window{ window }
 {
 	sf::Texture texture;
 	texture.loadFromFile("mapTest.png");
@@ -22,7 +20,6 @@ void Game::Main()
 	UpdateModel();
 	ComposeFrame();
 
-	_gfx.Render();
 	_gfx.End();
 }
 
@@ -33,4 +30,6 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
+	map.Draw(_gfx);
+	_player.Draw(_gfx);
 }

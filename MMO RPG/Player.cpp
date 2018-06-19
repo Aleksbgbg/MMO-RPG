@@ -5,7 +5,7 @@
 
 #include "INIReader.h"
 
-Player::Player(Graphics& gfx)
+Player::Player()
 	:
 	_sprite{ _spriteSheet },
 	_movementDirection{ Direction::Down }
@@ -14,8 +14,6 @@ Player::Player(Graphics& gfx)
 	{
 		throw std::runtime_error{ "Player spritesheet loading not successful." };
 	}
-
-	gfx.Add(_sprite);
 
 	const SpriteInfo spriteInfo{ "Player Sprite Config.ini", _spriteSheet };
 
@@ -73,4 +71,9 @@ void Player::Update()
 
 		_animations.at(_movementDirection).Update();
 	}
+}
+
+void Player::Draw(const Graphics& gfx) const
+{
+	gfx.Draw(_sprite);
 }

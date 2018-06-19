@@ -9,9 +9,7 @@
 
 using json = nlohmann::json;
 
-Map::Map(Graphics& gfx)
-	:
-	_gfx{ gfx }
+Map::Map()
 {
 	// TODO: Remove hardcoded
 	_texture.loadFromFile("mapTest.png");
@@ -24,6 +22,14 @@ void Map::AddTexture(sf::Texture texture)
 	_textures.push_back(texture);
 }
 
+void Map::Draw(const Graphics& gfx)
+{
+	for (const sf::Sprite& sprite : _sprites)
+	{
+		gfx.Draw(sprite);
+	}
+}
+
 void Map::AddSprite(int index, int w, int h)
 
 {
@@ -33,8 +39,6 @@ void Map::AddSprite(int index, int w, int h)
 	spr.setScale(2.0f, 2.0f);
 	spr.setPosition(0, 0);
 	_sprites.push_back(spr);
-
-	_gfx.Add(_sprites.back());
 }
 
 void Map::ParseFileToJSON(std::string fileName)

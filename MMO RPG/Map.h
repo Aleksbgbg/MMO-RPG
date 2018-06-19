@@ -3,13 +3,12 @@
 #include "../Libraries/json.hpp"
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include "Graphics.h"
 using json = nlohmann::json;
 
 class Map
 {
 public:
-	Map(Graphics& gfx);
+	Map();
 	void AddSprite(int index, int w, int h);
 	void AddTexture(sf::Texture texture);
 	std::vector<sf::Texture> _textures;
@@ -17,6 +16,8 @@ public:
 	sf::Sprite* sprite;
 
 	sf::Sprite spr;
+
+	void Draw(const Graphics& gfx);
 
 
 private:
@@ -29,6 +30,4 @@ private:
 	void PopulateSpritePositions();
 	void ParseFileToJSON(std::string fileName);
 	void UnpackData();
-
-	Graphics& _gfx;
 };
