@@ -19,7 +19,7 @@ SpriteInfo::SpriteInfo(const std::string& filename, const sf::Texture& spriteShe
 	upRow = iniReader.GetInteger("SpriteSheet", "UpRow", 0);
 	downRow = iniReader.GetInteger("SpriteSheet", "DownRow", 0);
 
-	frameCount = sheetSize.x / spriteDimension.x;
+	frameCount = iniReader.GetInteger("SpriteSheet", "WalkingFrames", 0);
 
-	frameRegion = sf::Vector2u{ sheetSize.x, spriteDimension.y };
+	frameRegion = sf::Vector2u{ spriteDimension.x * frameCount, spriteDimension.y };
 }
