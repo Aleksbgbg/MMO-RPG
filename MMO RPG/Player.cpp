@@ -17,10 +17,12 @@ Player::Player()
 
 	const SpriteInfo spriteInfo{ "Player Sprite Config.ini", spriteSheet };
 
-	animations.emplace(Direction::Up, Animation{ sprite, spriteInfo, spriteInfo.upRow });
-	animations.emplace(Direction::Down, Animation{ sprite, spriteInfo, spriteInfo.downRow });
-	animations.emplace(Direction::Left, Animation{ sprite, spriteInfo, spriteInfo.leftRow });
-	animations.emplace(Direction::Right, Animation{ sprite, spriteInfo, spriteInfo.rightRow });
+	const sf::IntRect spriteRegion = sf::IntRect{ 0, 0, static_cast<int>(spriteInfo.sheetSize.x), static_cast<int>(spriteInfo.sheetSize.y) };
+	
+	animations.emplace(Direction::Up, Animation{ sprite, spriteInfo, spriteInfo.upRow, spriteRegion });
+	animations.emplace(Direction::Down, Animation{ sprite, spriteInfo, spriteInfo.downRow, spriteRegion });
+	animations.emplace(Direction::Left, Animation{ sprite, spriteInfo, spriteInfo.leftRow, spriteRegion });
+	animations.emplace(Direction::Right, Animation{ sprite, spriteInfo, spriteInfo.rightRow, spriteRegion });
 }
 
 void Player::Update()
