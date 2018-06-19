@@ -3,10 +3,16 @@
 
 Game::Game(sf::RenderWindow& window)
 	:
-	gfx{ window }
+	gfx{ window },
+	player{ playerSprite }
 {
 	sf::Texture texture;
 	texture.loadFromFile("mapTest.png");
+
+	if (!playerSprite.loadFromFile("Player.png"))
+	{
+		throw std::runtime_error{ "Player spritesheet loading not successful." };
+	}
 
 	if (!npcsTexture.loadFromFile("NPCs.png"))
 	{
