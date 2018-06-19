@@ -18,5 +18,5 @@ private:
 private:
 	SpriteInfo spriteInfo;
 
-	sf::Vector2f targetPosition;
+	sf::Vector2i targetPosition;
 };

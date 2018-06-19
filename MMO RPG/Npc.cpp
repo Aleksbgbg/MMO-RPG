@@ -13,7 +13,7 @@ Npc::Npc(const sf::Vector2i spriteSheetCoordinate, sf::Texture& spriteSheet)
 
 	GenerateTargetPosition();
 
-	sprite.setPosition(targetPosition);
+	sprite.setPosition(sf::Vector2f{ targetPosition });
 
 	animations.emplace(Direction::Up, Animation{ sprite, spriteInfo, spriteInfo.upRow, spriteRegion });
 	animations.emplace(Direction::Down, Animation{ sprite, spriteInfo, spriteInfo.downRow, spriteRegion });
@@ -23,7 +23,7 @@ Npc::Npc(const sf::Vector2i spriteSheetCoordinate, sf::Texture& spriteSheet)
 
 sf::Vector2f Npc::PickMovement()
 {
-	const sf::Vector2f currentPosition = sprite.getPosition();
+	const sf::Vector2i currentPosition{ sprite.getPosition() };
 
 	if (currentPosition == targetPosition)
 	{
