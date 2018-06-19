@@ -5,16 +5,10 @@
 
 #include "INIReader.h"
 
-Player::Player()
+Player::Player(sf::Texture& spriteSheet)
 	:
-	sprite{ spriteSheet },
-	movementDirection{ Direction::Down }
+	Character{ sf::Sprite{ spriteSheet } }
 {
-	if (!spriteSheet.loadFromFile("Player.png"))
-	{
-		throw std::runtime_error{ "Player spritesheet loading not successful." };
-	}
-
 	const SpriteInfo spriteInfo{ "Player Sprite Config.ini", spriteSheet };
 
 	const sf::IntRect spriteRegion = sf::IntRect{ 0, 0, static_cast<int>(spriteInfo.sheetSize.x), static_cast<int>(spriteInfo.sheetSize.y) };
@@ -25,10 +19,8 @@ Player::Player()
 	animations.emplace(Direction::Right, Animation{ sprite, spriteInfo, spriteInfo.rightRow, spriteRegion });
 }
 
-void Player::Update()
+sf::Vector2f Player::PickMovement()
 {
-	const bool wasStanding = movementDirection == Direction::Still;
-
 	sf::Vector2f movement;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
@@ -53,29 +45,5 @@ void Player::Update()
 		movement.x = 1;
 	}
 
-	if (movement.x == 0 && movement.y == 0)
-	{
-		if (movementDirection != Direction::Still)
-		{
-			animations.at(movementDirection).Stop();
-		}
-
-		movementDirection = Direction::Still;
-	}
-	else
-	{
-		if (wasStanding)
-		{
-			animations.at(movementDirection).Resume();
-		}
-
-		sprite.move(movement);
-
-		animations.at(movementDirection).Update();
-	}
-}
-
-void Player::Draw(const Graphics& gfx) const
-{
-	gfx.Draw(sprite);
+	return movement;
 }
