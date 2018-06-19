@@ -1,6 +1,7 @@
 #include "Npc.h"
+
 #include <SFML/Window/Keyboard.hpp>
-#include "Npc.h"
+
 #include <random>
 
 Npc::Npc(const sf::Vector2i spriteSheetCoordinate, sf::Texture& spriteSheet)
@@ -9,9 +10,11 @@ Npc::Npc(const sf::Vector2i spriteSheetCoordinate, sf::Texture& spriteSheet)
 {
 	const SpriteInfo spriteInfo{ "Npc Sprite Config.ini", spriteSheet };
 
-	const sf::Vector2i spritesheetDimension{ static_cast<int>(3 * spriteInfo.spriteDimension.x), static_cast<int>(4 * spriteInfo.spriteDimension.y) };
+	const sf::Vector2i spriteSheetDimension{ static_cast<int>(spriteInfo.frameCount * spriteInfo.spriteDimension.x), static_cast<int>(SpriteInfo::RowCount * spriteInfo.spriteDimension.y) };
 
-	sprite = sf::Sprite{ spriteSheet, sf::IntRect{ spriteSheetCoordinate.x * spritesheetDimension.x, spriteSheetCoordinate.y * spritesheetDimension.y, spritesheetDimension.x, spritesheetDimension.y } };
+	const sf::IntRect spriteRegion = sf::IntRect{ spriteSheetCoordinate.x * spriteSheetDimension.x, spriteSheetCoordinate.y * spriteSheetDimension.y, spriteSheetDimension.x, spriteSheetDimension.y };
+
+	sprite = sf::Sprite{ spriteSheet };
 
 	{
 		std::mt19937 randomEngine{ std::random_device{ }() };
@@ -22,11 +25,12 @@ Npc::Npc(const sf::Vector2i spriteSheetCoordinate, sf::Texture& spriteSheet)
 		sprite.setPosition(xDist(randomEngine), yDist(randomEngine));
 	}
 
-	animations.emplace(Direction::Up, Animation{ sprite, spriteInfo, spriteInfo.upRow });
-	animations.emplace(Direction::Down, Animation{ sprite, spriteInfo, spriteInfo.downRow });
-	animations.emplace(Direction::Left, Animation{ sprite, spriteInfo, spriteInfo.leftRow });
-	animations.emplace(Direction::Right, Animation{ sprite, spriteInfo, spriteInfo.rightRow });
+	animations.emplace(Direction::Up, Animation{ sprite, spriteInfo, spriteInfo.upRow, spriteRegion });
+	animations.emplace(Direction::Down, Animation{ sprite, spriteInfo, spriteInfo.downRow, spriteRegion });
+	animations.emplace(Direction::Left, Animation{ sprite, spriteInfo, spriteInfo.leftRow, spriteRegion });
+	animations.emplace(Direction::Right, Animation{ sprite, spriteInfo, spriteInfo.rightRow, spriteRegion });
 }
+
 void Npc::Update()
 {
 	const bool wasStanding = movementDirection == Direction::Still;
