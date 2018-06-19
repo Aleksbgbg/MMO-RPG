@@ -8,8 +8,21 @@ Game::Game(sf::RenderWindow& window)
 	sf::Texture texture;
 	texture.loadFromFile("mapTest.png");
 
+	if (!npcsTexture.loadFromFile("NPCs.png"))
+	{
+		throw std::runtime_error{ "NPC spritesheet loading not successful." };
+	}
+
 	map.AddTexture(texture);
 	map.AddSprite(23, 16, 16);
+
+	for (int x = 0; x < 4; ++x)
+	{
+		for (int y = 0; y < 2; ++y)
+		{
+			npcs.push_back(std::make_unique<Npc>(sf::Vector2i{ x, y }, npcsTexture));
+		}
+	}
 }
 
 void Game::Main()
@@ -25,10 +38,20 @@ void Game::Main()
 void Game::UpdateModel()
 {
 	player.Update();
+
+	for (const std::unique_ptr<Npc>& npc : npcs)
+	{
+		npc->Update();
+	}
 }
 
 void Game::ComposeFrame()
 {
 	map.Draw(gfx);
 	player.Draw(gfx);
+
+	for (const std::unique_ptr<Npc>& npc : npcs)
+	{
+		npc->Draw(gfx);
+	}
 }

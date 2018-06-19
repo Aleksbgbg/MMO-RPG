@@ -5,6 +5,7 @@
 #include "Graphics.h"
 #include "Map.h"
 #include "Player.h"
+#include "Npc.h"
 
 class Game
 {
@@ -22,4 +23,8 @@ private:
 
 	Map map;
 	Player player;
+
+	std::vector<std::unique_ptr<Npc>> npcs;
+
+	sf::Texture npcsTexture;
 };
