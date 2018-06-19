@@ -8,7 +8,7 @@ SpriteInfo::SpriteInfo(const std::string& filename, const sf::Texture& spriteShe
 {
 	INIReader iniReader{ filename };
 
-	frameTime = iniReader.GetReal("Sprite", "AnimationTime", 0);
+	frameTime = static_cast<float>(iniReader.GetReal("Sprite", "AnimationTime", 0));
 
 	spriteDimension = sf::Vector2u{ static_cast<unsigned int>(iniReader.GetInteger("Sprite", "Width", 0)), static_cast<unsigned int>(iniReader.GetInteger("Sprite", "Height", 0)) };
 
