@@ -3,15 +3,10 @@
 #include "Npc.h"
 #include <random>
 
-Npc::Npc(const sf::Vector2i spriteSheetCoordinate)
+Npc::Npc(const sf::Vector2i spriteSheetCoordinate, sf::Texture& spriteSheet)
 	:
 	movementDirection{ Direction::Down }
 {
-	if (!spriteSheet.loadFromFile("NPCs.png"))
-	{
-		throw std::runtime_error{ "NPC spritesheet loading not successful." };
-	}
-
 	const SpriteInfo spriteInfo{ "Npc Sprite Config.ini", spriteSheet };
 
 	const sf::Vector2i spritesheetDimension{ static_cast<int>(3 * spriteInfo.spriteDimension.x), static_cast<int>(4 * spriteInfo.spriteDimension.y) };

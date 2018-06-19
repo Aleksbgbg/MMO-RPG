@@ -8,7 +8,7 @@
 class Npc
 {
 public:
-	explicit Npc(sf::Vector2i spriteSheetCoordinate);
+	Npc(sf::Vector2i spriteSheetCoordinate, sf::Texture& spriteSheet);
 
 	void Update();
 
@@ -26,7 +26,6 @@ private:
 
 private:
 	sf::Sprite sprite;
-	sf::Texture spriteSheet;
 
 	Direction movementDirection;
 
