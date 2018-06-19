@@ -4,14 +4,12 @@
 
 Npc::Npc(const sf::Vector2i spriteSheetCoordinate, sf::Texture& spriteSheet)
 	:
-	spriteInfo{ "Npc Sprite Config.ini", spriteSheet },
-	movementDirection{ Direction::Down }
+	Character{ sf::Sprite{ spriteSheet, } },
+	spriteInfo{ "Npc Sprite Config.ini", spriteSheet }
 {
 	const sf::Vector2i spriteSheetDimension{ static_cast<int>(spriteInfo.frameCount * spriteInfo.spriteDimension.x), static_cast<int>(SpriteInfo::RowCount * spriteInfo.spriteDimension.y) };
 
 	const sf::IntRect spriteRegion = sf::IntRect{ spriteSheetCoordinate.x * spriteSheetDimension.x, spriteSheetCoordinate.y * spriteSheetDimension.y, spriteSheetDimension.x, spriteSheetDimension.y };
-
-	sprite = sf::Sprite{ spriteSheet };
 
 	GenerateTargetPosition();
 
@@ -23,7 +21,7 @@ Npc::Npc(const sf::Vector2i spriteSheetCoordinate, sf::Texture& spriteSheet)
 	animations.emplace(Direction::Right, Animation{ sprite, spriteInfo, spriteInfo.rightRow, spriteRegion });
 }
 
-void Npc::Update()
+sf::Vector2f Npc::PickMovement()
 {
 	const sf::Vector2f currentPosition = sprite.getPosition();
 
@@ -31,8 +29,6 @@ void Npc::Update()
 	{
 		GenerateTargetPosition();
 	}
-
-	const bool wasStanding = movementDirection == Direction::Still;
 
 	sf::Vector2f movement;
 
@@ -63,31 +59,7 @@ void Npc::Update()
 		}
 	}
 
-	if (movement.x == 0 && movement.y == 0)
-	{
-		if (movementDirection != Direction::Still)
-		{
-			animations.at(movementDirection).Stop();
-		}
-
-		movementDirection = Direction::Still;
-	}
-	else
-	{
-		if (wasStanding)
-		{
-			animations.at(movementDirection).Resume();
-		}
-
-		sprite.move(movement);
-
-		animations.at(movementDirection).Update();
-	}
-}
-
-void Npc::Draw(const Graphics& gfx) const
-{
-	gfx.Draw(sprite);
+	return movement;
 }
 
 void Npc::GenerateTargetPosition()
