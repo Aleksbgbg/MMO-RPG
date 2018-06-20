@@ -36,4 +36,7 @@ protected:
 	std::map<Direction, Animation> animations;
 
 	Direction movementDirection;
+
+private:
+	static constexpr float PixelMovement = 60.0f;
 };
