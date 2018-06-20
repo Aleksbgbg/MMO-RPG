@@ -76,6 +76,7 @@ void Map::AddAllSprites(const Graphics& gfx)
 			AddSprite(tileID, tileX, tileY, tileWidth, tileHeight);
 
 			// TODO: Look into why tileWidth above is wrong
+			// SOLUTION: Was scaling elsewhere
 			tileX += 32;
 			
 			// TODO: Make sure hardcdoded val is changed along with other TOOD's
@@ -83,6 +84,7 @@ void Map::AddAllSprites(const Graphics& gfx)
 			{
 				tileX = 0;
 				// TODO: Look into why tileHeight above is wrong
+				// SOLUTION: Was scaling elsewhere
 				tileY += 32;
 			}
 		}
