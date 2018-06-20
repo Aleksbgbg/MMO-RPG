@@ -10,8 +10,8 @@ public:
 	static float Get();
 
 private:
-	static DeltaTime instance;
-	static bool made;
+	inline static DeltaTime instance{ };
+	inline static bool made = false;
 
 public:
 	DeltaTime(DeltaTime&) = delete;

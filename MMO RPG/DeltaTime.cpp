@@ -2,10 +2,6 @@
 
 #include <stdexcept>
 
-DeltaTime DeltaTime::instance{ };
-
-bool DeltaTime::made{ false };
-
 DeltaTime& DeltaTime::Make()
 {
 	if (made)
