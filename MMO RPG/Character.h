@@ -24,7 +24,7 @@ public:
 	void Draw(const Graphics& gfx) const;
 
 protected:
-	explicit Character(const sf::Sprite& sprite);
+	explicit Character(sf::Sprite sprite);
 	virtual ~Character() = default;
 
 protected:

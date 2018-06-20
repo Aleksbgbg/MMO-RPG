@@ -1,8 +1,11 @@
-#include "Character.h"
+#include <utility>
 
-Character::Character(const sf::Sprite& sprite)
+#include "Character.h"
+#include "DeltaTime.h"
+
+Character::Character(sf::Sprite sprite)
 	:
-	sprite{ sprite },
+	sprite{ std::move(sprite) },
 	movementDirection{ Direction::Down }
 {
 }
