@@ -14,7 +14,7 @@ void Character::Update()
 {
 	const bool wasStanding = movementDirection == Direction::Still;
 
-	const sf::Vector2f movement = PickMovement();
+	sf::Vector2f movement = PickMovement();
 
 	if (movement.x == 0 && movement.y == 0)
 	{
@@ -27,6 +27,13 @@ void Character::Update()
 	}
 	else
 	{
+		{
+			const float hypotenuse = std::sqrt(movement.x * movement.x + movement.y * movement.y);
+
+			movement.x /= hypotenuse;
+			movement.y /= hypotenuse;
+		}
+
 		if (wasStanding)
 		{
 			animations.at(movementDirection).Resume();
