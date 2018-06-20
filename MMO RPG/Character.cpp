@@ -32,7 +32,7 @@ void Character::Update()
 			animations.at(movementDirection).Resume();
 		}
 
-		sprite.move(movement);
+		sprite.move(movement * DeltaTime::Get() * PixelMovement);
 
 		animations.at(movementDirection).Update();
 	}
