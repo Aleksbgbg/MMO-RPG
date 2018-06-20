@@ -4,6 +4,14 @@
 #include <SFML/Window/Keyboard.hpp>
 
 #include "INIReader.h"
+#include "TextureManager.h"
+
+
+Player::Player()
+	:
+	Player{ TextureManager::Get("Player") }
+{
+}
 
 Player::Player(const sf::Texture& spriteSheet)
 	:

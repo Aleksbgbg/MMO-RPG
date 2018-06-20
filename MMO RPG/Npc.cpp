@@ -1,6 +1,13 @@
 #include "Npc.h"
 
 #include "Random.h"
+#include "TextureManager.h"
+
+Npc::Npc(const sf::Vector2i spriteSheetCoordinate)
+	:
+	Npc{ spriteSheetCoordinate, TextureManager::Get("NPCs") }
+{
+}
 
 Npc::Npc(const sf::Vector2i spriteSheetCoordinate, const sf::Texture& spriteSheet)
 	:

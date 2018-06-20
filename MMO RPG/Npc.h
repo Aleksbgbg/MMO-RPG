@@ -7,10 +7,13 @@
 class Npc : public Character
 {
 public:
-	Npc(sf::Vector2i spriteSheetCoordinate, const sf::Texture& spriteSheet);
+	explicit Npc(const sf::Vector2i spriteSheetCoordinate);
 
 protected:
 	 sf::Vector2f PickMovement() override;
+
+private:
+	Npc(sf::Vector2i spriteSheetCoordinate, const sf::Texture& spriteSheet);
 
 private:
 	void GenerateTargetPosition();

@@ -4,19 +4,16 @@
 
 Game::Game(sf::RenderWindow& window)
 	:
-	gfx{ window },
-	player{ TextureManager::Get("Player") }
+	gfx{ window }
 {
 	map.AddTexture(TextureManager::Get("mapTest"));
 	map.AddAllSprites(gfx);
-
-	const sf::Texture& npcsTexture = TextureManager::Get("NPCs");
 
 	for (int x = 0; x < 4; ++x)
 	{
 		for (int y = 0; y < 2; ++y)
 		{
-			npcs.push_back(std::make_unique<Npc>(sf::Vector2i{ x, y }, npcsTexture));
+			npcs.push_back(std::make_unique<Npc>(sf::Vector2i{ x, y }));
 		}
 	}
 }
