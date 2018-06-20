@@ -47,13 +47,13 @@ void Map::AddSprite(const int index, const float x, const float y, const int wid
 
 void Map::AddAllSprites(const Graphics& gfx)
 {
-	int screenWidth = gfx.ScreenWidth;
-	int screenHeight = gfx.ScreenWidth;
+	int screenWidth = Graphics::ScreenWidth;
+	int screenHeight = Graphics::ScreenWidth;
 
-	json tileWidth = jsonData["tilewidth"];
-	json tileHeight = jsonData["tileheight"];
-	json layers = jsonData["layers"];
-	int totalWidth = jsonData["width"];
+	const json tileWidth = jsonData["tilewidth"];
+	const json tileHeight = jsonData["tileheight"];
+	const json layers = jsonData["layers"];
+	const int totalWidth = jsonData["width"];
 
 	for (json layer : layers)
 	{
@@ -71,9 +71,15 @@ void Map::AddAllSprites(const Graphics& gfx)
 		
 		float tileX = 0, tileY = 0;
 
-		for (int tileID : data)
+		for (int tileId : data)
 		{
-			AddSprite(tileID, tileX, tileY, tileWidth, tileHeight);
+			// Gotta -1 because the JSON data reserves 0 for no sprite and as such minusing one gets us back on track because our Vector stores from 0
+			// TODO: Maybe make the this clearer somehow
+			if(tileId > 0)
+			{
+				tileId -= 1;
+				AddSprite(tileId, tileX, tileY, tileWidth, tileHeight);
+			}
 
 			// TODO: Look into why tileWidth above is wrong
 			// SOLUTION: Was scaling elsewhere
@@ -89,9 +95,6 @@ void Map::AddAllSprites(const Graphics& gfx)
 			}
 		}
 	}
-
-
-
 }
 
 void Map::ParseFileToJson(const std::string& filename)

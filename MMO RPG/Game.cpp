@@ -9,7 +9,7 @@ Game::Game(sf::RenderWindow& window)
 {
 	map.AddTexture(TextureManager::Get("mapTest"));
 	map.AddAllSprites(gfx);
-
+	//map.AddSprite(23, 0, 0, 16, 16);
 	const sf::Texture& npcsTexture = TextureManager::Get("NPCs");
 
 	for (int x = 0; x < 4; ++x)
