@@ -31,23 +31,23 @@ sf::Vector2f Player::PickMovement()
 {
 	sf::Vector2f movement;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
 	{
 		movementDirection = Direction::Up;
 		movement.y = -1;
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
 	{
 		movementDirection = Direction::Down;
 		movement.y = 1;
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
 	{
 		movementDirection = Direction::Left;
 		movement.x = -1;
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
 	{
 		movementDirection = Direction::Right;
 		movement.x = 1;
