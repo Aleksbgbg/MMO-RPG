@@ -16,12 +16,12 @@ public:
 	void AddTexture(const sf::Texture& texture);
 	void AddAllSprites(const Graphics& gfx);
 	void Draw(const Graphics& gfx);
+	void AddSprite(const int index, const float x, const float y, const int width, const int height);
 
 private:
 	void PopulateSpritePositions();
 	void ParseFileToJson(const std::string& filename);
 	void UnpackData();
-	void AddSprite(const int index, const float x, const float y, const int width, const int height);
 
 
 
