@@ -9,7 +9,7 @@
 
 Player::Player()
 	:
-	Player{ TextureManager::Get("Player") }
+	Player{ TextureManager::Get("Player2") }
 {
 }
 
@@ -17,7 +17,7 @@ Player::Player(const sf::Texture& spriteSheet)
 	:
 	Character{ sf::Sprite{ spriteSheet } }
 {
-	const SpriteInfo spriteInfo{ "Player Sprite Config.ini", spriteSheet };
+	const SpriteInfo spriteInfo{ "Player2 Sprite Config.ini", spriteSheet };
 
 	const sf::IntRect spriteRegion = sf::IntRect{ 0, 0, static_cast<int>(spriteInfo.sheetSize.x), static_cast<int>(spriteInfo.sheetSize.y) };
 	

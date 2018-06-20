@@ -55,11 +55,13 @@
     <None Include="Player Sprite Config.ini">
       <DeploymentContent>true</DeploymentContent>
     </None>
+    <None Include="Player2 Sprite Config.ini" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\mapTest.png" />
     <Image Include="Textures\NPCs.png" />
     <Image Include="Textures\Player.png" />
+    <Image Include="Textures\Player2.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

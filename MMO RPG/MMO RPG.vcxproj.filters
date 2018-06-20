@@ -124,6 +124,9 @@
     <None Include="NPC Sprite Config.ini">
       <Filter>Resource Files\Sprite</Filter>
     </None>
+    <None Include="Player2 Sprite Config.ini">
+      <Filter>Resource Files\Sprite</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\mapTest.png">
@@ -133,6 +136,9 @@
       <Filter>Resource Files\Textures</Filter>
     </Image>
     <Image Include="Textures\Player.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Textures\Player2.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
   </ItemGroup>
