@@ -25,7 +25,4 @@ private:
 	Player player;
 
 	std::vector<std::unique_ptr<Npc>> npcs;
-
-	sf::Texture playerSprite;
-	sf::Texture npcsTexture;
 };

@@ -1,26 +1,16 @@
 #include "Game.h"
 #include "Map.h"
+#include "TextureManager.h"
 
 Game::Game(sf::RenderWindow& window)
 	:
 	gfx{ window },
-	player{ playerSprite }
+	player{ TextureManager::Get("Player") }
 {
-	sf::Texture texture;
-	texture.loadFromFile("mapTest.png");
-
-	if (!playerSprite.loadFromFile("Player.png"))
-	{
-		throw std::runtime_error{ "Player spritesheet loading not successful." };
-	}
-
-	if (!npcsTexture.loadFromFile("NPCs.png"))
-	{
-		throw std::runtime_error{ "NPC spritesheet loading not successful." };
-	}
-
-	map.AddTexture(texture);
+	map.AddTexture(TextureManager::Get("mapTest"));
 	map.AddSprite(23, 16, 16);
+
+	const sf::Texture& npcsTexture = TextureManager::Get("NPCs");
 
 	for (int x = 0; x < 4; ++x)
 	{

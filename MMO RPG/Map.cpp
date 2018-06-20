@@ -7,13 +7,15 @@
 
 #include "Graphics.h"
 #include "Map.h"
+#include "TextureManager.h"
 
 using json = nlohmann::json;
 
 Map::Map()
+	:
+	texture{ TextureManager::Get("mapTest") }
 {
 	// TODO: Remove hardcoded
-	texture.loadFromFile("mapTest.png");
 	ParseFileToJson("mapTest.json");
 	PopulateSpritePositions();
 }

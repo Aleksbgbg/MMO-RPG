@@ -33,6 +33,6 @@ private:
 	int height;
 	int layers;
 
-	sf::Texture texture;
+	const sf::Texture& texture;
 	std::vector<sf::Vector2i> spritePositions;
 };
