@@ -2,7 +2,7 @@
 
 #include "Random.h"
 
-Npc::Npc(const sf::Vector2i spriteSheetCoordinate, sf::Texture& spriteSheet)
+Npc::Npc(const sf::Vector2i spriteSheetCoordinate, const sf::Texture& spriteSheet)
 	:
 	Character{ sf::Sprite{ spriteSheet, } },
 	spriteInfo{ "Npc Sprite Config.ini", spriteSheet }

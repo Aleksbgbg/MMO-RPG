@@ -8,7 +8,7 @@
 class Player : public Character
 {
 public:
-	explicit Player(sf::Texture& spriteSheet);
+	explicit Player(const sf::Texture& spriteSheet);
 
 protected:
 	sf::Vector2f PickMovement() override;

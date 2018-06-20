@@ -7,7 +7,7 @@
 class Npc : public Character
 {
 public:
-	Npc(sf::Vector2i spriteSheetCoordinate, sf::Texture& spriteSheet);
+	Npc(sf::Vector2i spriteSheetCoordinate, const sf::Texture& spriteSheet);
 
 protected:
 	 sf::Vector2f PickMovement() override;

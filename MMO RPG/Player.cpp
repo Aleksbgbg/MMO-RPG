@@ -5,7 +5,7 @@
 
 #include "INIReader.h"
 
-Player::Player(sf::Texture& spriteSheet)
+Player::Player(const sf::Texture& spriteSheet)
 	:
 	Character{ sf::Sprite{ spriteSheet } }
 {
