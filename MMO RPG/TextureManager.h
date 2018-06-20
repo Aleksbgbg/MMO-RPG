@@ -4,14 +4,14 @@
 
 #include <map>
 
-class TextureManager : std::map<std::string, sf::Texture>
+class TextureManager
 {
 public:
 	static const sf::Texture& Get(const std::string& name);
 
 private:
-	inline static TextureManager instance{ };
+	static std::map<std::string, sf::Texture> LoadTextures();
 
 private:
-	TextureManager();
+	inline static std::map<std::string, sf::Texture> textureMap = LoadTextures();
 };

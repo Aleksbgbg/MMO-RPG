@@ -4,11 +4,13 @@
 
 const sf::Texture& TextureManager::Get(const std::string& name)
 {
-	return instance.at(name);
+	return textureMap.at(name);
 }
 
-TextureManager::TextureManager()
+std::map<std::string, sf::Texture> TextureManager::LoadTextures()
 {
+	std::map<std::string, sf::Texture> textureMap;
+
 	for(const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator{ std::filesystem::current_path().string() + "\\Textures" })
 	{
 		const std::string filepath = entry.path().string();
@@ -21,6 +23,8 @@ TextureManager::TextureManager()
 			throw std::runtime_error{ "Could not load texture " + filename };
 		}
 
-		emplace(filename.substr(0, filename.find_last_of('.')), texture);
+		textureMap.emplace(filename.substr(0, filename.find_last_of('.')), texture);
 	}
+
+	return textureMap;
 }
