@@ -48,15 +48,6 @@
     <ClInclude Include="TextureManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="mapTest.png">
-      <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="NPCs.png" />
-    <Image Include="Player.png">
-      <DeploymentContent>true</DeploymentContent>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="mapTest.json">
       <DeploymentContent>true</DeploymentContent>
     </None>
@@ -64,6 +55,11 @@
     <None Include="Player Sprite Config.ini">
       <DeploymentContent>true</DeploymentContent>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Textures\mapTest.png" />
+    <Image Include="Textures\NPCs.png" />
+    <Image Include="Textures\Player.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

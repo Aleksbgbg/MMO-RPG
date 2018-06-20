@@ -107,23 +107,12 @@
     <Filter Include="Resource Files\Sprite">
       <UniqueIdentifier>{c5e5935b-d1a0-4d43-8360-3593c479a921}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Sprite\SpriteSheets">
-      <UniqueIdentifier>{e1e04c76-afe6-4cee-bc99-79c25ec130e1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\Map">
       <UniqueIdentifier>{a25bd960-313f-4753-8c8d-0bee7227d53a}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Player.png">
-      <Filter>Resource Files\Sprite\SpriteSheets</Filter>
-    </Image>
-    <Image Include="mapTest.png">
-      <Filter>Resource Files\Map</Filter>
-    </Image>
-    <Image Include="NPCs.png">
-      <Filter>Resource Files\Sprite\SpriteSheets</Filter>
-    </Image>
+    <Filter Include="Resource Files\Textures">
+      <UniqueIdentifier>{7a8bf0ce-d4ea-49f1-93c1-e2399e1b692a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Player Sprite Config.ini">
@@ -135,5 +124,16 @@
     <None Include="NPC Sprite Config.ini">
       <Filter>Resource Files\Sprite</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Textures\mapTest.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Textures\NPCs.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Textures\Player.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>
