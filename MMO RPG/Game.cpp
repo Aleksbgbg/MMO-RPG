@@ -8,7 +8,7 @@ Game::Game(sf::RenderWindow& window)
 	player{ TextureManager::Get("Player") }
 {
 	map.AddTexture(TextureManager::Get("mapTest"));
-	map.AddSprite(23, 16, 16);
+	map.AddAllSprites(gfx);
 
 	const sf::Texture& npcsTexture = TextureManager::Get("NPCs");
 

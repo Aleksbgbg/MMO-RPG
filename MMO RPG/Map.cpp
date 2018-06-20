@@ -33,16 +33,63 @@ void Map::Draw(const Graphics& gfx)
 	}
 }
 
-void Map::AddSprite(const int index, const int width, const int height)
+void Map::AddSprite(const int index, const float x, const float y, const int width, const int height)
 {
 	sf::Sprite sprite{ };
 
 	sprite.setTexture(textures.front());
 	sprite.setTextureRect(sf::IntRect{ spritePositions[index].x, spritePositions[index].y, width, height });
 	sprite.setScale(2.0f, 2.0f);
-	sprite.setPosition(0, 0);
+	sprite.setPosition(x, y);
 
 	sprites.push_back(sprite);
+}
+
+void Map::AddAllSprites(const Graphics& gfx)
+{
+	int screenWidth = gfx.ScreenWidth;
+	int screenHeight = gfx.ScreenWidth;
+
+	json tileWidth = jsonData["tilewidth"];
+	json tileHeight = jsonData["tileheight"];
+	json layers = jsonData["layers"];
+	int totalWidth = jsonData["width"];
+
+	for (json layer : layers)
+	{
+		// TODO: Maybe do some renaming
+		// Re-implement the Unpack function so we can keep this function tidy
+		json data = layer["data"];
+		int height = layer["height"];
+		std::string name = layer["name"];
+		int opacity = layer["opacity"];
+		std::string type = layer["type"];
+		bool visible = layer["visible"];
+		int width = layer["width"];
+		int x = layer["x"];
+		int y = layer["y"];
+		
+		float tileX = 0, tileY = 0;
+
+		for (int tileID : data)
+		{
+			AddSprite(tileID, tileX, tileY, tileWidth, tileHeight);
+
+			// TODO: Look into why tileWidth above is wrong
+			tileX += 32;
+			
+			// TODO: Make sure hardcdoded val is changed along with other TOOD's
+			if (tileX == totalWidth * 32)
+			{
+				tileX = 0;
+				// TODO: Look into why tileHeight above is wrong
+				tileY += 32;
+			}
+		}
+	}
+
+
+
 }
 
 void Map::ParseFileToJson(const std::string& filename)
@@ -54,7 +101,7 @@ void Map::ParseFileToJson(const std::string& filename)
 		throw std::runtime_error{ "Could not open file " + filename };
 	}
 
-	json = json::parse(input);
+	jsonData = json::parse(input);
 }
 
 void Map::PopulateSpritePositions()
@@ -80,11 +127,4 @@ void Map::PopulateSpritePositions()
 			yPos += 16;
 		}
 	}
-}
-
-void Map::UnpackData()
-{
-	width = json["width"];
-	height = json["height"];
-	layers = json["layers"].size();
 }

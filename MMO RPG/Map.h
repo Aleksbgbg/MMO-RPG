@@ -13,21 +13,23 @@ public:
 	Map();
 
 public:
-	void AddSprite(int index, int width, int height);
 	void AddTexture(const sf::Texture& texture);
-	
+	void AddAllSprites(const Graphics& gfx);
 	void Draw(const Graphics& gfx);
 
 private:
 	void PopulateSpritePositions();
 	void ParseFileToJson(const std::string& filename);
 	void UnpackData();
+	void AddSprite(const int index, const float x, const float y, const int width, const int height);
+
+
 
 private:
 	std::vector<sf::Texture> textures;
 	std::vector<sf::Sprite> sprites;
 
-	nlohmann::json json;
+	nlohmann::json jsonData;
 
 	int width;
 	int height;
