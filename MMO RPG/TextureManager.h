@@ -13,5 +13,5 @@ private:
 	static std::map<std::string, sf::Texture> LoadTextures();
 
 private:
-	inline static std::map<std::string, sf::Texture> textureMap = LoadTextures();
+	static std::map<std::string, sf::Texture> textureMap;
 };

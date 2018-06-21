@@ -2,6 +2,8 @@
 
 #include <filesystem>
 
+std::map<std::string, sf::Texture> TextureManager::textureMap = LoadTextures();
+
 const sf::Texture& TextureManager::Get(const std::string& name)
 {
 	return textureMap.at(name);
