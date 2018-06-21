@@ -3,6 +3,8 @@
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
+#include "Camera.h"
+
 class Graphics
 {
 public:
@@ -14,6 +16,8 @@ public:
 
 	void Draw(const sf::Drawable& drawable) const;
 
+	Camera& GetCamera();
+
 public:
 	static constexpr unsigned int ScreenWidth = 1366;
 	static constexpr unsigned int ScreenHeight = 768;
@@ -22,4 +26,6 @@ public:
 
 private:
 	sf::RenderWindow& window;
+
+	Camera camera;
 };
