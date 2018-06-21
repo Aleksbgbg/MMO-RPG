@@ -33,6 +33,9 @@ protected:
 	virtual void OnPositionUpdated(const sf::Vector2f newPosition);
 
 protected:
+	void SetPosition(const sf::Vector2f position);
+
+protected:
 	sf::Sprite sprite;
 
 	std::map<Direction, Animation> animations;

@@ -1,13 +1,11 @@
-#include <utility>
-
 #include "Character.h"
-#include "DeltaTime.h"
+
+#include <utility>
 
 Character::Character(sf::Sprite sprite)
 	:
 	sprite{ std::move(sprite) },
 	movementDirection{ Direction::Down }
-{
 }
 
 void Character::Update()
@@ -54,4 +52,10 @@ void Character::Draw(const Graphics& gfx) const
 
 void Character::OnPositionUpdated(const sf::Vector2f newPosition)
 {
+}
+
+void Character::SetPosition(const sf::Vector2f position)
+{
+	sprite.setPosition(position);
+	OnPositionUpdated(position);
 }
