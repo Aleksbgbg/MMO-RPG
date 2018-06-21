@@ -24,7 +24,7 @@ public:
 	void Draw(const Graphics& gfx) const;
 
 protected:
-	explicit Character(sf::Sprite sprite);
+	Character(sf::Sprite sprite, const float speed);
 	virtual ~Character() = default;
 
 protected:
@@ -41,4 +41,7 @@ protected:
 	std::map<Direction, Animation> animations;
 
 	Direction movementDirection;
+
+private:
+	const float speed;
 };

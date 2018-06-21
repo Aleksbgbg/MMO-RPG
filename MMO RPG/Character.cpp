@@ -2,10 +2,12 @@
 
 #include <utility>
 
-Character::Character(sf::Sprite sprite)
+Character::Character(sf::Sprite sprite, const float speed)
 	:
 	sprite{ std::move(sprite) },
-	movementDirection{ Direction::Down }
+	movementDirection{ Direction::Down },
+	speed{ speed }
+{
 }
 
 void Character::Update()
@@ -31,6 +33,8 @@ void Character::Update()
 			movement.x /= hypotenuse;
 			movement.y /= hypotenuse;
 		}
+
+		movement *= speed;
 
 		if (wasStanding)
 		{
