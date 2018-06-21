@@ -15,7 +15,7 @@ Player::Player(Camera& camera)
 
 Player::Player(const sf::Texture& spriteSheet, Camera& camera)
 	:
-	Character{ sf::Sprite{ spriteSheet } },
+	Character{ sf::Sprite{ spriteSheet }, 4.0f },
 	camera{ camera }
 {
 	camera.UpdatePlayerPosition(sprite.getPosition());
