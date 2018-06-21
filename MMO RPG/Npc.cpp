@@ -11,7 +11,7 @@ Npc::Npc(const sf::Vector2i spriteSheetCoordinate)
 
 Npc::Npc(const sf::Vector2i spriteSheetCoordinate, const sf::Texture& spriteSheet)
 	:
-	Character{ sf::Sprite{ spriteSheet, } },
+	Character{ sf::Sprite{ spriteSheet } },
 	spriteInfo{ "Npc Sprite Config.ini", spriteSheet }
 {
 	const sf::Vector2i spriteSheetDimension{ static_cast<int>(spriteInfo.frameCount * spriteInfo.spriteDimension.x), static_cast<int>(SpriteInfo::RowCount * spriteInfo.spriteDimension.y) };
@@ -31,11 +31,6 @@ Npc::Npc(const sf::Vector2i spriteSheetCoordinate, const sf::Texture& spriteShee
 sf::Vector2f Npc::PickMovement()
 {
 	const sf::Vector2i currentPosition{ sprite.getPosition() };
-
-	if (currentPosition == targetPosition)
-	{
-		GenerateTargetPosition();
-	}
 
 	sf::Vector2f movement;
 
@@ -69,8 +64,31 @@ sf::Vector2f Npc::PickMovement()
 	return movement;
 }
 
+void Npc::OnPositionUpdated(const sf::Vector2f newPosition)
+{
+	if (sf::Vector2i{ newPosition } == targetPosition)
+	{
+		GenerateTargetPosition();
+		return;
+	}
+
+	const sf::Vector2i currentVector = sf::Vector2i{ newPosition } - targetPosition;
+
+	if (!(currentVector.x == 0 || startingTargetVector.x >= 0 ^ currentVector.x < 0))
+	{
+		SetPosition(sf::Vector2f{ static_cast<float>(targetPosition.x), sprite.getPosition().y });
+	}
+	
+	if (!(currentVector.y == 0 || startingTargetVector.y >= 0 ^ currentVector.y < 0))
+	{
+		SetPosition(sf::Vector2f{ sprite.getPosition().x, static_cast<float>(targetPosition.y) });
+	}
+}
+
 void Npc::GenerateTargetPosition()
 {
 	targetPosition.x = Random::Generate(0, Graphics::ScreenWidth - spriteInfo.spriteDimension.x);
 	targetPosition.y = Random::Generate(0, Graphics::ScreenHeight - spriteInfo.spriteDimension.y);
+
+	startingTargetVector = sf::Vector2i{ sprite.getPosition() } - targetPosition;
 }

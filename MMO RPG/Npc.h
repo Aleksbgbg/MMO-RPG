@@ -11,6 +11,8 @@ public:
 
 protected:
 	 sf::Vector2f PickMovement() override;
+	 
+	 void OnPositionUpdated(const sf::Vector2f newPosition) override;
 
 private:
 	Npc(sf::Vector2i spriteSheetCoordinate, const sf::Texture& spriteSheet);
@@ -22,4 +24,6 @@ private:
 	SpriteInfo spriteInfo;
 
 	sf::Vector2i targetPosition;
+
+	sf::Vector2i startingTargetVector;
 };
