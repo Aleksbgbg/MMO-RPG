@@ -78,7 +78,7 @@ void Npc::OnPositionUpdated(const sf::Vector2f newPosition)
 	{
 		SetPosition(sf::Vector2f{ targetPosition.x, sprite.getPosition().y });
 	}
-	
+
 	if (!(currentVector.y == 0 || startingTargetVector.y >= 0 ^ currentVector.y < 0))
 	{
 		SetPosition(sf::Vector2f{ sprite.getPosition().x, targetPosition.y });
@@ -87,6 +87,8 @@ void Npc::OnPositionUpdated(const sf::Vector2f newPosition)
 
 void Npc::GenerateTargetPosition()
 {
+	// Consider checking if the NPC is set a target position already equal to the current position, and choose a new target if so (may not be necessary)
+
 	targetPosition.x = static_cast<float>(Random::Generate(0, Graphics::ScreenWidth - spriteInfo.spriteDimension.x));
 	targetPosition.y = static_cast<float>(Random::Generate(0, Graphics::ScreenHeight - spriteInfo.spriteDimension.y));
 
