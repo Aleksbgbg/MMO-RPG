@@ -1,9 +1,9 @@
 #include "Graphics.h"
 
-Graphics::Graphics(sf::RenderWindow& window)
+Graphics::Graphics(sf::RenderWindow& window, const Camera camera)
 	:
 	window{ window },
-	camera{ window }
+	camera{ camera }
 {
 	window.setFramerateLimit(Framerate);
 }

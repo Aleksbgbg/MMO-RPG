@@ -8,7 +8,7 @@
 class Graphics
 {
 public:
-	explicit Graphics(sf::RenderWindow& window);
+	Graphics(sf::RenderWindow& window, const Camera camera);
 
 public:
 	void Begin() const;
