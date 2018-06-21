@@ -19,9 +19,10 @@ private:
 	void ComposeFrame();
 
 private:
+	Map map;
+
 	Graphics gfx;
 
-	Map map;
 	Player player;
 
 	std::vector<std::unique_ptr<Npc>> npcs;
