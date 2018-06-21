@@ -5,10 +5,10 @@
 class Camera
 {
 public:
-	Camera(sf::RenderWindow& window);
+	explicit Camera(sf::RenderWindow& window);
 
 public:
-	void UpdatePlayerPosition(sf::Vector2f playerPosition);
+	void UpdatePlayerPosition(const sf::Vector2f playerPosition);
 
 private:
 	sf::RenderWindow& window;

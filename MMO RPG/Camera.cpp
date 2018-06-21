@@ -6,7 +6,7 @@ Camera::Camera(sf::RenderWindow& window)
 {	
 }
 
-void Camera::UpdatePlayerPosition(sf::Vector2f playerPosition)
+void Camera::UpdatePlayerPosition(const sf::Vector2f playerPosition)
 {
 	sf::View windowView{ window.getView() };
 
