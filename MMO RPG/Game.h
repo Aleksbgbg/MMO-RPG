@@ -19,7 +19,7 @@ private:
 	void ComposeFrame();
 
 private:
-	const Graphics gfx;
+	Graphics gfx;
 
 	Map map;
 	Player player;
