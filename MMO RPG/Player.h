@@ -2,17 +2,22 @@
 
 #include <SFML/Graphics/Texture.hpp>
 
-#include "Graphics.h"
 #include "Character.h"
+#include "Camera.h"
 
 class Player : public Character
 {
 public:
-	Player();
+	explicit Player(Camera& camera);
 
 protected:
 	sf::Vector2f PickMovement() override;
 
+	void OnPositionUpdated(const sf::Vector2f newPosition) override;
+
 private:
-	explicit Player(const sf::Texture& spriteSheet);
+	Player(const sf::Texture& spriteSheet, Camera& camera);
+
+private:
+	Camera& camera;
 };

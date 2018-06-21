@@ -7,16 +7,19 @@
 #include "TextureManager.h"
 
 
-Player::Player()
+Player::Player(Camera& camera)
 	:
-	Player{ TextureManager::Get("Player2") }
+	Player{ TextureManager::Get("Player2"), camera }
 {
 }
 
-Player::Player(const sf::Texture& spriteSheet)
+Player::Player(const sf::Texture& spriteSheet, Camera& camera)
 	:
-	Character{ sf::Sprite{ spriteSheet } }
+	Character{ sf::Sprite{ spriteSheet } },
+	camera{ camera }
 {
+	camera.UpdatePlayerPosition(sprite.getPosition());
+
 	const SpriteInfo spriteInfo{ "Player2 Sprite Config.ini", spriteSheet };
 
 	const sf::IntRect spriteRegion = sf::IntRect{ 0, 0, static_cast<int>(spriteInfo.sheetSize.x), static_cast<int>(spriteInfo.sheetSize.y) };
@@ -54,4 +57,9 @@ sf::Vector2f Player::PickMovement()
 	}
 
 	return movement;
+}
+
+void Player::OnPositionUpdated(const sf::Vector2f newPosition)
+{
+	camera.UpdatePlayerPosition(newPosition);
 }
