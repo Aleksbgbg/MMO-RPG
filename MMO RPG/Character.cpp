@@ -41,6 +41,8 @@ void Character::Update()
 
 		sprite.move(movement);
 
+		OnPositionUpdated(sprite.getPosition());
+
 		animations.at(movementDirection).Update();
 	}
 }
@@ -48,4 +50,8 @@ void Character::Update()
 void Character::Draw(const Graphics& gfx) const
 {
 	gfx.Draw(sprite);
+}
+
+void Character::OnPositionUpdated(const sf::Vector2f newPosition)
+{
 }

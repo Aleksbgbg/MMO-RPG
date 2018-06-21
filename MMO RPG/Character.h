@@ -30,6 +30,8 @@ protected:
 protected:
 	virtual sf::Vector2f PickMovement() = 0;
 
+	virtual void OnPositionUpdated(const sf::Vector2f newPosition);
+
 protected:
 	sf::Sprite sprite;
 
