@@ -24,6 +24,10 @@ int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszA
 				{
 					window.close();
 				}
+				else if (event.type == sf::Event::Resized)
+				{
+					window.setView(sf::View{ sf::FloatRect{ 0, 0, static_cast<float>(event.size.width), static_cast<float>(event.size.height) } });
+				}
 			}
 		}
 
