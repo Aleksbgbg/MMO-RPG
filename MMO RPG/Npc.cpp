@@ -20,7 +20,7 @@ Npc::Npc(const sf::Vector2i spriteSheetCoordinate, const sf::Texture& spriteShee
 
 	GenerateTargetPosition();
 
-	sprite.setPosition(sf::Vector2f{ targetPosition });
+	sprite.setPosition(targetPosition);
 
 	animations.emplace(Direction::Up, Animation{ sprite, spriteInfo, spriteInfo.upRow, spriteRegion });
 	animations.emplace(Direction::Down, Animation{ sprite, spriteInfo, spriteInfo.downRow, spriteRegion });
@@ -30,7 +30,7 @@ Npc::Npc(const sf::Vector2i spriteSheetCoordinate, const sf::Texture& spriteShee
 
 sf::Vector2f Npc::PickMovement()
 {
-	const sf::Vector2i currentPosition{ sprite.getPosition() };
+	const sf::Vector2f currentPosition{ sprite.getPosition() };
 
 	sf::Vector2f movement;
 
@@ -66,29 +66,29 @@ sf::Vector2f Npc::PickMovement()
 
 void Npc::OnPositionUpdated(const sf::Vector2f newPosition)
 {
-	if (sf::Vector2i{ newPosition } == targetPosition)
+	if (newPosition == targetPosition)
 	{
 		GenerateTargetPosition();
 		return;
 	}
 
-	const sf::Vector2i currentVector = sf::Vector2i{ newPosition } - targetPosition;
+	const sf::Vector2f currentVector = newPosition - targetPosition;
 
 	if (!(currentVector.x == 0 || startingTargetVector.x >= 0 ^ currentVector.x < 0))
 	{
-		SetPosition(sf::Vector2f{ static_cast<float>(targetPosition.x), sprite.getPosition().y });
+		SetPosition(sf::Vector2f{ targetPosition.x, sprite.getPosition().y });
 	}
 	
 	if (!(currentVector.y == 0 || startingTargetVector.y >= 0 ^ currentVector.y < 0))
 	{
-		SetPosition(sf::Vector2f{ sprite.getPosition().x, static_cast<float>(targetPosition.y) });
+		SetPosition(sf::Vector2f{ sprite.getPosition().x, targetPosition.y });
 	}
 }
 
 void Npc::GenerateTargetPosition()
 {
-	targetPosition.x = Random::Generate(0, Graphics::ScreenWidth - spriteInfo.spriteDimension.x);
-	targetPosition.y = Random::Generate(0, Graphics::ScreenHeight - spriteInfo.spriteDimension.y);
+	targetPosition.x = static_cast<float>(Random::Generate(0, Graphics::ScreenWidth - spriteInfo.spriteDimension.x));
+	targetPosition.y = static_cast<float>(Random::Generate(0, Graphics::ScreenHeight - spriteInfo.spriteDimension.y));
 
-	startingTargetVector = sf::Vector2i{ sprite.getPosition() } - targetPosition;
+	startingTargetVector = sprite.getPosition() - targetPosition;
 }

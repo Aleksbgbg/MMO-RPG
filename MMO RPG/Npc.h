@@ -23,7 +23,7 @@ private:
 private:
 	SpriteInfo spriteInfo;
 
-	sf::Vector2i targetPosition;
+	sf::Vector2f targetPosition;
 
-	sf::Vector2i startingTargetVector;
+	sf::Vector2f startingTargetVector;
 };
