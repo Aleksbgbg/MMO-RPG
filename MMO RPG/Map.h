@@ -7,6 +7,8 @@
 #include <string>
 #include <vector>
 
+class Graphics;
+
 class Map
 {
 public:
