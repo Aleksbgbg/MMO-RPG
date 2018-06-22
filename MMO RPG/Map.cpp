@@ -79,7 +79,7 @@ sf::Vector2i Map::GetTileSize() const
 	const int actualWidth = static_cast<int>(jsonData["tilewidth"]) * sprites.back().getScale().x;
 	const int actualHeight = static_cast<int>(jsonData["tileheight"]) * sprites.back().getScale().y;
 	*/
-	const int actualHeight = static_cast<int>(jsonData["tileheight"]) * sprites.back().getScale().y;
+	const int actualHeight = static_cast<int>(static_cast<int>(jsonData["tileheight"]) * sprites.back().getScale().y);
 
 
 	// TODO: Sort out loading order issue and remove hard coded value
@@ -114,7 +114,7 @@ void Map::AddAllSprites()
 			{
 				tileId -= 1;
 				// This must be unscaled... this is maybe a crap thing
-				AddSprite(tileId, tileX, tileY, tileWidth, tileHeight);
+				AddSprite(tileId, static_cast<float>(tileX), static_cast<float>(tileY), tileWidth, tileHeight);
 			}
 
 			// TODO: Look into why tileWidth above is wrong
