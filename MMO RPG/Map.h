@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 
+
 class Graphics;
 
 class Map
@@ -16,14 +17,23 @@ public:
 
 public:
 	void AddTexture(const sf::Texture& texture);
-	void AddAllSprites(const Graphics& gfx);
+	void AddAllSprites();
 	void Draw(const Graphics& gfx);
 	void AddSprite(const int index, const float x, const float y, const int width, const int height);
+
+public:
+	nlohmann::json GetJsonData() const;
+	nlohmann::json GetAllLayers() const;
+	nlohmann::json GetLayerData(int layerId) const;
+
+	sf::Vector2i GetDimensions() const;
+	sf::Vector2i GetTileAmount() const;
+	sf::Vector2i GetTileSize() const;
+
 
 private:
 	void PopulateSpritePositions();
 	void ParseFileToJson(const std::string& filename);
-	void UnpackData();
 
 
 
