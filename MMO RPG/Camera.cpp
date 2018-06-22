@@ -4,7 +4,8 @@
 Camera::Camera(sf::RenderWindow& window, const Map& map)
 	:
 	window{ window },
-	map{ map }
+	map{ map },
+	mode{ Mode::Fixed }
 {
 }
 
@@ -13,53 +14,105 @@ void Camera::UpdatePlayerPosition(const sf::Vector2f playerPosition)
 	sf::View windowView{ window.getView() };
 
 	{
-		sf::Vector2f viewCenter{ playerPosition };
+		sf::Vector2f newCameraCenter{ previousCameraCenter };
 
-		constexpr int halfWindowWidth = Graphics::ScreenWidth / 2;
-		constexpr int halfWindowHeight = Graphics::ScreenHeight / 2;
+		const sf::Vector2f& viewCenter = windowView.getCenter();
+
+		const sf::Vector2f playerScreenPosition{ playerPosition.x - (viewCenter.x - Graphics::ScreenWidth / 2), playerPosition.y - (viewCenter.y - Graphics::ScreenHeight / 2) };
 
 		const sf::Vector2i mapDimensions = map.GetDimensions();
 
 		if (mapDimensions.x <= Graphics::ScreenWidth)
 		{
-			viewCenter.x = mapDimensions.x / 2.0f;
+			newCameraCenter.x = mapDimensions.x / 2.0f;
 		}
-		else if (viewCenter.x < halfWindowWidth)
+		else if (mode == Mode::Fixed)
 		{
-			viewCenter.x = static_cast<float>(halfWindowWidth);
+			newCameraCenter.x = playerPosition.x;
 		}
-		else
+		else if (mode == Mode::SemiFree)
 		{
-			const int cameraEdgeRight = mapDimensions.x - halfWindowWidth;
+			const int cameraEdgeLeft = Graphics::ScreenWidth / 4;
+			const int cameraEdgeRight = Graphics::ScreenWidth - cameraEdgeLeft;
 
-			if (viewCenter.x > cameraEdgeRight)
+			const sf::Vector2f& windowCenter = windowView.getCenter();
+
+			if (playerScreenPosition.x < cameraEdgeLeft)
 			{
-				viewCenter.x = static_cast<float>(cameraEdgeRight);
+				newCameraCenter.x -= cameraEdgeLeft - playerScreenPosition.x;
+			}
+			else if (playerScreenPosition.x > cameraEdgeRight)
+			{
+				newCameraCenter.x += playerScreenPosition.x - cameraEdgeRight;
 			}
 		}
 
 		if (mapDimensions.y <= Graphics::ScreenHeight)
 		{
-			viewCenter.y = mapDimensions.y / 2.0f;
+			newCameraCenter.y = mapDimensions.y / 2.0f;
 		}
-		else if (viewCenter.y < halfWindowHeight)
+		else if (mode == Mode::Fixed)
 		{
-			viewCenter.y = static_cast<float>(halfWindowHeight);
+			newCameraCenter.y = playerPosition.y;
+		}
+		else if (mode == Mode::SemiFree)
+		{
+			const int cameraEdgeTop = Graphics::ScreenHeight / 4;
+			const int cameraEdgeBottom = Graphics::ScreenHeight - cameraEdgeTop;
+
+			if (playerScreenPosition.y < cameraEdgeTop)
+			{
+				newCameraCenter.y -= cameraEdgeTop - playerScreenPosition.y;
+			}
+			else if (playerScreenPosition.y > cameraEdgeBottom)
+			{
+				newCameraCenter.y += playerScreenPosition.y - cameraEdgeBottom;
+			}
+		}
+
+		constexpr int halfWindowWidth = Graphics::ScreenWidth / 2;
+		constexpr int halfWindowHeight = Graphics::ScreenHeight / 2;
+
+		if (newCameraCenter.x < halfWindowWidth)
+		{
+			newCameraCenter.x = static_cast<float>(halfWindowWidth);
+		}
+		else
+		{
+			const int cameraEdgeRight = mapDimensions.x - halfWindowWidth;
+
+			if (newCameraCenter.x > cameraEdgeRight)
+			{
+				newCameraCenter.x = static_cast<float>(cameraEdgeRight);
+			}
+		}
+
+		if (newCameraCenter.y < halfWindowHeight)
+		{
+			newCameraCenter.y = static_cast<float>(halfWindowHeight);
 		}
 		else
 		{
 			const int cameraEdgeBottom = mapDimensions.y - halfWindowHeight;
 
-			if (viewCenter.y > cameraEdgeBottom)
+			if (newCameraCenter.y > cameraEdgeBottom)
 			{
-				viewCenter.y = static_cast<float>(cameraEdgeBottom);
+				newCameraCenter.y = static_cast<float>(cameraEdgeBottom);
 			}
 		}
 
-		windowView.setCenter(viewCenter);
+		windowView.setCenter(newCameraCenter);
+
+		previousCameraCenter = newCameraCenter;
 	}
 
 	window.setView(windowView);
 
-	this->playerPosition = playerPosition;
+	previousPlayerPosition = playerPosition;
+}
+
+void Camera::SwitchMode(const Mode mode)
+{
+	this->mode = mode;
+	UpdatePlayerPosition(previousPlayerPosition);
 }

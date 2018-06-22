@@ -18,10 +18,14 @@ public:
 
 public:
 	void UpdatePlayerPosition(const sf::Vector2f playerPosition);
+	void SwitchMode(const Mode mode);
 
 private:
 	sf::RenderWindow& window;
 	const Map& map;
 
-	sf::Vector2f playerPosition;
+	Mode mode;
+
+	sf::Vector2f previousCameraCenter;
+	sf::Vector2f previousPlayerPosition;
 };
