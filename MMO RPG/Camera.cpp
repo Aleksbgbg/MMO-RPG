@@ -9,7 +9,7 @@ Camera::Camera(sf::RenderWindow& window, const Map& map)
 {
 }
 
-void Camera::UpdatePlayerPosition(const sf::Vector2f playerPosition, const sf::Vector2i playerDimensions)
+void Camera::UpdatePosition(const sf::Vector2f playerPosition, const sf::Vector2i playerDimensions)
 {
 	sf::View windowView{ window.getView() };
 
@@ -113,5 +113,5 @@ void Camera::UpdatePlayerPosition(const sf::Vector2f playerPosition, const sf::V
 void Camera::SwitchMode(const Mode mode)
 {
 	this->mode = mode;
-	UpdatePlayerPosition(previousPlayerPosition, previousPlayerDimensions);
+	UpdatePosition(previousPlayerPosition, previousPlayerDimensions);
 }
