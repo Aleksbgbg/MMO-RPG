@@ -18,7 +18,9 @@ void Camera::UpdatePlayerPosition(const sf::Vector2f playerPosition, const sf::V
 
 		const sf::Vector2f& viewCenter = windowView.getCenter();
 
-		const sf::Vector2f playerScreenPosition{ playerPosition.x - (viewCenter.x - Graphics::ScreenWidth / 2) + playerDimensions.x / 2, playerPosition.y - (viewCenter.y - Graphics::ScreenHeight / 2) + playerDimensions.y / 2 };
+		const sf::Vector2i halfPlayerDimensions = playerDimensions / 2;
+		
+		const sf::Vector2f playerScreenPosition{ playerPosition.x - (viewCenter.x - Graphics::ScreenWidth / 2) + halfPlayerDimensions.x, playerPosition.y - (viewCenter.y - Graphics::ScreenHeight / 2) + halfPlayerDimensions.y };
 
 		const sf::Vector2i mapDimensions = map.GetDimensions();
 
@@ -28,7 +30,7 @@ void Camera::UpdatePlayerPosition(const sf::Vector2f playerPosition, const sf::V
 		}
 		else if (mode == Mode::Fixed)
 		{
-			newCameraCenter.x = playerPosition.x;
+			newCameraCenter.x = playerPosition.x + halfPlayerDimensions.x;
 		}
 		else if (mode == Mode::SemiFree)
 		{
@@ -53,7 +55,7 @@ void Camera::UpdatePlayerPosition(const sf::Vector2f playerPosition, const sf::V
 		}
 		else if (mode == Mode::Fixed)
 		{
-			newCameraCenter.y = playerPosition.y;
+			newCameraCenter.y = playerPosition.y + halfPlayerDimensions.y;
 		}
 		else if (mode == Mode::SemiFree)
 		{
