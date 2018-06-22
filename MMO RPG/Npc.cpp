@@ -74,12 +74,12 @@ void Npc::OnPositionUpdated(const sf::Vector2f newPosition)
 
 	const sf::Vector2f currentVector = newPosition - targetPosition;
 
-	if (!(currentVector.x == 0 || startingTargetVector.x >= 0 ^ currentVector.x < 0))
+	if (!(currentVector.x == 0 || (startingTargetVector.x >= 0 ^ currentVector.x < 0)))
 	{
 		SetPosition(sf::Vector2f{ targetPosition.x, sprite.getPosition().y });
 	}
 
-	if (!(currentVector.y == 0 || startingTargetVector.y >= 0 ^ currentVector.y < 0))
+	if (!(currentVector.y == 0 || (startingTargetVector.y >= 0 ^ currentVector.y < 0)))
 	{
 		SetPosition(sf::Vector2f{ sprite.getPosition().x, targetPosition.y });
 	}
