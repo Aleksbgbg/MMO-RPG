@@ -7,6 +7,13 @@
 class Camera
 {
 public:
+	enum class Mode
+	{
+		Fixed,
+		SemiFree
+	};
+
+public:
 	Camera(sf::RenderWindow& window, const Map& map);
 
 public:
