@@ -20,7 +20,12 @@ private:
 
 private:
 	void UpdateCamera() const;
+	static bool IsPressed(const sf::Keyboard::Key key);
 
 private:
 	Camera& camera;
+
+	Camera::Mode lastCameraMode;
+
+	std::map<Direction, std::vector<sf::Keyboard::Key>> directionKeys; 
 };
