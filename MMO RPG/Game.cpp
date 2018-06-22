@@ -5,6 +5,7 @@
 Game::Game(sf::RenderWindow& window)
 	:
 	gfx{ window, Camera{ window, map } },
+	camera{ gfx.GetCamera() },
 	player{ gfx.GetCamera() }
 {
 	map.AddTexture(TextureManager::Get("mapTest"));
@@ -36,6 +37,15 @@ void Game::UpdateModel()
 	for (const std::unique_ptr<Npc>& npc : npcs)
 	{
 		npc->Update();
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Num1))
+	{
+		camera.SwitchMode(Camera::Mode::Fixed);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Num2))
+	{
+		camera.SwitchMode(Camera::Mode::SemiFree);
 	}
 }
 

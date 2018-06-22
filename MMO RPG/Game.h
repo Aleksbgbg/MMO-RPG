@@ -23,6 +23,8 @@ private:
 
 	Graphics gfx;
 
+	Camera& camera;
+
 	Player player;
 
 	std::vector<std::unique_ptr<Npc>> npcs;
