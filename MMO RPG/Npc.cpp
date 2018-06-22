@@ -3,15 +3,16 @@
 #include "Random.h"
 #include "TextureManager.h"
 
-Npc::Npc(const sf::Vector2i spriteSheetCoordinate)
+Npc::Npc(const sf::Vector2i spriteSheetCoordinate, const Map& map)
 	:
-	Npc{ spriteSheetCoordinate, TextureManager::Get("NPCs") }
+	Npc{ spriteSheetCoordinate, TextureManager::Get("NPCs"), map }
 {
 }
 
-Npc::Npc(const sf::Vector2i spriteSheetCoordinate, const sf::Texture& spriteSheet)
+Npc::Npc(const sf::Vector2i spriteSheetCoordinate, const sf::Texture& spriteSheet, const Map& map)
 	:
 	Character{ sf::Sprite{ spriteSheet }, Random::GenerateFloat(1.0f, 2.0f) },
+	map{ map },
 	spriteInfo{ "Npc Sprite Config.ini", spriteSheet }
 {
 	const sf::Vector2i spriteSheetDimension{ static_cast<int>(spriteInfo.frameCount * spriteInfo.spriteDimension.x), static_cast<int>(SpriteInfo::RowCount * spriteInfo.spriteDimension.y) };
@@ -89,8 +90,10 @@ void Npc::GenerateTargetPosition()
 {
 	// Consider checking if the NPC is set a target position already equal to the current position, and choose a new target if so (may not be necessary)
 
-	targetPosition.x = static_cast<float>(Random::Generate(0, Graphics::ScreenWidth - spriteInfo.spriteDimension.x));
-	targetPosition.y = static_cast<float>(Random::Generate(0, Graphics::ScreenHeight - spriteInfo.spriteDimension.y));
+	const sf::Vector2i mapDimensions = map.GetDimensions();
+
+	targetPosition.x = static_cast<float>(Random::Generate(0, mapDimensions.x - spriteInfo.spriteDimension.x));
+	targetPosition.y = static_cast<float>(Random::Generate(0, mapDimensions.y - spriteInfo.spriteDimension.y));
 
 	startingTargetVector = sprite.getPosition() - targetPosition;
 }

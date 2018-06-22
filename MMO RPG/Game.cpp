@@ -15,7 +15,7 @@ Game::Game(sf::RenderWindow& window)
 	{
 		for (int y = 0; y < 2; ++y)
 		{
-			npcs.push_back(std::make_unique<Npc>(sf::Vector2i{ x, y }));
+			npcs.push_back(std::make_unique<Npc>(sf::Vector2i{ x, y }, map));
 		}
 	}
 }
