@@ -32,7 +32,7 @@ void Camera::UpdatePlayerPosition(const sf::Vector2f playerPosition, const sf::V
 		}
 		else if (mode == Mode::SemiFree)
 		{
-			const int cameraEdgeLeft = Graphics::ScreenWidth / 4;
+			const int cameraEdgeLeft = Graphics::ScreenWidth / (1 / SemiFreeCameraEdgePercentage);
 			const int cameraEdgeRight = Graphics::ScreenWidth - cameraEdgeLeft;
 
 			const sf::Vector2f& windowCenter = windowView.getCenter();
@@ -57,7 +57,7 @@ void Camera::UpdatePlayerPosition(const sf::Vector2f playerPosition, const sf::V
 		}
 		else if (mode == Mode::SemiFree)
 		{
-			const int cameraEdgeTop = Graphics::ScreenHeight / 4;
+			const int cameraEdgeTop = Graphics::ScreenHeight / (1 / SemiFreeCameraEdgePercentage);
 			const int cameraEdgeBottom = Graphics::ScreenHeight - cameraEdgeTop;
 
 			if (playerScreenPosition.y < cameraEdgeTop)

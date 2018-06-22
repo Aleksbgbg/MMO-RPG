@@ -21,6 +21,9 @@ public:
 	void SwitchMode(const Mode mode);
 
 private:
+	static constexpr float SemiFreeCameraEdgePercentage = 0.25f;
+
+private:
 	sf::RenderWindow& window;
 	const Map& map;
 
