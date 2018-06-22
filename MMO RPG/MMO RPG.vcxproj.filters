@@ -116,22 +116,22 @@
     <Filter Include="Resource Files\Textures">
       <UniqueIdentifier>{7a8bf0ce-d4ea-49f1-93c1-e2399e1b692a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Sprite">
+    <Filter Include="Resource Files\Sprite">
       <UniqueIdentifier>{c5e5935b-d1a0-4d43-8360-3593c479a921}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Player Sprite Config.ini">
-      <Filter>Source Files\Sprite</Filter>
+      <Filter>Resource Files\Sprite</Filter>
     </None>
     <None Include="mapTest.json">
       <Filter>Resource Files\Map</Filter>
     </None>
     <None Include="NPC Sprite Config.ini">
-      <Filter>Source Files\Sprite</Filter>
+      <Filter>Resource Files\Sprite</Filter>
     </None>
     <None Include="Player2 Sprite Config.ini">
-      <Filter>Source Files\Sprite</Filter>
+      <Filter>Resource Files\Sprite</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
