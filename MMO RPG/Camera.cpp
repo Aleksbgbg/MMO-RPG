@@ -115,3 +115,8 @@ void Camera::SwitchMode(const Mode mode)
 	this->mode = mode;
 	UpdatePosition(previousPlayerPosition, previousPlayerDimensions);
 }
+
+Camera::Mode Camera::GetMode() const
+{
+	return mode;
+}

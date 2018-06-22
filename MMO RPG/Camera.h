@@ -20,6 +20,8 @@ public:
 	void UpdatePosition(const sf::Vector2f playerPosition, const sf::Vector2i playerDimensions);
 	void SwitchMode(const Mode mode);
 
+	Mode GetMode() const;
+
 private:
 	static constexpr float SemiFreeCameraEdgePercentage = 0.25f;
 
