@@ -19,8 +19,8 @@ void Camera::UpdatePlayerPosition(const sf::Vector2f playerPosition, const sf::V
 		const sf::Vector2f& viewCenter = windowView.getCenter();
 
 		const sf::Vector2i halfPlayerDimensions = playerDimensions / 2;
-		
-		const sf::Vector2f playerScreenPosition{ playerPosition.x - (viewCenter.x - Graphics::ScreenWidth / 2) + halfPlayerDimensions.x, playerPosition.y - (viewCenter.y - Graphics::ScreenHeight / 2) + halfPlayerDimensions.y };
+
+		const sf::Vector2i playerScreenPosition = window.mapCoordsToPixel(playerPosition + sf::Vector2f{ halfPlayerDimensions });
 
 		const sf::Vector2i mapDimensions = map.GetDimensions();
 
