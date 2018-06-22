@@ -7,7 +7,7 @@
 
 int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszArgument, int nCmdShow)
 {
-	sf::RenderWindow window{ sf::VideoMode{ Graphics::ScreenWidth, Graphics::ScreenHeight }, "MMO RPG" };
+	sf::RenderWindow window{ sf::VideoMode{ Graphics::ScreenWidth, Graphics::ScreenHeight }, "MMO RPG", sf::Style::Titlebar | sf::Style::Close };
 
 	Game game{ window };
 
@@ -23,10 +23,6 @@ int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszA
 				if (event.type == sf::Event::Closed)
 				{
 					window.close();
-				}
-				else if (event.type == sf::Event::Resized)
-				{
-					window.setView(sf::View{ sf::FloatRect{ 0, 0, static_cast<float>(event.size.width), static_cast<float>(event.size.height) } });
 				}
 			}
 		}
