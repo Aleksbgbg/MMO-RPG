@@ -20,9 +20,6 @@ void Camera::UpdatePlayerPosition(const sf::Vector2f playerPosition)
 
 		const sf::Vector2i mapDimensions = map.GetDimensions();
 
-		const int cameraEdgeRight = mapDimensions.x - halfWindowWidth;
-		const int cameraEdgeBottom = mapDimensions.y - halfWindowHeight;
-
 		if (mapDimensions.x <= Graphics::ScreenWidth)
 		{
 			viewCenter.x = mapDimensions.x / 2.0f;
@@ -31,9 +28,14 @@ void Camera::UpdatePlayerPosition(const sf::Vector2f playerPosition)
 		{
 			viewCenter.x = static_cast<float>(halfWindowWidth);
 		}
-		else if (viewCenter.x > cameraEdgeRight)
+		else
 		{
-			viewCenter.x = static_cast<float>(cameraEdgeRight);
+			const int cameraEdgeRight = mapDimensions.x - halfWindowWidth;
+
+			if (viewCenter.x > cameraEdgeRight)
+			{
+				viewCenter.x = static_cast<float>(cameraEdgeRight);
+			}
 		}
 
 		if (mapDimensions.y <= Graphics::ScreenHeight)
@@ -44,9 +46,14 @@ void Camera::UpdatePlayerPosition(const sf::Vector2f playerPosition)
 		{
 			viewCenter.y = static_cast<float>(halfWindowHeight);
 		}
-		else if (viewCenter.y > cameraEdgeBottom)
+		else
 		{
-			viewCenter.y = static_cast<float>(cameraEdgeBottom);
+			const int cameraEdgeBottom = mapDimensions.y - halfWindowHeight;
+
+			if (viewCenter.y > cameraEdgeBottom)
+			{
+				viewCenter.y = static_cast<float>(cameraEdgeBottom);
+			}
 		}
 
 		windowView.setCenter(viewCenter);
