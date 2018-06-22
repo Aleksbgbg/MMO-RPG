@@ -19,5 +19,8 @@ private:
 	Player(const sf::Texture& spriteSheet, Camera& camera);
 
 private:
+	void UpdateCamera() const;
+
+private:
 	Camera& camera;
 };

@@ -6,7 +6,6 @@
 #include "INIReader.h"
 #include "TextureManager.h"
 
-
 Player::Player(Camera& camera)
 	:
 	Player{ TextureManager::Get("Player2"), camera }
@@ -18,7 +17,7 @@ Player::Player(const sf::Texture& spriteSheet, Camera& camera)
 	Character{ sf::Sprite{ spriteSheet }, 4.0f },
 	camera{ camera }
 {
-	camera.UpdatePlayerPosition(sprite.getPosition());
+	UpdateCamera();
 
 	const SpriteInfo spriteInfo{ "Player2 Sprite Config.ini", spriteSheet };
 
@@ -61,5 +60,12 @@ sf::Vector2f Player::PickMovement()
 
 void Player::OnPositionUpdated(const sf::Vector2f newPosition)
 {
-	camera.UpdatePlayerPosition(newPosition);
+	UpdateCamera();
+}
+
+void Player::UpdateCamera() const
+{
+	const sf::IntRect& playerTextureRectangle = sprite.getTextureRect();
+
+	camera.UpdatePlayerPosition(sprite.getPosition(), sf::Vector2i{ playerTextureRectangle.width, playerTextureRectangle.height });
 }

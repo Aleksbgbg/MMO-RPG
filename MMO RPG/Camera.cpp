@@ -9,7 +9,7 @@ Camera::Camera(sf::RenderWindow& window, const Map& map)
 {
 }
 
-void Camera::UpdatePlayerPosition(const sf::Vector2f playerPosition)
+void Camera::UpdatePlayerPosition(const sf::Vector2f playerPosition, const sf::Vector2i playerDimensions)
 {
 	sf::View windowView{ window.getView() };
 
@@ -18,7 +18,7 @@ void Camera::UpdatePlayerPosition(const sf::Vector2f playerPosition)
 
 		const sf::Vector2f& viewCenter = windowView.getCenter();
 
-		const sf::Vector2f playerScreenPosition{ playerPosition.x - (viewCenter.x - Graphics::ScreenWidth / 2), playerPosition.y - (viewCenter.y - Graphics::ScreenHeight / 2) };
+		const sf::Vector2f playerScreenPosition{ playerPosition.x - (viewCenter.x - Graphics::ScreenWidth / 2) + playerDimensions.x / 2, playerPosition.y - (viewCenter.y - Graphics::ScreenHeight / 2) + playerDimensions.y / 2 };
 
 		const sf::Vector2i mapDimensions = map.GetDimensions();
 
@@ -109,10 +109,11 @@ void Camera::UpdatePlayerPosition(const sf::Vector2f playerPosition)
 	window.setView(windowView);
 
 	previousPlayerPosition = playerPosition;
+	previousPlayerDimensions = playerDimensions;
 }
 
 void Camera::SwitchMode(const Mode mode)
 {
 	this->mode = mode;
-	UpdatePlayerPosition(previousPlayerPosition);
+	UpdatePlayerPosition(previousPlayerPosition, previousPlayerDimensions);
 }
