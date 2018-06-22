@@ -18,6 +18,7 @@ Map::Map()
 	// TODO: Remove hardcoded
 	ParseFileToJson("mapTest.json");
 	PopulateSpritePositions();
+	AddAllSprites();
 }
 
 void Map::AddTexture(const sf::Texture& texture)
@@ -37,7 +38,7 @@ void Map::AddSprite(const int index, const float x, const float y, const int wid
 {
 	sf::Sprite sprite{ };
 
-	sprite.setTexture(textures.front());
+	sprite.setTexture(TextureManager::Get("mapTest"));
 	sprite.setTextureRect(sf::IntRect{ spritePositions[index].x, spritePositions[index].y, width, height });
 	sprite.setScale(2.0f, 2.0f);
 	sprite.setPosition(x, y);
@@ -45,31 +46,65 @@ void Map::AddSprite(const int index, const float x, const float y, const int wid
 	sprites.push_back(sprite);
 }
 
-void Map::AddAllSprites(const Graphics& gfx)
+nlohmann::json Map::GetJsonData() const
+{
+	return jsonData;
+}
+
+nlohmann::json Map::GetAllLayers() const
+{
+	return jsonData["layers"];
+}
+
+nlohmann::json Map::GetLayerData(int layerId) const
+{
+	return GetAllLayers()["layers"]["data"];
+}
+
+sf::Vector2i Map::GetDimensions() const
+{
+	return sf::Vector2i(GetTileAmount().x * GetTileSize().x, GetTileAmount().y * GetTileSize().y);
+}
+
+sf::Vector2i Map::GetTileAmount() const
+{
+	return sf::Vector2i(jsonData["width"], jsonData["height"]);
+}
+
+sf::Vector2i Map::GetTileSize() const
+{
+	/*
+	// So we can apply scaling meme
+	// TODO: Rename?!?
+	const int actualWidth = static_cast<int>(jsonData["tilewidth"]) * sprites.back().getScale().x;
+	const int actualHeight = static_cast<int>(jsonData["tileheight"]) * sprites.back().getScale().y;
+	*/
+	const int actualHeight = static_cast<int>(jsonData["tileheight"]) * sprites.back().getScale().y;
+
+
+	// TODO: Sort out loading order issue and remove hard coded value
+	return sf::Vector2i(static_cast<int>(jsonData["tilewidth"]) * 2, static_cast<int>(jsonData["tileheight"])* 2);
+}
+
+void Map::AddAllSprites()
 {
 	int screenWidth = Graphics::ScreenWidth;
 	int screenHeight = Graphics::ScreenWidth;
 
+	// This is post scaling so don't multiply it or do any other magic spells
+	// TODO: Probably change this from direct access
 	const json tileWidth = jsonData["tilewidth"];
 	const json tileHeight = jsonData["tileheight"];
-	const json layers = jsonData["layers"];
-	const int totalWidth = jsonData["width"];
 
+	const json layers = GetAllLayers();
+	const int totalWidth = GetTileAmount().x;
+
+	// TODO: Probably change this from direct access
 	for (json layer : layers)
 	{
-		// TODO: Maybe do some renaming
-		// Re-implement the Unpack function so we can keep this function tidy
 		json data = layer["data"];
-		int height = layer["height"];
-		std::string name = layer["name"];
-		int opacity = layer["opacity"];
-		std::string type = layer["type"];
-		bool visible = layer["visible"];
-		int width = layer["width"];
-		int x = layer["x"];
-		int y = layer["y"];
 		
-		float tileX = 0, tileY = 0;
+		int tileX = 0, tileY = 0;
 
 		for (int tileId : data)
 		{
@@ -78,6 +113,7 @@ void Map::AddAllSprites(const Graphics& gfx)
 			if(tileId > 0)
 			{
 				tileId -= 1;
+				// This must be unscaled... this is maybe a crap thing
 				AddSprite(tileId, tileX, tileY, tileWidth, tileHeight);
 			}
 
@@ -86,7 +122,7 @@ void Map::AddAllSprites(const Graphics& gfx)
 			tileX += 32;
 			
 			// TODO: Make sure hardcdoded val is changed along with other TOOD's
-			if (tileX == totalWidth * 32)
+			if (tileX == GetDimensions().x)
 			{
 				tileX = 0;
 				// TODO: Look into why tileHeight above is wrong
@@ -124,6 +160,7 @@ void Map::PopulateSpritePositions()
 		spritePositions.emplace_back(xPos, yPos);
 
 		xPos += 16;
+
 
 		// TODO: Remove hardcoded number
 		if (xPos == texture.getSize().x)

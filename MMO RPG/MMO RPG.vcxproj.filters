@@ -110,28 +110,28 @@
       <UniqueIdentifier>{b5975445-2748-44ce-917e-f884c54b0f48}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Resource Files\Sprite">
-      <UniqueIdentifier>{c5e5935b-d1a0-4d43-8360-3593c479a921}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\Map">
       <UniqueIdentifier>{a25bd960-313f-4753-8c8d-0bee7227d53a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files\Textures">
       <UniqueIdentifier>{7a8bf0ce-d4ea-49f1-93c1-e2399e1b692a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Sprite">
+      <UniqueIdentifier>{c5e5935b-d1a0-4d43-8360-3593c479a921}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Player Sprite Config.ini">
-      <Filter>Resource Files\Sprite</Filter>
+      <Filter>Source Files\Sprite</Filter>
     </None>
     <None Include="mapTest.json">
       <Filter>Resource Files\Map</Filter>
     </None>
     <None Include="NPC Sprite Config.ini">
-      <Filter>Resource Files\Sprite</Filter>
+      <Filter>Source Files\Sprite</Filter>
     </None>
     <None Include="Player2 Sprite Config.ini">
-      <Filter>Resource Files\Sprite</Filter>
+      <Filter>Source Files\Sprite</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
