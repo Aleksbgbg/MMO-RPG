@@ -16,8 +16,6 @@ void Camera::UpdatePlayerPosition(const sf::Vector2f playerPosition, const sf::V
 	{
 		sf::Vector2f newCameraCenter{ previousCameraCenter };
 
-		const sf::Vector2f& viewCenter = windowView.getCenter();
-
 		const sf::Vector2i halfPlayerDimensions = playerDimensions / 2;
 
 		const sf::Vector2i playerScreenPosition = window.mapCoordsToPixel(playerPosition + sf::Vector2f{ halfPlayerDimensions });
@@ -36,8 +34,6 @@ void Camera::UpdatePlayerPosition(const sf::Vector2f playerPosition, const sf::V
 		{
 			const int cameraEdgeLeft = static_cast<int>(Graphics::ScreenWidth / (1 / SemiFreeCameraEdgePercentage));
 			const int cameraEdgeRight = Graphics::ScreenWidth - cameraEdgeLeft;
-
-			const sf::Vector2f& windowCenter = windowView.getCenter();
 
 			if (playerScreenPosition.x < cameraEdgeLeft)
 			{
