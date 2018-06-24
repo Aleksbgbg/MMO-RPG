@@ -1,6 +1,5 @@
 #pragma once
 
-#include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
 #include "Camera.h"
@@ -14,7 +13,7 @@ public:
 	void Begin() const;
 	void End() const;
 
-	void Draw(const sf::Drawable& drawable) const;
+	void Draw(const sf::Sprite& sprite) const;
 
 	Camera& GetCamera();
 
