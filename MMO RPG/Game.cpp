@@ -8,7 +8,7 @@ Game::Game(sf::RenderWindow& window)
 	camera{ gfx.GetCamera() },
 	player{ gfx.GetCamera() }
 {
-	map.AddTexture(TextureManager::Get("mapTest"));
+	map.AddTexture(TextureManager::Get("Map"));
 	map.AddAllSprites();
 
 	for (int x = 0; x < 4; ++x)

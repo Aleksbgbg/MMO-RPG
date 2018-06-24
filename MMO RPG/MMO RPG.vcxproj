@@ -50,7 +50,7 @@
     <ClInclude Include="TextureManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="mapTest.json">
+    <None Include="Map.json">
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="NPC Sprite Config.ini" />
@@ -60,7 +60,7 @@
     <None Include="Player2 Sprite Config.ini" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Textures\mapTest.png" />
+    <Image Include="Textures\Map.png" />
     <Image Include="Textures\NPCs.png" />
     <Image Include="Textures\Player.png" />
     <Image Include="Textures\Player2.png" />

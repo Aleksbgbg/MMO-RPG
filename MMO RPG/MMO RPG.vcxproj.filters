@@ -124,20 +124,17 @@
     <None Include="Player Sprite Config.ini">
       <Filter>Resource Files\Sprite</Filter>
     </None>
-    <None Include="mapTest.json">
-      <Filter>Resource Files\Map</Filter>
-    </None>
     <None Include="NPC Sprite Config.ini">
       <Filter>Resource Files\Sprite</Filter>
     </None>
     <None Include="Player2 Sprite Config.ini">
       <Filter>Resource Files\Sprite</Filter>
     </None>
+    <None Include="Map.json">
+      <Filter>Resource Files\Map</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Textures\mapTest.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
     <Image Include="Textures\NPCs.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
@@ -145,6 +142,9 @@
       <Filter>Resource Files\Textures</Filter>
     </Image>
     <Image Include="Textures\Player2.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Textures\Map.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
   </ItemGroup>

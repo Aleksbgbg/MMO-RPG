@@ -13,10 +13,10 @@ using json = nlohmann::json;
 
 Map::Map()
 	:
-	texture{ TextureManager::Get("mapTest") }
+	texture{ TextureManager::Get("Map") }
 {
 	// TODO: Remove hardcoded
-	ParseFileToJson("mapTest.json");
+	ParseFileToJson("Map.json");
 	PopulateSpritePositions();
 	AddAllSprites();
 }
@@ -38,7 +38,7 @@ void Map::AddSprite(const int index, const float x, const float y, const int wid
 {
 	sf::Sprite sprite{ };
 
-	sprite.setTexture(TextureManager::Get("mapTest"));
+	sprite.setTexture(TextureManager::Get("Map"));
 	sprite.setTextureRect(sf::IntRect{ spritePositions[index].x, spritePositions[index].y, width, height });
 	sprite.setScale(2.0f, 2.0f);
 	sprite.setPosition(x, y);
