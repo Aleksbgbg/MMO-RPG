@@ -9,6 +9,8 @@ int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszA
 {
 	sf::RenderWindow window{ sf::VideoMode{ Graphics::ScreenWidth, Graphics::ScreenHeight }, "MMO RPG", sf::Style::Titlebar | sf::Style::Close };
 
+	window.setFramerateLimit(Graphics::Framerate);
+
 	Game game{ window };
 
 	DeltaTime& deltaTime = DeltaTime::Make();

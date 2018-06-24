@@ -5,7 +5,6 @@ Graphics::Graphics(sf::RenderWindow& window, const Camera camera)
 	window{ window },
 	camera{ camera }
 {
-	window.setFramerateLimit(Framerate);
 }
 
 void Graphics::Begin() const
