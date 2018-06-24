@@ -7,7 +7,7 @@
 
 int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszArgument, int nCmdShow)
 {
-	sf::RenderWindow window{ sf::VideoMode{ Graphics::ScreenWidth, Graphics::ScreenHeight }, "MMO RPG", sf::Style::Titlebar | sf::Style::Close };
+	sf::RenderWindow window{ sf::VideoMode{ static_cast<unsigned int>(Graphics::ScreenWidth), static_cast<unsigned int>(Graphics::ScreenHeight) }, "MMO RPG", sf::Style::Titlebar | sf::Style::Close };
 
 	window.setFramerateLimit(Graphics::Framerate);
 

@@ -18,10 +18,10 @@ public:
 	Camera& GetCamera();
 
 public:
-	static constexpr unsigned int ScreenWidth = 1366;
-	static constexpr unsigned int ScreenHeight = 768;
+	static constexpr int ScreenWidth = 1366;
+	static constexpr int ScreenHeight = 768;
 
-	static constexpr unsigned int Framerate = 60;
+	static constexpr int Framerate = 60;
 
 private:
 	sf::RenderWindow& window;
