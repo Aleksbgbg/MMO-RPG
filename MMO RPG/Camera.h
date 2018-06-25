@@ -27,6 +27,8 @@ public:
 private:
 	static constexpr float SemiFreeCameraEdgePercentage = 0.25f;
 
+	static constexpr float CameraMovementMultiplier = 5.0f;
+
 private:
 	sf::RenderWindow& window;
 	const Map& map;

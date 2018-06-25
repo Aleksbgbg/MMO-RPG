@@ -116,9 +116,19 @@ void Camera::SwitchMode(const Mode mode)
 	UpdatePosition(previousPlayerPosition, previousPlayerDimensions);
 }
 
-void Camera::MoveBy(const sf::Vector2f movement)
+void Camera::MoveBy(sf::Vector2f movement)
 {
 	if (mode != Mode::SemiFree) return;
+
+	{
+		const float hypotenuse = std::sqrt(movement.x * movement.x + movement.y * movement.y);
+
+		movement.x /= hypotenuse;
+		movement.y /= hypotenuse;
+	}
+
+	movement.x *= CameraMovementMultiplier;
+	movement.y *= CameraMovementMultiplier;
 
 	previousCameraCenter += movement;
 
