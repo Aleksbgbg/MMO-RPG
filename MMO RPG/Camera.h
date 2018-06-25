@@ -20,6 +20,8 @@ public:
 	void UpdatePosition(const sf::Vector2f playerPosition, const sf::Vector2i playerDimensions);
 	void SwitchMode(const Mode mode);
 
+	void MoveBy(sf::Vector2f movement);
+
 	Mode GetMode() const;
 
 private:
