@@ -20,7 +20,6 @@ private:
 
 private:
 	void UpdateCamera() const;
-	static bool IsPressed(const sf::Keyboard::Key key);
 
 private:
 	Camera& camera;
