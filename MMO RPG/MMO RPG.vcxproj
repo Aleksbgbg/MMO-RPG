@@ -34,6 +34,7 @@
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="SpriteInfo.cpp" />
     <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -48,6 +49,7 @@
     <ClInclude Include="Random.h" />
     <ClInclude Include="SpriteInfo.h" />
     <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="Vector.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Map.json">

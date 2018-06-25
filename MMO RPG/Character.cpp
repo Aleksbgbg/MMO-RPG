@@ -1,5 +1,7 @@
 #include "Character.h"
 
+#include "Vector.h"
+
 #include <utility>
 
 Character::Character(sf::Sprite sprite, const float speed)
@@ -27,12 +29,7 @@ void Character::Update()
 	}
 	else
 	{
-		{
-			const float hypotenuse = std::sqrt(movement.x * movement.x + movement.y * movement.y);
-
-			movement.x /= hypotenuse;
-			movement.y /= hypotenuse;
-		}
+		normalize(movement);
 
 		movement *= speed;
 

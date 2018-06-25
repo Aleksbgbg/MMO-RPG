@@ -1,5 +1,6 @@
 #include "Camera.h"
 #include "Graphics.h"
+#include "Vector.h"
 
 Camera::Camera(sf::RenderWindow& window, const Map& map)
 	:
@@ -120,12 +121,7 @@ void Camera::MoveBy(sf::Vector2f movement)
 {
 	if (mode != Mode::SemiFree) return;
 
-	{
-		const float hypotenuse = std::sqrt(movement.x * movement.x + movement.y * movement.y);
-
-		movement.x /= hypotenuse;
-		movement.y /= hypotenuse;
-	}
+	normalize(movement);
 
 	movement.x *= CameraMovementMultiplier;
 	movement.y *= CameraMovementMultiplier;
