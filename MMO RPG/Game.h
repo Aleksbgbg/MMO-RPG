@@ -27,5 +27,5 @@ private:
 
 	Player player;
 
-	std::vector<std::unique_ptr<Npc>> npcs;
+	std::array<std::unique_ptr<Npc>, 8> npcs;
 };

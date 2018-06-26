@@ -11,11 +11,14 @@ Game::Game(sf::RenderWindow& window)
 	map.AddTexture(TextureManager::Get("Map"));
 	map.AddAllSprites();
 
-	for (int x = 0; x < 4; ++x)
+	constexpr int spritesheetWidth = 4;
+	constexpr int spritesheetHeight = 2;
+
+	for (int x = 0; x < spritesheetWidth; ++x)
 	{
-		for (int y = 0; y < 2; ++y)
+		for (int y = 0; y < spritesheetHeight; ++y)
 		{
-			npcs.push_back(std::make_unique<Npc>(sf::Vector2i{ x, y }, map));
+			npcs[x + y * spritesheetWidth] = std::make_unique<Npc>(sf::Vector2i{ x, y }, map);
 		}
 	}
 }
