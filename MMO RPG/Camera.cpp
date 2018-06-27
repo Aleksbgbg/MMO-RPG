@@ -135,3 +135,15 @@ Camera::Mode Camera::GetMode() const
 {
 	return mode;
 }
+
+sf::FloatRect Camera::GetViewArea() const
+{
+	const sf::Vector2f screenDimensions{ static_cast<float>(Graphics::ScreenWidth), static_cast<float>(Graphics::ScreenHeight) };
+
+	sf::Vector2f cameraEdge{ previousCameraCenter };
+
+	cameraEdge.x -= screenDimensions.x / 2;
+	cameraEdge.y -= screenDimensions.y / 2;
+
+	return sf::FloatRect{ cameraEdge, screenDimensions };
+}

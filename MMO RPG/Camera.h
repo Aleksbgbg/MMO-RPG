@@ -23,6 +23,7 @@ public:
 	void MoveBy(sf::Vector2f movement);
 
 	Mode GetMode() const;
+	sf::FloatRect GetViewArea() const;
 
 private:
 	static constexpr float SemiFreeCameraEdgePercentage = 0.25f;
