@@ -145,6 +145,12 @@
     <None Include="Map.json">
       <Filter>Resource Files\Map</Filter>
     </None>
+    <None Include="X:\MMO RPG\Map.tmx">
+      <Filter>Resource Files\Map</Filter>
+    </None>
+    <None Include="X:\MMO RPG\Map.tsx">
+      <Filter>Resource Files\Map</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\NPCs.png">

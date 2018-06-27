@@ -62,6 +62,8 @@
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="Player2 Sprite Config.ini" />
+    <None Include="X:\MMO RPG\Map.tmx" />
+    <None Include="X:\MMO RPG\Map.tsx" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\Map.png" />
