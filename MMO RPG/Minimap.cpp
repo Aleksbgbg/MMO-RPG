@@ -6,7 +6,6 @@ Minimap::Minimap(const Camera & camera, const Map & map)
 	:
 	worldDimensions{ map.GetDimensions() },
 	minimapView{ sf::FloatRect{ 0.0f, 0.0f, worldDimensions.x, worldDimensions.y } },
-	//player{ player },
 	camera{ camera }
 {
 	minimapView.setViewport(sf::FloatRect{ 0.900f, 0.0f, 0.100f, 0.125f });
@@ -37,22 +36,22 @@ void Minimap::Draw(Graphics& gfx) const
 	{
 		const sf::FloatRect viewArea = camera.GetViewArea();
 
-		sf::RectangleShape playerSurround{ sf::Vector2f{ viewArea.width, viewArea.height } };
+		sf::RectangleShape playerViewBorder{ sf::Vector2f{ viewArea.width, viewArea.height } };
 
-		playerSurround.setPosition(viewArea.left, viewArea.top);
-		playerSurround.setFillColor(sf::Color::Transparent);
-		playerSurround.setOutlineThickness(-15.0f);
+		playerViewBorder.setPosition(viewArea.left, viewArea.top);
+		playerViewBorder.setFillColor(sf::Color::Transparent);
+		playerViewBorder.setOutlineThickness(-15.0f);
 
-		gfx.DrawUnbound(playerSurround);
+		gfx.DrawUnbound(playerViewBorder);
 	}
 
 	{
-		sf::RectangleShape surround{ worldDimensions };
+		sf::RectangleShape mapBorder{ worldDimensions };
 
-		surround.setFillColor(sf::Color::Transparent);
-		surround.setOutlineThickness(-15.0f);
+		mapBorder.setFillColor(sf::Color::Transparent);
+		mapBorder.setOutlineThickness(-15.0f);
 
-		gfx.DrawUnbound(surround);
+		gfx.DrawUnbound(mapBorder);
 	}
 
 	gfx.ResetView();
