@@ -2,12 +2,9 @@
 
 #include <SFML/Graphics.hpp>
 
-#include <array>
-
+#include "Camera.h"
 #include "Graphics.h"
-#include "Map.h"
-#include "Player.h"
-#include "Npc.h"
+#include "World.h"
 
 class Game
 {
@@ -21,13 +18,11 @@ private:
 	void ComposeFrame();
 
 private:
-	Map map;
-
 	Graphics gfx;
+
+	Map map;
 
 	Camera camera;
 
-	Player player;
-
-	std::array<std::unique_ptr<Npc>, 8> npcs;
+	World world;
 };

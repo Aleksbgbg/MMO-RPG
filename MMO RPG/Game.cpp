@@ -1,22 +1,11 @@
 #include "Game.h"
-#include "Map.h"
 
 Game::Game(sf::RenderWindow& window)
 	:
-	gfx{ window,  },
+	gfx{ window },
 	camera{ window, map },
-	player{ camera }
+	world{ map, camera }
 {
-	constexpr int spritesheetWidth = 4;
-	constexpr int spritesheetHeight = 2;
-
-	for (int x = 0; x < spritesheetWidth; ++x)
-	{
-		for (int y = 0; y < spritesheetHeight; ++y)
-		{
-			npcs[x + y * spritesheetWidth] = std::make_unique<Npc>(sf::Vector2i{ x, y }, map);
-		}
-	}
 }
 
 void Game::Main()
@@ -31,12 +20,7 @@ void Game::Main()
 
 void Game::UpdateModel()
 {
-	player.Update();
-
-	for (const std::unique_ptr<Npc>& npc : npcs)
-	{
-		npc->Update();
-	}
+	world.Update();
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Num1))
 	{
@@ -77,11 +61,5 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	map.Draw(gfx);
-	player.Draw(gfx);
-
-	for (const std::unique_ptr<Npc>& npc : npcs)
-	{
-		npc->Draw(gfx);
-	}
+	world.Draw(gfx);
 }
