@@ -27,3 +27,19 @@ void Graphics::Draw(const sf::Sprite& sprite) const
 		window.draw(sprite);
 	}
 }
+
+void Graphics::DrawUnbound(const sf::Drawable& drawable) const
+{
+	window.draw(drawable);
+}
+
+void Graphics::ChangeView(const sf::View& view)
+{
+	lastView = sf::View{ window.getView() };
+	window.setView(view);
+}
+
+void Graphics::ResetView() const
+{
+	window.setView(lastView);
+}

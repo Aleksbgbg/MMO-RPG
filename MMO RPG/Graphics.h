@@ -13,6 +13,10 @@ public:
 	void End() const;
 
 	void Draw(const sf::Sprite& sprite) const;
+	void DrawUnbound(const sf::Drawable& drawable) const;
+
+	void ChangeView(const sf::View& view);
+	void ResetView() const;
 
 public:
 	static constexpr int ScreenWidth = 1366;
@@ -22,4 +26,6 @@ public:
 
 private:
 	sf::RenderWindow& window;
+
+	sf::View lastView;
 };
