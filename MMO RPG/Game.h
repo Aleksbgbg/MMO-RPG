@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "Graphics.h"
 #include "World.h"
+#include "Minimap.h"
 
 class Game
 {
@@ -20,9 +21,13 @@ private:
 private:
 	Graphics gfx;
 
+	Camera camera;
+
+	Player player;
+
 	Map map;
 
-	Camera camera;
+	Minimap minimap;
 
 	World world;
 };

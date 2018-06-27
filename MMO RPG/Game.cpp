@@ -4,7 +4,9 @@ Game::Game(sf::RenderWindow& window)
 	:
 	gfx{ window },
 	camera{ window, map },
-	world{ map, camera }
+	player{ camera },
+	minimap{ camera, map },
+	world{ map, player, camera, minimap }
 {
 }
 
@@ -62,4 +64,5 @@ void Game::UpdateModel()
 void Game::ComposeFrame()
 {
 	world.Draw(gfx);
+	minimap.Draw(gfx);
 }
