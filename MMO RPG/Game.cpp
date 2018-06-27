@@ -1,6 +1,5 @@
 #include "Game.h"
 #include "Map.h"
-#include "TextureManager.h"
 
 Game::Game(sf::RenderWindow& window)
 	:
@@ -8,9 +7,6 @@ Game::Game(sf::RenderWindow& window)
 	camera{ gfx.GetCamera() },
 	player{ gfx.GetCamera() }
 {
-	map.AddTexture(TextureManager::Get("Map"));
-	map.AddAllSprites();
-
 	constexpr int spritesheetWidth = 4;
 	constexpr int spritesheetHeight = 2;
 

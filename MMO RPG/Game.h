@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <array>
+
 #include "Graphics.h"
 #include "Map.h"
 #include "Player.h"
