@@ -23,6 +23,8 @@ public:
 	void Update();
 	void Draw(const Graphics& gfx) const;
 
+	sf::Vector2f GetPosition() const;
+
 protected:
 	Character(sf::Sprite sprite, const float speed);
 	virtual ~Character() = default;

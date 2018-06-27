@@ -51,6 +51,11 @@ void Character::Draw(const Graphics& gfx) const
 	gfx.Draw(sprite);
 }
 
+sf::Vector2f Character::GetPosition() const
+{
+	return sprite.getPosition();
+}
+
 void Character::OnPositionUpdated(const sf::Vector2f newPosition)
 {
 }
