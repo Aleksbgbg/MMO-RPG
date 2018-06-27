@@ -61,6 +61,9 @@
     <None Include="Map.json">
       <DeploymentContent>true</DeploymentContent>
     </None>
+    <None Include="Map2.json" />
+    <None Include="Map2.tmx" />
+    <None Include="Map2.tsx" />
     <None Include="NPC Sprite Config.ini" />
     <None Include="Player Sprite Config.ini">
       <DeploymentContent>true</DeploymentContent>

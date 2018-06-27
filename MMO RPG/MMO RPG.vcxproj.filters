@@ -163,6 +163,15 @@
     <None Include="X:\MMO RPG\Map.tsx">
       <Filter>Resource Files\Map</Filter>
     </None>
+    <None Include="Map2.json">
+      <Filter>Resource Files\Map</Filter>
+    </None>
+    <None Include="Map2.tmx">
+      <Filter>Resource Files\Map</Filter>
+    </None>
+    <None Include="Map2.tsx">
+      <Filter>Resource Files\Map</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\NPCs.png">
