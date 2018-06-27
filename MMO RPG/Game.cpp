@@ -3,9 +3,9 @@
 
 Game::Game(sf::RenderWindow& window)
 	:
-	gfx{ window, Camera{ window, map } },
-	camera{ gfx.GetCamera() },
-	player{ gfx.GetCamera() }
+	gfx{ window,  },
+	camera{ window, map },
+	player{ camera }
 {
 	constexpr int spritesheetWidth = 4;
 	constexpr int spritesheetHeight = 2;

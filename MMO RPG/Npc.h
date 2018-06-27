@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Animation.h"
-#include "Graphics.h"
 #include "Character.h"
+#include "Map.h"
 
 class Npc : public Character
 {

@@ -1,9 +1,8 @@
 #include "Graphics.h"
 
-Graphics::Graphics(sf::RenderWindow& window, const Camera camera)
+Graphics::Graphics(sf::RenderWindow & window)
 	:
-	window{ window },
-	camera{ camera }
+	window{ window }
 {
 }
 
@@ -27,9 +26,4 @@ void Graphics::Draw(const sf::Sprite& sprite) const
 	{
 		window.draw(sprite);
 	}
-}
-
-Camera& Graphics::GetCamera()
-{
-	return camera;
 }

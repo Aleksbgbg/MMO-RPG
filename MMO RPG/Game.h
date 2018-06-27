@@ -25,7 +25,7 @@ private:
 
 	Graphics gfx;
 
-	Camera& camera;
+	Camera camera;
 
 	Player player;
 

@@ -2,6 +2,7 @@
 
 #include "Random.h"
 #include "TextureManager.h"
+#include "Map.h"
 
 Npc::Npc(const sf::Vector2i spriteSheetCoordinate, const Map& map)
 	:

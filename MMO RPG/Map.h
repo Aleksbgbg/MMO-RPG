@@ -6,8 +6,6 @@
 
 #include "Tile.h"
 
-class Graphics;
-
 class Map
 {
 public:

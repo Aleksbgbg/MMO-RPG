@@ -1,21 +1,18 @@
 #pragma once
 
 #include <SFML/Graphics/RenderWindow.hpp>
-
-#include "Camera.h"
+#include <SFML/Graphics/Sprite.hpp>
 
 class Graphics
 {
 public:
-	Graphics(sf::RenderWindow& window, const Camera camera);
+	explicit Graphics(sf::RenderWindow& window);
 
 public:
 	void Begin() const;
 	void End() const;
 
 	void Draw(const sf::Sprite& sprite) const;
-
-	Camera& GetCamera();
 
 public:
 	static constexpr int ScreenWidth = 1366;
@@ -25,6 +22,4 @@ public:
 
 private:
 	sf::RenderWindow& window;
-
-	Camera camera;
 };
