@@ -12,14 +12,29 @@ using json = nlohmann::json;
 
 Map::Map()
 {
+	Load("Map.json");
+}
+
+void Map::Draw(const Graphics& gfx)
+{
+	for (const Tile& tile : tiles)
+	{
+		tile.Draw(gfx);
+	}
+}
+
+void Map::Load(const std::string& filename)
+{
+	tiles.clear();
+
 	json mapDetails;
 
 	{
-		std::ifstream input{ "Map.json" };
+		std::ifstream input{ filename };
 
 		if (!input.is_open())
 		{
-			throw std::runtime_error{ "Could not open file Map.json" };
+			throw std::runtime_error{ "Could not open file " + filename };
 		}
 
 		mapDetails = json::parse(input);
@@ -56,14 +71,6 @@ Map::Map()
 				}
 			}
 		}
-	}
-}
-
-void Map::Draw(const Graphics& gfx)
-{
-	for (const Tile& tile : tiles)
-	{
-		tile.Draw(gfx);
 	}
 }
 

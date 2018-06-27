@@ -14,11 +14,13 @@ public:
 public:
 	void Draw(const Graphics& gfx);
 
-public:
-	static constexpr float Scale = 2.0f;
+	void Load(const std::string& filename);
 
 public:
 	sf::Vector2i GetDimensions() const;
+
+public:
+	static constexpr float Scale = 2.0f;
 
 private:
 	sf::Vector2i mapTiles;
