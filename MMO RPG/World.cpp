@@ -1,9 +1,9 @@
 #include "World.h"
 
-World::World(Map& map, Camera& camera)
+World::World(Map& map, Player& player, Camera& camera, Minimap& minimap)
 	:
 	map{ map },
-	player{ camera }
+	player{ player }
 {
 	constexpr int spritesheetWidth = 4;
 	constexpr int spritesheetHeight = 2;
@@ -14,6 +14,13 @@ World::World(Map& map, Camera& camera)
 		{
 			npcs[x + y * spritesheetWidth] = std::make_unique<Npc>(sf::Vector2i{ x, y }, map);
 		}
+	}
+
+	minimap.AddCharacter(player);
+
+	for (const std::unique_ptr<Npc>& npc : npcs)
+	{
+		minimap.AddCharacter(*npc);
 	}
 }
 
