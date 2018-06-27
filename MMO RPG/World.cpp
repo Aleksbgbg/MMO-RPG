@@ -3,7 +3,6 @@
 World::World(Map& map, Camera& camera)
 	:
 	map{ map },
-	camera{ camera },
 	player{ camera }
 {
 	constexpr int spritesheetWidth = 4;
