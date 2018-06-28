@@ -154,22 +154,22 @@
     <None Include="Player2 Sprite Config.ini">
       <Filter>Resource Files\Sprite</Filter>
     </None>
-    <None Include="Map.json">
+    <None Include="Map0.json">
       <Filter>Resource Files\Map</Filter>
     </None>
-    <None Include="X:\MMO RPG\Map.tmx">
+    <None Include="X:\MMO RPG\Map0.tmx">
       <Filter>Resource Files\Map</Filter>
     </None>
-    <None Include="X:\MMO RPG\Map.tsx">
+    <None Include="X:\MMO RPG\Map0.tsx">
       <Filter>Resource Files\Map</Filter>
     </None>
-    <None Include="Map2.json">
+    <None Include="Map1.json">
       <Filter>Resource Files\Map</Filter>
     </None>
-    <None Include="Map2.tmx">
+    <None Include="Map1.tmx">
       <Filter>Resource Files\Map</Filter>
     </None>
-    <None Include="Map2.tsx">
+    <None Include="Map1.tsx">
       <Filter>Resource Files\Map</Filter>
     </None>
   </ItemGroup>

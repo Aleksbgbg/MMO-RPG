@@ -58,19 +58,19 @@
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Map.json">
+    <None Include="Map0.json">
       <DeploymentContent>true</DeploymentContent>
     </None>
-    <None Include="Map2.json" />
-    <None Include="Map2.tmx" />
-    <None Include="Map2.tsx" />
+    <None Include="Map1.json" />
+    <None Include="Map1.tmx" />
+    <None Include="Map1.tsx" />
     <None Include="NPC Sprite Config.ini" />
     <None Include="Player Sprite Config.ini">
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="Player2 Sprite Config.ini" />
-    <None Include="X:\MMO RPG\Map.tmx" />
-    <None Include="X:\MMO RPG\Map.tsx" />
+    <None Include="X:\MMO RPG\Map0.tmx" />
+    <None Include="X:\MMO RPG\Map0.tsx" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\Map.png" />
