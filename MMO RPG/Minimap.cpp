@@ -57,6 +57,16 @@ void Minimap::Draw(Graphics& gfx) const
 	gfx.ResetView();
 }
 
+void Minimap::LoadNewWorld(const sf::Vector2f newWorldDimensions)
+{
+	characters.clear();
+
+	worldDimensions = newWorldDimensions;
+
+	minimapView.setCenter(worldDimensions.x / 2.0f, worldDimensions.y / 2.0f);
+	minimapView.setSize(worldDimensions);
+}
+
 void Minimap::AddCharacter(Character& character)
 {
 	characters.push_back(&character);

@@ -10,11 +10,13 @@ public:
 
 public:
 	void Draw(Graphics& gfx) const;
+	
+	void LoadNewWorld(const sf::Vector2f newWorldDimensions);
 
 	void AddCharacter(Character& character);
 
 private:
-	const sf::Vector2f worldDimensions;
+	sf::Vector2f worldDimensions;
 
 	sf::View minimapView;
 
