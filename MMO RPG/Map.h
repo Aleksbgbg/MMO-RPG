@@ -9,9 +9,6 @@
 class Map
 {
 public:
-	Map();
-
-public:
 	void Draw(const Graphics& gfx);
 
 	void Load(const std::string& filename);

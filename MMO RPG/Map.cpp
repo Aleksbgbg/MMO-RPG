@@ -10,11 +10,6 @@
 
 using json = nlohmann::json;
 
-Map::Map()
-{
-	Load("Map.json");
-}
-
 void Map::Draw(const Graphics& gfx)
 {
 	for (const Tile& tile : tiles)
