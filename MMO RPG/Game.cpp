@@ -5,9 +5,14 @@ Game::Game(sf::RenderWindow& window)
 	gfx{ window },
 	camera{ window, map },
 	player{ camera },
-	minimap{ camera, map },
-	world{ map, player, camera, minimap }
+	minimap{ camera, map }
 {
+	for (int index = 0; index < Worlds; ++index)
+	{
+		worlds.emplace_back(std::string{ "Map" + std::to_string(index) + ".json" }, map, player, camera, minimap);
+	}
+
+	ChangeActiveWorld(0);
 }
 
 void Game::Main()
@@ -22,7 +27,12 @@ void Game::Main()
 
 void Game::UpdateModel()
 {
-	world.Update();
+	player.Update();
+
+	for (World& world : worlds)
+	{
+		world.Update();
+	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Num1))
 	{
@@ -63,6 +73,16 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	world.Draw(gfx);
+	activeWorld->Draw(gfx);
+
+	player.Draw(gfx);
+
 	minimap.Draw(gfx);
+}
+
+void Game::ChangeActiveWorld(const int index)
+{
+	activeWorld = &worlds[index];
+
+	activeWorld->Activate();
 }

@@ -18,6 +18,11 @@ private:
 	void UpdateModel();
 	void ComposeFrame();
 
+	void ChangeActiveWorld(const int index);
+
+private:
+	static constexpr int Worlds = 2;
+
 private:
 	Graphics gfx;
 
@@ -29,5 +34,7 @@ private:
 
 	Minimap minimap;
 
-	World world;
+	World* activeWorld;
+
+	std::vector<World> worlds;
 };
