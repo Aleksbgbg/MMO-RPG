@@ -31,6 +31,23 @@ void Character::Update()
 	{
 		normalize(movement);
 
+		if (movement.x < 0)
+		{
+			movementDirection = Direction::Left;
+		}
+		else if (movement.x > 0)
+		{
+			movementDirection = Direction::Right;
+		}
+		else if (movement.y < 0)
+		{
+			movementDirection = Direction::Up;
+		}
+		else if (movement.y > 0)
+		{
+			movementDirection = Direction::Down;
+		}
+
 		movement *= speed;
 
 		if (wasStanding)

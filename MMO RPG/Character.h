@@ -43,9 +43,9 @@ protected:
 
 	std::map<Direction, Animation> animations;
 
-	Direction movementDirection;
-
 private:
 	const float speed;
 	sf::Vector2f lastPosition;
+
+	Direction movementDirection;
 };

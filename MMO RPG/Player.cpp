@@ -5,7 +5,6 @@
 
 #include "INIReader.h"
 #include "TextureManager.h"
-#include <any>
 
 Player::Player(Camera& camera)
 	:
@@ -78,23 +77,19 @@ sf::Vector2f Player::PickMovement()
 
 	if (std::any_of(directionKeys.at(Direction::Up).begin(), directionKeys.at(Direction::Up).end(), sf::Keyboard::isKeyPressed))
 	{
-		movementDirection = Direction::Up;
 		movement.y = -1;
 	}
 	else if (std::any_of(directionKeys.at(Direction::Down).begin(), directionKeys.at(Direction::Down).end(), sf::Keyboard::isKeyPressed))
 	{
-		movementDirection = Direction::Down;
 		movement.y = 1;
 	}
 
 	if (std::any_of(directionKeys.at(Direction::Left).begin(), directionKeys.at(Direction::Left).end(), sf::Keyboard::isKeyPressed))
 	{
-		movementDirection = Direction::Left;
 		movement.x = -1;
 	}
 	else if (std::any_of(directionKeys.at(Direction::Right).begin(), directionKeys.at(Direction::Right).end(), sf::Keyboard::isKeyPressed))
 	{
-		movementDirection = Direction::Right;
 		movement.x = 1;
 	}
 

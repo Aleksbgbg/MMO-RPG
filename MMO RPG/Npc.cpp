@@ -40,12 +40,10 @@ sf::Vector2f Npc::PickMovement()
 	{
 		if (currentPosition.x > targetPosition.x)
 		{
-			movementDirection = Direction::Left;
 			movement.x = -1;
 		}
 		else
 		{
-			movementDirection = Direction::Right;
 			movement.x = 1;
 		}
 	}
@@ -53,12 +51,10 @@ sf::Vector2f Npc::PickMovement()
 	{
 		if (currentPosition.y > targetPosition.y)
 		{
-			movementDirection = Direction::Up;
 			movement.y = -1;
 		}
 		else
 		{
-			movementDirection = Direction::Down;
 			movement.y = 1;
 		}
 	}
