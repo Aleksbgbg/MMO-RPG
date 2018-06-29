@@ -56,6 +56,14 @@ sf::Vector2f Character::GetPosition() const
 	return sprite.getPosition();
 }
 
+sf::FloatRect Character::GetOccupation() const
+{
+	const sf::Vector2f& spritePosition = sprite.getPosition();
+	const sf::IntRect& spriteDimensions = sprite.getTextureRect();
+
+	return sf::FloatRect{ spritePosition.x, spritePosition.y, static_cast<float>(spriteDimensions.width), static_cast<float>(spriteDimensions.height) };
+}
+
 void Character::OnPositionUpdated(const sf::Vector2f newPosition)
 {
 }

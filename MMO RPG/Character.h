@@ -24,6 +24,7 @@ public:
 	void Draw(const Graphics& gfx) const;
 
 	sf::Vector2f GetPosition() const;
+	sf::FloatRect GetOccupation() const;
 
 protected:
 	Character(sf::Sprite sprite, const float speed);
