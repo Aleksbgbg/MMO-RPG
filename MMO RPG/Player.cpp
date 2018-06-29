@@ -13,6 +13,11 @@ Player::Player(Camera& camera)
 {
 }
 
+void Player::TeleportTo(const Portal& portal)
+{
+	sprite.setPosition(portal.occupation.left, portal.occupation.top);
+}
+
 Player::Player(const sf::Texture& spriteSheet, Camera& camera)
 	:
 	Character{ sf::Sprite{ spriteSheet }, 4.0f },
