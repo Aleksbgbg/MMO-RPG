@@ -40,9 +40,13 @@ void Character::Update()
 
 		sprite.move(movement);
 
-		OnPositionUpdated(sprite.getPosition());
-
 		animations.at(movementDirection).Update();
+	}
+
+	if (lastPosition != sprite.getPosition())
+	{
+		OnPositionUpdated(sprite.getPosition());
+		lastPosition = sprite.getPosition();
 	}
 }
 
