@@ -69,6 +69,18 @@ void Game::UpdateModel()
 			camera.MoveBy(cameraMovement);
 		}
 	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::X))
+	{
+		int nextWorld = currentActiveWorld + 1;
+
+		if (nextWorld >= static_cast<int>(worlds.size()))
+		{
+			nextWorld = 0;
+		}
+
+		ChangeActiveWorld(nextWorld);
+	}
 }
 
 void Game::ComposeFrame()
@@ -83,6 +95,6 @@ void Game::ComposeFrame()
 void Game::ChangeActiveWorld(const int index)
 {
 	activeWorld = &worlds[index];
-
 	activeWorld->Activate();
+	currentActiveWorld = index;
 }
