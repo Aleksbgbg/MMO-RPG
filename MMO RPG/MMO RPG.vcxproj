@@ -35,6 +35,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Portal.cpp" />
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="Rect.cpp" />
     <ClCompile Include="SpriteInfo.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Tile.cpp" />
@@ -55,6 +56,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Portal.h" />
     <ClInclude Include="Random.h" />
+    <ClInclude Include="Rect.h" />
     <ClInclude Include="SpriteInfo.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Tile.h" />
