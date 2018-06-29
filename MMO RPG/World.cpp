@@ -82,7 +82,7 @@ bool World::PlayerCanTeleport() const
 {
 	return std::any_of(portals.begin(), portals.end(), [this](const Portal& portal)
 	{
-		return are_overlapping(portal.occupation, player.GetOccupation()); 
+		return is_inside(portal.occupation, player.GetOccupation()); 
 	});
 }
 
@@ -95,7 +95,7 @@ const Portal& World::FindNearestPortal() const
 {
 	for (const Portal& portal : portals)
 	{
-		if (are_overlapping(portal.occupation, player.GetOccupation()))
+		if (is_inside(portal.occupation, player.GetOccupation()))
 		{
 			return portal;
 		}
