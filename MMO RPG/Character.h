@@ -40,12 +40,11 @@ protected:
 
 protected:
 	sf::Sprite sprite;
+	Direction movementDirection;
 
 	std::map<Direction, Animation> animations;
 
 private:
 	const float speed;
 	sf::Vector2f lastPosition;
-
-	Direction movementDirection;
 };

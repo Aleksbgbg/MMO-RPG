@@ -5,6 +5,7 @@
 
 #include "INIReader.h"
 #include "TextureManager.h"
+#include "Rect.h"
 
 Player::Player(Camera& camera)
 	:
@@ -14,7 +15,13 @@ Player::Player(Camera& camera)
 
 void Player::TeleportTo(const Portal& portal)
 {
-	sprite.setPosition(portal.occupation.left, portal.occupation.top);
+	const sf::Vector2f portalCenter = center(portal.occupation);
+
+	const sf::FloatRect occupation = GetOccupation();
+
+	sprite.setPosition(portalCenter - sf::Vector2f{ occupation.width / 2.0f, occupation.height / 2.0f });
+
+	movementDirection = Direction::Down;
 }
 
 Player::Player(const sf::Texture& spriteSheet, Camera& camera)
