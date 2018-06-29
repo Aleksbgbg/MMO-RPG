@@ -34,8 +34,6 @@ private:
 
 	Minimap minimap;
 
-	int currentActiveWorld;
-
 	World* activeWorld;
 
 	std::vector<World> worlds;

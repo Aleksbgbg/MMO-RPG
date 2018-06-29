@@ -1,5 +1,9 @@
 #include "Game.h"
 
+#include <fstream>
+
+using json = nlohmann::json;
+
 Game::Game(sf::RenderWindow& window)
 	:
 	gfx{ window },
@@ -7,9 +11,22 @@ Game::Game(sf::RenderWindow& window)
 	player{ camera },
 	minimap{ camera, map }
 {
+	json worldConfig;
+
+	{
+		std::ifstream input{ "World Config.json" };
+
+		if (!input.is_open())
+		{
+			throw std::runtime_error{ "Cannot open file 'World Config.json'." };
+		}
+
+		worldConfig = json::parse(input);
+	}
+
 	for (int index = 0; index < Worlds; ++index)
 	{
-		worlds.emplace_back(std::string{ "Map" + std::to_string(index) + ".json" }, map, player, camera, minimap);
+		worlds.emplace_back(std::string{ "Map" + std::to_string(index) + ".json" }, map, player, camera, minimap, worldConfig[index]);
 	}
 
 	ChangeActiveWorld(0);
@@ -70,16 +87,12 @@ void Game::UpdateModel()
 		}
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::X))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::X) && activeWorld->PlayerCanTeleport())
 	{
-		int nextWorld = currentActiveWorld + 1;
+		const Portal& sourcePortal = activeWorld->FindNearestPortal();
 
-		if (nextWorld >= static_cast<int>(worlds.size()))
-		{
-			nextWorld = 0;
-		}
-
-		ChangeActiveWorld(nextWorld);
+		ChangeActiveWorld(sourcePortal.targetWorldIndex);
+		player.TeleportTo(worlds[sourcePortal.targetWorldIndex].GetPortal(sourcePortal.targetPortalIndex));
 	}
 }
 
@@ -98,5 +111,4 @@ void Game::ChangeActiveWorld(const int index)
 {
 	activeWorld = &worlds[index];
 	activeWorld->Activate();
-	currentActiveWorld = index;
 }
