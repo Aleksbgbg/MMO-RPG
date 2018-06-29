@@ -2,7 +2,7 @@
 
 #include <valarray>
 
-void normalize(sf::Vector2f vector)
+void normalize(sf::Vector2f& vector)
 {
 	const float hypotenuse = std::sqrt(vector.x * vector.x + vector.y * vector.y);
 

@@ -2,4 +2,4 @@
 
 #include <SFML/System/Vector2.hpp>
 
-void normalize(sf::Vector2f vector);
+void normalize(sf::Vector2f& vector);
