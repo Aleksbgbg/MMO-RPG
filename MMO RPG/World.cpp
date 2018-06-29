@@ -6,7 +6,7 @@
 
 using json = nlohmann::json;
 
-World::World(std::string mapFile, Map& map, Player& player, Camera& camera, Minimap& minimap)
+World::World(const std::string& mapFile, Map& map, Player& player, Camera& camera, Minimap& minimap)
 	:
 	mapFile{ mapFile },
 	map{ map },

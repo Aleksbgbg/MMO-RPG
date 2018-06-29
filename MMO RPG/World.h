@@ -9,7 +9,7 @@
 class World
 {
 public:
-	World(std::string mapFile, Map& map, Player& player, Camera& camera, Minimap& minimap);
+	World(const std::string& mapFile, Map& map, Player& player, Camera& camera, Minimap& minimap);
 
 public:
 	void Update();
