@@ -85,6 +85,8 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
+	map.Draw(gfx);
+
 	activeWorld->Draw(gfx);
 
 	player.Draw(gfx);

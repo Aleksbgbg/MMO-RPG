@@ -51,8 +51,6 @@ void World::Update()
 
 void World::Draw(const Graphics& gfx)
 {
-	map.Draw(gfx);
-
 	for (const std::unique_ptr<Npc>& npc : npcs)
 	{
 		npc->Draw(gfx);
