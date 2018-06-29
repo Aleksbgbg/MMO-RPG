@@ -61,6 +61,9 @@
     <ClCompile Include="Collider.cpp">
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
+    <ClCompile Include="Portal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -113,6 +116,9 @@
     </ClInclude>
     <ClInclude Include="Collider.h">
       <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Portal.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
