@@ -3,10 +3,11 @@
 #include "json.hpp"
 
 #include <fstream>
+#include "Collider.h"
 
 using json = nlohmann::json;
 
-World::World(const std::string& mapFile, Map& map, Player& player, Camera& camera, Minimap& minimap)
+World::World(const std::string& mapFile, Map& map, Player& player, Camera& camera, Minimap& minimap, json& worldConfig)
 	:
 	mapFile{ mapFile },
 	map{ map },
@@ -28,6 +29,11 @@ World::World(const std::string& mapFile, Map& map, Player& player, Camera& camer
 		const sf::Vector2i tileDimensions{ mapData["tilewidth"], mapData["tileheight"] };
 
 		dimensions = sf::Vector2i{ static_cast<int>(mapDimensions.x * tileDimensions.x * Map::Scale), static_cast<int>(mapDimensions.y * tileDimensions.y * Map::Scale) };
+
+		for (const json& portal : worldConfig["portals"])
+		{
+			portals.emplace_back(sf::FloatRect{ static_cast<int>(portal["x"]) * tileDimensions.x * Map::Scale, static_cast<int>(portal["y"]) * tileDimensions.y * Map::Scale, tileDimensions.x * Map::Scale * 2, tileDimensions.y * Map::Scale * 2 }, portal["targetWorldIndex"], portal["targetPortalIndex"]);
+		}
 	}
 
 	constexpr int spritesheetWidth = 4;
@@ -41,6 +47,7 @@ World::World(const std::string& mapFile, Map& map, Player& player, Camera& camer
 		}
 	}
 }
+
 void World::Update()
 {
 	for (const std::unique_ptr<Npc>& npc : npcs)
@@ -70,4 +77,30 @@ void World::Activate()
 	{
 		minimap.AddCharacter(*npc);
 	}
+}
+
+bool World::PlayerCanTeleport() const
+{
+	return std::any_of(portals.begin(), portals.end(), [this](const Portal& portal)
+	{
+		return are_overlapping(portal.occupation, player.GetOccupation()); 
+	});
+}
+
+const Portal& World::GetPortal(const int index) const
+{
+	return portals[index];
+}
+
+const Portal& World::FindNearestPortal() const
+{
+	for (const Portal& portal : portals)
+	{
+		if (are_overlapping(portal.occupation, player.GetOccupation()))
+		{
+			return portal;
+		}
+	}
+
+	throw std::runtime_error{ "No near portal exists." };
 }
