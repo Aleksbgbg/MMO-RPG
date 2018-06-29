@@ -17,8 +17,6 @@ public:
 	Camera(sf::RenderWindow& window, const Map& map);
 
 public:
-	void ReCalibrate();
-
 	void UpdatePosition(const sf::Vector2f playerPosition, const sf::Vector2i playerDimensions);
 	void SwitchMode(const Mode mode);
 

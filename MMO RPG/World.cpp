@@ -68,7 +68,6 @@ void World::Activate()
 {
 	map.Load(mapFile);
 
-	camera.ReCalibrate();
 	minimap.LoadNewWorld(sf::Vector2f{ map.GetDimensions() });
 
 	minimap.AddCharacter(player);

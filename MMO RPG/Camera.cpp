@@ -10,11 +10,6 @@ Camera::Camera(sf::RenderWindow& window, const Map& map)
 {
 }
 
-void Camera::ReCalibrate()
-{
-	UpdatePosition(previousPlayerPosition, previousPlayerDimensions);
-}
-
 void Camera::UpdatePosition(const sf::Vector2f playerPosition, const sf::Vector2i playerDimensions)
 {
 	sf::View windowView{ window.getView() };
