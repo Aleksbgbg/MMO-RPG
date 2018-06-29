@@ -1,0 +1,22 @@
+[
+	{
+		"portals": [
+			{
+				"x": 30,
+				"y": 1,
+				"targetWorldIndex": 1,
+				"targetPortalIndex": 0
+			}
+		]
+	},
+	{
+		"portals": [
+			{
+				"x": 46,
+				"y": 1,
+				"targetWorldIndex": 0,
+				"targetPortalIndex": 0
+			}
+		]
+	}
+]

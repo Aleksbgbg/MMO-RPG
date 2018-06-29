@@ -71,6 +71,7 @@
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="Player2 Sprite Config.ini" />
+    <None Include="World Config.json" />
     <None Include="X:\MMO RPG\Map0.tmx" />
     <None Include="X:\MMO RPG\Map0.tsx" />
   </ItemGroup>

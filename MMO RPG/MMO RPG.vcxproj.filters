@@ -178,6 +178,9 @@
     <None Include="Map1.tsx">
       <Filter>Resource Files\Map</Filter>
     </None>
+    <None Include="World Config.json">
+      <Filter>Resource Files\Map</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\NPCs.png">
