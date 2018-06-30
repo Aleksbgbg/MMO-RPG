@@ -3,11 +3,11 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics/Texture.hpp>
 
-#include <string>
+#include <json.hpp>
 
 struct SpriteInfo
 {
-	SpriteInfo(const std::string& filename, const sf::Texture& spriteSheet);
+	SpriteInfo(const nlohmann::json& config, const sf::Texture& spriteSheet);
 
 	sf::Vector2u spriteDimension;
 	sf::Vector2u frameRegion;

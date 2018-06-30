@@ -7,6 +7,7 @@
 #include "Collider.h"
 #include "Enemy.h"
 #include "ResourceManager.h"
+#include "Json.h"
 
 using json = nlohmann::json;
 
@@ -41,6 +42,8 @@ World::World(const std::string& mapFile, Map& map, Player& player, Camera& camer
 
 	if (worldConfig["type"] == "NPC")
 	{
+		const json npcConfigFile = read_json("Config\\NPC Sprite Config.json");
+
 		constexpr int spritesheetWidth = 4;
 		constexpr int spritesheetHeight = 2;
 
@@ -48,7 +51,7 @@ World::World(const std::string& mapFile, Map& map, Player& player, Camera& camer
 		{
 			for (int y = 0; y < spritesheetHeight; ++y)
 			{
-				npcs.emplace_back(std::make_unique<Npc>(sf::Vector2i{ x, y }, dimensions));
+				npcs.emplace_back(std::make_unique<Npc>(sf::Vector2i{ x, y }, dimensions, npcConfigFile));
 			}
 		}
 	}
@@ -59,9 +62,10 @@ World::World(const std::string& mapFile, Map& map, Player& player, Camera& camer
 			const std::string& type = enemy["type"];
 
 			const sf::Texture& texture = TextureManager::Get(type);
-			const std::string configFile{ type + ".ini" };
 
 			const int enemyCount = enemy["quantity"];
+
+			const json configFile = read_json("Config\\" + type + ".json");
 
 			for (int iteration = 0; iteration < enemyCount; ++iteration)
 			{

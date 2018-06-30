@@ -1,25 +1,26 @@
 #include "SpriteInfo.h"
 
-#include <INIReader.h>
+using json = nlohmann::json;
 
-SpriteInfo::SpriteInfo(const std::string& filename, const sf::Texture& spriteSheet)
+SpriteInfo::SpriteInfo(const json& config, const sf::Texture& spriteSheet)
 	:
 	sheetSize{ spriteSheet.getSize() }
 {
-	INIReader iniReader{ filename };
+	const json& spriteConfig = config["sprite"];
+	const json& spriteSheetConfig = config["spriteSheet"];
 
-	frameTime = static_cast<float>(iniReader.GetReal("Sprite", "AnimationTime", 0));
+	frameTime = spriteConfig["animationTime"];
 
-	spriteDimension = sf::Vector2u{ static_cast<unsigned int>(iniReader.GetInteger("Sprite", "Width", 0)), static_cast<unsigned int>(iniReader.GetInteger("Sprite", "Height", 0)) };
+	spriteDimension = sf::Vector2u{ spriteConfig["width"], spriteConfig["height"] };
 
-	standingFrameIndex = iniReader.GetInteger("SpriteSheet", "StandingFrameIndex", 0);
+	standingFrameIndex = spriteSheetConfig["standingFrameIndex"];
 
-	leftRow = iniReader.GetInteger("SpriteSheet", "LeftRow", 0);
-	rightRow = iniReader.GetInteger("SpriteSheet", "RightRow", 0);
-	upRow = iniReader.GetInteger("SpriteSheet", "UpRow", 0);
-	downRow = iniReader.GetInteger("SpriteSheet", "DownRow", 0);
+	leftRow = spriteSheetConfig["leftRow"];
+	rightRow = spriteSheetConfig["rightRow"];
+	upRow = spriteSheetConfig["upRow"];
+	downRow = spriteSheetConfig["downRow"];
 
-	frameCount = iniReader.GetInteger("SpriteSheet", "WalkingFrames", 0);
+	frameCount = spriteSheetConfig["walkingFrames"];
 
 	frameRegion = sf::Vector2u{ spriteDimension.x * frameCount, spriteDimension.y };
 }

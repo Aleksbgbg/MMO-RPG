@@ -4,17 +4,19 @@
 #include "ResourceManager.h"
 #include "Map.h"
 
-Npc::Npc(const sf::Vector2i spriteSheetCoordinate, const sf::Vector2i mapDimensions)
+using json = nlohmann::json;
+
+Npc::Npc(const sf::Vector2i spriteSheetCoordinate, const sf::Vector2i mapDimensions, const json& spriteConfig)
 	:
-	Npc{ spriteSheetCoordinate, TextureManager::Get("NPCs"), mapDimensions }
+	Npc{ spriteSheetCoordinate, TextureManager::Get("NPCs"), mapDimensions, spriteConfig }
 {
 }
 
-Npc::Npc(const sf::Texture& spriteSheet, const sf::Vector2i mapDimensions, const std::string& configFile)
+Npc::Npc(const sf::Texture& spriteSheet, const sf::Vector2i mapDimensions, const json& spriteConfig)
 	:
 	Character{ sf::Sprite{ spriteSheet }, Random::GenerateFloat(1.0f, 2.0f) },
 	mapDimensions{ mapDimensions },
-	spriteInfo{ configFile, spriteSheet }
+	spriteInfo{ spriteConfig, spriteSheet }
 {
 	GenerateTargetPosition();
 
@@ -30,11 +32,11 @@ Npc::Npc(const sf::Texture& spriteSheet, const sf::Vector2i mapDimensions, const
 	animations.emplace(Direction::Right, Animation{ sprite, spriteInfo, spriteInfo.rightRow, spriteRegion });
 }
 
-Npc::Npc(const sf::Vector2i spriteSheetCoordinate, const sf::Texture& spriteSheet, const sf::Vector2i mapDimensions)
+Npc::Npc(const sf::Vector2i spriteSheetCoordinate, const sf::Texture& spriteSheet, const sf::Vector2i mapDimensions, const json& spriteConfig)
 	:
 	Character{ sf::Sprite{ spriteSheet }, Random::GenerateFloat(1.0f, 2.0f) },
 	mapDimensions{ mapDimensions },
-	spriteInfo{ "Config\\Npc Sprite Config.ini", spriteSheet }
+	spriteInfo{ spriteConfig, spriteSheet }
 {
 	const sf::Vector2i spriteSheetDimension{ static_cast<int>(spriteInfo.frameCount * spriteInfo.spriteDimension.x), static_cast<int>(SpriteInfo::RowCount * spriteInfo.spriteDimension.y) };
 
