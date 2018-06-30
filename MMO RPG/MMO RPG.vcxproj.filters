@@ -161,6 +161,9 @@
     <Filter Include="Resource Files\Sprite">
       <UniqueIdentifier>{c5e5935b-d1a0-4d43-8360-3593c479a921}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Fonts">
+      <UniqueIdentifier>{e5aa69cd-fcfa-4e7d-ac01-c373106ea7fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Player Sprite Config.ini">
@@ -207,5 +210,10 @@
     <Image Include="Textures\Map.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Fonts\arial.ttf">
+      <Filter>Resource Files\Fonts</Filter>
+    </Font>
   </ItemGroup>
 </Project>

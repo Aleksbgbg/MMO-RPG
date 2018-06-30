@@ -85,6 +85,9 @@
     <Image Include="Textures\Player.png" />
     <Image Include="Textures\Player2.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="Fonts\arial.ttf" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{9B7CD11F-409C-476C-9395-C3BCAB11809F}</ProjectGuid>
