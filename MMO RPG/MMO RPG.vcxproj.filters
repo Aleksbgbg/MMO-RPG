@@ -208,6 +208,9 @@
     <None Include="World Config.json">
       <Filter>Resource Files\Map</Filter>
     </None>
+    <None Include="Bat.ini">
+      <Filter>Resource Files\Sprite</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\NPCs.png">
@@ -220,6 +223,9 @@
       <Filter>Resource Files\Textures</Filter>
     </Image>
     <Image Include="Textures\Map.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Textures\Bat.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
   </ItemGroup>

@@ -68,6 +68,7 @@
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Bat.ini" />
     <None Include="Map0.json">
       <DeploymentContent>true</DeploymentContent>
     </None>
@@ -84,6 +85,7 @@
     <None Include="X:\MMO RPG\Map0.tsx" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Textures\Bat.png" />
     <Image Include="Textures\Map.png" />
     <Image Include="Textures\NPCs.png" />
     <Image Include="Textures\Player.png" />
