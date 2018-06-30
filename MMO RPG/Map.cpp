@@ -2,11 +2,10 @@
 
 #include "json.hpp"
 
-#include <fstream>
-
 #include "Graphics.h"
 #include "Map.h"
 #include "ResourceManager.h"
+#include "Json.h"
 
 using json = nlohmann::json;
 
@@ -22,18 +21,7 @@ void Map::Load(const std::string& filename)
 {
 	tiles.clear();
 
-	json mapDetails;
-
-	{
-		std::ifstream input{ "Maps\\" + filename };
-
-		if (!input.is_open())
-		{
-			throw std::runtime_error{ "Could not open file " + filename };
-		}
-
-		mapDetails = json::parse(input);
-	}
+	const json mapDetails = read_json("Maps\\" + filename);
 
 	mapTiles = sf::Vector2i{ mapDetails["width"], mapDetails["height"] };
 

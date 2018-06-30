@@ -2,8 +2,6 @@
 
 #include "json.hpp"
 
-#include <fstream>
-
 #include "Collider.h"
 #include "Enemy.h"
 #include "ResourceManager.h"
@@ -20,14 +18,7 @@ World::World(const std::string& mapFile, Map& map, Player& player, Camera& camer
 	minimap{ minimap }
 {
 	{
-		std::ifstream mapFileStream{ "Maps\\" + mapFile };
-
-		if (!mapFileStream.is_open())
-		{
-			throw std::runtime_error{ "Could not open map file." };
-		}
-
-		json mapData = json::parse(mapFileStream);
+		const json mapData = read_json("Maps\\" + mapFile);
 
 		const sf::Vector2i mapDimensions{ mapData["width"], mapData["height"] };
 		const sf::Vector2i tileDimensions{ mapData["tilewidth"], mapData["tileheight"] };

@@ -1,6 +1,6 @@
 #include "Game.h"
 
-#include <fstream>
+#include "Json.h"
 
 using json = nlohmann::json;
 
@@ -13,18 +13,7 @@ Game::Game(sf::RenderWindow& window)
 	teleportInstructionText{ std::string{ "Press X to teleport..." }, sf::Vector2i{ Graphics::ScreenWidth / 2, Graphics::ScreenHeight } },
 	canTeleport{ false }
 {
-	json worldConfig;
-
-	{
-		std::ifstream input{ "Config\\World Config.json" };
-
-		if (!input.is_open())
-		{
-			throw std::runtime_error{ "Cannot open file 'World Config.json'." };
-		}
-
-		worldConfig = json::parse(input);
-	}
+	json worldConfig = read_json("Config\\World Config.json");
 
 	for (int index = 0; index < Worlds; ++index)
 	{
