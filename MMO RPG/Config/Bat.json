@@ -1,0 +1,15 @@
+{
+	"sprite": {
+		"animationTime": 0.3,
+		"width": 32,
+		"height": 32
+	},
+	"spriteSheet": {
+		"standingFrameIndex": 0,
+		"walkingFrames": 4,
+		"leftRow": 3,
+		"rightRow": 1,
+		"upRow": 2,
+		"downRow": 0
+	}
+}

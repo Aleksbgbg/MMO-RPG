@@ -78,10 +78,10 @@
     <Font Include="Fonts\arial.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Config\Bat.ini" />
-    <None Include="Config\NPC Sprite Config.ini" />
+    <None Include="Config\Bat.json" />
+    <None Include="Config\NPC Sprite Config.json" />
     <None Include="Config\Player Sprite Config.ini" />
-    <None Include="Config\Player2 Sprite Config.ini" />
+    <None Include="Config\Player2 Sprite Config.json" />
     <None Include="Config\World Config.json" />
     <None Include="Maps\Map0.json" />
     <None Include="Maps\Map0.tmx" />

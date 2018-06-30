@@ -218,19 +218,19 @@
     <None Include="Maps\Map1.tsx">
       <Filter>Resource Files\Maps</Filter>
     </None>
-    <None Include="Config\Bat.ini">
-      <Filter>Resource Files\Config</Filter>
-    </None>
-    <None Include="Config\NPC Sprite Config.ini">
-      <Filter>Resource Files\Config</Filter>
-    </None>
     <None Include="Config\Player Sprite Config.ini">
       <Filter>Resource Files\Config</Filter>
     </None>
-    <None Include="Config\Player2 Sprite Config.ini">
+    <None Include="Config\World Config.json">
       <Filter>Resource Files\Config</Filter>
     </None>
-    <None Include="Config\World Config.json">
+    <None Include="Config\Bat.json">
+      <Filter>Resource Files\Config</Filter>
+    </None>
+    <None Include="Config\NPC Sprite Config.json">
+      <Filter>Resource Files\Config</Filter>
+    </None>
+    <None Include="Config\Player2 Sprite Config.json">
       <Filter>Resource Files\Config</Filter>
     </None>
   </ItemGroup>
