@@ -10,7 +10,7 @@
 
 Player::Player(Camera& camera)
 	:
-	Player{ TextureManager::Get("Player2"), camera }
+	Player{ TextureManager::Get("Player"), camera }
 {
 }
 
@@ -33,7 +33,7 @@ Player::Player(const sf::Texture& spriteSheet, Camera& camera)
 {
 	UpdateCamera();
 
-	const SpriteInfo spriteInfo{ read_json("Config\\Player2 Sprite Config.json"), spriteSheet };
+	const SpriteInfo spriteInfo{ read_json("Config\\Player.json"), spriteSheet };
 
 	const sf::IntRect spriteRegion = sf::IntRect{ 0, 0, static_cast<int>(spriteInfo.sheetSize.x), static_cast<int>(spriteInfo.sheetSize.y) };
 

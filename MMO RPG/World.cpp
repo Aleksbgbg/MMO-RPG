@@ -33,7 +33,7 @@ World::World(const std::string& mapFile, Map& map, Player& player, Camera& camer
 
 	if (worldConfig["type"] == "NPC")
 	{
-		const json npcConfigFile = read_json("Config\\NPC Sprite Config.json");
+		const json npcConfigFile = read_json("Config\\NPC.json");
 
 		constexpr int spritesheetWidth = 4;
 		constexpr int spritesheetHeight = 2;

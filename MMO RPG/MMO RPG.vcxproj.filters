@@ -221,16 +221,16 @@
     <None Include="Maps\Map1.tsx">
       <Filter>Resource Files\Maps</Filter>
     </None>
-    <None Include="Config\World Config.json">
-      <Filter>Resource Files\Config</Filter>
-    </None>
     <None Include="Config\Bat.json">
       <Filter>Resource Files\Config</Filter>
     </None>
-    <None Include="Config\NPC Sprite Config.json">
+    <None Include="Config\NPC.json">
       <Filter>Resource Files\Config</Filter>
     </None>
-    <None Include="Config\Player Sprite Config.json">
+    <None Include="Config\Player.json">
+      <Filter>Resource Files\Config</Filter>
+    </None>
+    <None Include="Config\World.json">
       <Filter>Resource Files\Config</Filter>
     </None>
   </ItemGroup>

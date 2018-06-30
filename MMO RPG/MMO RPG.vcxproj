@@ -80,9 +80,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Config\Bat.json" />
-    <None Include="Config\NPC Sprite Config.json" />
-    <None Include="Config\Player Sprite Config.json" />
-    <None Include="Config\World Config.json" />
+    <None Include="Config\NPC.json" />
+    <None Include="Config\Player.json" />
+    <None Include="Config\World.json" />
     <None Include="Maps\Map0.json" />
     <None Include="Maps\Map0.tmx" />
     <None Include="Maps\Map0.tsx" />

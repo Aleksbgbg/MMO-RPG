@@ -13,7 +13,7 @@ Game::Game(sf::RenderWindow& window)
 	teleportInstructionText{ std::string{ "Press X to teleport..." }, sf::Vector2i{ Graphics::ScreenWidth / 2, Graphics::ScreenHeight } },
 	canTeleport{ false }
 {
-	json worldConfig = read_json("Config\\World Config.json");
+	json worldConfig = read_json("Config\\World.json");
 
 	for (int index = 0; index < Worlds; ++index)
 	{
