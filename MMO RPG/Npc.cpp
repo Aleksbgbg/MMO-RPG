@@ -10,6 +10,26 @@ Npc::Npc(const sf::Vector2i spriteSheetCoordinate, const sf::Vector2i mapDimensi
 {
 }
 
+Npc::Npc(const sf::Texture& spriteSheet, const sf::Vector2i mapDimensions, const std::string& configFile)
+	:
+	Character{ sf::Sprite{ spriteSheet }, Random::GenerateFloat(1.0f, 2.0f) },
+	mapDimensions{ mapDimensions },
+	spriteInfo{ configFile, spriteSheet }
+{
+	GenerateTargetPosition();
+
+	sprite.setPosition(targetPosition);
+
+	const sf::Vector2i spriteSheetDimension{ static_cast<int>(spriteInfo.frameCount * spriteInfo.spriteDimension.x), static_cast<int>(SpriteInfo::RowCount * spriteInfo.spriteDimension.y) };
+
+	const sf::IntRect spriteRegion = sf::IntRect{ sf::Vector2i{ 0, 0 }, spriteSheetDimension };
+
+	animations.emplace(Direction::Up, Animation{ sprite, spriteInfo, spriteInfo.upRow, spriteRegion });
+	animations.emplace(Direction::Down, Animation{ sprite, spriteInfo, spriteInfo.downRow, spriteRegion });
+	animations.emplace(Direction::Left, Animation{ sprite, spriteInfo, spriteInfo.leftRow, spriteRegion });
+	animations.emplace(Direction::Right, Animation{ sprite, spriteInfo, spriteInfo.rightRow, spriteRegion });
+}
+
 Npc::Npc(const sf::Vector2i spriteSheetCoordinate, const sf::Texture& spriteSheet, const sf::Vector2i mapDimensions)
 	:
 	Character{ sf::Sprite{ spriteSheet }, Random::GenerateFloat(1.0f, 2.0f) },

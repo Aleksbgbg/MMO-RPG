@@ -10,6 +10,9 @@ public:
 	Npc(const sf::Vector2i spriteSheetCoordinate, const sf::Vector2i mapDimensions);
 
 protected:
+	Npc(const sf::Texture& spriteSheet, const sf::Vector2i mapDimensions, const std::string& configFile);
+
+protected:
 	 sf::Vector2f PickMovement() override;
 	 
 	 void OnPositionUpdated(const sf::Vector2f newPosition) override;
