@@ -15,6 +15,8 @@ public:
 
 	void Main();
 
+	void KeyPressed(const sf::Keyboard::Key key);
+
 private:
 	void UpdateModel();
 	void ComposeFrame();

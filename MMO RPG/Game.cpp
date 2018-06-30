@@ -33,6 +33,17 @@ void Game::Main()
 	gfx.End();
 }
 
+void Game::KeyPressed(const sf::Keyboard::Key key)
+{
+	if (key == sf::Keyboard::X && canTeleport)
+	{
+		const Portal& sourcePortal = activeWorld->FindNearestPortal();
+
+		ChangeActiveWorld(sourcePortal.targetWorldIndex);
+		player.TeleportTo(worlds[sourcePortal.targetWorldIndex].GetPortal(sourcePortal.targetPortalIndex));
+	}
+}
+
 void Game::UpdateModel()
 {
 	player.Update();
@@ -82,17 +93,7 @@ void Game::UpdateModel()
 
 	if (canTeleport)
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::X))
-		{
-			const Portal& sourcePortal = activeWorld->FindNearestPortal();
-
-			ChangeActiveWorld(sourcePortal.targetWorldIndex);
-			player.TeleportTo(worlds[sourcePortal.targetWorldIndex].GetPortal(sourcePortal.targetPortalIndex));
-		}
-		else
-		{
-			teleportInstructionText.Update(gfx);
-		}
+		teleportInstructionText.Update(gfx);
 	}
 }
 
@@ -106,7 +107,7 @@ void Game::ComposeFrame()
 
 	minimap.Draw(gfx);
 
-	if (canTeleport && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::X))
+	if (canTeleport)
 	{
 		teleportInstructionText.Draw(gfx);
 	}
