@@ -30,6 +30,7 @@
     <ClCompile Include="FlashingText.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="Json.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Minimap.cpp" />
@@ -54,6 +55,7 @@
     <ClInclude Include="FlashingText.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="Json.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Minimap.h" />
     <ClInclude Include="Npc.h" />
