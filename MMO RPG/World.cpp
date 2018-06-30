@@ -6,7 +6,7 @@
 
 #include "Collider.h"
 #include "Enemy.h"
-#include "TextureManager.h"
+#include "ResourceManager.h"
 
 using json = nlohmann::json;
 

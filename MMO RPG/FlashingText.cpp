@@ -1,6 +1,6 @@
 #include "FlashingText.h"
 
-#include "FontManager.h"
+#include "ResourceManager.h"
 
 FlashingText::FlashingText(const std::string& string, const sf::Vector2i position)
 	:

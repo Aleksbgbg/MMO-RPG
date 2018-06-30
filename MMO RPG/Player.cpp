@@ -4,7 +4,7 @@
 #include <SFML/Window/Keyboard.hpp>
 
 #include "INIReader.h"
-#include "TextureManager.h"
+#include "ResourceManager.h"
 #include "Rect.h"
 
 Player::Player(Camera& camera)

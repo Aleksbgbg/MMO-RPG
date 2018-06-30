@@ -1,7 +1,7 @@
 #include "Npc.h"
 
 #include "Random.h"
-#include "TextureManager.h"
+#include "ResourceManager.h"
 #include "Map.h"
 
 Npc::Npc(const sf::Vector2i spriteSheetCoordinate, const sf::Vector2i mapDimensions)
