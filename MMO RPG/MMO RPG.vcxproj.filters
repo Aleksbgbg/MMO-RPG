@@ -187,16 +187,13 @@
     <Image Include="Textures\NPCs.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
-    <Image Include="Textures\Player.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
-    <Image Include="Textures\Player2.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
     <Image Include="Textures\Map.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
     <Image Include="Textures\Bat.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Textures\Player.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
   </ItemGroup>
@@ -224,9 +221,6 @@
     <None Include="Maps\Map1.tsx">
       <Filter>Resource Files\Maps</Filter>
     </None>
-    <None Include="Config\Player Sprite Config.ini">
-      <Filter>Resource Files\Config</Filter>
-    </None>
     <None Include="Config\World Config.json">
       <Filter>Resource Files\Config</Filter>
     </None>
@@ -236,7 +230,7 @@
     <None Include="Config\NPC Sprite Config.json">
       <Filter>Resource Files\Config</Filter>
     </None>
-    <None Include="Config\Player2 Sprite Config.json">
+    <None Include="Config\Player Sprite Config.json">
       <Filter>Resource Files\Config</Filter>
     </None>
   </ItemGroup>
