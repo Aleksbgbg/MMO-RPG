@@ -115,6 +115,13 @@ void Game::ComposeFrame()
 
 void Game::ChangeActiveWorld(const int index)
 {
-	activeWorld = &worlds[index];
+	World* newWorld = &worlds[index];
+
+	if (newWorld == activeWorld)
+	{
+		return;
+	}
+
+	activeWorld = newWorld;
 	activeWorld->Activate();
 }
