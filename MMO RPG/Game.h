@@ -6,6 +6,7 @@
 #include "Graphics.h"
 #include "World.h"
 #include "Minimap.h"
+#include "FlashingText.h"
 
 class Game
 {
@@ -37,4 +38,8 @@ private:
 	World* activeWorld;
 
 	std::vector<World> worlds;
+
+	FlashingText teleportInstructionText;
+
+	bool canTeleport;
 };

@@ -9,7 +9,9 @@ Game::Game(sf::RenderWindow& window)
 	gfx{ window },
 	camera{ window, map },
 	player{ camera },
-	minimap{ camera, map }
+	minimap{ camera, map },
+	teleportInstructionText{ std::string{ "Press X to teleport..." }, sf::Vector2i{ Graphics::ScreenWidth / 2, Graphics::ScreenHeight } },
+	canTeleport{ false }
 {
 	json worldConfig;
 
@@ -87,12 +89,21 @@ void Game::UpdateModel()
 		}
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::X) && activeWorld->PlayerCanTeleport())
-	{
-		const Portal& sourcePortal = activeWorld->FindNearestPortal();
+	canTeleport = activeWorld->PlayerCanTeleport();
 
-		ChangeActiveWorld(sourcePortal.targetWorldIndex);
-		player.TeleportTo(worlds[sourcePortal.targetWorldIndex].GetPortal(sourcePortal.targetPortalIndex));
+	if (canTeleport)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::X))
+		{
+			const Portal& sourcePortal = activeWorld->FindNearestPortal();
+
+			ChangeActiveWorld(sourcePortal.targetWorldIndex);
+			player.TeleportTo(worlds[sourcePortal.targetWorldIndex].GetPortal(sourcePortal.targetPortalIndex));
+		}
+		else
+		{
+			teleportInstructionText.Update(gfx);
+		}
 	}
 }
 
@@ -105,6 +116,11 @@ void Game::ComposeFrame()
 	player.Draw(gfx);
 
 	minimap.Draw(gfx);
+
+	if (canTeleport && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::X))
+	{
+		teleportInstructionText.Draw(gfx);
+	}
 }
 
 void Game::ChangeActiveWorld(const int index)
