@@ -26,6 +26,10 @@ int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszA
 				{
 					window.close();
 				}
+				else if (event.type == sf::Event::KeyReleased)
+				{
+					game.KeyPressed(event.key.code);
+				}
 			}
 		}
 
