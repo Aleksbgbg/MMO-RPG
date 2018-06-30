@@ -18,6 +18,9 @@ public:
 	void ChangeView(const sf::View& view);
 	void ResetView() const;
 
+	sf::Vector2i MapCoordsToPixel(const sf::Vector2f& point) const;
+	sf::Vector2f MapPixelToCoords(const sf::Vector2i& point) const;
+
 public:
 	static constexpr int ScreenWidth = 1366;
 	static constexpr int ScreenHeight = 768;
