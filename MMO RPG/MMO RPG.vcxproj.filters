@@ -164,53 +164,18 @@
       <UniqueIdentifier>{b5975445-2748-44ce-917e-f884c54b0f48}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Resource Files\Map">
-      <UniqueIdentifier>{a25bd960-313f-4753-8c8d-0bee7227d53a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\Textures">
       <UniqueIdentifier>{7a8bf0ce-d4ea-49f1-93c1-e2399e1b692a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Sprite">
-      <UniqueIdentifier>{c5e5935b-d1a0-4d43-8360-3593c479a921}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files\Fonts">
       <UniqueIdentifier>{e5aa69cd-fcfa-4e7d-ac01-c373106ea7fd}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Player Sprite Config.ini">
-      <Filter>Resource Files\Sprite</Filter>
-    </None>
-    <None Include="NPC Sprite Config.ini">
-      <Filter>Resource Files\Sprite</Filter>
-    </None>
-    <None Include="Player2 Sprite Config.ini">
-      <Filter>Resource Files\Sprite</Filter>
-    </None>
-    <None Include="Map0.json">
-      <Filter>Resource Files\Map</Filter>
-    </None>
-    <None Include="X:\MMO RPG\Map0.tmx">
-      <Filter>Resource Files\Map</Filter>
-    </None>
-    <None Include="X:\MMO RPG\Map0.tsx">
-      <Filter>Resource Files\Map</Filter>
-    </None>
-    <None Include="Map1.json">
-      <Filter>Resource Files\Map</Filter>
-    </None>
-    <None Include="Map1.tmx">
-      <Filter>Resource Files\Map</Filter>
-    </None>
-    <None Include="Map1.tsx">
-      <Filter>Resource Files\Map</Filter>
-    </None>
-    <None Include="World Config.json">
-      <Filter>Resource Files\Map</Filter>
-    </None>
-    <None Include="Bat.ini">
-      <Filter>Resource Files\Sprite</Filter>
-    </None>
+    <Filter Include="Resource Files\Config">
+      <UniqueIdentifier>{c5e5935b-d1a0-4d43-8360-3593c479a921}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Maps">
+      <UniqueIdentifier>{a25bd960-313f-4753-8c8d-0bee7227d53a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\NPCs.png">
@@ -233,5 +198,40 @@
     <Font Include="Fonts\arial.ttf">
       <Filter>Resource Files\Fonts</Filter>
     </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Maps\Map0.json">
+      <Filter>Resource Files\Maps</Filter>
+    </None>
+    <None Include="Maps\Map0.tmx">
+      <Filter>Resource Files\Maps</Filter>
+    </None>
+    <None Include="Maps\Map0.tsx">
+      <Filter>Resource Files\Maps</Filter>
+    </None>
+    <None Include="Maps\Map1.json">
+      <Filter>Resource Files\Maps</Filter>
+    </None>
+    <None Include="Maps\Map1.tmx">
+      <Filter>Resource Files\Maps</Filter>
+    </None>
+    <None Include="Maps\Map1.tsx">
+      <Filter>Resource Files\Maps</Filter>
+    </None>
+    <None Include="Config\Bat.ini">
+      <Filter>Resource Files\Config</Filter>
+    </None>
+    <None Include="Config\NPC Sprite Config.ini">
+      <Filter>Resource Files\Config</Filter>
+    </None>
+    <None Include="Config\Player Sprite Config.ini">
+      <Filter>Resource Files\Config</Filter>
+    </None>
+    <None Include="Config\Player2 Sprite Config.ini">
+      <Filter>Resource Files\Config</Filter>
+    </None>
+    <None Include="Config\World Config.json">
+      <Filter>Resource Files\Config</Filter>
+    </None>
   </ItemGroup>
 </Project>

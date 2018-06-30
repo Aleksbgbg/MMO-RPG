@@ -25,7 +25,7 @@ void Map::Load(const std::string& filename)
 	json mapDetails;
 
 	{
-		std::ifstream input{ filename };
+		std::ifstream input{ "Maps\\" + filename };
 
 		if (!input.is_open())
 		{

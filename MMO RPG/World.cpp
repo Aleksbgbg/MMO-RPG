@@ -16,7 +16,7 @@ World::World(const std::string& mapFile, Map& map, Player& player, Camera& camer
 	minimap{ minimap }
 {
 	{
-		std::ifstream mapFileStream{ mapFile };
+		std::ifstream mapFileStream{ "Maps\\" + mapFile };
 
 		if (!mapFileStream.is_open())
 		{

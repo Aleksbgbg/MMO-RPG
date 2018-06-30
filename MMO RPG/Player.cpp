@@ -32,7 +32,7 @@ Player::Player(const sf::Texture& spriteSheet, Camera& camera)
 {
 	UpdateCamera();
 
-	const SpriteInfo spriteInfo{ "Player2 Sprite Config.ini", spriteSheet };
+	const SpriteInfo spriteInfo{ "Config\\Player2 Sprite Config.ini", spriteSheet };
 
 	const sf::IntRect spriteRegion = sf::IntRect{ 0, 0, static_cast<int>(spriteInfo.sheetSize.x), static_cast<int>(spriteInfo.sheetSize.y) };
 

@@ -16,7 +16,7 @@ Game::Game(sf::RenderWindow& window)
 	json worldConfig;
 
 	{
-		std::ifstream input{ "World Config.json" };
+		std::ifstream input{ "Config\\World Config.json" };
 
 		if (!input.is_open())
 		{

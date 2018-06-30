@@ -14,7 +14,7 @@ Npc::Npc(const sf::Vector2i spriteSheetCoordinate, const sf::Texture& spriteShee
 	:
 	Character{ sf::Sprite{ spriteSheet }, Random::GenerateFloat(1.0f, 2.0f) },
 	mapDimensions{ mapDimensions },
-	spriteInfo{ "Npc Sprite Config.ini", spriteSheet }
+	spriteInfo{ "Config\\Npc Sprite Config.ini", spriteSheet }
 {
 	const sf::Vector2i spriteSheetDimension{ static_cast<int>(spriteInfo.frameCount * spriteInfo.spriteDimension.x), static_cast<int>(SpriteInfo::RowCount * spriteInfo.spriteDimension.y) };
 

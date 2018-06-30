@@ -68,23 +68,6 @@
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Bat.ini" />
-    <None Include="Map0.json">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="Map1.json" />
-    <None Include="Map1.tmx" />
-    <None Include="Map1.tsx" />
-    <None Include="NPC Sprite Config.ini" />
-    <None Include="Player Sprite Config.ini">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="Player2 Sprite Config.ini" />
-    <None Include="World Config.json" />
-    <None Include="X:\MMO RPG\Map0.tmx" />
-    <None Include="X:\MMO RPG\Map0.tsx" />
-  </ItemGroup>
-  <ItemGroup>
     <Image Include="Textures\Bat.png" />
     <Image Include="Textures\Map.png" />
     <Image Include="Textures\NPCs.png" />
@@ -93,6 +76,19 @@
   </ItemGroup>
   <ItemGroup>
     <Font Include="Fonts\arial.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\Bat.ini" />
+    <None Include="Config\NPC Sprite Config.ini" />
+    <None Include="Config\Player Sprite Config.ini" />
+    <None Include="Config\Player2 Sprite Config.ini" />
+    <None Include="Config\World Config.json" />
+    <None Include="Maps\Map0.json" />
+    <None Include="Maps\Map0.tmx" />
+    <None Include="Maps\Map0.tsx" />
+    <None Include="Maps\Map1.json" />
+    <None Include="Maps\Map1.tmx" />
+    <None Include="Maps\Map1.tsx" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
