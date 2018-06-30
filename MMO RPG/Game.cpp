@@ -2,7 +2,7 @@
 
 #include "Json.h"
 
-using json = nlohmann::json;
+using nlohmann::json;
 
 Game::Game(sf::RenderWindow& window)
 	:

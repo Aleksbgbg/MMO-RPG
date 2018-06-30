@@ -7,7 +7,7 @@
 #include "ResourceManager.h"
 #include "Json.h"
 
-using json = nlohmann::json;
+using nlohmann::json;
 
 void Map::Draw(const Graphics& gfx)
 {

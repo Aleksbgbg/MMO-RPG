@@ -1,6 +1,6 @@
 #include "SpriteInfo.h"
 
-using json = nlohmann::json;
+using nlohmann::json;
 
 SpriteInfo::SpriteInfo(const json& config, const sf::Texture& spriteSheet)
 	:

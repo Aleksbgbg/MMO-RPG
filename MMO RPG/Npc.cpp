@@ -4,7 +4,7 @@
 #include "ResourceManager.h"
 #include "Map.h"
 
-using json = nlohmann::json;
+using nlohmann::json;
 
 Npc::Npc(const sf::Vector2i spriteSheetCoordinate, const sf::Vector2i mapDimensions, const json& spriteConfig)
 	:

@@ -7,7 +7,7 @@
 #include "ResourceManager.h"
 #include "Json.h"
 
-using json = nlohmann::json;
+using nlohmann::json;
 
 World::World(const std::string& mapFile, Map& map, Player& player, Camera& camera, Minimap& minimap, json& worldConfig)
 	:
