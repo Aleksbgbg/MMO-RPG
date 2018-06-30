@@ -3,7 +3,10 @@
 #include "json.hpp"
 
 #include <fstream>
+
 #include "Collider.h"
+#include "Enemy.h"
+#include "TextureManager.h"
 
 using json = nlohmann::json;
 
@@ -36,14 +39,34 @@ World::World(const std::string& mapFile, Map& map, Player& player, Camera& camer
 		}
 	}
 
-	constexpr int spritesheetWidth = 4;
-	constexpr int spritesheetHeight = 2;
-
-	for (int x = 0; x < spritesheetWidth; ++x)
+	if (worldConfig["type"] == "NPC")
 	{
-		for (int y = 0; y < spritesheetHeight; ++y)
+		constexpr int spritesheetWidth = 4;
+		constexpr int spritesheetHeight = 2;
+
+		for (int x = 0; x < spritesheetWidth; ++x)
 		{
-			npcs[x + y * spritesheetWidth] = std::make_unique<Npc>(sf::Vector2i{ x, y }, dimensions);
+			for (int y = 0; y < spritesheetHeight; ++y)
+			{
+				npcs.emplace_back(std::make_unique<Npc>(sf::Vector2i{ x, y }, dimensions));
+			}
+		}
+	}
+	else if (worldConfig["type"] == "PVE")
+	{
+		for (const json& enemy : worldConfig["enemies"])
+		{
+			const std::string& type = enemy["type"];
+
+			const sf::Texture& texture = TextureManager::Get(type);
+			const std::string configFile{ type + ".ini" };
+
+			const int enemyCount = enemy["quantity"];
+
+			for (int iteration = 0; iteration < enemyCount; ++iteration)
+			{
+				npcs.emplace_back(std::make_unique<Enemy>(texture, dimensions, configFile));
+			}
 		}
 	}
 }
@@ -82,7 +105,7 @@ bool World::PlayerCanTeleport() const
 {
 	return std::any_of(portals.begin(), portals.end(), [this](const Portal& portal)
 	{
-		return is_inside(portal.occupation, player.GetOccupation()); 
+		return is_inside(portal.occupation, player.GetOccupation());
 	});
 }
 

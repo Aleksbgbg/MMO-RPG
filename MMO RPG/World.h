@@ -2,8 +2,6 @@
 
 #include <json.hpp>
 
-#include <array>
-
 #include "Npc.h"
 #include "Player.h"
 #include "Minimap.h"
@@ -38,7 +36,7 @@ private:
 
 	Minimap& minimap;
 
-	std::array<std::unique_ptr<Npc>, 8> npcs;
+	std::vector<std::unique_ptr<Npc>> npcs;
 
 	std::vector<Portal> portals;
 };
