@@ -3,7 +3,6 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Window/Keyboard.hpp>
 
-#include "INIReader.h"
 #include "ResourceManager.h"
 #include "Rect.h"
 #include "Json.h"
