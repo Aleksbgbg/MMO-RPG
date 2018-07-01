@@ -17,7 +17,7 @@ Game::Game(sf::RenderWindow& window)
 
 	for (int index = 0; index < Worlds; ++index)
 	{
-		worlds.emplace_back(std::string{ "Map" + std::to_string(index) + ".json" }, map, player, camera, minimap, worldConfig[index]);
+		worlds.emplace_back(std::string{ "Map" + std::to_string(index) + ".json" }, map, player, minimap, worldConfig[index]);
 	}
 
 	ChangeActiveWorld(0);

@@ -10,7 +10,7 @@
 class World
 {
 public:
-	World(const std::string& mapFile, Map& map, Player& player, Camera& camera, Minimap& minimap, nlohmann::json& worldConfig);
+	World(const std::string& mapFile, Map& map, Player& player, Minimap& minimap, nlohmann::json& worldConfig);
 
 public:
 	void Update();
@@ -31,8 +31,6 @@ private:
 	Map& map;
 
 	Player& player;
-
-	Camera& camera;
 
 	Minimap& minimap;
 

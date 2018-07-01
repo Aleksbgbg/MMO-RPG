@@ -9,12 +9,11 @@
 
 using nlohmann::json;
 
-World::World(const std::string& mapFile, Map& map, Player& player, Camera& camera, Minimap& minimap, json& worldConfig)
+World::World(const std::string& mapFile, Map& map, Player& player, Minimap& minimap, json& worldConfig)
 	:
 	mapFile{ mapFile },
 	map{ map },
 	player{ player },
-	camera{ camera },
 	minimap{ minimap }
 {
 	{
