@@ -2,32 +2,21 @@
 
 #include <filesystem>
 
-template<typename T>
-std::map<std::string, T> ResourceManager<T>::resourceMap = LoadResources();
+template<typename T, typename TResourceType>
+std::map<std::string, T> ResourceManager<T, TResourceType>::resourceMap = LoadResources();
 
-template<typename T>
-const T& ResourceManager<T>::Get(const std::string& name)
+template<typename T, typename TResourceType>
+const T& ResourceManager<T, TResourceType>::Get(const std::string& name)
 {
 	return resourceMap.at(name);
 }
 
-template<typename T>
-std::map<std::string, T> ResourceManager<T>::LoadResources()
+template<typename T, typename TResourceType>
+std::map<std::string, T> ResourceManager<T, TResourceType>::LoadResources()
 {
 	std::map<std::string, T> resourceMap;
 
-	std::string resourceFolder;
-
-	if constexpr (std::is_same<T, sf::Texture>::value)
-	{
-		resourceFolder = std::string{ "Textures" };
-	}
-	else if constexpr (std::is_same<T, sf::Font>::value)
-	{
-		resourceFolder = std::string{ "Fonts" };
-	}
-
-	for(const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator{ std::filesystem::current_path().string() + "\\" + resourceFolder })
+	for(const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator{ std::filesystem::current_path().string() + "\\" + TResourceType::Folder })
 	{
 		const std::string filepath = entry.path().string();
 		const std::string filename = entry.path().filename().string();
@@ -45,5 +34,5 @@ std::map<std::string, T> ResourceManager<T>::LoadResources()
 	return resourceMap;
 }
 
-template class ResourceManager<sf::Texture>;
-template class ResourceManager<sf::Font>;
+template class ResourceManager<sf::Texture, ResourceManagement::Texture>;
+template class ResourceManager<sf::Font, ResourceManagement::Font>;

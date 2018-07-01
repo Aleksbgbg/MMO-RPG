@@ -5,7 +5,10 @@
 
 #include <map>
 
-template<typename T>
+#include "Texture.h"
+#include "Font.h"
+
+template<typename T, typename TResourceType>
 class ResourceManager
 {
 public:
@@ -18,5 +21,5 @@ private:
 	static std::map<std::string, T> resourceMap;
 };
 
-typedef ResourceManager<sf::Texture> TextureManager;
-typedef ResourceManager<sf::Font> FontManager;
+typedef ResourceManager<sf::Texture, ResourceManagement::Texture> TextureManager;
+typedef ResourceManager<sf::Font, ResourceManagement::Font> FontManager;
