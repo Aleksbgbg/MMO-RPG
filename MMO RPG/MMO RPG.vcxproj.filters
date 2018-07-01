@@ -64,11 +64,11 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>Source Files\Framework</Filter>
-    </ClCompile>
     <ClCompile Include="Json.cpp">
       <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Source Files\Framework\ResourceManagement</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -132,11 +132,11 @@
     <ClInclude Include="Enemy.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>Header Files\Framework</Filter>
-    </ClInclude>
     <ClInclude Include="Json.h">
       <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Header Files\Framework\ResourceManagement</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +175,12 @@
     </Filter>
     <Filter Include="Resource Files\Maps">
       <UniqueIdentifier>{a25bd960-313f-4753-8c8d-0bee7227d53a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework\ResourceManagement">
+      <UniqueIdentifier>{02a44248-f339-47f1-b038-3fa13560372e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Framework\ResourceManagement">
+      <UniqueIdentifier>{94a99873-0f68-4d84-a174-ebc47e147bb2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
