@@ -36,5 +36,5 @@ void FlashingText::Update(const Graphics& gfx)
 
 void FlashingText::Draw(const Graphics& gfx) const
 {
-	gfx.DrawUnbound(text);
+	gfx.Draw(text);
 }

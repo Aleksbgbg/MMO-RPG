@@ -30,7 +30,7 @@ void Minimap::Draw(Graphics& gfx) const
 
 		characterArea.setPosition(character->GetPosition());
 
-		gfx.DrawUnbound(characterArea);
+		gfx.Draw(characterArea);
 	}
 
 	{
@@ -42,7 +42,7 @@ void Minimap::Draw(Graphics& gfx) const
 		playerViewBorder.setFillColor(sf::Color::Transparent);
 		playerViewBorder.setOutlineThickness(-15.0f);
 
-		gfx.DrawUnbound(playerViewBorder);
+		gfx.Draw(playerViewBorder);
 	}
 
 	{
@@ -51,7 +51,7 @@ void Minimap::Draw(Graphics& gfx) const
 		mapBorder.setFillColor(sf::Color::Transparent);
 		mapBorder.setOutlineThickness(-15.0f);
 
-		gfx.DrawUnbound(mapBorder);
+		gfx.Draw(mapBorder);
 	}
 
 	gfx.ResetView();

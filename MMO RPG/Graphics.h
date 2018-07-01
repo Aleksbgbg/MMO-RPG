@@ -1,7 +1,6 @@
 #pragma once
 
 #include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/Graphics/Sprite.hpp>
 
 class Graphics
 {
@@ -12,7 +11,18 @@ public:
 	void Begin() const;
 	void End() const;
 
-	void Draw(const sf::Sprite& sprite) const;
+	template<typename T>
+	void Draw(const T& drawable) const
+	{
+		const sf::Vector2i screenPosition = window.mapCoordsToPixel(drawable.getPosition());
+		const sf::FloatRect globalBounds = drawable.getGlobalBounds();
+
+		if (0 <= screenPosition.x + globalBounds.width && screenPosition.x <= ScreenWidth &&
+			0 <= screenPosition.y + globalBounds.height && screenPosition.y <= ScreenHeight)
+		{
+			window.draw(drawable);
+		}
+	}
 	void DrawUnbound(const sf::Drawable& drawable) const;
 
 	void ChangeView(const sf::View& view);
