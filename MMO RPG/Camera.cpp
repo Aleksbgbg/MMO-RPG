@@ -10,16 +10,14 @@ Camera::Camera(sf::RenderWindow& window, const Map& map)
 {
 }
 
-void Camera::UpdatePosition(const sf::Vector2f playerPosition, const sf::Vector2i playerDimensions)
+void Camera::UpdatePosition(const sf::Vector2f playerPosition)
 {
 	sf::View windowView{ window.getView() };
 
 	{
 		sf::Vector2f newCameraCenter{ previousCameraCenter };
 
-		const sf::Vector2i halfPlayerDimensions = playerDimensions / 2;
-
-		const sf::Vector2i playerScreenPosition = window.mapCoordsToPixel(playerPosition + sf::Vector2f{ halfPlayerDimensions });
+		const sf::Vector2i playerScreenPosition = window.mapCoordsToPixel(playerPosition);
 
 		const sf::Vector2i mapDimensions = map.GetDimensions();
 
@@ -29,7 +27,7 @@ void Camera::UpdatePosition(const sf::Vector2f playerPosition, const sf::Vector2
 		}
 		else if (mode == Mode::Fixed)
 		{
-			newCameraCenter.x = playerPosition.x + halfPlayerDimensions.x;
+			newCameraCenter.x = playerPosition.x;
 		}
 		else if (mode == Mode::SemiFree)
 		{
@@ -52,7 +50,7 @@ void Camera::UpdatePosition(const sf::Vector2f playerPosition, const sf::Vector2
 		}
 		else if (mode == Mode::Fixed)
 		{
-			newCameraCenter.y = playerPosition.y + halfPlayerDimensions.y;
+			newCameraCenter.y = playerPosition.y;
 		}
 		else if (mode == Mode::SemiFree)
 		{
@@ -108,13 +106,12 @@ void Camera::UpdatePosition(const sf::Vector2f playerPosition, const sf::Vector2
 	window.setView(windowView);
 
 	previousPlayerPosition = playerPosition;
-	previousPlayerDimensions = playerDimensions;
 }
 
 void Camera::SwitchMode(const Mode mode)
 {
 	this->mode = mode;
-	UpdatePosition(previousPlayerPosition, previousPlayerDimensions);
+	UpdatePosition(previousPlayerPosition);
 }
 
 void Camera::MoveBy(sf::Vector2f movement)
@@ -128,7 +125,7 @@ void Camera::MoveBy(sf::Vector2f movement)
 
 	previousCameraCenter += movement;
 
-	UpdatePosition(previousPlayerPosition, previousPlayerDimensions);
+	UpdatePosition(previousPlayerPosition);
 }
 
 Camera::Mode Camera::GetMode() const

@@ -17,7 +17,7 @@ public:
 	Camera(sf::RenderWindow& window, const Map& map);
 
 public:
-	void UpdatePosition(const sf::Vector2f playerPosition, const sf::Vector2i playerDimensions);
+	void UpdatePosition(const sf::Vector2f playerPosition);
 	void SwitchMode(const Mode mode);
 
 	void MoveBy(sf::Vector2f movement);
@@ -38,5 +38,4 @@ private:
 
 	sf::Vector2f previousCameraCenter;
 	sf::Vector2f previousPlayerPosition;
-	sf::Vector2i previousPlayerDimensions;
 };
