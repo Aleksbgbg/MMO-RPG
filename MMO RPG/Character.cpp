@@ -74,15 +74,14 @@ void Character::Draw(const Graphics& gfx) const
 
 sf::Vector2f Character::GetPosition() const
 {
-	return sprite.getPosition();
+	const sf::FloatRect bounds = sprite.getGlobalBounds();
+
+	return sprite.getPosition() + sf::Vector2f{ bounds.width / 2.0f, bounds.height / 2.0f };
 }
 
 sf::FloatRect Character::GetOccupation() const
 {
-	const sf::Vector2f& spritePosition = sprite.getPosition();
-	const sf::IntRect& spriteDimensions = sprite.getTextureRect();
-
-	return sf::FloatRect{ spritePosition.x, spritePosition.y, static_cast<float>(spriteDimensions.width), static_cast<float>(spriteDimensions.height) };
+	return sprite.getGlobalBounds();
 }
 
 void Character::OnPositionUpdated(const sf::Vector2f newPosition)
