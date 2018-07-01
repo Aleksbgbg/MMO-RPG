@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics/Sprite.hpp>
 
-#include <map>
+#include <unordered_map>
 
 #include "Animation.h"
 #include "Graphics.h"
@@ -42,7 +42,7 @@ protected:
 	sf::Sprite sprite;
 	Direction movementDirection;
 
-	std::map<Direction, Animation> animations;
+	std::unordered_map<Direction, Animation> animations;
 
 private:
 	const float speed;

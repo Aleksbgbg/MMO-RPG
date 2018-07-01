@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics/Texture.hpp>
 
+#include <unordered_map>
+
 #include "Character.h"
 #include "Camera.h"
 #include "Portal.h"
@@ -30,5 +32,5 @@ private:
 
 	Camera::Mode lastCameraMode;
 
-	std::map<Direction, std::vector<sf::Keyboard::Key>> directionKeys; 
+	std::unordered_map<Direction, std::vector<sf::Keyboard::Key>> directionKeys; 
 };

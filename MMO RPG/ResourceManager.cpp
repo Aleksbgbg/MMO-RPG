@@ -1,9 +1,10 @@
 #include "ResourceManager.h"
 
 #include <filesystem>
+#include <unordered_map>
 
 template<typename T, typename TResourceType>
-std::map<std::string, T> ResourceManager<T, TResourceType>::resourceMap = LoadResources();
+std::unordered_map<std::string, T> ResourceManager<T, TResourceType>::resourceMap = LoadResources();
 
 template<typename T, typename TResourceType>
 const T& ResourceManager<T, TResourceType>::Get(const std::string& name)
@@ -12,9 +13,9 @@ const T& ResourceManager<T, TResourceType>::Get(const std::string& name)
 }
 
 template<typename T, typename TResourceType>
-std::map<std::string, T> ResourceManager<T, TResourceType>::LoadResources()
+std::unordered_map<std::string, T> ResourceManager<T, TResourceType>::LoadResources()
 {
-	std::map<std::string, T> resourceMap;
+	std::unordered_map<std::string, T> resourceMap;
 
 	for(const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator{ std::filesystem::current_path().string() + "\\" + TResourceType::Folder })
 	{
