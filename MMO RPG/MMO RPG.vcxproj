@@ -54,6 +54,7 @@
     <ClInclude Include="DeltaTime.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="FlashingText.h" />
+    <ClInclude Include="Font.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Json.h" />
@@ -66,6 +67,7 @@
     <ClInclude Include="Rect.h" />
     <ClInclude Include="SpriteInfo.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="World.h" />

@@ -138,6 +138,12 @@
     <ClInclude Include="ResourceManager.h">
       <Filter>Header Files\Framework\ResourceManagement</Filter>
     </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Header Files\Framework\ResourceManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header Files\Framework\ResourceManagement</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
