@@ -70,6 +70,9 @@
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Source Files\Framework\ResourceManagement</Filter>
     </ClCompile>
+    <ClCompile Include="MovementStrategy.cpp">
+      <Filter>Source Files\Entities\Movement</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -144,6 +147,9 @@
     <ClInclude Include="Texture.h">
       <Filter>Header Files\Framework\ResourceManagement</Filter>
     </ClInclude>
+    <ClInclude Include="MovementStrategy.h">
+      <Filter>Header Files\Entities\Movement</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -187,6 +193,12 @@
     </Filter>
     <Filter Include="Header Files\Framework\ResourceManagement">
       <UniqueIdentifier>{94a99873-0f68-4d84-a174-ebc47e147bb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities\Movement">
+      <UniqueIdentifier>{757f0e7b-215c-4446-8e84-afe2319be4b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Movement">
+      <UniqueIdentifier>{6e79078c-531e-46d3-8a74-2bbf35b7bf5c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

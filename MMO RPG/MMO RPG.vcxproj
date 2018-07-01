@@ -35,6 +35,7 @@
     </ClCompile>
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Minimap.cpp" />
+    <ClCompile Include="MovementStrategy.cpp" />
     <ClCompile Include="Npc.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Portal.cpp" />
@@ -60,6 +61,7 @@
     <ClInclude Include="Json.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Minimap.h" />
+    <ClInclude Include="MovementStrategy.h" />
     <ClInclude Include="Npc.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Portal.h" />
