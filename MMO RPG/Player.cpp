@@ -110,7 +110,5 @@ void Player::OnPositionUpdated(const sf::Vector2f newPosition)
 
 void Player::UpdateCamera() const
 {
-	const sf::IntRect& playerTextureRectangle = sprite.getTextureRect();
-
-	camera.UpdatePosition(sprite.getPosition(), sf::Vector2i{ playerTextureRectangle.width, playerTextureRectangle.height });
+	camera.UpdatePosition(GetPosition());
 }
