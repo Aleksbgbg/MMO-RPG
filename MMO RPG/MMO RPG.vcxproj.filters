@@ -76,6 +76,9 @@
     <ClCompile Include="PlayerMovement.cpp">
       <Filter>Source Files\Entities\Movement</Filter>
     </ClCompile>
+    <ClCompile Include="StatBar.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -157,6 +160,9 @@
       <Filter>Header Files\Entities\Movement</Filter>
     </ClInclude>
     <ClInclude Include="Direction.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="StatBar.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
   </ItemGroup>

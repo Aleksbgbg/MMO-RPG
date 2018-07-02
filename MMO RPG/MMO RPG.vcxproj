@@ -44,6 +44,7 @@
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="SimpleAiMovement.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="StatBar.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="World.cpp" />
@@ -72,6 +73,7 @@
     <ClInclude Include="Rect.h" />
     <ClInclude Include="SimpleAiMovement.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="StatBar.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Vector.h" />
