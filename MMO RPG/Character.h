@@ -21,6 +21,9 @@ public:
 	};
 
 public:
+	virtual ~Character() = default;
+
+public:
 	void Update();
 	void Draw(const Graphics& gfx) const;
 
@@ -29,7 +32,6 @@ public:
 
 protected:
 	Character(sf::Sprite& sprite, MovementStrategy& movementStrategy);
-	virtual ~Character() = default;
 
 protected:
 	virtual void OnUpdate();
