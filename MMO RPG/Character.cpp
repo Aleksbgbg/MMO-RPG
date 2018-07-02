@@ -2,12 +2,18 @@
 
 #include "Vector.h"
 
-Character::Character(sf::Sprite& sprite, MovementStrategy& movementStrategy)
+using nlohmann::json;
+
+Character::Character(sf::Sprite& sprite, const json& animationInfo, MovementStrategy& movementStrategy)
 	:
-	movementDirection{ Direction::Down },
 	sprite{ sprite },
+	movementDirection{ Direction::Down },
 	movementStrategy{ movementStrategy }
 {
+	animations.emplace(Direction::Up, Animation{ sprite, animationInfo, Direction::Up });
+	animations.emplace(Direction::Down, Animation{ sprite, animationInfo, Direction::Down });
+	animations.emplace(Direction::Left, Animation{ sprite, animationInfo, Direction::Left });
+	animations.emplace(Direction::Right, Animation{ sprite, animationInfo, Direction::Right });
 }
 
 void Character::Update()

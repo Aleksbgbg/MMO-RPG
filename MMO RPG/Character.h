@@ -7,19 +7,10 @@
 #include "Animation.h"
 #include "Graphics.h"
 #include "MovementStrategy.h"
+#include "Direction.h"
 
 class Character
 {
-public:
-	enum class Direction
-	{
-		Up,
-		Down,
-		Left,
-		Right,
-		Still
-	};
-
 public:
 	virtual ~Character() = default;
 
@@ -31,7 +22,7 @@ public:
 	sf::FloatRect GetOccupation() const;
 
 protected:
-	Character(sf::Sprite& sprite, MovementStrategy& movementStrategy);
+	Character(sf::Sprite& sprite, const nlohmann::json& animationInfo, MovementStrategy& movementStrategy);
 
 protected:
 	virtual void OnUpdate();
