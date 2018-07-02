@@ -2,6 +2,7 @@
 
 #include "Camera.h"
 #include "Character.h"
+#include "Player.h"
 
 class Minimap
 {
@@ -9,11 +10,9 @@ public:
 	Minimap(const Camera& camera, const Map& map);
 
 public:
-	void Draw(Graphics& gfx) const;
+	void Render(Graphics& gfx, const Player& player, const std::vector<std::unique_ptr<Character>>& characters) const;
 	
 	void LoadNewWorld(const sf::Vector2f newWorldDimensions);
-
-	void AddCharacter(Character& character);
 
 private:
 	sf::Vector2f worldDimensions;
@@ -21,6 +20,4 @@ private:
 	sf::View minimapView;
 
 	const Camera& camera;
-
-	std::vector<Character*> characters;
 };

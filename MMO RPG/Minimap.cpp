@@ -11,26 +11,29 @@ Minimap::Minimap(const Camera & camera, const Map & map)
 	minimapView.setViewport(sf::FloatRect{ 0.900f, 0.0f, 0.100f, 0.125f });
 }
 
-void Minimap::Draw(Graphics& gfx) const
+void Minimap::Render(Graphics& gfx, const Player& player, const std::vector<std::unique_ptr<Character>>& characters) const
 {
 	gfx.ChangeView(minimapView);
 
-	for (const Character* const character : characters)
+	for (const std::unique_ptr<Character>& character : characters)
 	{
 		sf::RectangleShape characterArea{ sf::Vector2f{ 50.0f, 50.0f } };
 
-		if (dynamic_cast<const Player* const>(character) == nullptr)
-		{
-			characterArea.setFillColor(sf::Color{ 220, 220, 220 });
-		}
-		else
-		{
-			characterArea.setFillColor(sf::Color::Red);
-		}
+		characterArea.setFillColor(sf::Color{ 220, 220, 220 });
 
 		characterArea.setPosition(character->GetPosition());
 
 		gfx.Draw(characterArea);
+	}
+
+	{
+		sf::RectangleShape playerArea{ sf::Vector2f{ 50.0f, 50.0f } };
+
+		playerArea.setFillColor(sf::Color::Red);
+
+		playerArea.setPosition(player.GetPosition());
+
+		gfx.Draw(playerArea);
 	}
 
 	{
@@ -59,15 +62,8 @@ void Minimap::Draw(Graphics& gfx) const
 
 void Minimap::LoadNewWorld(const sf::Vector2f newWorldDimensions)
 {
-	characters.clear();
-
 	worldDimensions = newWorldDimensions;
 
 	minimapView.setCenter(worldDimensions.x / 2.0f, worldDimensions.y / 2.0f);
 	minimapView.setSize(worldDimensions);
-}
-
-void Minimap::AddCharacter(Character& character)
-{
-	characters.push_back(&character);
 }
