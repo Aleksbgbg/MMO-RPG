@@ -41,7 +41,7 @@ World::World(const std::string& mapFile, Map& map, Player& player, Minimap& mini
 		{
 			for (int y = 0; y < spritesheetHeight; ++y)
 			{
-				npcs.emplace_back(std::make_unique<Npc>(sf::Vector2i{ x, y }, dimensions, npcConfigFile));
+				characters.emplace_back(std::make_unique<Npc>(sf::Vector2i{ x, y }, dimensions, npcConfigFile));
 			}
 		}
 	}
@@ -59,7 +59,7 @@ World::World(const std::string& mapFile, Map& map, Player& player, Minimap& mini
 
 			for (int iteration = 0; iteration < enemyCount; ++iteration)
 			{
-				npcs.emplace_back(std::make_unique<Enemy>(texture, dimensions, configFile));
+				characters.emplace_back(std::make_unique<Enemy>(texture, dimensions, configFile));
 			}
 		}
 	}
@@ -67,32 +67,27 @@ World::World(const std::string& mapFile, Map& map, Player& player, Minimap& mini
 
 void World::Update()
 {
-	for (const std::unique_ptr<Npc>& npc : npcs)
+	for (const std::unique_ptr<Character>& character : characters)
 	{
-		npc->Update();
+		character->Update();
 	}
 }
 
-void World::Draw(const Graphics& gfx)
+void World::Draw(Graphics& gfx)
 {
-	for (const std::unique_ptr<Npc>& npc : npcs)
+	for (const std::unique_ptr<Character>& character : characters)
 	{
-		npc->Draw(gfx);
+		character->Draw(gfx);
 	}
+
+	minimap.Render(gfx, player, characters);
 }
 
-void World::Activate()
+void World::Activate() const
 {
 	map.Load(mapFile);
 
 	minimap.LoadNewWorld(sf::Vector2f{ map.GetDimensions() });
-
-	minimap.AddCharacter(player);
-
-	for (const std::unique_ptr<Npc>& npc : npcs)
-	{
-		minimap.AddCharacter(*npc);
-	}
 }
 
 bool World::PlayerCanTeleport() const

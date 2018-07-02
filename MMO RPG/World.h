@@ -14,9 +14,9 @@ public:
 
 public:
 	void Update();
-	void Draw(const Graphics& gfx);
+	void Draw(Graphics& gfx);
 
-	void Activate();
+	void Activate() const;
 
 	bool PlayerCanTeleport() const;
 	const Portal& FindNearestPortal() const;
@@ -34,7 +34,7 @@ private:
 
 	Minimap& minimap;
 
-	std::vector<std::unique_ptr<Npc>> npcs;
+	std::vector<std::unique_ptr<Character>> characters;
 
 	std::vector<Portal> portals;
 };

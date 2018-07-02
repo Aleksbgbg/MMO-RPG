@@ -105,8 +105,6 @@ void Game::ComposeFrame()
 
 	player.Draw(gfx);
 
-	minimap.Draw(gfx);
-
 	if (canTeleport)
 	{
 		teleportInstructionText.Draw(gfx);
