@@ -41,7 +41,7 @@ World::World(const std::string& mapFile, Map& map, Player& player, Minimap& mini
 		{
 			for (int y = 0; y < spritesheetHeight; ++y)
 			{
-				characters.emplace_back(std::make_unique<Npc>(sf::Vector2i{ x, y }, dimensions, npcConfigFile));
+				characters.emplace_back(std::make_unique<Npc>(TextureManager::Get("NPC" + std::to_string(x + y * spritesheetWidth)), dimensions, npcConfigFile));
 			}
 		}
 	}
