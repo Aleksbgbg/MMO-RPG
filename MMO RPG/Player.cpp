@@ -26,22 +26,13 @@ void Player::TeleportTo(const Portal& portal)
 
 Player::Player(const sf::Texture& spriteSheet, Camera& camera)
 	:
-	Character{ sprite, movementStrategy },
+	Character{ sprite, read_json("Config\\Player.json"), movementStrategy },
 	sprite{ spriteSheet },
 	movementStrategy{ sprite, Speed, directionKeys },
 	camera{ camera },
 	lastCameraMode{ Camera::Mode::SemiFree }
 {
 	UpdateCamera();
-
-	const SpriteInfo spriteInfo{ read_json("Config\\Player.json"), spriteSheet };
-
-	const sf::IntRect spriteRegion = sf::IntRect{ 0, 0, static_cast<int>(spriteInfo.sheetSize.x), static_cast<int>(spriteInfo.sheetSize.y) };
-
-	animations.emplace(Direction::Up, Animation{ sprite, spriteInfo, spriteInfo.upRow, spriteRegion });
-	animations.emplace(Direction::Down, Animation{ sprite, spriteInfo, spriteInfo.downRow, spriteRegion });
-	animations.emplace(Direction::Left, Animation{ sprite, spriteInfo, spriteInfo.leftRow, spriteRegion });
-	animations.emplace(Direction::Right, Animation{ sprite, spriteInfo, spriteInfo.rightRow, spriteRegion });
 
 	directionKeys.emplace(Direction::Up, std::vector<sf::Keyboard::Key>{ sf::Keyboard::W });
 	directionKeys.emplace(Direction::Down, std::vector<sf::Keyboard::Key>{ sf::Keyboard::S });
