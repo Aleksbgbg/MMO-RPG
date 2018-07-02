@@ -81,6 +81,14 @@
   <ItemGroup>
     <Image Include="Textures\Bat.png" />
     <Image Include="Textures\Map.png" />
+    <Image Include="Textures\NPC0.png" />
+    <Image Include="Textures\NPC1.png" />
+    <Image Include="Textures\NPC2.png" />
+    <Image Include="Textures\NPC3.png" />
+    <Image Include="Textures\NPC4.png" />
+    <Image Include="Textures\NPC5.png" />
+    <Image Include="Textures\NPC6.png" />
+    <Image Include="Textures\NPC7.png" />
     <Image Include="Textures\NPCs.png" />
     <Image Include="Textures\Player.png" />
   </ItemGroup>
