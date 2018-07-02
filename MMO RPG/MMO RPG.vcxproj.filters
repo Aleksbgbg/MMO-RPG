@@ -77,7 +77,7 @@
       <Filter>Source Files\Entities\Movement</Filter>
     </ClCompile>
     <ClCompile Include="PlayerMovement.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Entities\Movement</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -160,7 +160,7 @@
       <Filter>Header Files\Entities\Movement</Filter>
     </ClInclude>
     <ClInclude Include="PlayerMovement.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Entities\Movement</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
