@@ -26,7 +26,8 @@ void Player::TeleportTo(const Portal& portal)
 
 Player::Player(const sf::Texture& spriteSheet, Camera& camera)
 	:
-	Character{ sf::Sprite{ spriteSheet }, 4.0f },
+	Character{ sf::Sprite{ spriteSheet }, movementStrategy },
+	movementStrategy{ sprite, Speed, directionKeys },
 	camera{ camera },
 	lastCameraMode{ Camera::Mode::SemiFree }
 {
@@ -47,65 +48,41 @@ Player::Player(const sf::Texture& spriteSheet, Camera& camera)
 	directionKeys.emplace(Direction::Right, std::vector<sf::Keyboard::Key>{ sf::Keyboard::D });
 }
 
-sf::Vector2f Player::PickMovement()
-{
-	sf::Vector2f movement;
-
-	{
-		const Camera::Mode cameraMode = camera.GetMode();
-
-		if (cameraMode != lastCameraMode)
-		{
-			if (cameraMode == Camera::Mode::Fixed)
-			{
-				directionKeys.at(Direction::Up).push_back(sf::Keyboard::Up);
-				directionKeys.at(Direction::Down).push_back(sf::Keyboard::Down);
-				directionKeys.at(Direction::Left).push_back(sf::Keyboard::Left);
-				directionKeys.at(Direction::Right).push_back(sf::Keyboard::Right);
-			}
-			else if (cameraMode == Camera::Mode::SemiFree)
-			{
-				std::vector<sf::Keyboard::Key>& upKeys = directionKeys.at(Direction::Up);
-				upKeys.erase(std::remove(upKeys.begin(), upKeys.end(), sf::Keyboard::Up), upKeys.end());
-
-				std::vector<sf::Keyboard::Key>& downKeys = directionKeys.at(Direction::Down);
-				downKeys.erase(std::remove(downKeys.begin(), downKeys.end(), sf::Keyboard::Down), downKeys.end());
-
-				std::vector<sf::Keyboard::Key>& leftKeys = directionKeys.at(Direction::Left);
-				leftKeys.erase(std::remove(leftKeys.begin(), leftKeys.end(), sf::Keyboard::Left), leftKeys.end());
-
-				std::vector<sf::Keyboard::Key>& rightKeys = directionKeys.at(Direction::Right);
-				rightKeys.erase(std::remove(rightKeys.begin(), rightKeys.end(), sf::Keyboard::Right), rightKeys.end());
-			}
-
-			lastCameraMode = cameraMode;
-		}
-	}
-
-	if (std::any_of(directionKeys.at(Direction::Up).begin(), directionKeys.at(Direction::Up).end(), sf::Keyboard::isKeyPressed))
-	{
-		movement.y = -1;
-	}
-	else if (std::any_of(directionKeys.at(Direction::Down).begin(), directionKeys.at(Direction::Down).end(), sf::Keyboard::isKeyPressed))
-	{
-		movement.y = 1;
-	}
-
-	if (std::any_of(directionKeys.at(Direction::Left).begin(), directionKeys.at(Direction::Left).end(), sf::Keyboard::isKeyPressed))
-	{
-		movement.x = -1;
-	}
-	else if (std::any_of(directionKeys.at(Direction::Right).begin(), directionKeys.at(Direction::Right).end(), sf::Keyboard::isKeyPressed))
-	{
-		movement.x = 1;
-	}
-
-	return movement;
-}
-
 void Player::OnPositionUpdated(const sf::Vector2f newPosition)
 {
 	UpdateCamera();
+}
+
+void Player::OnUpdate()
+{
+	const Camera::Mode cameraMode = camera.GetMode();
+
+	if (cameraMode != lastCameraMode)
+	{
+		if (cameraMode == Camera::Mode::Fixed)
+		{
+			directionKeys.at(Direction::Up).push_back(sf::Keyboard::Up);
+			directionKeys.at(Direction::Down).push_back(sf::Keyboard::Down);
+			directionKeys.at(Direction::Left).push_back(sf::Keyboard::Left);
+			directionKeys.at(Direction::Right).push_back(sf::Keyboard::Right);
+		}
+		else if (cameraMode == Camera::Mode::SemiFree)
+		{
+			std::vector<sf::Keyboard::Key>& upKeys = directionKeys.at(Direction::Up);
+			upKeys.erase(std::remove(upKeys.begin(), upKeys.end(), sf::Keyboard::Up), upKeys.end());
+
+			std::vector<sf::Keyboard::Key>& downKeys = directionKeys.at(Direction::Down);
+			downKeys.erase(std::remove(downKeys.begin(), downKeys.end(), sf::Keyboard::Down), downKeys.end());
+
+			std::vector<sf::Keyboard::Key>& leftKeys = directionKeys.at(Direction::Left);
+			leftKeys.erase(std::remove(leftKeys.begin(), leftKeys.end(), sf::Keyboard::Left), leftKeys.end());
+
+			std::vector<sf::Keyboard::Key>& rightKeys = directionKeys.at(Direction::Right);
+			rightKeys.erase(std::remove(rightKeys.begin(), rightKeys.end(), sf::Keyboard::Right), rightKeys.end());
+		}
+
+		lastCameraMode = cameraMode;
+	}
 }
 
 void Player::UpdateCamera() const
