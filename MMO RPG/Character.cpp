@@ -4,11 +4,11 @@
 
 #include <utility>
 
-Character::Character(sf::Sprite sprite, const float speed)
+Character::Character(sf::Sprite sprite, MovementStrategy& movementStrategy)
 	:
 	sprite{ std::move(sprite) },
 	movementDirection{ Direction::Down },
-	speed{ speed }
+	movementStrategy{ movementStrategy }
 {
 }
 
@@ -16,7 +16,7 @@ void Character::Update()
 {
 	const bool wasStanding = movementDirection == Direction::Still;
 
-	sf::Vector2f movement = PickMovement();
+	const sf::Vector2f movement = movementStrategy.Move();
 
 	if (movement.x == 0 && movement.y == 0)
 	{
@@ -29,8 +29,6 @@ void Character::Update()
 	}
 	else
 	{
-		normalize(movement);
-
 		if (movement.x < 0)
 		{
 			movementDirection = Direction::Left;
@@ -48,23 +46,17 @@ void Character::Update()
 			movementDirection = Direction::Down;
 		}
 
-		movement *= speed;
-
 		if (wasStanding)
 		{
 			animations.at(movementDirection).Resume();
 		}
 
-		sprite.move(movement);
-
 		animations.at(movementDirection).Update();
+
+		OnPositionUpdated(sprite.getPosition());
 	}
 
-	if (lastPosition != sprite.getPosition())
-	{
-		OnPositionUpdated(sprite.getPosition());
-		lastPosition = sprite.getPosition();
-	}
+	OnUpdate();
 }
 
 void Character::Draw(const Graphics& gfx) const
@@ -82,6 +74,10 @@ sf::Vector2f Character::GetPosition() const
 sf::FloatRect Character::GetOccupation() const
 {
 	return sprite.getGlobalBounds();
+}
+
+void Character::OnUpdate()
+{
 }
 
 void Character::OnPositionUpdated(const sf::Vector2f newPosition)

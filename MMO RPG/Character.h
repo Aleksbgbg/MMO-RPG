@@ -6,10 +6,11 @@
 
 #include "Animation.h"
 #include "Graphics.h"
+#include "MovementStrategy.h"
 
 class Character
 {
-protected:
+public:
 	enum class Direction
 	{
 		Up,
@@ -27,12 +28,11 @@ public:
 	sf::FloatRect GetOccupation() const;
 
 protected:
-	Character(sf::Sprite sprite, const float speed);
+	Character(sf::Sprite sprite, MovementStrategy& movementStrategy);
 	virtual ~Character() = default;
 
 protected:
-	virtual sf::Vector2f PickMovement() = 0;
-
+	virtual void OnUpdate();
 	virtual void OnPositionUpdated(const sf::Vector2f newPosition);
 
 protected:
@@ -45,6 +45,5 @@ protected:
 	std::unordered_map<Direction, Animation> animations;
 
 private:
-	const float speed;
-	sf::Vector2f lastPosition;
+	MovementStrategy& movementStrategy;
 };
