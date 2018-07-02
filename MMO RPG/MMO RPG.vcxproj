@@ -55,6 +55,7 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="DeltaTime.h" />
+    <ClInclude Include="Direction.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="FlashingText.h" />
     <ClInclude Include="Font.h" />

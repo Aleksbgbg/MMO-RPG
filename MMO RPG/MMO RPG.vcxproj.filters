@@ -162,6 +162,9 @@
     <ClInclude Include="PlayerMovement.h">
       <Filter>Header Files\Entities\Movement</Filter>
     </ClInclude>
+    <ClInclude Include="Direction.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">

@@ -8,11 +8,11 @@
 class PlayerMovement : public MovementStrategy
 {
 public:
-	PlayerMovement(sf::Sprite& sprite, const float speed, const std::unordered_map<Character::Direction, std::vector<sf::Keyboard::Key>>& directionKeys);
+	PlayerMovement(sf::Sprite& sprite, const float speed, const std::unordered_map<Direction, std::vector<sf::Keyboard::Key>>& directionKeys);
 
 protected:
 	sf::Vector2f PickMovement(const sf::Vector2f position) override;
 
 private:
-	const std::unordered_map<Character::Direction, std::vector<sf::Keyboard::Key>>& directionKeys;
+	const std::unordered_map<Direction, std::vector<sf::Keyboard::Key>>& directionKeys;
 };
