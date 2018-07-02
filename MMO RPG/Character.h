@@ -32,12 +32,11 @@ protected:
 
 	void ChangeMovementDirection(const Direction newDirection);
 
-protected:
-	std::unordered_map<Direction, Animation> animations;
-
 private:
 	sf::Sprite& sprite;
 	Direction movementDirection;
+
+	std::unordered_map<Direction, Animation> animations;
 
 	MovementStrategy& movementStrategy;
 };
