@@ -21,7 +21,7 @@ void Player::TeleportTo(const Portal& portal)
 
 	SetPosition(portalCenter - sf::Vector2f{ occupation.width / 2.0f, occupation.height / 2.0f });
 
-	movementDirection = Direction::Down;
+	ChangeMovementDirection(Direction::Down);
 }
 
 Player::Player(const sf::Texture& spriteSheet, Camera& camera)

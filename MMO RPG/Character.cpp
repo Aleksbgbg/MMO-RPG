@@ -87,3 +87,8 @@ void Character::SetPosition(const sf::Vector2f position)
 	sprite.setPosition(position);
 	OnPositionUpdated(position);
 }
+
+void Character::ChangeMovementDirection(const Direction newDirection)
+{
+	movementDirection = newDirection;
+}

@@ -37,13 +37,14 @@ protected:
 
 	void SetPosition(const sf::Vector2f position);
 
-protected:
-	Direction movementDirection;
+	void ChangeMovementDirection(const Direction newDirection);
 
+protected:
 	std::unordered_map<Direction, Animation> animations;
 
 private:
 	sf::Sprite& sprite;
+	Direction movementDirection;
 
 	MovementStrategy& movementStrategy;
 };
