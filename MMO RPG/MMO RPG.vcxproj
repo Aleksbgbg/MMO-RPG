@@ -38,6 +38,7 @@
     <ClCompile Include="MovementStrategy.cpp" />
     <ClCompile Include="Npc.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerMovement.cpp" />
     <ClCompile Include="Portal.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Rect.cpp" />
@@ -65,6 +66,7 @@
     <ClInclude Include="MovementStrategy.h" />
     <ClInclude Include="Npc.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerMovement.h" />
     <ClInclude Include="Portal.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Rect.h" />

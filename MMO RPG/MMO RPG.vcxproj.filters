@@ -76,6 +76,9 @@
     <ClCompile Include="SimpleAiMovement.cpp">
       <Filter>Source Files\Entities\Movement</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerMovement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -155,6 +158,9 @@
     </ClInclude>
     <ClInclude Include="SimpleAiMovement.h">
       <Filter>Header Files\Entities\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMovement.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
