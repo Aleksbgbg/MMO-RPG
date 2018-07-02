@@ -63,9 +63,11 @@ void Character::Update()
 	OnUpdate();
 }
 
-void Character::Draw(const Graphics& gfx) const
+void Character::Draw(const Graphics& gfx)
 {
 	gfx.Draw(sprite);
+
+	OnDraw(gfx);
 }
 
 sf::Vector2f Character::GetPosition() const
@@ -81,6 +83,10 @@ sf::FloatRect Character::GetOccupation() const
 }
 
 void Character::OnUpdate()
+{
+}
+
+void Character::OnDraw(const Graphics& gfx)
 {
 }
 

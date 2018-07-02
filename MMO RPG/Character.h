@@ -16,7 +16,7 @@ public:
 
 public:
 	void Update();
-	void Draw(const Graphics& gfx) const;
+	void Draw(const Graphics& gfx);
 
 	sf::Vector2f GetPosition() const;
 	sf::FloatRect GetOccupation() const;
@@ -26,6 +26,7 @@ protected:
 
 protected:
 	virtual void OnUpdate();
+	virtual void OnDraw(const Graphics& gfx);
 	virtual void OnPositionUpdated(const sf::Vector2f newPosition);
 
 	void SetPosition(const sf::Vector2f position);
