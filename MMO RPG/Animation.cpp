@@ -2,15 +2,15 @@
 
 #include "DeltaTime.h"
 
-Animation::Animation(sf::Sprite& sprite, const SpriteInfo& spriteInfo, const int sheetRow, const sf::IntRect spriteRegion)
+Animation::Animation(sf::Sprite& sprite, const nlohmann::json& animationInfo, const Direction animationDirection)
 	:
 	sprite{ sprite },
-	frameSize{ spriteInfo.frameRegion.x / spriteInfo.frameCount, spriteInfo.frameRegion.y },
-	startingPosition{ spriteRegion.left, spriteRegion.top + sheetRow * spriteInfo.spriteDimension.y },
-	frameTime{ spriteInfo.frameTime },
+	frameSize{ animationInfo["width"], animationInfo["height"] },
+	rowOffset{ static_cast<int>(animationInfo["animationRows"][std::to_string(static_cast<int>(animationDirection))]) * frameSize.y },
+	frameTime{ animationInfo["frameTime"] },
 	currentFrameRunningTime{ 0.0f },
-	frameCount{ spriteInfo.frameCount },
-	defaultFrame{ spriteInfo.standingFrameIndex },
+	frameCount{ animationInfo["frameCount"] },
+	defaultFrame{ animationInfo["defaultFrame"] },
 	currentFrame{ 0 },
 	isStopped{ false }
 {
@@ -19,7 +19,7 @@ Animation::Animation(sf::Sprite& sprite, const SpriteInfo& spriteInfo, const int
 
 void Animation::SwitchFrame(const int frame) const
 {
-	sprite.setTextureRect(sf::IntRect{ startingPosition.x + frameSize.x * frame, startingPosition.y, frameSize.x, frameSize.y });
+	sprite.setTextureRect(sf::IntRect{ frameSize.x * frame, rowOffset, frameSize.x, frameSize.y });
 }
 
 void Animation::Resume()
