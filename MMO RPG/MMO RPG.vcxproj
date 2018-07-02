@@ -41,6 +41,7 @@
     <ClCompile Include="Portal.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Rect.cpp" />
+    <ClCompile Include="SimpleAiMovement.cpp" />
     <ClCompile Include="SpriteInfo.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Tile.cpp" />
@@ -67,6 +68,7 @@
     <ClInclude Include="Portal.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Rect.h" />
+    <ClInclude Include="SimpleAiMovement.h" />
     <ClInclude Include="SpriteInfo.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Texture.h" />

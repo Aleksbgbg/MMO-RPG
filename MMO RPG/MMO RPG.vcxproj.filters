@@ -73,6 +73,9 @@
     <ClCompile Include="MovementStrategy.cpp">
       <Filter>Source Files\Entities\Movement</Filter>
     </ClCompile>
+    <ClCompile Include="SimpleAiMovement.cpp">
+      <Filter>Source Files\Entities\Movement</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -148,6 +151,9 @@
       <Filter>Header Files\Framework\ResourceManagement</Filter>
     </ClInclude>
     <ClInclude Include="MovementStrategy.h">
+      <Filter>Header Files\Entities\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleAiMovement.h">
       <Filter>Header Files\Entities\Movement</Filter>
     </ClInclude>
   </ItemGroup>
