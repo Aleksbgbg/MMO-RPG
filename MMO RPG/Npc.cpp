@@ -14,7 +14,8 @@ Npc::Npc(const sf::Vector2i spriteSheetCoordinate, const sf::Vector2i mapDimensi
 
 Npc::Npc(const sf::Texture& spriteSheet, const sf::Vector2i mapDimensions, const json& spriteConfig)
 	:
-	Character{ sf::Sprite{ spriteSheet }, movementStrategy },
+	Character{ sprite, movementStrategy },
+	sprite{ spriteSheet },
 	spriteInfo{ spriteConfig, spriteSheet },
 	movementStrategy{ sprite, Random::GenerateFloat(1.0f, 2.0f), mapDimensions }
 {
@@ -30,7 +31,8 @@ Npc::Npc(const sf::Texture& spriteSheet, const sf::Vector2i mapDimensions, const
 
 Npc::Npc(const sf::Vector2i spriteSheetCoordinate, const sf::Texture& spriteSheet, const sf::Vector2i mapDimensions, const json& spriteConfig)
 	:
-	Character{ sf::Sprite{ spriteSheet }, movementStrategy },
+	Character{ sprite, movementStrategy },
+	sprite{ spriteSheet },
 	spriteInfo{ spriteConfig, spriteSheet },
 	movementStrategy{ sprite, Random::GenerateFloat(1.0f, 2.0f), mapDimensions }
 {

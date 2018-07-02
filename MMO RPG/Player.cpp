@@ -19,14 +19,15 @@ void Player::TeleportTo(const Portal& portal)
 
 	const sf::FloatRect occupation = GetOccupation();
 
-	sprite.setPosition(portalCenter - sf::Vector2f{ occupation.width / 2.0f, occupation.height / 2.0f });
+	SetPosition(portalCenter - sf::Vector2f{ occupation.width / 2.0f, occupation.height / 2.0f });
 
 	movementDirection = Direction::Down;
 }
 
 Player::Player(const sf::Texture& spriteSheet, Camera& camera)
 	:
-	Character{ sf::Sprite{ spriteSheet }, movementStrategy },
+	Character{ sprite, movementStrategy },
+	sprite{ spriteSheet },
 	movementStrategy{ sprite, Speed, directionKeys },
 	camera{ camera },
 	lastCameraMode{ Camera::Mode::SemiFree }

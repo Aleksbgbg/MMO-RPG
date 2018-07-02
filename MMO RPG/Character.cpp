@@ -2,12 +2,10 @@
 
 #include "Vector.h"
 
-#include <utility>
-
-Character::Character(sf::Sprite sprite, MovementStrategy& movementStrategy)
+Character::Character(sf::Sprite& sprite, MovementStrategy& movementStrategy)
 	:
-	sprite{ std::move(sprite) },
 	movementDirection{ Direction::Down },
+	sprite{ sprite },
 	movementStrategy{ movementStrategy }
 {
 }

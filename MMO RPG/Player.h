@@ -29,6 +29,8 @@ private:
 	static constexpr float Speed = 4.0f;
 
 private:
+	sf::Sprite sprite;
+
 	PlayerMovement movementStrategy;
 
 	Camera& camera;

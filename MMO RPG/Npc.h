@@ -17,6 +17,8 @@ private:
 	Npc(sf::Vector2i spriteSheetCoordinate, const sf::Texture& spriteSheet, const sf::Vector2i mapDimensions, const nlohmann::json& spriteConfig);
 
 private:
+	sf::Sprite sprite;
+
 	SpriteInfo spriteInfo;
 
 	SimpleAiMovement movementStrategy;
