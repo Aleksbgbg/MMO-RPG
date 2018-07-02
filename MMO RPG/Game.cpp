@@ -10,6 +10,7 @@ Game::Game(sf::RenderWindow& window)
 	camera{ window, map },
 	player{ camera },
 	minimap{ camera, map },
+	activeWorld{ nullptr },
 	teleportInstructionText{ std::string{ "Press X to teleport..." }, sf::Vector2i{ Graphics::ScreenWidth / 2, Graphics::ScreenHeight } },
 	canTeleport{ false }
 {
