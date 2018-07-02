@@ -11,7 +11,10 @@ void StatBar::Render(const Graphics& gfx, const float percentage, const sf::Vect
 {
 	barRectangle.setPosition(position);
 
-	barRectangle.setSize(sf::Vector2f{ Width * percentage, Height });
+	const sf::Vector2f barSize{ Width * percentage, Height };
+
+	barRectangle.setSize(barSize);
+	barRectangle.setOrigin(barSize.x / 2.0f, barSize.y / 2.0f);
 
 	gfx.Draw(barRectangle);
 }
