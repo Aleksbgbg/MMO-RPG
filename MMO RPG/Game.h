@@ -49,4 +49,6 @@ private:
 
 	Reticle reticle;
 	InteractiveCharacter* reticleTarget;
+
+	std::vector<Projectile> projectiles;
 };

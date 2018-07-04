@@ -1,6 +1,7 @@
 #include "Game.h"
 
 #include "Json.h"
+#include "ResourceManager.h"
 
 using nlohmann::json;
 
@@ -44,6 +45,10 @@ void Game::KeyPressed(const sf::Keyboard::Key key)
 
 		ChangeActiveWorld(sourcePortal.targetWorldIndex);
 		player.TeleportTo(worlds[sourcePortal.targetWorldIndex].GetPortal(sourcePortal.targetPortalIndex));
+	}
+	else if (key == sf::Keyboard::Key::Q && reticleTarget != nullptr)
+	{
+		projectiles.emplace_back(TextureManager::Get("Fireball"), player.GetPosition(), reticleTarget);
 	}
 }
 
@@ -107,6 +112,23 @@ void Game::UpdateModel()
 		reticle.Update(*reticleTarget);
 	}
 
+	for (auto iterator = projectiles.begin(); iterator != projectiles.end(); )
+	{
+		Projectile& projectile = *iterator;
+
+		projectile.Update();
+
+		if (projectile.HasReachedTarget())
+		{
+			projectile.DealDamage();
+
+			iterator = projectiles.erase(iterator);
+			continue;
+		}
+
+		++iterator;
+	}
+
 	canTeleport = activeWorld->PlayerCanTeleport();
 
 	if (canTeleport)
@@ -126,6 +148,11 @@ void Game::ComposeFrame()
 	if (reticleTarget != nullptr)
 	{
 		reticle.Draw(gfx);
+	}
+
+	for (const Projectile& projectile : projectiles)
+	{
+		projectile.Draw(gfx);
 	}
 
 	if (canTeleport)
