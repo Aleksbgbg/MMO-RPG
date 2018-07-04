@@ -92,6 +92,7 @@
     <Image Include="Textures\NPC7.png" />
     <Image Include="Textures\NPCs.png" />
     <Image Include="Textures\Player.png" />
+    <Image Include="Textures\Reticle.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Fonts\arial.ttf" />

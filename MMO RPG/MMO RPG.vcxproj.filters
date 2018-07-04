@@ -253,6 +253,9 @@
     <Image Include="Textures\NPC7.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
+    <Image Include="Textures\Reticle.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Fonts\arial.ttf">
