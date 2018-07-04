@@ -23,6 +23,8 @@ public:
 
 	const Portal& GetPortal(const int index) const;
 
+	Character* GetCharacter(const sf::Vector2f position) const;
+
 private:
 	sf::Vector2i dimensions;
 

@@ -103,6 +103,19 @@ const Portal& World::GetPortal(const int index) const
 	return portals[index];
 }
 
+Character* World::GetCharacter(const sf::Vector2f position) const
+{
+	for (const std::unique_ptr<Character>& character : characters)
+	{
+		if (character->GetOccupation().contains(position))
+		{
+			return character.get();
+		}
+	}
+
+	return nullptr;
+}
+
 const Portal& World::FindNearestPortal() const
 {
 	for (const Portal& portal : portals)
