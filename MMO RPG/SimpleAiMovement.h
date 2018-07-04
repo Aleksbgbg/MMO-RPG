@@ -8,7 +8,7 @@ public:
 	SimpleAiMovement(sf::Sprite& sprite, const float speed, const sf::Vector2i mapDimensions);
 
 protected:
-	sf::Vector2f PickMovement(const sf::Vector2f position) override;
+	sf::Vector2f PickMovement(sf::Vector2f position) override;
 
 private:
 	void GenerateTargetPosition(const sf::Vector2f position);

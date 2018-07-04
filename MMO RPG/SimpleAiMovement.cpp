@@ -14,7 +14,7 @@ SimpleAiMovement::SimpleAiMovement(sf::Sprite& sprite, const float speed, const 
 	ForcePosition(randomPosition);
 }
 
-sf::Vector2f SimpleAiMovement::PickMovement(const sf::Vector2f position)
+sf::Vector2f SimpleAiMovement::PickMovement(sf::Vector2f position)
 {
 	// Force backtracking if overshot target
 	{
@@ -23,11 +23,15 @@ sf::Vector2f SimpleAiMovement::PickMovement(const sf::Vector2f position)
 		if (!(currentVector.x == 0 || (initialTargetVector.x >= 0 ^ currentVector.x < 0)))
 		{
 			ForcePosition(sf::Vector2f{ targetPosition.x, position.y });
+
+			position.x = targetPosition.x;
 		}
 
 		if (!(currentVector.y == 0 || (initialTargetVector.y >= 0 ^ currentVector.y < 0)))
 		{
 			ForcePosition(sf::Vector2f{ position.x, targetPosition.y });
+
+			position.y = targetPosition.y;
 		}
 	}
 
