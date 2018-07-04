@@ -28,6 +28,7 @@
     <ClCompile Include="FlashingText.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="InteractiveCharacter.cpp" />
     <ClCompile Include="Json.cpp" />
     <ClCompile Include="Main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\Libraries\json;$(SolutionDir)\Libraries\SFML 2.5\include</AdditionalIncludeDirectories>
@@ -62,6 +63,7 @@
     <ClInclude Include="Font.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="InteractiveCharacter.h" />
     <ClInclude Include="Json.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Minimap.h" />
