@@ -15,3 +15,8 @@ void InteractiveCharacter::OnDraw(const Graphics& gfx)
 
 	healthBar.Render(gfx, health / MaxHealth, sprite.getPosition() + sf::Vector2f{ spriteBounds.width / 2.0f, -10.0f });
 }
+
+void InteractiveCharacter::TakeDamage(const float damage)
+{
+	health -= damage;
+}

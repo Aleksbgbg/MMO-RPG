@@ -11,6 +11,8 @@ public:
 public:
 	void OnDraw(const Graphics& gfx) override;
 
+	void TakeDamage(const float damage);
+
 private:
 	static constexpr float MaxHealth = 100.0f;
 
