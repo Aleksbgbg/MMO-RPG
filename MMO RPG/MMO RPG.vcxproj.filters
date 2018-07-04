@@ -262,6 +262,9 @@
     <Image Include="Textures\Reticle.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
+    <Image Include="Textures\Fireball.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Fonts\arial.ttf">

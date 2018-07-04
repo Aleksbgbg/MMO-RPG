@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\Bat.png" />
+    <Image Include="Textures\Fireball.png" />
     <Image Include="Textures\Map.png" />
     <Image Include="Textures\NPC0.png" />
     <Image Include="Textures\NPC1.png" />
