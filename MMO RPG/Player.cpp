@@ -26,7 +26,7 @@ void Player::TeleportTo(const Portal& portal)
 
 Player::Player(const sf::Texture& spriteSheet, Camera& camera)
 	:
-	Character{ sprite, read_json("Config\\Player.json"), movementStrategy },
+	InteractiveCharacter{ sprite, read_json("Config\\Player.json"), movementStrategy },
 	sprite{ spriteSheet },
 	movementStrategy{ sprite, Speed, directionKeys },
 	camera{ camera },

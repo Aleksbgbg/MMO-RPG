@@ -2,12 +2,13 @@
 
 #include <unordered_map>
 
-#include "Character.h"
 #include "Camera.h"
 #include "Portal.h"
 #include "PlayerMovement.h"
+#include "Projectile.h"
+#include "InteractiveCharacter.h"
 
-class Player : public Character
+class Player : public InteractiveCharacter
 {
 public:
 	explicit Player(Camera& camera);
