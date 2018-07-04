@@ -7,6 +7,7 @@
 #include "World.h"
 #include "Minimap.h"
 #include "FlashingText.h"
+#include "Reticle.h"
 
 class Game
 {
@@ -27,6 +28,7 @@ private:
 	static constexpr int Worlds = 2;
 
 private:
+	sf::RenderWindow& window;
 	Graphics gfx;
 
 	Camera camera;
@@ -44,4 +46,7 @@ private:
 	FlashingText teleportInstructionText;
 
 	bool canTeleport;
+
+	Reticle reticle;
+	Character* character;
 };

@@ -6,13 +6,15 @@ using nlohmann::json;
 
 Game::Game(sf::RenderWindow& window)
 	:
+	window{ window },
 	gfx{ window },
 	camera{ window, map },
 	player{ camera },
 	minimap{ camera, map },
 	activeWorld{ nullptr },
 	teleportInstructionText{ std::string{ "Press X to teleport..." }, sf::Vector2i{ Graphics::ScreenWidth / 2, Graphics::ScreenHeight } },
-	canTeleport{ false }
+	canTeleport{ false },
+	character{ nullptr }
 {
 	json worldConfig = read_json("Config\\World.json");
 
@@ -90,6 +92,16 @@ void Game::UpdateModel()
 		}
 	}
 
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+	{
+		character = activeWorld->GetCharacter(sf::Vector2f{ gfx.MapPixelToCoords(sf::Mouse::getPosition(window)) });
+	}
+
+	if (character != nullptr)
+	{
+		reticle.Update(*character);
+	}
+
 	canTeleport = activeWorld->PlayerCanTeleport();
 
 	if (canTeleport)
@@ -106,6 +118,11 @@ void Game::ComposeFrame()
 
 	player.Draw(gfx);
 
+	if (character != nullptr)
+	{
+		reticle.Draw(gfx);
+	}
+
 	if (canTeleport)
 	{
 		teleportInstructionText.Draw(gfx);
@@ -120,6 +137,8 @@ void Game::ChangeActiveWorld(const int index)
 	{
 		return;
 	}
+
+	character = nullptr;
 
 	activeWorld = newWorld;
 	activeWorld->Activate();
