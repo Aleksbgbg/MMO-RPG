@@ -14,7 +14,7 @@ Game::Game(sf::RenderWindow& window)
 	activeWorld{ nullptr },
 	teleportInstructionText{ std::string{ "Press X to teleport..." }, sf::Vector2i{ Graphics::ScreenWidth / 2, Graphics::ScreenHeight } },
 	canTeleport{ false },
-	character{ nullptr }
+	reticleTarget{ nullptr }
 {
 	json worldConfig = read_json("Config\\World.json");
 
@@ -94,12 +94,17 @@ void Game::UpdateModel()
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
 	{
-		character = activeWorld->GetCharacter(sf::Vector2f{ gfx.MapPixelToCoords(sf::Mouse::getPosition(window)) });
+		InteractiveCharacter* const targetCharacter = dynamic_cast<InteractiveCharacter* const>(activeWorld->GetCharacter(sf::Vector2f{ gfx.MapPixelToCoords(sf::Mouse::getPosition(window)) }));
+
+		if (targetCharacter != nullptr)
+		{
+			reticleTarget = targetCharacter;
+		}
 	}
 
-	if (character != nullptr)
+	if (reticleTarget != nullptr)
 	{
-		reticle.Update(*character);
+		reticle.Update(*reticleTarget);
 	}
 
 	canTeleport = activeWorld->PlayerCanTeleport();
@@ -118,7 +123,7 @@ void Game::ComposeFrame()
 
 	player.Draw(gfx);
 
-	if (character != nullptr)
+	if (reticleTarget != nullptr)
 	{
 		reticle.Draw(gfx);
 	}
@@ -138,7 +143,7 @@ void Game::ChangeActiveWorld(const int index)
 		return;
 	}
 
-	character = nullptr;
+	reticleTarget = nullptr;
 
 	activeWorld = newWorld;
 	activeWorld->Activate();

@@ -48,5 +48,5 @@ private:
 	bool canTeleport;
 
 	Reticle reticle;
-	Character* character;
+	InteractiveCharacter* reticleTarget;
 };
