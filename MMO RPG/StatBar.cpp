@@ -5,6 +5,9 @@
 StatBar::StatBar(const sf::Color color)
 {
 	barRectangle.setFillColor(color);
+
+	barRectangle.setOutlineColor(sf::Color::Black);
+	barRectangle.setOutlineThickness(1.0f);
 }
 
 void StatBar::Render(const Graphics& gfx, const float percentage, const sf::Vector2f position)
