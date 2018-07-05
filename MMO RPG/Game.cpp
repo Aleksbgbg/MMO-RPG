@@ -24,7 +24,7 @@ Game::Game(sf::RenderWindow& window)
 		worlds.emplace_back(std::string{ "Map" + std::to_string(index) + ".json" }, map, player, minimap, worldConfig[index]);
 	}
 
-	ChangeActiveWorld(0);
+	ChangeActiveWorld(1);
 }
 
 void Game::Main()
