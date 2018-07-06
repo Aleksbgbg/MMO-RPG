@@ -20,3 +20,8 @@ void InteractiveCharacter::TakeDamage(const float damage)
 {
 	health -= damage;
 }
+
+bool InteractiveCharacter::IsAlive() const
+{
+	return health > 0.0f;
+}

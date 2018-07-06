@@ -13,6 +13,8 @@ public:
 
 	void TakeDamage(const float damage);
 
+	bool IsAlive() const;
+
 private:
 	static constexpr float MaxHealth = 100.0f;
 
