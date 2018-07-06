@@ -21,6 +21,8 @@ public:
 	bool PlayerCanTeleport() const;
 	const Portal& FindNearestPortal() const;
 
+	void SpawnProjectile(const Projectile& projectile);
+
 	const Portal& GetPortal(const int index) const;
 
 	Character* GetCharacter(const sf::Vector2f position) const;
@@ -39,4 +41,6 @@ private:
 	std::vector<std::unique_ptr<Character>> characters;
 
 	std::vector<Portal> portals;
+
+	std::vector<Projectile> projectiles;
 };

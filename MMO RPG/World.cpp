@@ -83,6 +83,23 @@ void World::Update()
 
 		++iterator;
 	}
+
+	for (auto iterator = projectiles.begin(); iterator != projectiles.end(); )
+	{
+		Projectile& projectile = *iterator;
+
+		projectile.Update();
+
+		if (projectile.HasReachedTarget())
+		{
+			projectile.DealDamage();
+
+			iterator = projectiles.erase(iterator);
+			continue;
+		}
+
+		++iterator;
+	}
 }
 
 void World::Draw(Graphics& gfx)
@@ -90,6 +107,11 @@ void World::Draw(Graphics& gfx)
 	for (const std::unique_ptr<Character>& character : characters)
 	{
 		character->Draw(gfx);
+	}
+
+	for (const Projectile& projectile : projectiles)
+	{
+		projectile.Draw(gfx);
 	}
 
 	minimap.Render(gfx, player, characters);
@@ -139,4 +161,9 @@ const Portal& World::FindNearestPortal() const
 	}
 
 	throw std::runtime_error{ "No near portal exists." };
+}
+
+void World::SpawnProjectile(const Projectile& projectile)
+{
+	projectiles.emplace_back(projectile);
 }
