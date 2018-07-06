@@ -19,6 +19,8 @@ public:
 	void DealDamage() const;
 
 private:
+	static constexpr float Scale = 0.5f;
+
 	static constexpr float Speed = 10.0f;
 	static constexpr float Damage = 10.0f;
 

@@ -8,6 +8,8 @@ Projectile::Projectile(const sf::Texture& texture, const sf::Vector2f sourcePosi
 	sprite{ texture },
 	target{ target }
 {
+	sprite.setScale(Scale, Scale);
+
 	sprite.setPosition(sourcePosition);
 	sprite.setOrigin(center(sprite.getLocalBounds()));
 }
