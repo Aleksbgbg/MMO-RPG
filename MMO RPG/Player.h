@@ -15,6 +15,7 @@ public:
 
 public:
 	void TeleportTo(const Portal& portal);
+	void ForcePosition(const sf::FloatRect rectangle);
 
 protected:
 	void OnPositionUpdated(const sf::Vector2f newPosition) override;

@@ -24,6 +24,43 @@ void Player::TeleportTo(const Portal& portal)
 	ChangeMovementDirection(Direction::Down);
 }
 
+void Player::ForcePosition(const sf::FloatRect rectangle)
+{
+	sf::Vector2f position = sprite.getPosition();
+
+	const sf::FloatRect occupation = GetOccupation();
+
+	if (occupation.left < rectangle.left)
+	{
+		position.x = rectangle.left;
+	}
+	else
+	{
+		const float rightEdge = rectangle.left + rectangle.width - occupation.width;
+
+		if (occupation.left > rightEdge)
+		{
+			position.x = rightEdge;
+		}
+	}
+
+	if (occupation.top < rectangle.top)
+	{
+		position.y = rectangle.top;
+	}
+	else
+	{
+		const float bottomEdge = rectangle.top + rectangle.height - occupation.height;
+
+		if (occupation.top > bottomEdge)
+		{
+			position.y = bottomEdge;
+		}
+	}
+
+	sprite.setPosition(position);
+}
+
 Player::Player(const sf::Texture& spriteSheet, Camera& camera)
 	:
 	InteractiveCharacter{ sprite, read_json("Config\\Player.json"), movementStrategy },
