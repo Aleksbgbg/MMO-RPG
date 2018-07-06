@@ -100,6 +100,12 @@ void World::Update()
 
 		++iterator;
 	}
+
+	{
+		const sf::Vector2i mapDimensions = map.GetDimensions();
+
+		player.ForcePosition(sf::FloatRect{ 0.0f, 0.0f, static_cast<float>(mapDimensions.x), static_cast<float>(mapDimensions.y) });
+	}
 }
 
 void World::Draw(Graphics& gfx)
