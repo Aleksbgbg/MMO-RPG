@@ -17,21 +17,27 @@ void Projectile::Update()
 	const sf::Vector2f positionSprite = sprite.getPosition();
 	const sf::Vector2f positionTarget = target->GetPosition();
 
-	sf::Vector2f targetVector = positionTarget - positionSprite;
+	{
+		sf::Vector2f targetVector = positionTarget - positionSprite;
 
-	normalize(targetVector);
+		normalize(targetVector);
 
-	targetVector *= Speed;
+		targetVector *= Speed;
 
-	sprite.move(targetVector);
+		sprite.move(targetVector);
+	}
 
-	// dot = x1*x2 + y1*y2      # dot product between [x1, y1] and [x2, y2]
-	// det = x1*y2 - y1*x2      # determinant
-	// angle = atan2(det, dot)  # atan2(y, x) or atan2(sin, cos)
+	static constexpr float Pi = 3.14159265359f;
 
-	const float angle = std::atan2(positionSprite.x * positionTarget.y - positionSprite.y * positionTarget.x, positionSprite.x * positionTarget.x + positionSprite.y * positionTarget.y);
+	float rotationAngle = std::atan2(positionSprite.x - positionTarget.x, positionTarget.y - positionSprite.y);
 
-	sprite.setRotation(angle * 3.14159265359f / 180.0f);
+	if (rotationAngle < 0.0f)
+	{
+		rotationAngle += 2.0f * Pi;
+	}
+
+	// Convert angle to degrees, and subtract 90 degrees due to rotation of original image
+	sprite.setRotation(rotationAngle * (180.0f / Pi) - 90.0f);
 }
 
 void Projectile::Draw(const Graphics& gfx) const
