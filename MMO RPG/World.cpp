@@ -67,9 +67,21 @@ World::World(const std::string& mapFile, Map& map, Player& player, Minimap& mini
 
 void World::Update()
 {
-	for (const std::unique_ptr<Character>& character : characters)
+	for (auto iterator = characters.begin(); iterator != characters.end(); )
 	{
+		const std::unique_ptr<Character>& character = *iterator;
+
 		character->Update();
+
+		InteractiveCharacter* const interactiveCharacter = dynamic_cast<InteractiveCharacter* const>(character.get());
+
+		if (!(interactiveCharacter == nullptr || interactiveCharacter->IsAlive()))
+		{
+			iterator = characters.erase(iterator);
+			continue;
+		}
+
+		++iterator;
 	}
 }
 
