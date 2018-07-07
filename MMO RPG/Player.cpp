@@ -61,6 +61,17 @@ void Player::ForcePosition(const sf::FloatRect rectangle)
 	sprite.setPosition(position);
 }
 
+bool Player::IsWithinRange(const InteractiveCharacter& character) const
+{
+	const sf::Vector2f position = sprite.getPosition();
+	const sf::Vector2f characterPosition = character.GetPosition();
+
+	const float horizontalDistance = characterPosition.x - position.x;
+	const float verticalDistance = characterPosition.y - position.y;
+
+	return horizontalDistance * horizontalDistance + verticalDistance * verticalDistance <= AttackArea;
+}
+
 Player::Player(const sf::Texture& spriteSheet, Camera& camera)
 	:
 	InteractiveCharacter{ sprite, read_json("Config\\Player.json"), movementStrategy },
