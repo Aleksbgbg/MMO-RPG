@@ -48,7 +48,10 @@ void Game::KeyPressed(const sf::Keyboard::Key key)
 	}
 	else if (key == sf::Keyboard::Key::Q && reticleTarget != nullptr)
 	{
-		activeWorld->SpawnProjectile(Projectile{ TextureManager::Get("Fireball"), player.GetPosition(), reticleTarget });
+		if (player.IsWithinRange(*reticleTarget.get()))
+		{
+			activeWorld->SpawnProjectile(Projectile{ TextureManager::Get("Fireball"), player.GetPosition(), reticleTarget });
+		}
 	}
 }
 
