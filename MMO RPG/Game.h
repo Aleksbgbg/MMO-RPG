@@ -48,5 +48,5 @@ private:
 	bool canTeleport;
 
 	Reticle reticle;
-	InteractiveCharacter* reticleTarget;
+	std::shared_ptr<InteractiveCharacter> reticleTarget;
 };

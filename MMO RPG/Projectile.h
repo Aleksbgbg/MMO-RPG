@@ -8,7 +8,7 @@
 class Projectile
 {
 public:
-	Projectile(const sf::Texture& texture, const sf::Vector2f sourcePosition, InteractiveCharacter* target);
+	Projectile(const sf::Texture& texture, const sf::Vector2f sourcePosition, const std::shared_ptr<InteractiveCharacter> target);
 
 public:
 	void Update();
@@ -27,5 +27,5 @@ private:
 private:
 	sf::Sprite sprite;
 
-	InteractiveCharacter* target;
+	std::shared_ptr<InteractiveCharacter> target;
 };

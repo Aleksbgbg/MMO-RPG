@@ -99,12 +99,17 @@ void Game::UpdateModel()
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
 	{
-		InteractiveCharacter* const targetCharacter = dynamic_cast<InteractiveCharacter* const>(activeWorld->GetCharacter(sf::Vector2f{ gfx.MapPixelToCoords(sf::Mouse::getPosition(window)) }));
+		const std::shared_ptr<InteractiveCharacter> targetCharacter = std::dynamic_pointer_cast<InteractiveCharacter>(activeWorld->GetCharacter(sf::Vector2f{ gfx.MapPixelToCoords(sf::Mouse::getPosition(window)) }));
 
 		if (targetCharacter != nullptr)
 		{
 			reticleTarget = targetCharacter;
 		}
+	}
+
+	if (!activeWorld->CharacterExists(reticleTarget))
+	{
+		reticleTarget = nullptr;
 	}
 
 	if (reticleTarget != nullptr)

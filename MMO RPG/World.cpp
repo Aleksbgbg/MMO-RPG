@@ -41,7 +41,7 @@ World::World(const std::string& mapFile, Map& map, Player& player, Minimap& mini
 		{
 			for (int y = 0; y < spritesheetHeight; ++y)
 			{
-				characters.emplace_back(std::make_unique<Npc>(TextureManager::Get("NPC" + std::to_string(x + y * spritesheetWidth)), dimensions, npcConfigFile));
+				characters.emplace_back(std::make_shared<Npc>(TextureManager::Get("NPC" + std::to_string(x + y * spritesheetWidth)), dimensions, npcConfigFile));
 			}
 		}
 	}
@@ -59,7 +59,7 @@ World::World(const std::string& mapFile, Map& map, Player& player, Minimap& mini
 
 			for (int iteration = 0; iteration < enemyCount; ++iteration)
 			{
-				characters.emplace_back(std::make_unique<Enemy>(texture, dimensions, configFile));
+				characters.emplace_back(std::make_shared<Enemy>(texture, dimensions, configFile));
 			}
 		}
 	}
@@ -69,11 +69,11 @@ void World::Update()
 {
 	for (auto iterator = characters.begin(); iterator != characters.end(); )
 	{
-		const std::unique_ptr<Character>& character = *iterator;
+		const std::shared_ptr<Character>& character = *iterator;
 
 		character->Update();
 
-		InteractiveCharacter* const interactiveCharacter = dynamic_cast<InteractiveCharacter* const>(character.get());
+		std::shared_ptr<InteractiveCharacter> interactiveCharacter = std::dynamic_pointer_cast<InteractiveCharacter>(character);
 
 		if (!(interactiveCharacter == nullptr || interactiveCharacter->IsAlive()))
 		{
@@ -110,7 +110,7 @@ void World::Update()
 
 void World::Draw(Graphics& gfx)
 {
-	for (const std::unique_ptr<Character>& character : characters)
+	for (const std::shared_ptr<Character>& character : characters)
 	{
 		character->Draw(gfx);
 	}
@@ -143,17 +143,30 @@ const Portal& World::GetPortal(const int index) const
 	return portals[index];
 }
 
-Character* World::GetCharacter(const sf::Vector2f position) const
+std::shared_ptr<Character> World::GetCharacter(const sf::Vector2f position) const
 {
-	for (const std::unique_ptr<Character>& character : characters)
+	for (const std::shared_ptr<Character>& character : characters)
 	{
 		if (character->GetOccupation().contains(position))
 		{
-			return character.get();
+			return character;
 		}
 	}
 
 	return nullptr;
+}
+
+bool World::CharacterExists(const std::shared_ptr<Character>& target) const
+{
+	for (const std::shared_ptr<Character>& character : characters)
+	{
+		if (character == target)
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 const Portal& World::FindNearestPortal() const

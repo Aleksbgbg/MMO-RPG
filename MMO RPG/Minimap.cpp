@@ -11,11 +11,11 @@ Minimap::Minimap(const Camera & camera, const Map & map)
 	minimapView.setViewport(sf::FloatRect{ 0.900f, 0.0f, 0.100f, 0.125f });
 }
 
-void Minimap::Render(Graphics& gfx, const Player& player, const std::vector<std::unique_ptr<Character>>& characters) const
+void Minimap::Render(Graphics& gfx, const Player& player, const std::vector<std::shared_ptr<Character>>& characters) const
 {
 	gfx.ChangeView(minimapView);
 
-	for (const std::unique_ptr<Character>& character : characters)
+	for (const std::shared_ptr<Character>& character : characters)
 	{
 		sf::RectangleShape characterArea{ sf::Vector2f{ 50.0f, 50.0f } };
 

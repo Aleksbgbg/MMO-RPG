@@ -25,7 +25,8 @@ public:
 
 	const Portal& GetPortal(const int index) const;
 
-	Character* GetCharacter(const sf::Vector2f position) const;
+	std::shared_ptr<Character> GetCharacter(const sf::Vector2f position) const;
+	bool CharacterExists(const std::shared_ptr<Character>& target) const;
 
 private:
 	sf::Vector2i dimensions;
@@ -38,7 +39,7 @@ private:
 
 	Minimap& minimap;
 
-	std::vector<std::unique_ptr<Character>> characters;
+	std::vector<std::shared_ptr<Character>> characters;
 
 	std::vector<Portal> portals;
 
