@@ -97,6 +97,9 @@
     <ClCompile Include="TimeoutTracker.cpp">
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
+    <ClCompile Include="SubtitleHandler.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -199,6 +202,9 @@
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="TimeoutTracker.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="SubtitleHandler.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
   </ItemGroup>

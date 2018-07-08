@@ -50,6 +50,7 @@
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="StatBar.cpp" />
     <ClCompile Include="Subtitle.cpp" />
+    <ClCompile Include="SubtitleHandler.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TimeoutTracker.cpp" />
     <ClCompile Include="Vector.cpp" />
@@ -85,6 +86,7 @@
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="StatBar.h" />
     <ClInclude Include="Subtitle.h" />
+    <ClInclude Include="SubtitleHandler.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TimeoutTracker.h" />
