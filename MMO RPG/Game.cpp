@@ -13,7 +13,6 @@ Game::Game(sf::RenderWindow& window)
 	player{ camera },
 	minimap{ camera, map },
 	activeWorld{ nullptr },
-	teleportInstructionText{ std::string{ "Press X to teleport..." }, sf::Vector2i{ Graphics::ScreenWidth / 2, Graphics::ScreenHeight } },
 	canTeleport{ false },
 	reticleTarget{ nullptr }
 {
@@ -51,6 +50,10 @@ void Game::KeyPressed(const sf::Keyboard::Key key)
 		if (player.IsWithinRange(*reticleTarget.get()))
 		{
 			activeWorld->SpawnProjectile(Projectile{ TextureManager::Get("Fireball"), player.GetPosition(), reticleTarget });
+		}
+		else
+		{
+			subtitleHandler.Emplace(SubtitleHandler::SubtitleType::Warning, "Out of range!", 1.0f);
 		}
 	}
 }
@@ -124,8 +127,14 @@ void Game::UpdateModel()
 
 	if (canTeleport)
 	{
-		teleportInstructionText.Update(gfx);
+		subtitleHandler.Emplace(SubtitleHandler::SubtitleType::Action, "Press X to teleport...");
 	}
+	else
+	{
+		subtitleHandler.Remove(SubtitleHandler::SubtitleType::Action);
+	}
+
+	subtitleHandler.Update();
 }
 
 void Game::ComposeFrame()
@@ -141,10 +150,7 @@ void Game::ComposeFrame()
 		reticle.Draw(gfx);
 	}
 
-	if (canTeleport)
-	{
-		teleportInstructionText.Draw(gfx);
-	}
+	subtitleHandler.Draw(gfx);
 }
 
 void Game::ChangeActiveWorld(const int index)

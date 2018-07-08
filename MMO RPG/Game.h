@@ -6,8 +6,8 @@
 #include "Graphics.h"
 #include "World.h"
 #include "Minimap.h"
-#include "FlashingText.h"
 #include "Reticle.h"
+#include "SubtitleHandler.h"
 
 class Game
 {
@@ -43,10 +43,10 @@ private:
 
 	std::vector<World> worlds;
 
-	FlashingText teleportInstructionText;
-
 	bool canTeleport;
 
 	Reticle reticle;
 	std::shared_ptr<InteractiveCharacter> reticleTarget;
+
+	SubtitleHandler subtitleHandler;
 };
