@@ -51,6 +51,7 @@
     <ClCompile Include="StatBar.cpp" />
     <ClCompile Include="Subtitle.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TimeoutTracker.cpp" />
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
@@ -86,6 +87,7 @@
     <ClInclude Include="Subtitle.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="TimeoutTracker.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
