@@ -2,24 +2,21 @@
 
 #include <SFML/Graphics/Text.hpp>
 
-#include "Graphics.h"
+#include "Subtitle.h"
 
-class FlashingText
+class FlashingText : public Subtitle
 {
 public:
-	FlashingText(const std::string& string, const sf::Vector2i position);
+	explicit FlashingText(const std::string& string);
 
 public:
-	void Update(const Graphics& gfx);
-	void Draw(const Graphics& gfx) const;
+	void OnUpdate() override;
 
 private:
 	static constexpr int AlphaModifierMagnitude = 3;
 
 private:
 	sf::Text text;
-
-	sf::Vector2i position;
 
 	int alpha;
 	int alphaModifier;
