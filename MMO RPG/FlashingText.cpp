@@ -1,5 +1,7 @@
 #include "FlashingText.h"
 
+#include "ResourceManager.h"
+
 FlashingText::FlashingText(const std::string& string)
 	:
 	Subtitle{ text },
