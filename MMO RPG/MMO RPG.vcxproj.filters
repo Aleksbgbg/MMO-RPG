@@ -91,6 +91,9 @@
     <ClCompile Include="FlashingText.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
+    <ClCompile Include="RegularSubtitleText.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -187,6 +190,9 @@
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="FlashingText.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="RegularSubtitleText.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
   </ItemGroup>

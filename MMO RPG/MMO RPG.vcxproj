@@ -44,6 +44,7 @@
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Rect.cpp" />
+    <ClCompile Include="RegularSubtitleText.cpp" />
     <ClCompile Include="Reticle.cpp" />
     <ClCompile Include="SimpleAiMovement.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
@@ -77,6 +78,7 @@
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Rect.h" />
+    <ClInclude Include="RegularSubtitleText.h" />
     <ClInclude Include="Reticle.h" />
     <ClInclude Include="SimpleAiMovement.h" />
     <ClInclude Include="ResourceManager.h" />
