@@ -28,6 +28,7 @@
     <ClCompile Include="FlashingText.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="Hud.cpp" />
     <ClCompile Include="InteractiveCharacter.cpp" />
     <ClCompile Include="Json.cpp" />
     <ClCompile Include="Main.cpp">
@@ -68,6 +69,7 @@
     <ClInclude Include="Font.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="Hud.h" />
     <ClInclude Include="InteractiveCharacter.h" />
     <ClInclude Include="Json.h" />
     <ClInclude Include="Map.h" />
