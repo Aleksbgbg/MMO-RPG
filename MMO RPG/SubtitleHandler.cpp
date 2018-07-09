@@ -24,9 +24,18 @@ void SubtitleHandler::Emplace(const SubtitleType type, const std::string& text)
 
 void SubtitleHandler::Emplace(const SubtitleType type, const std::string& text, const float timeout)
 {
-	Emplace(type, text);
+	const auto activeTimeout = subtitleTimeouts.find(type);
 
-	subtitleTimeouts.emplace(type, timeout);
+	if (activeTimeout == subtitleTimeouts.end())
+	{
+		Emplace(type, text);
+
+		subtitleTimeouts.emplace(type, timeout);
+	}
+	else
+	{
+		activeTimeout->second.Reset(timeout);
+	}
 }
 
 void SubtitleHandler::Remove(const SubtitleType type)
