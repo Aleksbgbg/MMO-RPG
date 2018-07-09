@@ -8,10 +8,13 @@ public:
 public:
 	void Update();
 
+	void Reset();
+	void Reset(const float newTimeout);
+
 	bool TimedOut() const;
 
 private:
-	const float timeout;
+	float timeout;
 
 	float runningTime;
 };
