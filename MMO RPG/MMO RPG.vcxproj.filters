@@ -10,26 +10,14 @@
     <ClCompile Include="Animation.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="Graphics.cpp">
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
     <ClCompile Include="DeltaTime.cpp">
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Npc.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="Random.cpp">
       <Filter>Source Files\Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files\Framework</Filter>
@@ -40,23 +28,14 @@
     <ClCompile Include="Tile.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="Minimap.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="Collider.cpp">
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
     <ClCompile Include="Portal.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="World.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="Rect.cpp">
       <Filter>Source Files\Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Json.cpp">
       <Filter>Source Files\Framework</Filter>
@@ -79,19 +58,7 @@
     <ClCompile Include="Reticle.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="InteractiveCharacter.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="Projectile.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Subtitle.cpp">
-      <Filter>Source Files\Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="FlashingText.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="RegularSubtitleText.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="TimeoutTracker.cpp">
@@ -100,16 +67,46 @@
     <ClCompile Include="SubtitleHandler.cpp">
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
+    <ClCompile Include="FlashingText.cpp">
+      <Filter>Source Files\Entities\Subtitling</Filter>
+    </ClCompile>
+    <ClCompile Include="Subtitle.cpp">
+      <Filter>Source Files\Entities\Subtitling</Filter>
+    </ClCompile>
+    <ClCompile Include="RegularSubtitleText.cpp">
+      <Filter>Source Files\Entities\Subtitling</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Source Files\Entities\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="InteractiveCharacter.cpp">
+      <Filter>Source Files\Entities\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files\Entities\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Npc.cpp">
+      <Filter>Source Files\Entities\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Entities\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Minimap.cpp">
+      <Filter>Source Files\Entities\HUD</Filter>
+    </ClCompile>
     <ClCompile Include="Hud.cpp">
-      <Filter>Source Files\Framework</Filter>
+      <Filter>Source Files\Entities\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Source Files\Entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
       <Filter>Header Files\Entities</Filter>
@@ -123,14 +120,8 @@
     <ClInclude Include="DeltaTime.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Npc.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="Random.h">
       <Filter>Header Files\Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Header Files\Framework</Filter>
@@ -139,9 +130,6 @@
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
     <ClInclude Include="Tile.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Minimap.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Collider.h">
@@ -155,9 +143,6 @@
     </ClInclude>
     <ClInclude Include="Rect.h">
       <Filter>Header Files\Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Json.h">
       <Filter>Header Files\Framework</Filter>
@@ -189,19 +174,7 @@
     <ClInclude Include="Reticle.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="InteractiveCharacter.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="Projectile.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Subtitle.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="FlashingText.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="RegularSubtitleText.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="TimeoutTracker.h">
@@ -210,8 +183,35 @@
     <ClInclude Include="SubtitleHandler.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
+    <ClInclude Include="Subtitle.h">
+      <Filter>Header Files\Entities\Subtitling</Filter>
+    </ClInclude>
+    <ClInclude Include="RegularSubtitleText.h">
+      <Filter>Header Files\Entities\Subtitling</Filter>
+    </ClInclude>
+    <ClInclude Include="FlashingText.h">
+      <Filter>Header Files\Entities\Subtitling</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Header Files\Entities\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractiveCharacter.h">
+      <Filter>Header Files\Entities\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Header Files\Entities\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\Entities\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Npc.h">
+      <Filter>Header Files\Entities\Characters</Filter>
+    </ClInclude>
     <ClInclude Include="Hud.h">
-      <Filter>Header Files\Framework</Filter>
+      <Filter>Header Files\Entities\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="Minimap.h">
+      <Filter>Header Files\Entities\HUD</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -228,9 +228,6 @@
     </Filter>
     <Filter Include="Source Files\Entities">
       <UniqueIdentifier>{6327cb53-53dd-4861-9cef-eb880d148ba6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Framework">
-      <UniqueIdentifier>{460f56c9-eb6e-401f-8e45-c3e75884bd27}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Framework">
       <UniqueIdentifier>{de0f7b63-73aa-48ae-aa8d-cc6091252db6}</UniqueIdentifier>
@@ -251,17 +248,38 @@
     <Filter Include="Resource Files\Maps">
       <UniqueIdentifier>{a25bd960-313f-4753-8c8d-0bee7227d53a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Framework\ResourceManagement">
-      <UniqueIdentifier>{02a44248-f339-47f1-b038-3fa13560372e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Framework\ResourceManagement">
       <UniqueIdentifier>{94a99873-0f68-4d84-a174-ebc47e147bb2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Entities\Movement">
       <UniqueIdentifier>{757f0e7b-215c-4446-8e84-afe2319be4b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Entities\Subtitling">
+      <UniqueIdentifier>{f4cf53b2-07e2-4d71-a6d7-3528a8291dcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework">
+      <UniqueIdentifier>{460f56c9-eb6e-401f-8e45-c3e75884bd27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework\ResourceManagement">
+      <UniqueIdentifier>{02a44248-f339-47f1-b038-3fa13560372e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Subtitling">
+      <UniqueIdentifier>{3cddec14-80c7-47e0-96ed-a841dcdacbfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities\Characters">
+      <UniqueIdentifier>{c1dd7c28-dbd9-4923-bb12-410dba670e33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities\HUD">
+      <UniqueIdentifier>{fa125e91-d0c5-4360-b2f1-2f486b8c8e52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\HUD">
+      <UniqueIdentifier>{5a0cbaef-31c0-41eb-ac7c-110c1d0641d8}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\Entities\Movement">
       <UniqueIdentifier>{6e79078c-531e-46d3-8a74-2bbf35b7bf5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Characters">
+      <UniqueIdentifier>{aa0c722e-080f-4d06-998c-bd920528a4e3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
