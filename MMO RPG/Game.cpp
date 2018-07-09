@@ -150,6 +150,8 @@ void Game::ComposeFrame()
 		reticle.Draw(gfx);
 	}
 
+	hud.Draw(gfx);
+
 	subtitleHandler.Draw(gfx);
 }
 

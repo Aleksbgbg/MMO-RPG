@@ -8,6 +8,7 @@
 #include "Minimap.h"
 #include "Reticle.h"
 #include "SubtitleHandler.h"
+#include "Hud.h"
 
 class Game
 {
@@ -49,4 +50,6 @@ private:
 	std::shared_ptr<InteractiveCharacter> reticleTarget;
 
 	SubtitleHandler subtitleHandler;
+
+	Hud hud;
 };
