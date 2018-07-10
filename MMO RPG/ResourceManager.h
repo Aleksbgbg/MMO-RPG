@@ -15,9 +15,6 @@ public:
 	static const T& Get(const std::string& name);
 
 private:
-	static std::unordered_map<std::string, T> LoadResources();
-
-private:
 	static std::unordered_map<std::string, T> resourceMap;
 };
 

@@ -4,35 +4,28 @@
 #include <unordered_map>
 
 template<typename T, typename TResourceType>
-std::unordered_map<std::string, T> ResourceManager<T, TResourceType>::resourceMap = LoadResources();
+std::unordered_map<std::string, T> ResourceManager<T, TResourceType>::resourceMap;
 
 template<typename T, typename TResourceType>
 const T& ResourceManager<T, TResourceType>::Get(const std::string& name)
 {
-	return resourceMap.at(name);
-}
+	const auto iterator = resourceMap.find(name);
 
-template<typename T, typename TResourceType>
-std::unordered_map<std::string, T> ResourceManager<T, TResourceType>::LoadResources()
-{
-	std::unordered_map<std::string, T> resourceMap;
-
-	for(const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator{ std::filesystem::current_path().string() + "\\" + TResourceType::Folder })
+	if (iterator == resourceMap.end())
 	{
-		const std::string filepath = entry.path().string();
-		const std::string filename = entry.path().filename().string();
+		const std::string filename = std::filesystem::current_path().string() + "\\" + TResourceType::Folder + "\\" + name + TResourceType::Extension;
 
 		T resource;
 
-		if (!resource.loadFromFile(filepath))
+		if (!resource.loadFromFile(filename))
 		{
-			throw std::runtime_error{ "Could not load resource " + filename };
+			throw std::runtime_error{ "Could not load resource " + name };
 		}
 
-		resourceMap.emplace(filename.substr(0, filename.find_last_of('.')), resource);
+		return resourceMap.emplace(filename.substr(0, filename.find_last_of('.')), resource).first->second;
 	}
 
-	return resourceMap;
+	return iterator->second;
 }
 
 template class ResourceManager<sf::Texture, ResourceManagement::Texture>;
