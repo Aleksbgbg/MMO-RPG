@@ -38,6 +38,8 @@ void Game::Main()
 
 void Game::KeyPressed(const sf::Keyboard::Key key)
 {
+	hud.KeyPressed(key);
+
 	if (key == sf::Keyboard::X && canTeleport)
 	{
 		const Portal& sourcePortal = activeWorld->FindNearestPortal();
