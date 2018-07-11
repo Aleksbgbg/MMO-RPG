@@ -30,6 +30,7 @@
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Hud.cpp" />
     <ClCompile Include="InteractiveCharacter.cpp" />
+    <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Json.cpp" />
     <ClCompile Include="Main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\Libraries\json;$(SolutionDir)\Libraries\SFML 2.5\include</AdditionalIncludeDirectories>
@@ -71,6 +72,7 @@
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Hud.h" />
     <ClInclude Include="InteractiveCharacter.h" />
+    <ClInclude Include="Inventory.h" />
     <ClInclude Include="Json.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Minimap.h" />
