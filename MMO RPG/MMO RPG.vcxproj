@@ -98,6 +98,14 @@
   <ItemGroup>
     <Image Include="Textures\Bat.png" />
     <Image Include="Textures\Fireball.png" />
+    <Image Include="Textures\Inventory\Bag Slot Border.png" />
+    <Image Include="Textures\Inventory\Blank Slot Background.png" />
+    <Image Include="Textures\Inventory\Equip Slot Border.png" />
+    <Image Include="Textures\Inventory\Items Inventory.png" />
+    <Image Include="Textures\Inventory\Items.png" />
+    <Image Include="Textures\Inventory\Magic Item Border.png" />
+    <Image Include="Textures\Inventory\Rare Item Border.png" />
+    <Image Include="Textures\Inventory\Unique Item Border.png" />
     <Image Include="Textures\Map.png" />
     <Image Include="Textures\NPC0.png" />
     <Image Include="Textures\NPC1.png" />

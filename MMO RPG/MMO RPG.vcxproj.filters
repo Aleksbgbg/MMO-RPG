@@ -281,6 +281,9 @@
     <Filter Include="Source Files\Entities\Characters">
       <UniqueIdentifier>{aa0c722e-080f-4d06-998c-bd920528a4e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Textures\Inventory">
+      <UniqueIdentifier>{3988ba6d-d35a-4fe4-845d-b37be7f29561}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\NPCs.png">
@@ -324,6 +327,30 @@
     </Image>
     <Image Include="Textures\Fireball.png">
       <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Textures\Inventory\Bag Slot Border.png">
+      <Filter>Resource Files\Textures\Inventory</Filter>
+    </Image>
+    <Image Include="Textures\Inventory\Blank Slot Background.png">
+      <Filter>Resource Files\Textures\Inventory</Filter>
+    </Image>
+    <Image Include="Textures\Inventory\Equip Slot Border.png">
+      <Filter>Resource Files\Textures\Inventory</Filter>
+    </Image>
+    <Image Include="Textures\Inventory\Items Inventory.png">
+      <Filter>Resource Files\Textures\Inventory</Filter>
+    </Image>
+    <Image Include="Textures\Inventory\Items.png">
+      <Filter>Resource Files\Textures\Inventory</Filter>
+    </Image>
+    <Image Include="Textures\Inventory\Magic Item Border.png">
+      <Filter>Resource Files\Textures\Inventory</Filter>
+    </Image>
+    <Image Include="Textures\Inventory\Rare Item Border.png">
+      <Filter>Resource Files\Textures\Inventory</Filter>
+    </Image>
+    <Image Include="Textures\Inventory\Unique Item Border.png">
+      <Filter>Resource Files\Textures\Inventory</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
