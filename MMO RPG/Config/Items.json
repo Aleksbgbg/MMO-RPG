@@ -47,5 +47,7 @@
   "equipSlotWidth": 82,
   "equipSlotHeight": 82,
   "regularSlotWidth": 64,
-  "regularSlotHeight": 64
+  "regularSlotHeight": 64,
+  "equipAreaHorizontalStart": 27,
+  "equipAreaVerticalStart": 505
 }
