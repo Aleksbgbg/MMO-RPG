@@ -15,8 +15,8 @@ Inventory::Inventory()
 	for (const InventoryItem::Equipment equipment : std::array<InventoryItem::Equipment, 3>
 	{
 		InventoryItem::Equipment::MagicStaff,
-		InventoryItem::Equipment::StrongCape,
-		InventoryItem::Equipment::HeavyArmor
+			InventoryItem::Equipment::StrongCape,
+			InventoryItem::Equipment::HeavyArmor
 	})
 	{
 		Equip(CreateAndStore(equipment));
@@ -53,9 +53,11 @@ void Inventory::Draw(const Graphics& gfx)
 
 	const sf::Vector2f regularSlotDimensions{ itemsInfo["regularSlotWidth"], itemsInfo["regularSlotHeight"] };
 
-	for (int x = 0; x < itemsPerRow; ++x)
+	const sf::Vector2i equipAreaOffset{ itemsInfo["equipAreaHorizontalStart"], itemsInfo["equipAreaVerticalStart"] };
+
+	for (int y = 0; y < 4; ++y)
 	{
-		for (int y = 0; y < 4; ++y)
+		for (int x = 0; x < itemsPerRow; ++x)
 		{
 			const int index = x + y * itemsPerRow;
 
@@ -69,7 +71,7 @@ void Inventory::Draw(const Graphics& gfx)
 				gfx,
 				sf::FloatRect
 				{
-					gfx.MapPixelToCoords(sf::Vector2i{ static_cast<int>(x * regularSlotDimensions.x), static_cast<int>(y * regularSlotDimensions.y) }),
+					gfx.MapPixelToCoords(sf::Vector2i{ static_cast<int>(equipAreaOffset.x + x * regularSlotDimensions.x), static_cast<int>(equipAreaOffset.y + y * regularSlotDimensions.y) }),
 					regularSlotDimensions
 				}
 			);
@@ -82,6 +84,29 @@ void Inventory::ToggleOpened()
 	opened = !opened;
 }
 
+void Inventory::MouseClicked(const sf::Vector2i position)
+{
+	const sf::Vector2f floatPosition{ position };
+
+	for (const auto& pair : equippedItems)
+	{
+		if (pair.second->IsAt(floatPosition))
+		{
+			Dequip(pair.second->GetEquipmentType());
+			return;
+		}
+	}
+
+	for (auto iterator = storedItems.begin(); iterator != storedItems.end(); ++iterator)
+	{
+		if ((*iterator)->IsAt(floatPosition))
+		{
+			Equip(iterator - storedItems.begin());
+			return;
+		}
+	}
+}
+
 void Inventory::Equip(const int itemIndex)
 {
 	std::unique_ptr<InventoryItem> item = std::move(storedItems[itemIndex]);
@@ -90,11 +115,13 @@ void Inventory::Equip(const int itemIndex)
 
 	const InventoryItem::EquipmentType type = item->GetEquipmentType();
 
-	const auto iterator = equippedItems.find(type);
-
-	if (iterator != equippedItems.end())
 	{
-		equippedItems.erase(iterator);
+		const auto iterator = equippedItems.find(type);
+
+		if (iterator != equippedItems.end())
+		{
+			Dequip(iterator->second->GetEquipmentType());
+		}
 	}
 
 	equippedItems.emplace(type, std::move(item));

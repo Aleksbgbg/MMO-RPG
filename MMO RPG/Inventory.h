@@ -19,6 +19,8 @@ public:
 
 	void ToggleOpened();
 
+	void MouseClicked(const sf::Vector2i position);
+
 private:
 	void Equip(const int itemIndex);
 	void Dequip(const InventoryItem::EquipmentType type);
