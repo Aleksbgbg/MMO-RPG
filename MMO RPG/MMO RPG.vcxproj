@@ -126,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Config\Bat.json" />
+    <None Include="Config\Items.json" />
     <None Include="Config\NPC.json" />
     <None Include="Config\Player.json" />
     <None Include="Config\World.json" />
@@ -252,4 +253,9 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties Items_1json__JSONSchema="item" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

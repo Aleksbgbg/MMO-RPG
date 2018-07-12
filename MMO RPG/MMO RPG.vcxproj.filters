@@ -395,5 +395,8 @@
     <None Include="Config\World.json">
       <Filter>Resource Files\Config</Filter>
     </None>
+    <None Include="Config\Items.json">
+      <Filter>Resource Files\Config</Filter>
+    </None>
   </ItemGroup>
 </Project>

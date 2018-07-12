@@ -1,0 +1,51 @@
+{
+  "itemsPerRow": 8,
+  "itemWidth": 64,
+  "itemHeight": 64, 
+  "positions": [
+	  {
+		  "x": 32,
+		  "y": 32
+	  },
+	  {
+		  "x": 32,
+		  "y": 122
+	  },
+	  {
+		  "x": 32,
+		  "y": 212
+	  },
+	  {
+		  "x": 32,
+		  "y": 302
+	  },
+	  {
+		  "x": 32,
+		  "y": 392
+	  },
+	  {
+		  "x": 453,
+		  "y": 32
+	  },
+	  {
+		  "x": 453,
+		  "y": 122
+	  },
+	  {
+		  "x": 453,
+		  "y": 212
+	  },
+	  {
+		  "x": 453,
+		  "y": 302
+	  },
+	  {
+		  "x": 453,
+		  "y": 392
+	  }
+  ],
+  "equipSlotWidth": 82,
+  "equipSlotHeight": 82,
+  "regularSlotWidth": 64,
+  "regularSlotHeight": 64
+}
