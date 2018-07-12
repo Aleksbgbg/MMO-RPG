@@ -18,6 +18,7 @@ public:
 	void Main();
 
 	void KeyPressed(const sf::Keyboard::Key key);
+	void MouseClicked(const sf::Vector2i position);
 
 private:
 	void UpdateModel();

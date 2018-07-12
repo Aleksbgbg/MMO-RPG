@@ -13,3 +13,8 @@ void Hud::KeyPressed(const sf::Keyboard::Key key)
 		inventory.ToggleOpened();
 	}
 }
+
+void Hud::MouseClicked(const sf::Vector2i position)
+{
+	inventory.MouseClicked(position);
+}

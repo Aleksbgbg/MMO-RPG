@@ -60,6 +60,11 @@ void Game::KeyPressed(const sf::Keyboard::Key key)
 	}
 }
 
+void Game::MouseClicked(const sf::Vector2i position)
+{
+	hud.MouseClicked(position);
+}
+
 void Game::UpdateModel()
 {
 	player.Update();
