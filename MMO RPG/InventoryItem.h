@@ -84,6 +84,8 @@ public:
 
 	EquipmentType GetEquipmentType() const;
 
+	bool IsAt(const sf::Vector2f point) const;
+
 private:
 	EquipmentType type;
 	Equipment equipment;

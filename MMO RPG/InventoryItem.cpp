@@ -68,3 +68,8 @@ InventoryItem::EquipmentType InventoryItem::GetEquipmentType() const
 {
 	return type;
 }
+
+bool InventoryItem::IsAt(const sf::Vector2f point) const
+{
+	return sprite.getGlobalBounds().contains(point);
+}
