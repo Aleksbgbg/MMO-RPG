@@ -109,6 +109,9 @@
     <ClCompile Include="InventoryItem.cpp">
       <Filter>Source Files\Entities\HUD</Filter>
     </ClCompile>
+    <ClCompile Include="HudWindow.cpp">
+      <Filter>Source Files\Entities\HUD</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -223,6 +226,9 @@
       <Filter>Header Files\Entities\HUD</Filter>
     </ClInclude>
     <ClInclude Include="InventoryItem.h">
+      <Filter>Header Files\Entities\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="HudWindow.h">
       <Filter>Header Files\Entities\HUD</Filter>
     </ClInclude>
   </ItemGroup>

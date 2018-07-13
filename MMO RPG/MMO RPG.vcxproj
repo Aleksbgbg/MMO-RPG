@@ -29,6 +29,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Hud.cpp" />
+    <ClCompile Include="HudWindow.cpp" />
     <ClCompile Include="InteractiveCharacter.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="InventoryItem.cpp" />
@@ -72,6 +73,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Hud.h" />
+    <ClInclude Include="HudWindow.h" />
     <ClInclude Include="InteractiveCharacter.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="InventoryItem.h" />
