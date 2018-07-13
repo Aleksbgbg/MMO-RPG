@@ -14,7 +14,7 @@ void HudWindow::ToggleOpened()
 
 void HudWindow::Draw(const Graphics& gfx)
 {
-	if (!opened)
+	if (opened)
 	{
 		OnDraw(gfx);
 	}
