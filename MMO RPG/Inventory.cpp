@@ -12,11 +12,39 @@ Inventory::Inventory()
 {
 	itemsInfo = read_json("Config\\Items.json");
 
+	const sf::Vector2f equipSlotDimensions{ itemsInfo["equipSlotWidth"], itemsInfo["equipSlotHeight"] };
+
+	const json& specialSlotPositions = itemsInfo["positions"];
+
+	for (int index = 0; index < specialSlotPositions.size(); ++index)
+	{
+		const json& slotPositionJson = specialSlotPositions[index];
+
+		const sf::Vector2f slotPosition{ slotPositionJson["x"], slotPositionJson["y"] };
+
+		equipSlots.emplace(static_cast<InventoryItem::EquipmentType>(index), InventorySlot{ sf::FloatRect{ slotPosition, equipSlotDimensions } });
+	}
+
+	const int itemsPerRow = itemsInfo["itemsPerRow"];
+	const int rows = itemsInfo["rows"];
+
+	const sf::Vector2f regularSlotDimensions{ itemsInfo["regularSlotWidth"], itemsInfo["regularSlotHeight"] };
+
+	const sf::Vector2i equipAreaOffset{ itemsInfo["equipAreaHorizontalStart"], itemsInfo["equipAreaVerticalStart"] };
+
+	for (int y = 0; y < rows; ++y)
+	{
+		for (int x = 0; x < itemsPerRow; ++x)
+		{
+			inventorySlots.emplace_back(sf::FloatRect{ sf::Vector2f{ static_cast<float>(equipAreaOffset.x + x * regularSlotDimensions.x), static_cast<float>(equipAreaOffset.y + y * regularSlotDimensions.y) }, regularSlotDimensions });
+		}
+	}
+
 	for (const InventoryItem::Equipment equipment : std::array<InventoryItem::Equipment, 3>
 	{
 		InventoryItem::Equipment::MagicStaff,
-			InventoryItem::Equipment::StrongCape,
-			InventoryItem::Equipment::HeavyArmor
+		InventoryItem::Equipment::StrongCape,
+		InventoryItem::Equipment::HeavyArmor
 	})
 	{
 		Equip(CreateAndStore(equipment));
@@ -28,103 +56,123 @@ void Inventory::OnDraw(const Graphics& gfx)
 	background.setPosition(gfx.MapPixelToCoords(sf::Vector2i{ 0, 0 }));
 	gfx.Draw(background);
 
+	for (auto& pair : equipSlots)
 	{
-		const sf::Vector2f equipSlotDimensions{ itemsInfo["equipSlotWidth"], itemsInfo["equipSlotHeight"] };
-
-		for (const auto& pair : equippedItems)
-		{
-			const int positionIndex = static_cast<int>(pair.first);
-
-			pair.second->Render
-			(
-				gfx,
-				sf::FloatRect
-				{
-					gfx.MapPixelToCoords(sf::Vector2i{ itemsInfo["positions"][positionIndex]["x"], itemsInfo["positions"][positionIndex]["y"] }),
-					equipSlotDimensions
-				}
-			);
-		}
+		pair.second.Draw(gfx);
 	}
 
-	const int itemsPerRow = itemsInfo["itemsPerRow"];
-
-	const sf::Vector2f regularSlotDimensions{ itemsInfo["regularSlotWidth"], itemsInfo["regularSlotHeight"] };
-
-	const sf::Vector2i equipAreaOffset{ itemsInfo["equipAreaHorizontalStart"], itemsInfo["equipAreaVerticalStart"] };
-
-	for (int y = 0; y < 4; ++y)
+	for (InventorySlot& slot : inventorySlots)
 	{
-		for (int x = 0; x < itemsPerRow; ++x)
-		{
-			const int index = x + y * itemsPerRow;
-
-			if (index >= storedItems.size())
-			{
-				return;
-			}
-
-			storedItems[index]->Render
-			(
-				gfx,
-				sf::FloatRect
-				{
-					gfx.MapPixelToCoords(sf::Vector2i{ static_cast<int>(equipAreaOffset.x + x * regularSlotDimensions.x), static_cast<int>(equipAreaOffset.y + y * regularSlotDimensions.y) }),
-					regularSlotDimensions
-				}
-			);
-		}
+		slot.Draw(gfx);
 	}
 }
 
 void Inventory::OnMouseClicked(const sf::Vector2f position)
 {
-	for (const auto& pair : equippedItems)
+	for (auto& pair : equipSlots)
 	{
-		if (pair.second->IsAt(position))
+		if (pair.second.IsAt(position) && pair.second.HasItem())
 		{
-			Dequip(pair.second->GetEquipmentType());
+			InventorySlot::Swap(pair.second, FindEmptySlot());
 			return;
 		}
 	}
 
-	for (auto iterator = storedItems.begin(); iterator != storedItems.end(); ++iterator)
+	for (InventorySlot& slot : inventorySlots)
 	{
-		if ((*iterator)->IsAt(position))
+		if (slot.IsAt(position) && slot.HasItem())
 		{
-			Equip(iterator - storedItems.begin());
+			InventorySlot::Swap(slot, equipSlots[slot.GetEquipmentType()]);
 			return;
 		}
 	}
+}
+
+Inventory::InventorySlot::InventorySlot(const sf::FloatRect dimensions)
+	:
+	dimensions{ dimensions }
+{
+}
+
+Inventory::InventorySlot::InventorySlot(InventoryItem item, const sf::FloatRect dimensions)
+	:
+	item{ item },
+	dimensions{ dimensions }
+{
+}
+
+void Inventory::InventorySlot::Equip(const InventoryItem& item)
+{
+	this->item = item;
+}
+
+std::optional<InventoryItem> Inventory::InventorySlot::Dequip()
+{
+	std::optional<InventoryItem> item = this->item;
+
+	this->item = std::optional<InventoryItem>{ };
+
+	return item;
+}
+
+void Inventory::InventorySlot::UpdateWorldPosition(const sf::Vector2f worldPosition)
+{
+	this->worldPosition = worldPosition;
+}
+
+void Inventory::InventorySlot::Draw(const Graphics& gfx)
+{
+	if (!HasItem()) return;
+
+	sf::FloatRect dimensions = this->dimensions;
+
+	dimensions.left += worldPosition.x;
+	dimensions.top += worldPosition.y;
+
+	item.value().Render(gfx, dimensions);
+}
+
+bool Inventory::InventorySlot::IsAt(const sf::Vector2f point) const
+{
+	return dimensions.contains(point);
+}
+
+void Inventory::InventorySlot::Swap(InventorySlot& first, InventorySlot& second)
+{
+	std::optional<InventoryItem> firstItem = first.Dequip();
+	std::optional<InventoryItem> secondItem = second.Dequip();
+
+	if (firstItem.has_value())
+	{
+		second.Equip(firstItem.value());
+	}
+
+	if (secondItem.has_value())
+	{
+		first.Equip(secondItem.value());
+	}
+}
+
+bool Inventory::InventorySlot::HasItem() const
+{
+	return item.has_value();
+}
+
+InventoryItem::EquipmentType Inventory::InventorySlot::GetEquipmentType() const
+{
+	return item.value().GetEquipmentType();
 }
 
 void Inventory::Equip(const int itemIndex)
 {
-	std::unique_ptr<InventoryItem> item = std::move(storedItems[itemIndex]);
+	InventoryItem item = inventorySlots[itemIndex].Dequip().value();
 
-	storedItems.erase(storedItems.begin() + itemIndex);
-
-	const InventoryItem::EquipmentType type = item->GetEquipmentType();
-
-	{
-		const auto iterator = equippedItems.find(type);
-
-		if (iterator != equippedItems.end())
-		{
-			Dequip(iterator->second->GetEquipmentType());
-		}
-	}
-
-	equippedItems.emplace(type, std::move(item));
+	equipSlots[item.GetEquipmentType()].Equip(item);
 }
 
 void Inventory::Dequip(const InventoryItem::EquipmentType type)
 {
-	const auto iterator = equippedItems.find(type);
-
-	storedItems.emplace_back(std::move(iterator->second));
-
-	equippedItems.erase(iterator);
+	InventorySlot::Swap(equipSlots[type], FindEmptySlot());
 }
 
 int Inventory::CreateAndStore(const InventoryItem::Equipment type)
@@ -140,7 +188,27 @@ int Inventory::CreateAndStore(const InventoryItem::Equipment type)
 	const int itemWidth = itemsInfo["itemWidth"];
 	const int itemHeight = itemsInfo["itemHeight"];
 
-	storedItems.emplace_back(std::make_unique<InventoryItem>(type, sf::IntRect{ column * itemWidth, row * itemHeight, itemWidth, itemHeight }));
+	const int emptySlotIndex = FindEmptySlotIndex();
 
-	return storedItems.size() - 1;
+	inventorySlots[emptySlotIndex].Equip(InventoryItem{ type, sf::IntRect{ column * itemWidth, row * itemHeight, itemWidth, itemHeight } });
+
+	return emptySlotIndex;
+}
+
+Inventory::InventorySlot& Inventory::FindEmptySlot()
+{
+	return inventorySlots[FindEmptySlotIndex()];
+}
+
+int Inventory::FindEmptySlotIndex() const
+{
+	for (int index = 0; index < inventorySlots.size(); ++index)
+	{
+		if (!inventorySlots[index].HasItem())
+		{
+			return index;
+		}
+	}
+
+	throw std::runtime_error{ "No empty slot." };
 }
