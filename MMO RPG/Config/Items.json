@@ -1,5 +1,6 @@
 {
   "itemsPerRow": 8,
+  "rows": 4,
   "itemWidth": 64,
   "itemHeight": 64, 
   "positions": [
