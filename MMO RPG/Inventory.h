@@ -16,9 +16,9 @@ public:
 	Inventory();
 
 public:
-	void Draw(const Graphics& gfx);
+	void OnDraw(const Graphics& gfx) override;
 
-	void MouseClicked(const sf::Vector2f position);
+	void OnMouseClicked(const sf::Vector2f position) override;
 
 private:
 	void Equip(const int itemIndex);

@@ -7,6 +7,7 @@ using nlohmann::json;
 
 Inventory::Inventory()
 	:
+	HudWindow{ sf::Keyboard::Key::I },
 	background{ TextureManager::Get("Inventory\\Items Inventory") }
 {
 	itemsInfo = read_json("Config\\Items.json");
@@ -22,7 +23,7 @@ Inventory::Inventory()
 	}
 }
 
-void Inventory::Draw(const Graphics& gfx)
+void Inventory::OnDraw(const Graphics& gfx)
 {
 	background.setPosition(gfx.MapPixelToCoords(sf::Vector2i{ 0, 0 }));
 	gfx.Draw(background);
@@ -76,7 +77,7 @@ void Inventory::Draw(const Graphics& gfx)
 	}
 }
 
-void Inventory::MouseClicked(const sf::Vector2f position)
+void Inventory::OnMouseClicked(const sf::Vector2f position)
 {
 	for (const auto& pair : equippedItems)
 	{
