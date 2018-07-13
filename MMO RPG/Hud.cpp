@@ -14,7 +14,7 @@ void Hud::KeyPressed(const sf::Keyboard::Key key)
 	}
 }
 
-void Hud::MouseClicked(const sf::Vector2i position)
+void Hud::MouseClicked(const sf::Vector2f position)
 {
 	inventory.MouseClicked(position);
 }

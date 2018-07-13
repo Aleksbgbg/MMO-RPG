@@ -84,13 +84,11 @@ void Inventory::ToggleOpened()
 	opened = !opened;
 }
 
-void Inventory::MouseClicked(const sf::Vector2i position)
+void Inventory::MouseClicked(const sf::Vector2f position)
 {
-	const sf::Vector2f floatPosition{ position };
-
 	for (const auto& pair : equippedItems)
 	{
-		if (pair.second->IsAt(floatPosition))
+		if (pair.second->IsAt(position))
 		{
 			Dequip(pair.second->GetEquipmentType());
 			return;
@@ -99,7 +97,7 @@ void Inventory::MouseClicked(const sf::Vector2i position)
 
 	for (auto iterator = storedItems.begin(); iterator != storedItems.end(); ++iterator)
 	{
-		if ((*iterator)->IsAt(floatPosition))
+		if ((*iterator)->IsAt(position))
 		{
 			Equip(iterator - storedItems.begin());
 			return;

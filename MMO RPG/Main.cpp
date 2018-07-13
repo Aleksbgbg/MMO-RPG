@@ -32,7 +32,7 @@ int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszA
 				}
 				else if (event.type == sf::Event::MouseButtonPressed)
 				{
-					game.MouseClicked(sf::Vector2i{ event.mouseButton.x, event.mouseButton.y });
+					game.MouseClicked(window.mapPixelToCoords(sf::Vector2i{ event.mouseButton.x, event.mouseButton.y }));
 				}
 			}
 		}

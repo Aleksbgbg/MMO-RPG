@@ -19,7 +19,7 @@ public:
 
 	void ToggleOpened();
 
-	void MouseClicked(const sf::Vector2i position);
+	void MouseClicked(const sf::Vector2f position);
 
 private:
 	void Equip(const int itemIndex);

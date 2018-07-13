@@ -11,7 +11,7 @@ public:
 	void Draw(const Graphics& gfx);
 
 	void KeyPressed(const sf::Keyboard::Key key);
-	void MouseClicked(const sf::Vector2i position);
+	void MouseClicked(const sf::Vector2f position);
 
 private:
 	Inventory inventory;

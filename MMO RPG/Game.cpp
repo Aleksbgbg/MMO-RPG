@@ -60,7 +60,7 @@ void Game::KeyPressed(const sf::Keyboard::Key key)
 	}
 }
 
-void Game::MouseClicked(const sf::Vector2i position)
+void Game::MouseClicked(const sf::Vector2f position)
 {
 	hud.MouseClicked(position);
 }
