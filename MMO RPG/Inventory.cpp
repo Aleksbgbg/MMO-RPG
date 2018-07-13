@@ -7,8 +7,7 @@ using nlohmann::json;
 
 Inventory::Inventory()
 	:
-	background{ TextureManager::Get("Inventory\\Items Inventory") },
-	opened{ false }
+	background{ TextureManager::Get("Inventory\\Items Inventory") }
 {
 	itemsInfo = read_json("Config\\Items.json");
 
@@ -25,8 +24,6 @@ Inventory::Inventory()
 
 void Inventory::Draw(const Graphics& gfx)
 {
-	if (!opened) return;
-
 	background.setPosition(gfx.MapPixelToCoords(sf::Vector2i{ 0, 0 }));
 	gfx.Draw(background);
 
@@ -77,11 +74,6 @@ void Inventory::Draw(const Graphics& gfx)
 			);
 		}
 	}
-}
-
-void Inventory::ToggleOpened()
-{
-	opened = !opened;
 }
 
 void Inventory::MouseClicked(const sf::Vector2f position)

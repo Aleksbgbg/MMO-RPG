@@ -8,16 +8,15 @@
 
 #include "Graphics.h"
 #include "InventoryItem.h"
+#include "HudWindow.h"
 
-class Inventory
+class Inventory : public HudWindow
 {
 public:
 	Inventory();
 
 public:
 	void Draw(const Graphics& gfx);
-
-	void ToggleOpened();
 
 	void MouseClicked(const sf::Vector2f position);
 
@@ -29,8 +28,6 @@ private:
 
 private:
 	sf::Sprite background;
-
-	bool opened;
 
 	nlohmann::json itemsInfo;
 
