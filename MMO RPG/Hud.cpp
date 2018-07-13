@@ -1,20 +1,30 @@
 #include "Hud.h"
 
+Hud::Hud()
+{
+	windows.emplace_back(std::make_unique<Inventory>());
+}
+
 void Hud::Draw(const Graphics& gfx)
 {
-	inventory.Draw(gfx);
+	for (const std::unique_ptr<HudWindow>& window : windows)
+	{
+		window->Draw(gfx);
+	}
 }
 
 void Hud::KeyPressed(const sf::Keyboard::Key key)
 {
-	switch (key)
+	for (const std::unique_ptr<HudWindow>& window : windows)
 	{
-	case sf::Keyboard::Key::I:
-		inventory.ToggleOpened();
+		window->KeyPressed(key);
 	}
 }
 
 void Hud::MouseClicked(const sf::Vector2f position)
 {
-	inventory.MouseClicked(position);
+	for (const std::unique_ptr<HudWindow>& window : windows)
+	{
+		window->MouseClicked(position);
+	}
 }

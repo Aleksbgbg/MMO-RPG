@@ -8,11 +8,14 @@
 class Hud
 {
 public:
+	Hud();
+
+public:
 	void Draw(const Graphics& gfx);
 
 	void KeyPressed(const sf::Keyboard::Key key);
 	void MouseClicked(const sf::Vector2f position);
 
 private:
-	Inventory inventory;
+	std::vector<std::unique_ptr<HudWindow>> windows;
 };
