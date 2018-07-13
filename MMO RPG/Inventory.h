@@ -46,6 +46,9 @@ private:
 		InventoryItem::EquipmentType GetEquipmentType() const;
 
 	private:
+		sf::FloatRect GetWorldDimensions() const;
+
+	private:
 		std::optional<InventoryItem> item;
 		sf::FloatRect dimensions;
 		sf::Vector2f worldPosition;

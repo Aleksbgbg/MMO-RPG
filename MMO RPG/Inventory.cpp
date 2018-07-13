@@ -53,16 +53,20 @@ Inventory::Inventory()
 
 void Inventory::OnDraw(const Graphics& gfx)
 {
-	background.setPosition(gfx.MapPixelToCoords(sf::Vector2i{ 0, 0 }));
+	const sf::Vector2f worldPosition = gfx.MapPixelToCoords(sf::Vector2i{ 0, 0 });
+
+	background.setPosition(worldPosition);
 	gfx.Draw(background);
 
 	for (auto& pair : equipSlots)
 	{
+		pair.second.UpdateWorldPosition(worldPosition);
 		pair.second.Draw(gfx);
 	}
 
 	for (InventorySlot& slot : inventorySlots)
 	{
+		slot.UpdateWorldPosition(worldPosition);
 		slot.Draw(gfx);
 	}
 }
@@ -124,17 +128,12 @@ void Inventory::InventorySlot::Draw(const Graphics& gfx)
 {
 	if (!HasItem()) return;
 
-	sf::FloatRect dimensions = this->dimensions;
-
-	dimensions.left += worldPosition.x;
-	dimensions.top += worldPosition.y;
-
-	item.value().Render(gfx, dimensions);
+	item.value().Render(gfx, GetWorldDimensions());
 }
 
 bool Inventory::InventorySlot::IsAt(const sf::Vector2f point) const
 {
-	return dimensions.contains(point);
+	return GetWorldDimensions().contains(point);
 }
 
 void Inventory::InventorySlot::Swap(InventorySlot& first, InventorySlot& second)
@@ -161,6 +160,16 @@ bool Inventory::InventorySlot::HasItem() const
 InventoryItem::EquipmentType Inventory::InventorySlot::GetEquipmentType() const
 {
 	return item.value().GetEquipmentType();
+}
+
+sf::FloatRect Inventory::InventorySlot::GetWorldDimensions() const
+{
+	sf::FloatRect dimensions = this->dimensions;
+
+	dimensions.left += worldPosition.x;
+	dimensions.top += worldPosition.y;
+
+	return dimensions;
 }
 
 void Inventory::Equip(const int itemIndex)
