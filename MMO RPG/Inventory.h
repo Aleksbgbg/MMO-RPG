@@ -30,6 +30,9 @@ private:
 		InventorySlot(InventoryItem item, const sf::FloatRect dimensions);
 
 	public:
+		virtual ~InventorySlot() = default;
+
+	public:
 		static void Swap(InventorySlot& first, InventorySlot& second);
 
 	public:
@@ -38,20 +41,38 @@ private:
 
 		void UpdateWorldPosition(const sf::Vector2f worldPosition);
 
-		void Draw(const Graphics& gfx);
+		virtual void Draw(const Graphics& gfx);
 
 		bool IsAt(const sf::Vector2f point) const;
 		bool HasItem() const;
 
 		InventoryItem::EquipmentType GetEquipmentType() const;
 
-	private:
+	protected:
+		sf::Vector2f GetWorldPosition() const;
+
+	protected:
 		sf::FloatRect GetWorldDimensions() const;
 
 	private:
 		std::optional<InventoryItem> item;
 		sf::FloatRect dimensions;
 		sf::Vector2f worldPosition;
+	};
+
+public:
+	class InventorySlotWithPlaceholder : public InventorySlot
+	{
+	public:
+		InventorySlotWithPlaceholder() = default;
+		InventorySlotWithPlaceholder(const sf::FloatRect dimensions, const std::string& placeholderImage);
+		InventorySlotWithPlaceholder(const InventoryItem& item, const sf::FloatRect dimensions, const std::string& placeholderImage);
+
+	public:
+		void Draw(const Graphics& gfx) override;
+
+	private:
+		sf::Sprite placeholderSprite;
 	};
 
 private:
@@ -68,7 +89,7 @@ private:
 
 	nlohmann::json itemsInfo;
 
-	std::unordered_map<InventoryItem::EquipmentType, InventorySlot> equipSlots;
+	std::unordered_map<InventoryItem::EquipmentType, InventorySlotWithPlaceholder> equipSlots;
 
 	std::vector<InventorySlot> inventorySlots;
 };

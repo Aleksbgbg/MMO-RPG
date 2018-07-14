@@ -2,6 +2,7 @@
 
 #include "ResourceManager.h"
 #include "Json.h"
+#include "Rect.h"
 
 using nlohmann::json;
 
@@ -22,7 +23,7 @@ Inventory::Inventory()
 
 		const sf::Vector2f slotPosition{ slotPositionJson["x"], slotPositionJson["y"] };
 
-		equipSlots.emplace(static_cast<InventoryItem::EquipmentType>(index), InventorySlot{ sf::FloatRect{ slotPosition, equipSlotDimensions } });
+		equipSlots.emplace(static_cast<InventoryItem::EquipmentType>(index), InventorySlotWithPlaceholder{ sf::FloatRect{ slotPosition, equipSlotDimensions }, slotPositionJson["placeholder"] });
 	}
 
 	const int itemsPerRow = itemsInfo["itemsPerRow"];
@@ -162,6 +163,11 @@ InventoryItem::EquipmentType Inventory::InventorySlot::GetEquipmentType() const
 	return item.value().GetEquipmentType();
 }
 
+sf::Vector2f Inventory::InventorySlot::GetWorldPosition() const
+{
+	return worldPosition;
+}
+
 sf::FloatRect Inventory::InventorySlot::GetWorldDimensions() const
 {
 	sf::FloatRect dimensions = this->dimensions;
@@ -170,6 +176,34 @@ sf::FloatRect Inventory::InventorySlot::GetWorldDimensions() const
 	dimensions.top += worldPosition.y;
 
 	return dimensions;
+}
+
+Inventory::InventorySlotWithPlaceholder::InventorySlotWithPlaceholder(const sf::FloatRect dimensions, const std::string& placeholderImage)
+	:
+	InventorySlot{ dimensions },
+	placeholderSprite{ TextureManager::Get("Inventory\\Placeholders\\" + placeholderImage) }
+{
+}
+
+Inventory::InventorySlotWithPlaceholder::InventorySlotWithPlaceholder(const InventoryItem& item, const sf::FloatRect dimensions, const std::string& placeholderImage)
+	:
+	InventorySlot{ item, dimensions },
+	placeholderSprite{ TextureManager::Get("Inventory\\Placeholders\\" + placeholderImage) }
+{
+}
+
+void Inventory::InventorySlotWithPlaceholder::Draw(const Graphics& gfx)
+{
+	if (HasItem())
+	{
+		InventorySlot::Draw(gfx);
+		return;
+	}
+
+	placeholderSprite.setOrigin(center(placeholderSprite.getLocalBounds()));
+	placeholderSprite.setPosition(center(GetWorldDimensions()));
+
+	gfx.Draw(placeholderSprite);
 }
 
 void Inventory::Equip(const int itemIndex)
