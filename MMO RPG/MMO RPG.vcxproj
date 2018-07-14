@@ -110,6 +110,10 @@
     <Image Include="Textures\Inventory\Items Inventory.png" />
     <Image Include="Textures\Inventory\Items.png" />
     <Image Include="Textures\Inventory\Magic Item Border.png" />
+    <Image Include="Textures\Inventory\Placeholders\Armor.png" />
+    <Image Include="Textures\Inventory\Placeholders\Ring.png" />
+    <Image Include="Textures\Inventory\Placeholders\Cape.png" />
+    <Image Include="Textures\Inventory\Placeholders\Weapon.png" />
     <Image Include="Textures\Inventory\Rare Item Border.png" />
     <Image Include="Textures\Inventory\Unique Item Border.png" />
     <Image Include="Textures\Map.png" />
