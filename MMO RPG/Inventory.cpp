@@ -17,7 +17,7 @@ Inventory::Inventory()
 
 	const json& specialSlotPositions = itemsInfo["positions"];
 
-	for (int index = 0; index < specialSlotPositions.size(); ++index)
+	for (int index = 0; index < static_cast<int>(specialSlotPositions.size()); ++index)
 	{
 		const json& slotPositionJson = specialSlotPositions[index];
 
@@ -245,7 +245,7 @@ Inventory::InventorySlot& Inventory::FindEmptySlot()
 
 int Inventory::FindEmptySlotIndex() const
 {
-	for (int index = 0; index < inventorySlots.size(); ++index)
+	for (int index = 0; index < static_cast<int>(inventorySlots.size()); ++index)
 	{
 		if (!inventorySlots[index].HasItem())
 		{
