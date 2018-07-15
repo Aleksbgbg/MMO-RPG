@@ -80,5 +80,5 @@ void SimpleAiMovement::GenerateTargetPosition(const sf::Vector2f position)
 
 sf::Vector2f SimpleAiMovement::GenerateRandomPosition() const
 {
-	return sf::Vector2f{ static_cast<float>(Random::Generate(0, mapDimensions.x - spriteDimensions.x)), static_cast<float>(Random::Generate(0, mapDimensions.y - spriteDimensions.y)) };
+	return sf::Vector2f{ static_cast<float>(Random::Generate(0, static_cast<int>(static_cast<float>(mapDimensions.x) - spriteDimensions.x))), static_cast<float>(Random::Generate(0, static_cast<int>(static_cast<float>(mapDimensions.y) - spriteDimensions.y))) };
 }
