@@ -65,8 +65,8 @@ public:
 	{
 	public:
 		InventorySlotWithPlaceholder() = default;
-		InventorySlotWithPlaceholder(const sf::FloatRect dimensions, const std::string& placeholderImage);
-		InventorySlotWithPlaceholder(const InventoryItem& item, const sf::FloatRect dimensions, const std::string& placeholderImage);
+		InventorySlotWithPlaceholder(const sf::FloatRect dimensions, const sf::IntRect viewport);
+		InventorySlotWithPlaceholder(const InventoryItem& item, const sf::FloatRect dimensions, const sf::IntRect viewport);
 
 	public:
 		void Draw(const Graphics& gfx) override;
@@ -83,6 +83,8 @@ private:
 
 	InventorySlot& FindEmptySlot();
 	int FindEmptySlotIndex() const;
+
+	sf::IntRect ComputeTextureRectangle(const int equipmentPosition) const;
 
 private:
 	Sprite background;

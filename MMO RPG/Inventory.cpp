@@ -23,7 +23,7 @@ Inventory::Inventory()
 
 		const sf::Vector2f slotPosition{ slotPositionJson["x"], slotPositionJson["y"] };
 
-		equipSlots.emplace(static_cast<InventoryItem::EquipmentType>(index), InventorySlotWithPlaceholder{ sf::FloatRect{ slotPosition, equipSlotDimensions }, slotPositionJson["placeholder"] });
+		equipSlots.emplace(static_cast<InventoryItem::EquipmentType>(index), InventorySlotWithPlaceholder{ sf::FloatRect{ slotPosition, equipSlotDimensions }, ComputeTextureRectangle(slotPositionJson["placeholder"]) });
 	}
 
 	const int itemsPerRow = itemsInfo["itemsPerRow"];
@@ -178,18 +178,18 @@ sf::FloatRect Inventory::InventorySlot::GetWorldDimensions() const
 	return dimensions;
 }
 
-Inventory::InventorySlotWithPlaceholder::InventorySlotWithPlaceholder(const sf::FloatRect dimensions, const std::string& placeholderImage)
+Inventory::InventorySlotWithPlaceholder::InventorySlotWithPlaceholder(const sf::FloatRect dimensions, const sf::IntRect viewport)
 	:
 	InventorySlot{ dimensions },
-	placeholderSprite{ TextureManager::Get("Inventory\\Placeholders\\" + placeholderImage) }
+	placeholderSprite{ TextureManager::Get("Inventory\\Items"), viewport }
 {
 	placeholderSprite.setOrigin(center(placeholderSprite.getLocalBounds()));
 }
 
-Inventory::InventorySlotWithPlaceholder::InventorySlotWithPlaceholder(const InventoryItem& item, const sf::FloatRect dimensions, const std::string& placeholderImage)
+Inventory::InventorySlotWithPlaceholder::InventorySlotWithPlaceholder(const InventoryItem& item, const sf::FloatRect dimensions, const sf::IntRect viewport)
 	:
 	InventorySlot{ item, dimensions },
-	placeholderSprite{ TextureManager::Get("Inventory\\Placeholders\\" + placeholderImage) }
+	placeholderSprite{ TextureManager::Get("Inventory\\Items"), viewport }
 {
 	placeholderSprite.setOrigin(center(placeholderSprite.getLocalBounds()));
 }
@@ -221,20 +221,9 @@ void Inventory::Dequip(const InventoryItem::EquipmentType type)
 
 int Inventory::CreateAndStore(const InventoryItem::Equipment type)
 {
-	const int position = static_cast<int>(type);
-
-	const int itemsPerRow = itemsInfo["itemsPerRow"];
-
-	const int row = position / itemsPerRow;
-
-	const int column = position % itemsPerRow;
-
-	const int itemWidth = itemsInfo["itemWidth"];
-	const int itemHeight = itemsInfo["itemHeight"];
-
 	const int emptySlotIndex = FindEmptySlotIndex();
 
-	inventorySlots[emptySlotIndex].Equip(InventoryItem{ type, sf::IntRect{ column * itemWidth, row * itemHeight, itemWidth, itemHeight } });
+	inventorySlots[emptySlotIndex].Equip(InventoryItem{ type, ComputeTextureRectangle(static_cast<int>(type)) });
 
 	return emptySlotIndex;
 }
@@ -255,4 +244,18 @@ int Inventory::FindEmptySlotIndex() const
 	}
 
 	throw std::runtime_error{ "No empty slot." };
+}
+
+sf::IntRect Inventory::ComputeTextureRectangle(const int equipmentPosition) const
+{
+	const int itemsPerRow = itemsInfo["itemsPerRow"];
+
+	const int row = equipmentPosition / itemsPerRow;
+
+	const int column = equipmentPosition % itemsPerRow;
+
+	const int itemWidth = itemsInfo["itemWidth"];
+	const int itemHeight = itemsInfo["itemHeight"];
+
+	return sf::IntRect{ column * itemWidth, row * itemHeight, itemWidth, itemHeight };
 }
