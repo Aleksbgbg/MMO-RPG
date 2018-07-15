@@ -1,6 +1,6 @@
 #include "Subtitle.h"
 
-Subtitle::Subtitle(sf::Text& text)
+Subtitle::Subtitle(Text& text)
 	:
 	text{ text }
 {

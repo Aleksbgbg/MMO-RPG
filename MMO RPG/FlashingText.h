@@ -1,7 +1,5 @@
 #pragma once
 
-#include <SFML/Graphics/Text.hpp>
-
 #include "Subtitle.h"
 
 class FlashingText : public Subtitle
@@ -16,7 +14,7 @@ private:
 	static constexpr int AlphaModifierMagnitude = 3;
 
 private:
-	sf::Text text;
+	Text text;
 
 	int alpha;
 	int alphaModifier;

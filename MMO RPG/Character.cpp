@@ -4,7 +4,7 @@
 
 using nlohmann::json;
 
-Character::Character(sf::Sprite& sprite, const json& animationInfo, MovementStrategy& movementStrategy)
+Character::Character(Sprite& sprite, const json& animationInfo, MovementStrategy& movementStrategy)
 	:
 	sprite{ sprite },
 	movementDirection{ Direction::Down },

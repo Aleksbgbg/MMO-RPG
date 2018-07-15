@@ -1,13 +1,12 @@
 #pragma once
 
-#include <SFML/Graphics/Text.hpp>
-
 #include "Graphics.h"
+#include "Text.h"
 
 class Subtitle
 {
 public:
-	explicit Subtitle(sf::Text& text);
+	explicit Subtitle(Text& text);
 
 public:
 	virtual ~Subtitle() = default;
@@ -26,5 +25,5 @@ protected:
 	virtual void OnUpdate();
 
 private:
-	sf::Text& text;
+	Text& text;
 };

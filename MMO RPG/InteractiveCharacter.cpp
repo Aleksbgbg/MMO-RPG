@@ -1,6 +1,6 @@
 #include "InteractiveCharacter.h"
 
-InteractiveCharacter::InteractiveCharacter(sf::Sprite& sprite, const nlohmann::json& animationInfo, MovementStrategy& movementStrategy) 
+InteractiveCharacter::InteractiveCharacter(Sprite& sprite, const nlohmann::json& animationInfo, MovementStrategy& movementStrategy) 
 	:
 	Character{ sprite, animationInfo, movementStrategy },
 	sprite{ sprite },

@@ -7,7 +7,7 @@
 
 using nlohmann::json;
 
-Npc::Npc(const sf::Texture& spriteSheet, const sf::Vector2i mapDimensions, const json& spriteConfig)
+Npc::Npc(const std::shared_ptr<sf::Texture>& spriteSheet, const sf::Vector2i mapDimensions, const json& spriteConfig)
 	:
 	Character{ sprite, spriteConfig, movementStrategy },
 	sprite{ spriteSheet },

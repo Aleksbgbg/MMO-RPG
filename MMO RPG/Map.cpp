@@ -27,9 +27,9 @@ void Map::Load(const std::string& filename)
 
 	tileDimensions = sf::Vector2i{ mapDetails["tilewidth"], mapDetails["tileheight"] };
 
-	const sf::Texture& mapTexture = TextureManager::Get("Map");
+	const std::shared_ptr<sf::Texture>& mapTexture = TextureManager::Get("Map");
 
-	const sf::Vector2i tileCount{ static_cast<int>(mapTexture.getSize().x) / tileDimensions.x, static_cast<int>(mapTexture.getSize().y) / tileDimensions.y };
+	const sf::Vector2i tileCount{ static_cast<int>(mapTexture->getSize().x) / tileDimensions.x, static_cast<int>(mapTexture->getSize().y) / tileDimensions.y };
 
 	for (const json& layer : mapDetails["layers"])
 	{

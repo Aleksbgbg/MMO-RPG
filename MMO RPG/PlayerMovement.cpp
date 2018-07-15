@@ -1,6 +1,6 @@
 #include "PlayerMovement.h"
 
-PlayerMovement::PlayerMovement(sf::Sprite& sprite, const float speed, const std::unordered_map<Direction, std::vector<sf::Keyboard::Key>>& directionKeys)
+PlayerMovement::PlayerMovement(Sprite& sprite, const float speed, const std::unordered_map<Direction, std::vector<sf::Keyboard::Key>>& directionKeys)
 	:
 	MovementStrategy{ sprite, speed },
 	directionKeys{ directionKeys }

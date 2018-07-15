@@ -14,5 +14,5 @@ public:
 	void Draw(const Graphics& gfx) const;
 
 private:
-	sf::Sprite sprite;
+	Sprite sprite;
 };

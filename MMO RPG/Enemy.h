@@ -8,9 +8,9 @@
 class Enemy : public InteractiveCharacter
 {
 public:
-	Enemy(const sf::Texture& spriteSheet, const sf::Vector2i mapDimensions, const nlohmann::json& spriteConfig);
+	Enemy(const std::shared_ptr<sf::Texture>& spriteSheet, const sf::Vector2i mapDimensions, const nlohmann::json& spriteConfig);
 
 private:
-	sf::Sprite sprite;
+	Sprite sprite;
 	SimpleAiMovement movementStrategy;
 };

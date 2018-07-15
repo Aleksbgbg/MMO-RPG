@@ -1,7 +1,8 @@
 #pragma once
 
 #include <SFML/System/Vector2.hpp>
-#include <SFML/Graphics/Sprite.hpp>
+
+#include "Sprite.h"
 
 class MovementStrategy
 {
@@ -12,7 +13,7 @@ public:
 	sf::Vector2f Move();
 
 protected:
-	explicit MovementStrategy(sf::Sprite& sprite, const float speed);
+	explicit MovementStrategy(Sprite& sprite, const float speed);
 
 protected:
 	virtual sf::Vector2f PickMovement(const sf::Vector2f position) = 0;
@@ -20,6 +21,6 @@ protected:
 	void ForcePosition(const sf::Vector2f position) const;
 
 private:
-	sf::Sprite& sprite;
+	Sprite& sprite;
 	float speed;
 };

@@ -1,7 +1,7 @@
 #include "MovementStrategy.h"
 #include "Vector.h"
 
-MovementStrategy::MovementStrategy(sf::Sprite& sprite, const float speed)
+MovementStrategy::MovementStrategy(Sprite& sprite, const float speed)
 	:
 	sprite{ sprite },
 	speed{ speed }

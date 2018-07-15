@@ -24,7 +24,7 @@ protected:
 	void OnUpdate() override;
 
 private:
-	Player(const sf::Texture& spriteSheet, Camera& camera);
+	Player(const std::shared_ptr<sf::Texture>& spriteSheet, Camera& camera);
 
 private:
 	void UpdateCamera() const;
@@ -36,7 +36,7 @@ private:
 	static constexpr float Speed = 4.0f;
 
 private:
-	sf::Sprite sprite;
+	Sprite sprite;
 
 	PlayerMovement movementStrategy;
 

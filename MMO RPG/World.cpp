@@ -51,7 +51,7 @@ World::World(const std::string& mapFile, Map& map, Player& player, Minimap& mini
 		{
 			const std::string& type = enemy["type"];
 
-			const sf::Texture& texture = TextureManager::Get(type);
+			const std::shared_ptr<sf::Texture>& texture = TextureManager::Get(type);
 
 			const int enemyCount = enemy["quantity"];
 

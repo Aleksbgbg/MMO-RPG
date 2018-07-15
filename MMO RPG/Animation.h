@@ -1,15 +1,14 @@
 #pragma once
 
-#include <SFML/Graphics/Sprite.hpp>
-
 #include <json.hpp>
 
 #include "Direction.h"
+#include "Sprite.h"
 
 class Animation
 {
 public:
-	Animation(sf::Sprite& sprite, const nlohmann::json& animationInfo, const Direction animationDirection);
+	Animation(Sprite& sprite, const nlohmann::json& animationInfo, const Direction animationDirection);
 
 public:
 	void SwitchFrame(const int frame) const;
@@ -23,7 +22,7 @@ private:
 	void NextFrame();
 
 private:
-	sf::Sprite& sprite;
+	Sprite& sprite;
 
 	const sf::Vector2i frameSize;
 	const int rowOffset;

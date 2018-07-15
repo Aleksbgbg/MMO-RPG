@@ -3,7 +3,7 @@
 #include "Vector.h"
 #include "Rect.h"
 
-Projectile::Projectile(const sf::Texture& texture, const sf::Vector2f sourcePosition, const std::shared_ptr<InteractiveCharacter> target)
+Projectile::Projectile(const std::shared_ptr<sf::Texture>& texture, const sf::Vector2f sourcePosition, const std::shared_ptr<InteractiveCharacter> target)
 	:
 	sprite{ texture },
 	target{ target }

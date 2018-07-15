@@ -8,10 +8,10 @@
 class Npc : public Character
 {
 public:
-	Npc(const sf::Texture& spriteSheet, const sf::Vector2i mapDimensions, const nlohmann::json& spriteConfig);
+	Npc(const std::shared_ptr<sf::Texture>& spriteSheet, const sf::Vector2i mapDimensions, const nlohmann::json& spriteConfig);
 
 private:
-	sf::Sprite sprite;
+	Sprite sprite;
 
 	SimpleAiMovement movementStrategy;
 };

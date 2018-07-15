@@ -1,7 +1,7 @@
 #pragma once
 
-#include <SFML/Graphics/Sprite.hpp>
 #include "Graphics.h"
+#include "Sprite.h"
 
 class InventoryItem
 {
@@ -90,5 +90,5 @@ private:
 	EquipmentType type;
 	Equipment equipment;
 
-	sf::Sprite sprite;
+	Sprite sprite;
 };

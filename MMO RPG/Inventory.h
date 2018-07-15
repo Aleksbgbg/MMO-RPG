@@ -72,7 +72,7 @@ public:
 		void Draw(const Graphics& gfx) override;
 
 	private:
-		sf::Sprite placeholderSprite;
+		Sprite placeholderSprite;
 	};
 
 private:
@@ -85,7 +85,7 @@ private:
 	int FindEmptySlotIndex() const;
 
 private:
-	sf::Sprite background;
+	Sprite background;
 
 	nlohmann::json itemsInfo;
 

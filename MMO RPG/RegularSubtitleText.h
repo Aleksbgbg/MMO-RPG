@@ -8,5 +8,5 @@ public:
 	explicit RegularSubtitleText(const std::string& string);
 
 private:
-	sf::Text text;
+	Text text;
 };

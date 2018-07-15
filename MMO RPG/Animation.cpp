@@ -2,7 +2,7 @@
 
 #include "DeltaTime.h"
 
-Animation::Animation(sf::Sprite& sprite, const nlohmann::json& animationInfo, const Direction animationDirection)
+Animation::Animation(Sprite& sprite, const nlohmann::json& animationInfo, const Direction animationDirection)
 	:
 	sprite{ sprite },
 	frameSize{ animationInfo["width"], animationInfo["height"] },

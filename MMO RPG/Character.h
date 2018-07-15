@@ -22,7 +22,7 @@ public:
 	sf::FloatRect GetOccupation() const;
 
 protected:
-	Character(sf::Sprite& sprite, const nlohmann::json& animationInfo, MovementStrategy& movementStrategy);
+	Character(Sprite& sprite, const nlohmann::json& animationInfo, MovementStrategy& movementStrategy);
 
 protected:
 	virtual void OnUpdate();
@@ -34,7 +34,7 @@ protected:
 	void ChangeMovementDirection(const Direction newDirection);
 
 private:
-	sf::Sprite& sprite;
+	Sprite& sprite;
 	Direction movementDirection;
 
 	std::unordered_map<Direction, Animation> animations;

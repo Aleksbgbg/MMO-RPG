@@ -2,7 +2,7 @@
 
 #include "Random.h"
 
-SimpleAiMovement::SimpleAiMovement(sf::Sprite& sprite, const float speed, const sf::Vector2i mapDimensions)
+SimpleAiMovement::SimpleAiMovement(Sprite& sprite, const float speed, const sf::Vector2i mapDimensions)
 	:
 	MovementStrategy{ sprite, speed },
 	mapDimensions{ mapDimensions },

@@ -72,7 +72,7 @@ bool Player::IsWithinRange(const InteractiveCharacter& character) const
 	return horizontalDistance * horizontalDistance + verticalDistance * verticalDistance <= AttackArea;
 }
 
-Player::Player(const sf::Texture& spriteSheet, Camera& camera)
+Player::Player(const std::shared_ptr<sf::Texture>& spriteSheet, Camera& camera)
 	:
 	InteractiveCharacter{ sprite, read_json("Config\\Player.json"), movementStrategy },
 	sprite{ spriteSheet },

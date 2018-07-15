@@ -4,7 +4,7 @@
 
 using nlohmann::json;
 
-Enemy::Enemy(const sf::Texture& spriteSheet, const sf::Vector2i mapDimensions, const json& spriteConfig)
+Enemy::Enemy(const std::shared_ptr<sf::Texture>& spriteSheet, const sf::Vector2i mapDimensions, const json& spriteConfig)
 	:
 	InteractiveCharacter{ sprite, spriteConfig, movementStrategy },
 	sprite{ spriteSheet },
