@@ -13,9 +13,9 @@ template<typename T, typename TResourceType>
 class ResourceManager
 {
 public:
-	static const T& Get(const std::string& name)
+	static std::shared_ptr<T> Get(const std::string& name)
 	{
-		std::unordered_map<std::string, T>& resourceMap = GetResourceMap();
+		std::unordered_map<std::string, std::shared_ptr<T>>& resourceMap = GetResourceMap();
 
 		const auto iterator = resourceMap.find(name);
 
@@ -23,9 +23,9 @@ public:
 		{
 			const std::string filename = std::filesystem::current_path().string() + "\\" + TResourceType::Folder + "\\" + name + TResourceType::Extension;
 
-			T resource;
+			std::shared_ptr<T> resource = std::make_shared<T>();
 
-			if (!resource.loadFromFile(filename))
+			if (!resource->loadFromFile(filename))
 			{
 				throw std::runtime_error{ "Could not load resource " + name };
 			}
@@ -37,9 +37,9 @@ public:
 	}
 
 private:
-	static std::unordered_map<std::string, T>& GetResourceMap()
+	static std::unordered_map<std::string, std::shared_ptr<T>>& GetResourceMap()
 	{
-		static std::unordered_map<std::string, T> resourceMap;
+		static std::unordered_map<std::string, std::shared_ptr<T>> resourceMap;
 
 		return resourceMap;
 	}
