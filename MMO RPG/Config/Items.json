@@ -7,52 +7,52 @@
 	  {
 		  "x": 32,
 		  "y": 32,
-		  "placeholder": "Armor"
+		  "placeholder": 8
 	  },
 	  {
 		  "x": 32,
 		  "y": 122,
-		  "placeholder": "Armor"
+		  "placeholder": 8
 	  },
 	  {
 		  "x": 32,
 		  "y": 212,
-		  "placeholder": "Ring"
+		  "placeholder": 38
 	  },
 	  {
 		  "x": 32,
 		  "y": 302,
-		  "placeholder": "Armor"
+		  "placeholder": 8
 	  },
 	  {
 		  "x": 32,
 		  "y": 392,
-		  "placeholder": "Weapon"
+		  "placeholder": 1
 	  },
 	  {
 		  "x": 453,
 		  "y": 32,
-		  "placeholder": "Armor"
+		  "placeholder": 8
 	  },
 	  {
 		  "x": 453,
 		  "y": 122,
-		  "placeholder": "Cape"
+		  "placeholder": 11
 	  },
 	  {
 		  "x": 453,
 		  "y": 212,
-		  "placeholder": "Armor"
+		  "placeholder": 8
 	  },
 	  {
 		  "x": 453,
 		  "y": 302,
-		  "placeholder": "Armor"
+		  "placeholder": 8
 	  },
 	  {
 		  "x": 453,
 		  "y": 392,
-		  "placeholder": "Armor"
+		  "placeholder": 8
 	  }
   ],
   "equipSlotWidth": 82,
