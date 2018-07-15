@@ -311,6 +311,9 @@
     <Filter Include="Resource Files\Textures\Inventory\Placeholders">
       <UniqueIdentifier>{e53570d0-499f-45fe-a2dd-43a80fa45ba1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Shaders">
+      <UniqueIdentifier>{52088792-c994-439f-bc24-79745f3d9c39}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\NPCs.png">
@@ -430,6 +433,9 @@
     </None>
     <None Include="Config\Items.json">
       <Filter>Resource Files\Config</Filter>
+    </None>
+    <None Include="Shaders\Transparent Grayscale.glsl">
+      <Filter>Resource Files\Shaders</Filter>
     </None>
   </ItemGroup>
 </Project>

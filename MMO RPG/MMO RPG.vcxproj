@@ -147,6 +147,7 @@
     <None Include="Maps\Map1.json" />
     <None Include="Maps\Map1.tmx" />
     <None Include="Maps\Map1.tsx" />
+    <None Include="Shaders\Transparent Grayscale.glsl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
