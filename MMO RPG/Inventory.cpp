@@ -183,6 +183,7 @@ Inventory::InventorySlotWithPlaceholder::InventorySlotWithPlaceholder(const sf::
 	InventorySlot{ dimensions },
 	placeholderSprite{ TextureManager::Get("Inventory\\Placeholders\\" + placeholderImage) }
 {
+	placeholderSprite.setOrigin(center(placeholderSprite.getLocalBounds()));
 }
 
 Inventory::InventorySlotWithPlaceholder::InventorySlotWithPlaceholder(const InventoryItem& item, const sf::FloatRect dimensions, const std::string& placeholderImage)
@@ -190,6 +191,7 @@ Inventory::InventorySlotWithPlaceholder::InventorySlotWithPlaceholder(const Inve
 	InventorySlot{ item, dimensions },
 	placeholderSprite{ TextureManager::Get("Inventory\\Placeholders\\" + placeholderImage) }
 {
+	placeholderSprite.setOrigin(center(placeholderSprite.getLocalBounds()));
 }
 
 void Inventory::InventorySlotWithPlaceholder::Draw(const Graphics& gfx)
@@ -200,7 +202,6 @@ void Inventory::InventorySlotWithPlaceholder::Draw(const Graphics& gfx)
 		return;
 	}
 
-	placeholderSprite.setOrigin(center(placeholderSprite.getLocalBounds()));
 	placeholderSprite.setPosition(center(GetWorldDimensions()));
 
 	gfx.Draw(placeholderSprite);
