@@ -81,7 +81,7 @@ void SubtitleHandler::Draw(const Graphics& gfx) const
 	{
 		activeSubtitle.second->Draw(gfx, gfx.MapPixelToCoords(sf::Vector2i{ Graphics::ScreenWidth / 2, Graphics::ScreenHeight - verticalOffset }));
 
-		verticalOffset += activeSubtitle.second->GetDimensions().height + BetwixtTextOffset;
+		verticalOffset += static_cast<int>(activeSubtitle.second->GetDimensions().height) + BetwixtTextOffset;
 	}
 }
 
