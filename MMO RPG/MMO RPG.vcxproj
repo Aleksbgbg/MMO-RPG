@@ -51,7 +51,6 @@
     <ClCompile Include="RegularSubtitleText.cpp" />
     <ClCompile Include="Reticle.cpp" />
     <ClCompile Include="SimpleAiMovement.cpp" />
-    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="StatBar.cpp" />
     <ClCompile Include="Subtitle.cpp" />
     <ClCompile Include="SubtitleHandler.cpp" />
