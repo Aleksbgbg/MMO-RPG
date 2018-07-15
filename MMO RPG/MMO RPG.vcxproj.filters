@@ -311,9 +311,6 @@
     <Filter Include="Resource Files\Textures\Inventory">
       <UniqueIdentifier>{3988ba6d-d35a-4fe4-845d-b37be7f29561}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Textures\Inventory\Placeholders">
-      <UniqueIdentifier>{e53570d0-499f-45fe-a2dd-43a80fa45ba1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\Shaders">
       <UniqueIdentifier>{52088792-c994-439f-bc24-79745f3d9c39}</UniqueIdentifier>
     </Filter>
@@ -384,18 +381,6 @@
     </Image>
     <Image Include="Textures\Inventory\Unique Item Border.png">
       <Filter>Resource Files\Textures\Inventory</Filter>
-    </Image>
-    <Image Include="Textures\Inventory\Placeholders\Ring.png">
-      <Filter>Resource Files\Textures\Inventory\Placeholders</Filter>
-    </Image>
-    <Image Include="Textures\Inventory\Placeholders\Weapon.png">
-      <Filter>Resource Files\Textures\Inventory\Placeholders</Filter>
-    </Image>
-    <Image Include="Textures\Inventory\Placeholders\Armor.png">
-      <Filter>Resource Files\Textures\Inventory\Placeholders</Filter>
-    </Image>
-    <Image Include="Textures\Inventory\Placeholders\Cape.png">
-      <Filter>Resource Files\Textures\Inventory\Placeholders</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
