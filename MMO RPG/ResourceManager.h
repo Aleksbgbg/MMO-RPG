@@ -30,7 +30,7 @@ public:
 		{
 			const std::string filename = std::filesystem::current_path().string() + "\\" + TResourceType::Folder + "\\" + name + TResourceType::Extension;
 
-			std::shared_ptr<T> resource = std::make_shared<T>();
+			const std::shared_ptr<T> resource = std::make_shared<T>();
 
 			if (!resource->loadFromFile(filename, loadArgs...))
 			{
