@@ -91,6 +91,7 @@
     <ClInclude Include="Rect.h" />
     <ClInclude Include="RegularSubtitleText.h" />
     <ClInclude Include="Reticle.h" />
+    <ClInclude Include="Shader.h" />
     <ClInclude Include="SimpleAiMovement.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Sprite.h" />
