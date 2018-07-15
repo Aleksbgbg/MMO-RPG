@@ -8,6 +8,7 @@
 
 #include "Texture.h"
 #include "Font.h"
+#include "Shader.h"
 
 template<typename T, typename TResourceType>
 class ResourceManager
@@ -53,3 +54,4 @@ private:
 
 typedef ResourceManager<sf::Texture, ResourceManagement::Texture> TextureManager;
 typedef ResourceManager<sf::Font, ResourceManagement::Font> FontManager;
+typedef ResourceManager<sf::Shader, ResourceManagement::Shader> ShaderManager;
