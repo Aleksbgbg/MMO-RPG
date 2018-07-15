@@ -15,6 +15,12 @@ class ResourceManager
 public:
 	static std::shared_ptr<T> Get(const std::string& name)
 	{
+		return Get<>(name);
+	}
+
+	template<typename... TArgs>
+	static std::shared_ptr<T> Get(const std::string& name, TArgs... loadArgs)
+	{
 		std::unordered_map<std::string, std::shared_ptr<T>>& resourceMap = GetResourceMap();
 
 		const auto iterator = resourceMap.find(name);
@@ -25,7 +31,7 @@ public:
 
 			std::shared_ptr<T> resource = std::make_shared<T>();
 
-			if (!resource->loadFromFile(filename))
+			if (!resource->loadFromFile(filename, loadArgs...))
 			{
 				throw std::runtime_error{ "Could not load resource " + name };
 			}
