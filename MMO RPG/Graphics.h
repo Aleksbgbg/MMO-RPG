@@ -14,15 +14,21 @@ public:
 	template<typename T>
 	void Draw(const T& drawable) const
 	{
-		const sf::Vector2i screenPosition = window.mapCoordsToPixel(drawable.getPosition());
-		const sf::FloatRect globalBounds = drawable.getGlobalBounds();
-
-		if (0 <= screenPosition.x + globalBounds.width && screenPosition.x <= ScreenWidth &&
-			0 <= screenPosition.y + globalBounds.height && screenPosition.y <= ScreenHeight)
+		if (IsInBounds(drawable))
 		{
 			window.draw(drawable);
 		}
 	}
+
+	template<typename T>
+	void Draw(const T& drawable, const sf::Shader& shader) const
+	{
+		if (IsInBounds(drawable))
+		{
+			window.draw(drawable, &shader);
+		}
+	}
+
 	void DrawUnbound(const sf::Drawable& drawable) const;
 
 	void ChangeView(const sf::View& view);
@@ -30,6 +36,17 @@ public:
 
 	sf::Vector2i MapCoordsToPixel(const sf::Vector2f& point) const;
 	sf::Vector2f MapPixelToCoords(const sf::Vector2i& point) const;
+
+private:
+	template<typename T>
+	bool IsInBounds(const T& drawable) const
+	{
+		const sf::Vector2i screenPosition = window.mapCoordsToPixel(drawable.getPosition());
+		const sf::FloatRect globalBounds = drawable.getGlobalBounds();
+
+		return 0 <= screenPosition.x + globalBounds.width && screenPosition.x <= ScreenWidth &&
+			   0 <= screenPosition.y + globalBounds.height && screenPosition.y <= ScreenHeight;
+	}
 
 public:
 	static constexpr int ScreenWidth = 1366;
