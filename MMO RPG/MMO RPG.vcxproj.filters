@@ -109,6 +109,9 @@
     <ClCompile Include="HudWindow.cpp">
       <Filter>Source Files\Entities\HUD</Filter>
     </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -227,6 +230,9 @@
     </ClInclude>
     <ClInclude Include="HudWindow.h">
       <Filter>Header Files\Entities\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Header Files\Framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

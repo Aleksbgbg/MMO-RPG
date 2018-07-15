@@ -51,6 +51,7 @@
     <ClCompile Include="RegularSubtitleText.cpp" />
     <ClCompile Include="Reticle.cpp" />
     <ClCompile Include="SimpleAiMovement.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="StatBar.cpp" />
     <ClCompile Include="Subtitle.cpp" />
     <ClCompile Include="SubtitleHandler.cpp" />
@@ -91,6 +92,7 @@
     <ClInclude Include="Reticle.h" />
     <ClInclude Include="SimpleAiMovement.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="Sprite.h" />
     <ClInclude Include="StatBar.h" />
     <ClInclude Include="Subtitle.h" />
     <ClInclude Include="SubtitleHandler.h" />
