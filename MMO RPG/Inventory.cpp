@@ -1,5 +1,7 @@
 #include "Inventory.h"
 
+#include <SFML/Graphics/Shader.hpp>
+
 #include "ResourceManager.h"
 #include "Json.h"
 #include "Rect.h"
@@ -183,7 +185,7 @@ Inventory::InventorySlotWithPlaceholder::InventorySlotWithPlaceholder(const sf::
 	InventorySlot{ dimensions },
 	placeholderSprite{ TextureManager::Get("Inventory\\Items"), viewport }
 {
-	placeholderSprite.setOrigin(center(placeholderSprite.getLocalBounds()));
+	Setup();
 }
 
 Inventory::InventorySlotWithPlaceholder::InventorySlotWithPlaceholder(const InventoryItem& item, const sf::FloatRect dimensions, const sf::IntRect viewport)
@@ -191,7 +193,7 @@ Inventory::InventorySlotWithPlaceholder::InventorySlotWithPlaceholder(const Inve
 	InventorySlot{ item, dimensions },
 	placeholderSprite{ TextureManager::Get("Inventory\\Items"), viewport }
 {
-	placeholderSprite.setOrigin(center(placeholderSprite.getLocalBounds()));
+	Setup();
 }
 
 void Inventory::InventorySlotWithPlaceholder::Draw(const Graphics& gfx)
@@ -204,7 +206,14 @@ void Inventory::InventorySlotWithPlaceholder::Draw(const Graphics& gfx)
 
 	placeholderSprite.setPosition(center(GetWorldDimensions()));
 
-	gfx.Draw(placeholderSprite);
+	gfx.Draw(placeholderSprite, *grayscale);
+}
+
+void Inventory::InventorySlotWithPlaceholder::Setup()
+{
+	placeholderSprite.setOrigin(center(placeholderSprite.getLocalBounds()));
+
+	grayscale = ShaderManager::Get("Transparent Grayscale", sf::Shader::Type::Fragment);
 }
 
 void Inventory::Equip(const int itemIndex)

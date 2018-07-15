@@ -72,6 +72,11 @@ public:
 		void Draw(const Graphics& gfx) override;
 
 	private:
+		void Setup();
+
+	private:
+		std::shared_ptr<sf::Shader> grayscale;
+
 		Sprite placeholderSprite;
 	};
 
