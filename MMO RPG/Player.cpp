@@ -72,6 +72,20 @@ bool Player::IsWithinRange(const InteractiveCharacter& character) const
 	return horizontalDistance * horizontalDistance + verticalDistance * verticalDistance <= AttackArea;
 }
 
+void Player::DrawAt(const Graphics& gfx, const sf::Vector2f position)
+{
+	const sf::Vector2f initialPosition = sprite.getPosition();
+	const sf::Vector2f initialOrigin = sprite.getOrigin();
+
+	sprite.setPosition(position);
+	sprite.setOrigin(center(sprite.getLocalBounds()));
+
+	gfx.Draw(sprite);
+
+	sprite.setPosition(initialPosition);
+	sprite.setOrigin(initialOrigin);
+}
+
 Player::Player(const std::shared_ptr<sf::Texture>& spriteSheet, Camera& camera)
 	:
 	InteractiveCharacter{ sprite, read_json("Config\\Player.json"), movementStrategy },

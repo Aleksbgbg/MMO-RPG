@@ -19,6 +19,8 @@ public:
 
 	bool IsWithinRange(const InteractiveCharacter& character) const;
 
+	void DrawAt(const Graphics& gfx, const sf::Vector2f position);
+
 protected:
 	void OnPositionUpdated(const sf::Vector2f newPosition) override;
 	void OnUpdate() override;
