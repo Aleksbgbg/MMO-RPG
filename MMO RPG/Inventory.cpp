@@ -8,10 +8,11 @@
 
 using nlohmann::json;
 
-Inventory::Inventory()
+Inventory::Inventory(Player& player)
 	:
 	HudWindow{ sf::Keyboard::Key::I },
-	background{ TextureManager::Get("Inventory\\Items Inventory") }
+	background{ TextureManager::Get("Inventory\\Items Inventory") },
+	player{ player }
 {
 	itemsInfo = read_json("Config\\Items.json");
 
@@ -72,6 +73,9 @@ void Inventory::OnDraw(const Graphics& gfx)
 		slot.UpdateWorldPosition(worldPosition);
 		slot.Draw(gfx);
 	}
+
+	// Pre-calculated values for the background dimensions of the central scroll
+	player.DrawAt(gfx, center(sf::FloatRect{ 125.0f, 32.0f, 316.0f, 443.0f }) + worldPosition);
 }
 
 void Inventory::OnMouseClicked(const sf::Vector2f position)

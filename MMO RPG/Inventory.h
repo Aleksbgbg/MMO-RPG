@@ -10,11 +10,12 @@
 #include "InventoryItem.h"
 #include "HudWindow.h"
 #include <optional>
+#include "Player.h"
 
 class Inventory : public HudWindow
 {
 public:
-	Inventory();
+	explicit Inventory(Player& player);
 
 public:
 	void OnDraw(const Graphics& gfx) override;
@@ -99,4 +100,6 @@ private:
 	std::unordered_map<InventoryItem::EquipmentType, InventorySlotWithPlaceholder> equipSlots;
 
 	std::vector<InventorySlot> inventorySlots;
+
+	Player& player;
 };
