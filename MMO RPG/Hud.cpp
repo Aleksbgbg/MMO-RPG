@@ -1,8 +1,8 @@
 #include "Hud.h"
 
-Hud::Hud()
+Hud::Hud(Player& player)
 {
-	windows.emplace_back(std::make_unique<Inventory>());
+	windows.emplace_back(std::make_unique<Inventory>(player));
 }
 
 void Hud::Draw(const Graphics& gfx)

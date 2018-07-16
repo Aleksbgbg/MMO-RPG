@@ -8,7 +8,7 @@
 class Hud
 {
 public:
-	Hud();
+	explicit Hud(Player& player);
 
 public:
 	void Draw(const Graphics& gfx);
