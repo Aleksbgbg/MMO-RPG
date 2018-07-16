@@ -14,7 +14,8 @@ Game::Game(sf::RenderWindow& window)
 	minimap{ camera, map },
 	activeWorld{ nullptr },
 	canTeleport{ false },
-	reticleTarget{ nullptr }
+	reticleTarget{ nullptr },
+	hud{ player }
 {
 	json worldConfig = read_json("Config\\World.json");
 
