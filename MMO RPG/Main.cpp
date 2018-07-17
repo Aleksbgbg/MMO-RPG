@@ -4,6 +4,7 @@
 
 #include "DeltaTime.h"
 #include "Game.h"
+#include "EventManager.h"
 
 int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszArgument, int nCmdShow)
 {
@@ -14,6 +15,7 @@ int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszA
 	Game game{ window };
 
 	DeltaTime& deltaTime = DeltaTime::Make();
+	EventManager& eventManager = EventManager::Make();
 
 	while (window.isOpen())
 	{
@@ -22,6 +24,8 @@ int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszA
 
 			while (window.pollEvent(event))
 			{
+				eventManager.Register(event);
+
 				if (event.type == sf::Event::Closed)
 				{
 					window.close();
@@ -38,6 +42,8 @@ int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszA
 		}
 
 		game.Main();
+		
+		eventManager.Clear();
 
 		deltaTime.Restart();
 	}
