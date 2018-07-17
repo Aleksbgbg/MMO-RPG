@@ -1,5 +1,7 @@
 #include "EventManager.h"
 
+EventManager EventManager::instance{ };
+
 EventManager& EventManager::Make()
 {
 	if (made)

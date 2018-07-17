@@ -22,8 +22,8 @@ private:
 	EventManager() = default;
 
 private:
-	inline static EventManager instance{ };
 	inline static bool made = false;
+	static EventManager instance;
 
 private:
 	std::vector<sf::Event>& Find(const sf::Event::EventType type);
