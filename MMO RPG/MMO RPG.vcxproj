@@ -25,6 +25,7 @@
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="DeltaTime.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="FlashingText.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
@@ -69,6 +70,7 @@
     <ClInclude Include="DeltaTime.h" />
     <ClInclude Include="Direction.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EventManager.h" />
     <ClInclude Include="FlashingText.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Game.h" />
