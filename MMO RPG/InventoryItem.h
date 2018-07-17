@@ -2,8 +2,9 @@
 
 #include "Graphics.h"
 #include "Sprite.h"
+#include "Draggable.h"
 
-class InventoryItem
+class InventoryItem : public Draggable
 {
 public:
 	enum class EquipmentType
@@ -84,7 +85,7 @@ public:
 
 	EquipmentType GetEquipmentType() const;
 
-	bool IsAt(const sf::Vector2f point) const;
+	bool IsAt(const sf::Vector2f point) const override;
 
 private:
 	EquipmentType type;

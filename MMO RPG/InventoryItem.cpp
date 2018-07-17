@@ -61,6 +61,10 @@ void InventoryItem::Render(const Graphics& gfx, const sf::FloatRect location)
 {
 	sprite.setPosition(center(location));
 
+	Update(gfx, sprite.getPosition());
+
+	sprite.setPosition(GetPosition());
+
 	gfx.Draw(sprite);
 }
 
