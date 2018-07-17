@@ -118,6 +118,9 @@
     <ClCompile Include="EventManager.cpp">
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
+    <ClCompile Include="Draggable.cpp">
+      <Filter>Source Files\Entities\HUD</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -248,6 +251,9 @@
     </ClInclude>
     <ClInclude Include="EventManager.h">
       <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Draggable.h">
+      <Filter>Header Files\Entities\HUD</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
