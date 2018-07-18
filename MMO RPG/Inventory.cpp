@@ -5,6 +5,7 @@
 #include "ResourceManager.h"
 #include "Json.h"
 #include "Rect.h"
+#include "EventManager.h"
 
 using nlohmann::json;
 
@@ -47,8 +48,8 @@ Inventory::Inventory(Player& player)
 	for (const InventoryItem::Equipment equipment : std::array<InventoryItem::Equipment, 3>
 	{
 		InventoryItem::Equipment::MagicStaff,
-		InventoryItem::Equipment::StrongCape,
-		InventoryItem::Equipment::HeavyArmor
+			InventoryItem::Equipment::StrongCape,
+			InventoryItem::Equipment::HeavyArmor
 	})
 	{
 		Equip(CreateAndStore(equipment));
@@ -57,6 +58,8 @@ Inventory::Inventory(Player& player)
 
 void Inventory::OnDraw(const Graphics& gfx)
 {
+	doubleClickChecker.Update(gfx);
+
 	const sf::Vector2f worldPosition = gfx.MapPixelToCoords(sf::Vector2i{ 0, 0 });
 
 	background.setPosition(worldPosition);
@@ -64,14 +67,65 @@ void Inventory::OnDraw(const Graphics& gfx)
 
 	for (auto& pair : equipSlots)
 	{
+		{
+			sf::Vector2f targetPosition;
+
+			if (pair.second.RequiresSwap(targetPosition))
+			{
+				InventorySlot* target = FindSlot(targetPosition);
+
+				if (target != nullptr)
+				{
+					InventorySlot::Swap(pair.second, *target);
+				}
+			}
+		}
+
 		pair.second.UpdateWorldPosition(worldPosition);
 		pair.second.Draw(gfx);
 	}
 
 	for (InventorySlot& slot : inventorySlots)
 	{
+		{
+			sf::Vector2f targetPosition;
+
+			if (slot.RequiresSwap(targetPosition))
+			{
+				InventorySlot* target = FindSlot(targetPosition);
+
+				if (target != nullptr)
+				{
+					InventorySlot::Swap(slot, *target);
+				}
+			}
+		}
+
 		slot.UpdateWorldPosition(worldPosition);
 		slot.Draw(gfx);
+	}
+
+	if (doubleClickChecker.DidDoubleClick())
+	{
+		const sf::Vector2f position = doubleClickChecker.DoubleClickPosition();
+
+		for (auto& pair : equipSlots)
+		{
+			if (pair.second.IsAt(position) && pair.second.HasItem())
+			{
+				InventorySlot::Swap(pair.second, FindEmptySlot());
+				return;
+			}
+		}
+
+		for (InventorySlot& slot : inventorySlots)
+		{
+			if (slot.IsAt(position) && slot.HasItem())
+			{
+				InventorySlot::Swap(slot, equipSlots[slot.GetEquipmentType()]);
+				return;
+			}
+		}
 	}
 
 	// Pre-calculated values for the background dimensions of the central scroll
@@ -80,7 +134,7 @@ void Inventory::OnDraw(const Graphics& gfx)
 
 void Inventory::OnMouseClicked(const sf::Vector2f position)
 {
-	for (auto& pair : equipSlots)
+	/*for (auto& pair : equipSlots)
 	{
 		if (pair.second.IsAt(position) && pair.second.HasItem())
 		{
@@ -96,7 +150,7 @@ void Inventory::OnMouseClicked(const sf::Vector2f position)
 			InventorySlot::Swap(slot, equipSlots[slot.GetEquipmentType()]);
 			return;
 		}
-	}
+	}*/
 }
 
 Inventory::InventorySlot::InventorySlot(const sf::FloatRect dimensions)
@@ -169,6 +223,24 @@ InventoryItem::EquipmentType Inventory::InventorySlot::GetEquipmentType() const
 	return item.value().GetEquipmentType();
 }
 
+bool Inventory::InventorySlot::RequiresSwap(sf::Vector2f& position)
+{
+	if (!item.has_value())
+	{
+		return false;
+	}
+
+	if (item.value().WasReleased())
+	{
+		position = item.value().GetPosition();
+		item.value().ConsumeRelease();
+
+		return true;
+	}
+
+	return false;
+}
+
 sf::Vector2f Inventory::InventorySlot::GetWorldPosition() const
 {
 	return worldPosition;
@@ -218,6 +290,56 @@ void Inventory::InventorySlotWithPlaceholder::Setup()
 	placeholderSprite.setOrigin(center(placeholderSprite.getLocalBounds()));
 
 	grayscale = ShaderManager::Get("Transparent Grayscale", sf::Shader::Type::Fragment);
+}
+
+Inventory::DoubleClickChecker::DoubleClickChecker()
+	:
+	timeoutTracker{ 0.375f },
+	clickCount{ 0 }
+{
+}
+
+void Inventory::DoubleClickChecker::Update(const Graphics& gfx)
+{
+	timeoutTracker.Update();
+
+	if (timeoutTracker.TimedOut())
+	{
+		clickCount = 0;
+	}
+
+	for (const sf::Event& event : EventManager::Query(sf::Event::MouseButtonReleased))
+	{
+		if (event.mouseButton.button == sf::Mouse::Button::Left)
+		{
+			if (clickCount == 0)
+			{
+				++clickCount;
+				timeoutTracker.Reset();
+
+				position = gfx.MapPixelToCoords(sf::Vector2i{ event.mouseButton.x, event.mouseButton.y });
+			}
+			else
+			{
+				++clickCount;
+
+				position += gfx.MapPixelToCoords(sf::Vector2i{ event.mouseButton.x, event.mouseButton.y });
+
+				position.x /= 2.0f;
+				position.y /= 2.0f;
+			}
+		}
+	}
+}
+
+bool Inventory::DoubleClickChecker::DidDoubleClick() const
+{
+	return clickCount >= 2;
+}
+
+sf::Vector2f Inventory::DoubleClickChecker::DoubleClickPosition() const
+{
+	return position;
 }
 
 void Inventory::Equip(const int itemIndex)
@@ -271,4 +393,25 @@ sf::IntRect Inventory::ComputeTextureRectangle(const int equipmentPosition) cons
 	const int itemHeight = itemsInfo["itemHeight"];
 
 	return sf::IntRect{ column * itemWidth, row * itemHeight, itemWidth, itemHeight };
+}
+
+Inventory::InventorySlot* Inventory::FindSlot(const sf::Vector2f position)
+{
+	for (auto& pair : equipSlots)
+	{
+		if (pair.second.IsAt(position))
+		{
+			return &pair.second;
+		}
+	}
+
+	for (InventorySlot& slot : inventorySlots)
+	{
+		if (slot.IsAt(position))
+		{
+			return &slot;
+		}
+	}
+
+	return nullptr;
 }

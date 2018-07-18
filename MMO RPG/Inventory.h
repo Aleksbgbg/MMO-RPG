@@ -11,6 +11,7 @@
 #include "HudWindow.h"
 #include <optional>
 #include "Player.h"
+#include "TimeoutTracker.h"
 
 class Inventory : public HudWindow
 {
@@ -49,6 +50,8 @@ private:
 
 		InventoryItem::EquipmentType GetEquipmentType() const;
 
+		bool RequiresSwap(sf::Vector2f& position);
+
 	protected:
 		sf::Vector2f GetWorldPosition() const;
 
@@ -82,6 +85,24 @@ public:
 	};
 
 private:
+	class DoubleClickChecker
+	{
+	public:
+		DoubleClickChecker();
+
+	public:
+		void Update(const Graphics& gfx);
+
+		bool DidDoubleClick() const;
+		sf::Vector2f DoubleClickPosition() const;
+
+	private:
+		TimeoutTracker timeoutTracker;
+		int clickCount;
+		sf::Vector2f position;
+	};
+
+private:
 	void Equip(const int itemIndex);
 	void Dequip(const InventoryItem::EquipmentType type);
 
@@ -91,6 +112,8 @@ private:
 	int FindEmptySlotIndex() const;
 
 	sf::IntRect ComputeTextureRectangle(const int equipmentPosition) const;
+
+	InventorySlot* FindSlot(const sf::Vector2f position);
 
 private:
 	Sprite background;
@@ -102,4 +125,6 @@ private:
 	std::vector<InventorySlot> inventorySlots;
 
 	Player& player;
+
+	DoubleClickChecker doubleClickChecker;
 };
