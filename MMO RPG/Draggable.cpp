@@ -7,28 +7,28 @@
 
 Draggable::Draggable()
 	:
-	dragging{ false },
+	mouseClicked{ false },
 	wasReleased{ false }
 {
 }
 
 void Draggable::Update(const Graphics& gfx, const sf::Vector2f position)
 {
-	if (dragging)
+	if (mouseClicked)
 	{
 		for (const sf::Event& movement : EventManager::Query(sf::Event::EventType::MouseMoved))
 		{
 			dragOffset = gfx.MapPixelToCoords(sf::Vector2i{ movement.mouseMove.x, movement.mouseMove.y }) - initialPosition;
 		}
 
-		CheckDragging(gfx, sf::Event::EventType::MouseButtonReleased, false);
+		CheckMouseClicked(gfx, sf::Event::EventType::MouseButtonReleased, false);
 	}
 	else
 	{
-		CheckDragging(gfx, sf::Event::EventType::MouseButtonPressed, true);
-		//CheckDragging(gfx, sf::Event::EventType::MouseButtonReleased, false);
+		CheckMouseClicked(gfx, sf::Event::EventType::MouseButtonPressed, true);
+		//CheckMouseClicked(gfx, sf::Event::EventType::MouseButtonReleased, false);
 
-		if (!dragging)
+		if (!IsDragging())
 		{
 			initialPosition = position;
 		}
@@ -42,7 +42,7 @@ sf::Vector2f Draggable::GetPosition() const
 
 bool Draggable::IsDragging() const
 {
-	return dragging;
+	return mouseClicked && !(dragOffset.x == 0 || dragOffset.y == 0);
 }
 
 bool Draggable::WasReleased() const
@@ -56,19 +56,19 @@ void Draggable::ConsumeRelease()
 	dragOffset = sf::Vector2f{ 0.0f, 0.0f };
 }
 
-void Draggable::CheckDragging(const Graphics& gfx, const sf::Event::EventType eventType, const bool draggingValue)
+void Draggable::CheckMouseClicked(const Graphics& gfx, const sf::Event::EventType eventType, const bool mouseClickValue)
 {
 	for (const sf::Event& click : EventManager::Query(eventType))
 	{
-		if (click.mouseButton.button == sf::Mouse::Left && (!draggingValue || IsAt(gfx.MapPixelToCoords(sf::Vector2i{ click.mouseButton.x, click.mouseButton.y }))))
+		if (click.mouseButton.button == sf::Mouse::Left && (!mouseClickValue || IsAt(gfx.MapPixelToCoords(sf::Vector2i{ click.mouseButton.x, click.mouseButton.y }))))
 		{
-			SetDragging(draggingValue);
+			SetMouseClicked(mouseClickValue);
 		}
 	}
 }
 
-void Draggable::SetDragging(const bool value)
+void Draggable::SetMouseClicked(const bool value)
 {
-	wasReleased = dragging && !value;
-	dragging = value;
+	wasReleased = mouseClicked && !value;
+	mouseClicked = value;
 }

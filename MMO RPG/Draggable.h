@@ -28,11 +28,11 @@ protected:
 	virtual bool IsAt(const sf::Vector2f position) const = 0;
 
 private:
-	void CheckDragging(const Graphics& gfx, const sf::Event::EventType eventType, const bool draggingValue);
-	void SetDragging(const bool value);
+	void CheckMouseClicked(const Graphics& gfx, const sf::Event::EventType eventType, const bool mouseClickValue);
+	void SetMouseClicked(const bool value);
 
 private:
-	bool dragging;
+	bool mouseClicked;
 	bool wasReleased;
 
 	sf::Vector2f initialPosition;
