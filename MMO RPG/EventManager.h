@@ -52,6 +52,9 @@ private:
 		DoubleClick GetDoubleClick() const;
 
 	private:
+		static constexpr float PixelLeeway = 8.0f;
+
+	private:
 		TimeoutTracker timeoutTracker;
 		int clickCount;
 		sf::Vector2f position;

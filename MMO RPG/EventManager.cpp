@@ -107,12 +107,15 @@ void EventManager::DoubleClickChecker::Update()
 			}
 			else
 			{
-				++clickCount;
+				const sf::Vector2f distance = window.mapPixelToCoords(sf::Vector2i{ event.mouseButton.x, event.mouseButton.y }) - position;
 
-				position += window.mapPixelToCoords(sf::Vector2i{ event.mouseButton.x, event.mouseButton.y });
+				if (std::abs(distance.x) < PixelLeeway && std::abs(distance.y) < PixelLeeway)
+				{
+					++clickCount;
 
-				position.x /= 2.0f;
-				position.y /= 2.0f;
+					position.x += distance.x / 2.0f;
+					position.y += distance.y / 2.0f;
+				}
 			}
 		}
 	}
@@ -120,5 +123,5 @@ void EventManager::DoubleClickChecker::Update()
 
 EventManager::DoubleClick EventManager::DoubleClickChecker::GetDoubleClick() const
 {
-	return DoubleClick{ clickCount >= 2, position }; 
+	return DoubleClick{ clickCount >= 2, position };
 }
