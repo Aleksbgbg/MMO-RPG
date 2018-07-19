@@ -1,22 +1,39 @@
 #include "EventManager.h"
 
-EventManager EventManager::instance{ };
+std::shared_ptr<EventManager> EventManager::instance{ nullptr };
 
-EventManager& EventManager::Make()
+EventManager::DoubleClick::DoubleClick(const bool didOccur, const sf::Vector2f position)
+	:
+	didOccur{ didOccur },
+	position{ position }
 {
-	if (made)
+}
+
+std::shared_ptr<EventManager> EventManager::Make(const sf::RenderWindow& window)
+{
+	if (instance != nullptr)
 	{
 		throw std::runtime_error{ "Cannot instantiate EventManager twice." };
 	}
 
-	made = true;
+	instance = std::make_shared<EventManager>(window);
 
 	return instance;
 }
 
 const std::vector<sf::Event>& EventManager::Query(const sf::Event::EventType type)
 {
-	return instance.Find(type);
+	return instance->Find(type);
+}
+
+EventManager::DoubleClick EventManager::GetDoubleClick()
+{
+	return instance->DoubleClickGet();
+}
+
+void EventManager::Update()
+{
+	doubleClickChecker.Update();
 }
 
 void EventManager::Register(const sf::Event& event)
@@ -37,6 +54,12 @@ const std::vector<sf::Event>& EventManager::Find(const sf::Event::EventType type
 	return Find(type);
 }
 
+EventManager::EventManager(const sf::RenderWindow& window)
+	:
+	doubleClickChecker{ window }
+{
+}
+
 std::vector<sf::Event>& EventManager::Find(const sf::Event::EventType type)
 {
 	const auto iterator = events.find(type);
@@ -47,4 +70,55 @@ std::vector<sf::Event>& EventManager::Find(const sf::Event::EventType type)
 	}
 
 	return iterator->second;
+}
+
+EventManager::DoubleClick EventManager::DoubleClickGet() const
+{
+	return doubleClickChecker.GetDoubleClick();
+}
+
+EventManager::DoubleClickChecker::DoubleClickChecker(const sf::RenderWindow& window)
+	:
+	timeoutTracker{ 0.375f },
+	clickCount{ 0 },
+	window{ window }
+{
+}
+
+void EventManager::DoubleClickChecker::Update()
+{
+	timeoutTracker.Update();
+
+	if (timeoutTracker.TimedOut())
+	{
+		clickCount = 0;
+	}
+
+	for (const sf::Event& event : Query(sf::Event::MouseButtonReleased))
+	{
+		if (event.mouseButton.button == sf::Mouse::Button::Left)
+		{
+			if (clickCount == 0)
+			{
+				++clickCount;
+				timeoutTracker.Reset();
+
+				position = window.mapPixelToCoords(sf::Vector2i{ event.mouseButton.x, event.mouseButton.y });
+			}
+			else
+			{
+				++clickCount;
+
+				position += window.mapPixelToCoords(sf::Vector2i{ event.mouseButton.x, event.mouseButton.y });
+
+				position.x /= 2.0f;
+				position.y /= 2.0f;
+			}
+		}
+	}
+}
+
+EventManager::DoubleClick EventManager::DoubleClickChecker::GetDoubleClick() const
+{
+	return DoubleClick{ clickCount >= 2, position }; 
 }
