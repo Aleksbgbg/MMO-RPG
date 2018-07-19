@@ -85,24 +85,6 @@ public:
 	};
 
 private:
-	class DoubleClickChecker
-	{
-	public:
-		DoubleClickChecker();
-
-	public:
-		void Update(const Graphics& gfx);
-
-		bool DidDoubleClick() const;
-		sf::Vector2f DoubleClickPosition() const;
-
-	private:
-		TimeoutTracker timeoutTracker;
-		int clickCount;
-		sf::Vector2f position;
-	};
-
-private:
 	void Equip(const int itemIndex);
 	void Dequip(const InventoryItem::EquipmentType type);
 
@@ -125,6 +107,4 @@ private:
 	std::vector<InventorySlot> inventorySlots;
 
 	Player& player;
-
-	DoubleClickChecker doubleClickChecker;
 };

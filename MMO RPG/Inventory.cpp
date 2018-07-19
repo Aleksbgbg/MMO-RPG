@@ -58,8 +58,6 @@ Inventory::Inventory(Player& player)
 
 void Inventory::OnDraw(const Graphics& gfx)
 {
-	doubleClickChecker.Update(gfx);
-
 	const sf::Vector2f worldPosition = gfx.MapPixelToCoords(sf::Vector2i{ 0, 0 });
 
 	background.setPosition(worldPosition);
@@ -105,25 +103,27 @@ void Inventory::OnDraw(const Graphics& gfx)
 		slot.Draw(gfx);
 	}
 
-	if (doubleClickChecker.DidDoubleClick())
 	{
-		const sf::Vector2f position = doubleClickChecker.DoubleClickPosition();
+		const EventManager::DoubleClick doubleClick = EventManager::GetDoubleClick();
 
-		for (auto& pair : equipSlots)
+		if (doubleClick.didOccur)
 		{
-			if (pair.second.IsAt(position) && pair.second.HasItem())
+			for (auto& pair : equipSlots)
 			{
-				InventorySlot::Swap(pair.second, FindEmptySlot());
-				return;
+				if (pair.second.IsAt(doubleClick.position) && pair.second.HasItem())
+				{
+					InventorySlot::Swap(pair.second, FindEmptySlot());
+					return;
+				}
 			}
-		}
 
-		for (InventorySlot& slot : inventorySlots)
-		{
-			if (slot.IsAt(position) && slot.HasItem())
+			for (InventorySlot& slot : inventorySlots)
 			{
-				InventorySlot::Swap(slot, equipSlots[slot.GetEquipmentType()]);
-				return;
+				if (slot.IsAt(doubleClick.position) && slot.HasItem())
+				{
+					InventorySlot::Swap(slot, equipSlots[slot.GetEquipmentType()]);
+					return;
+				}
 			}
 		}
 	}
@@ -290,56 +290,6 @@ void Inventory::InventorySlotWithPlaceholder::Setup()
 	placeholderSprite.setOrigin(center(placeholderSprite.getLocalBounds()));
 
 	grayscale = ShaderManager::Get("Transparent Grayscale", sf::Shader::Type::Fragment);
-}
-
-Inventory::DoubleClickChecker::DoubleClickChecker()
-	:
-	timeoutTracker{ 0.375f },
-	clickCount{ 0 }
-{
-}
-
-void Inventory::DoubleClickChecker::Update(const Graphics& gfx)
-{
-	timeoutTracker.Update();
-
-	if (timeoutTracker.TimedOut())
-	{
-		clickCount = 0;
-	}
-
-	for (const sf::Event& event : EventManager::Query(sf::Event::MouseButtonReleased))
-	{
-		if (event.mouseButton.button == sf::Mouse::Button::Left)
-		{
-			if (clickCount == 0)
-			{
-				++clickCount;
-				timeoutTracker.Reset();
-
-				position = gfx.MapPixelToCoords(sf::Vector2i{ event.mouseButton.x, event.mouseButton.y });
-			}
-			else
-			{
-				++clickCount;
-
-				position += gfx.MapPixelToCoords(sf::Vector2i{ event.mouseButton.x, event.mouseButton.y });
-
-				position.x /= 2.0f;
-				position.y /= 2.0f;
-			}
-		}
-	}
-}
-
-bool Inventory::DoubleClickChecker::DidDoubleClick() const
-{
-	return clickCount >= 2;
-}
-
-sf::Vector2f Inventory::DoubleClickChecker::DoubleClickPosition() const
-{
-	return position;
 }
 
 void Inventory::Equip(const int itemIndex)
