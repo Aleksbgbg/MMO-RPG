@@ -27,7 +27,9 @@ Inventory::Inventory(Player& player)
 
 		const sf::Vector2f slotPosition{ slotPositionJson["x"], slotPositionJson["y"] };
 
-		equipSlots.emplace(static_cast<InventoryItem::EquipmentType>(index), InventorySlotWithPlaceholder{ sf::FloatRect{ slotPosition, equipSlotDimensions }, ComputeTextureRectangle(slotPositionJson["placeholder"]) });
+		const InventoryItem::EquipmentType equipmentType = static_cast<InventoryItem::EquipmentType>(index);
+
+		equipSlots.emplace(equipmentType, InventorySlotWithPlaceholder{ equipmentType, sf::FloatRect{ slotPosition, equipSlotDimensions }, ComputeTextureRectangle(slotPositionJson["placeholder"]) });
 	}
 
 	const int itemsPerRow = itemsInfo["itemsPerRow"];
@@ -80,7 +82,12 @@ void Inventory::OnUpdate()
 
 				if (target != nullptr)
 				{
-					slot->Swap(*target);
+					const InventorySlotWithPlaceholder* const inventorySlotWithPlaceholder = dynamic_cast<const InventorySlotWithPlaceholder* const>(target);
+
+					if (inventorySlotWithPlaceholder == nullptr || inventorySlotWithPlaceholder->GetPlaceholderType() == slot->GetEquipmentType())
+					{
+						slot->Swap(*target);
+					}
 				}
 			}
 		}
@@ -233,18 +240,20 @@ sf::FloatRect Inventory::InventorySlot::GetWorldDimensions() const
 	return dimensions;
 }
 
-Inventory::InventorySlotWithPlaceholder::InventorySlotWithPlaceholder(const sf::FloatRect dimensions, const sf::IntRect viewport)
+Inventory::InventorySlotWithPlaceholder::InventorySlotWithPlaceholder(const InventoryItem::EquipmentType placeholderType, const sf::FloatRect dimensions, const sf::IntRect viewport)
 	:
 	InventorySlot{ dimensions },
-	placeholderSprite{ TextureManager::Get("Inventory\\Items"), viewport }
+	placeholderSprite{ TextureManager::Get("Inventory\\Items"), viewport },
+	placeholderType{ placeholderType }
 {
 	Setup();
 }
 
-Inventory::InventorySlotWithPlaceholder::InventorySlotWithPlaceholder(const InventoryItem& item, const sf::FloatRect dimensions, const sf::IntRect viewport)
+Inventory::InventorySlotWithPlaceholder::InventorySlotWithPlaceholder(const InventoryItem& item, const InventoryItem::EquipmentType placeholderType, const sf::FloatRect dimensions, const sf::IntRect viewport)
 	:
 	InventorySlot{ item, dimensions },
-	placeholderSprite{ TextureManager::Get("Inventory\\Items"), viewport }
+	placeholderSprite{ TextureManager::Get("Inventory\\Items"), viewport },
+	placeholderType{ placeholderType }
 {
 	Setup();
 }
@@ -260,6 +269,11 @@ void Inventory::InventorySlotWithPlaceholder::Draw(const Graphics& gfx)
 	placeholderSprite.setPosition(center(GetWorldDimensions()));
 
 	gfx.Draw(placeholderSprite, *grayscale);
+}
+
+const InventoryItem::EquipmentType Inventory::InventorySlotWithPlaceholder::GetPlaceholderType() const
+{
+	return placeholderType;
 }
 
 void Inventory::InventorySlotWithPlaceholder::Setup()

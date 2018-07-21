@@ -67,11 +67,13 @@ public:
 	{
 	public:
 		InventorySlotWithPlaceholder() = default;
-		InventorySlotWithPlaceholder(const sf::FloatRect dimensions, const sf::IntRect viewport);
-		InventorySlotWithPlaceholder(const InventoryItem& item, const sf::FloatRect dimensions, const sf::IntRect viewport);
+		InventorySlotWithPlaceholder(const InventoryItem::EquipmentType placeholderType, const sf::FloatRect dimensions, const sf::IntRect viewport);
+		InventorySlotWithPlaceholder(const InventoryItem& item, const InventoryItem::EquipmentType placeholderType, const sf::FloatRect dimensions, const sf::IntRect viewport);
 
 	public:
 		void Draw(const Graphics& gfx) override;
+
+		const InventoryItem::EquipmentType GetPlaceholderType() const;
 
 	private:
 		void Setup();
@@ -80,6 +82,8 @@ public:
 		std::shared_ptr<sf::Shader> grayscale;
 
 		Sprite placeholderSprite;
+
+		InventoryItem::EquipmentType placeholderType;
 	};
 
 private:
