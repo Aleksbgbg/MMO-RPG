@@ -34,9 +34,8 @@ private:
 		virtual ~InventorySlot() = default;
 
 	public:
-		static void Swap(InventorySlot& first, InventorySlot& second);
+		void Swap(InventorySlot& second);
 
-	public:
 		void Equip(const InventoryItem& item);
 		std::optional<InventoryItem> Dequip();
 

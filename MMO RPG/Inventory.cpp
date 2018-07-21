@@ -80,7 +80,7 @@ void Inventory::OnUpdate()
 
 				if (target != nullptr)
 				{
-					InventorySlot::Swap(*slot, *target);
+					slot->Swap(*target);
 				}
 			}
 		}
@@ -97,7 +97,7 @@ void Inventory::OnUpdate()
 			{
 				if (pair.second.IsAt(sf::Vector2f{ doubleClick.position }) && pair.second.HasItem())
 				{
-					InventorySlot::Swap(pair.second, FindEmptySlot());
+					pair.second.Swap(FindEmptySlot());
 					break;
 				}
 			}
@@ -106,7 +106,7 @@ void Inventory::OnUpdate()
 			{
 				if (slot.IsAt(sf::Vector2f{ doubleClick.position }) && slot.HasItem())
 				{
-					InventorySlot::Swap(slot, equipSlots[slot.GetEquipmentType()]);
+					slot.Swap(equipSlots[slot.GetEquipmentType()]);
 					break;
 				}
 			}
@@ -174,9 +174,9 @@ bool Inventory::InventorySlot::IsAt(const sf::Vector2f point) const
 	return GetWorldDimensions().contains(point);
 }
 
-void Inventory::InventorySlot::Swap(InventorySlot& first, InventorySlot& second)
+void Inventory::InventorySlot::Swap(InventorySlot& second)
 {
-	std::optional<InventoryItem> firstItem = first.Dequip();
+	std::optional<InventoryItem> firstItem = Dequip();
 	std::optional<InventoryItem> secondItem = second.Dequip();
 
 	if (firstItem.has_value())
@@ -186,7 +186,7 @@ void Inventory::InventorySlot::Swap(InventorySlot& first, InventorySlot& second)
 
 	if (secondItem.has_value())
 	{
-		first.Equip(secondItem.value());
+		Equip(secondItem.value());
 	}
 }
 
@@ -278,7 +278,7 @@ void Inventory::Equip(const int itemIndex)
 
 void Inventory::Dequip(const InventoryItem::EquipmentType type)
 {
-	InventorySlot::Swap(equipSlots[type], FindEmptySlot());
+	equipSlots[type].Swap(FindEmptySlot());
 }
 
 int Inventory::CreateAndStore(const InventoryItem::Equipment type)
