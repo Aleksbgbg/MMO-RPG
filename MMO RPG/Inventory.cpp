@@ -110,7 +110,7 @@ void Inventory::OnDraw(const Graphics& gfx)
 		{
 			for (auto& pair : equipSlots)
 			{
-				if (pair.second.IsAt(doubleClick.position) && pair.second.HasItem())
+				if (pair.second.IsAt(sf::Vector2f{ doubleClick.position }) && pair.second.HasItem())
 				{
 					InventorySlot::Swap(pair.second, FindEmptySlot());
 					return;
@@ -119,7 +119,7 @@ void Inventory::OnDraw(const Graphics& gfx)
 
 			for (InventorySlot& slot : inventorySlots)
 			{
-				if (slot.IsAt(doubleClick.position) && slot.HasItem())
+				if (slot.IsAt(sf::Vector2f{ doubleClick.position }) && slot.HasItem())
 				{
 					InventorySlot::Swap(slot, equipSlots[slot.GetEquipmentType()]);
 					return;
