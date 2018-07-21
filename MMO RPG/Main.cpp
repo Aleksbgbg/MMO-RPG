@@ -15,7 +15,7 @@ int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszA
 	Game game{ window };
 
 	DeltaTime& deltaTime = DeltaTime::Make();
-	const std::shared_ptr<EventManager> eventManager = EventManager::Make(window);
+	EventManager& eventManager = EventManager::Make();
 
 	while (window.isOpen())
 	{
@@ -24,7 +24,7 @@ int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszA
 
 			while (window.pollEvent(event))
 			{
-				eventManager->Register(event);
+				eventManager.Register(event);
 
 				if (event.type == sf::Event::Closed)
 				{
@@ -41,11 +41,11 @@ int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszA
 			}
 		}
 
-		eventManager->Update();
+		eventManager.Update();
 
 		game.Main();
 		
-		eventManager->Clear();
+		eventManager.Clear();
 
 		deltaTime.Restart();
 	}

@@ -11,9 +11,6 @@
 class EventManager
 {
 public:
-	explicit EventManager(const sf::RenderWindow& window);
-
-public:
 	struct DoubleClick
 	{
 		bool didOccur;
@@ -21,7 +18,7 @@ public:
 	};
 
 public:
-	static std::shared_ptr<EventManager> Make(const sf::RenderWindow& window);
+	static EventManager& Make();
 
 	static const std::vector<sf::Event>& Query(const sf::Event::EventType type);
 	static DoubleClick GetDoubleClick();
@@ -37,10 +34,13 @@ public:
 	DoubleClick DoubleClickGet() const;
 
 private:
+	EventManager() = default;
+
+private:
 	class DoubleClickChecker
 	{
 	public:
-		explicit DoubleClickChecker(const sf::RenderWindow& window);
+		DoubleClickChecker();
 
 	public:
 		void Update();
@@ -54,12 +54,11 @@ private:
 		TimeoutTracker timeoutTracker;
 		int clickCount;
 		sf::Vector2i position;
-
-		const sf::RenderWindow& window;
 	};
 
 private:
-	static std::shared_ptr<EventManager> instance;
+	static EventManager instance;
+	static bool made;
 
 private:
 	std::vector<sf::Event>& Find(const sf::Event::EventType type);

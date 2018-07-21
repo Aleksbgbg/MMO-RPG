@@ -1,27 +1,28 @@
 #include "EventManager.h"
 
-std::shared_ptr<EventManager> EventManager::instance{ nullptr };
+EventManager EventManager::instance;
+bool EventManager::made = false;
 
-std::shared_ptr<EventManager> EventManager::Make(const sf::RenderWindow& window)
+EventManager& EventManager::Make()
 {
-	if (instance != nullptr)
+	if (made)
 	{
 		throw std::runtime_error{ "Cannot instantiate EventManager twice." };
 	}
 
-	instance = std::make_shared<EventManager>(window);
+	made = true;
 
 	return instance;
 }
 
 const std::vector<sf::Event>& EventManager::Query(const sf::Event::EventType type)
 {
-	return instance->Find(type);
+	return instance.Find(type);
 }
 
 EventManager::DoubleClick EventManager::GetDoubleClick()
 {
-	return instance->DoubleClickGet();
+	return instance.DoubleClickGet();
 }
 
 void EventManager::Update()
@@ -47,12 +48,6 @@ const std::vector<sf::Event>& EventManager::Find(const sf::Event::EventType type
 	return Find(type);
 }
 
-EventManager::EventManager(const sf::RenderWindow& window)
-	:
-	doubleClickChecker{ window }
-{
-}
-
 std::vector<sf::Event>& EventManager::Find(const sf::Event::EventType type)
 {
 	const auto iterator = events.find(type);
@@ -70,11 +65,10 @@ EventManager::DoubleClick EventManager::DoubleClickGet() const
 	return doubleClickChecker.GetDoubleClick();
 }
 
-EventManager::DoubleClickChecker::DoubleClickChecker(const sf::RenderWindow& window)
+EventManager::DoubleClickChecker::DoubleClickChecker()
 	:
 	timeoutTracker{ 0.375f },
-	clickCount{ 0 },
-	window{ window }
+	clickCount{ 0 }
 {
 }
 
