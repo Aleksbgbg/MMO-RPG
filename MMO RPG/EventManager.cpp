@@ -2,7 +2,7 @@
 
 std::shared_ptr<EventManager> EventManager::instance{ nullptr };
 
-EventManager::DoubleClick::DoubleClick(const bool didOccur, const sf::Vector2f position)
+EventManager::DoubleClick::DoubleClick(const bool didOccur, const sf::Vector2i position)
 	:
 	didOccur{ didOccur },
 	position{ position }
@@ -103,18 +103,18 @@ void EventManager::DoubleClickChecker::Update()
 				++clickCount;
 				timeoutTracker.Reset();
 
-				position = window.mapPixelToCoords(sf::Vector2i{ event.mouseButton.x, event.mouseButton.y });
+				position = sf::Vector2i{ event.mouseButton.x, event.mouseButton.y };
 			}
 			else
 			{
-				const sf::Vector2f distance = window.mapPixelToCoords(sf::Vector2i{ event.mouseButton.x, event.mouseButton.y }) - position;
+				const sf::Vector2i distance = sf::Vector2i{ event.mouseButton.x, event.mouseButton.y } - position;
 
 				if (std::abs(distance.x) < PixelLeeway && std::abs(distance.y) < PixelLeeway)
 				{
 					++clickCount;
 
-					position.x += distance.x / 2.0f;
-					position.y += distance.y / 2.0f;
+					position.x += distance.x / 2;
+					position.y += distance.y / 2;
 				}
 			}
 		}

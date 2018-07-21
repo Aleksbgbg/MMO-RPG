@@ -17,11 +17,11 @@ public:
 	struct DoubleClick
 	{
 	public:
-		DoubleClick(const bool didOccur, const sf::Vector2f position);
+		DoubleClick(const bool didOccur, const sf::Vector2i position);
 
 	public:
 		bool didOccur;
-		sf::Vector2f position;
+		sf::Vector2i position;
 	};
 
 public:
@@ -52,12 +52,12 @@ private:
 		DoubleClick GetDoubleClick() const;
 
 	private:
-		static constexpr float PixelLeeway = 8.0f;
+		static constexpr int PixelLeeway = 8;
 
 	private:
 		TimeoutTracker timeoutTracker;
 		int clickCount;
-		sf::Vector2f position;
+		sf::Vector2i position;
 
 		const sf::RenderWindow& window;
 	};
