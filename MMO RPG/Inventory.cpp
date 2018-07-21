@@ -246,7 +246,7 @@ void Inventory::InventorySlotWithPlaceholder::Draw(const Graphics& gfx)
 	gfx.Draw(placeholderSprite, *grayscale);
 }
 
-const InventoryItem::EquipmentType Inventory::InventorySlotWithPlaceholder::GetPlaceholderType() const
+InventoryItem::EquipmentType Inventory::InventorySlotWithPlaceholder::GetPlaceholderType() const
 {
 	return placeholderType;
 }

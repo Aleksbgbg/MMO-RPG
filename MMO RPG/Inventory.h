@@ -67,7 +67,7 @@ public:
 	public:
 		void Draw(const Graphics& gfx) override;
 
-		const InventoryItem::EquipmentType GetPlaceholderType() const;
+		InventoryItem::EquipmentType GetPlaceholderType() const;
 
 	private:
 		void Setup();
