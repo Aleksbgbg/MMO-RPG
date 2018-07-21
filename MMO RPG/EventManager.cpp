@@ -2,13 +2,6 @@
 
 std::shared_ptr<EventManager> EventManager::instance{ nullptr };
 
-EventManager::DoubleClick::DoubleClick(const bool didOccur, const sf::Vector2i position)
-	:
-	didOccur{ didOccur },
-	position{ position }
-{
-}
-
 std::shared_ptr<EventManager> EventManager::Make(const sf::RenderWindow& window)
 {
 	if (instance != nullptr)

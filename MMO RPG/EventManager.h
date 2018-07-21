@@ -16,10 +16,6 @@ public:
 public:
 	struct DoubleClick
 	{
-	public:
-		DoubleClick(const bool didOccur, const sf::Vector2i position);
-
-	public:
 		bool didOccur;
 		sf::Vector2i position;
 	};
