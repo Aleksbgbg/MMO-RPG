@@ -19,9 +19,8 @@ public:
 	explicit Inventory(Player& player);
 
 public:
+	void OnUpdate() override;
 	void OnDraw(const Graphics& gfx) override;
-
-	void OnMouseClicked(const sf::Vector2f position) override;
 
 private:
 	class InventorySlot

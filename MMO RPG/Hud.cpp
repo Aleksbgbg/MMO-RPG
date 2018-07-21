@@ -7,30 +7,30 @@ Hud::Hud(Player& player)
 	windows.emplace_back(std::make_unique<Inventory>(player));
 }
 
+void Hud::Update()
+{
+	for (const std::unique_ptr<HudWindow>& window : windows)
+	{
+		window->CheckOpened();
+
+		if (window->IsOpened())
+		{
+			window->Update();
+		}
+	}
+}
+
 void Hud::Draw(Graphics& gfx)
 {
 	gfx.ChangeView(view);
 
 	for (const std::unique_ptr<HudWindow>& window : windows)
 	{
-		window->Draw(gfx);
+		if (window->IsOpened())
+		{
+			window->Draw(gfx);
+		}
 	}
 
 	gfx.ResetView();
-}
-
-void Hud::KeyPressed(const sf::Keyboard::Key key)
-{
-	for (const std::unique_ptr<HudWindow>& window : windows)
-	{
-		window->KeyPressed(key);
-	}
-}
-
-void Hud::MouseClicked(const sf::Vector2f position)
-{
-	for (const std::unique_ptr<HudWindow>& window : windows)
-	{
-		window->MouseClicked(position);
-	}
 }

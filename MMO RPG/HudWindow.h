@@ -1,7 +1,6 @@
 #pragma once
 
 #include <SFML/Window/Keyboard.hpp>
-#include <SFML/System/Vector2.hpp>
 
 #include "Graphics.h"
 
@@ -13,16 +12,15 @@ public:
 public:
 	virtual ~HudWindow() = default;
 
+	void Update();
 	void Draw(const Graphics& gfx);
 
-	void KeyPressed(const sf::Keyboard::Key key);
-	void MouseClicked(const sf::Vector2f position);
+	void CheckOpened();
+	bool IsOpened() const;
 
 protected:
+	virtual void OnUpdate();
 	virtual void OnDraw(const Graphics& gfx);
-
-	virtual void OnKeyPressed(const sf::Keyboard::Key key);
-	virtual void OnMouseClicked(const sf::Vector2f position);
 
 private:
 	void ToggleOpened();

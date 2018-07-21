@@ -39,8 +39,6 @@ void Game::Main()
 
 void Game::KeyPressed(const sf::Keyboard::Key key)
 {
-	hud.KeyPressed(key);
-
 	if (key == sf::Keyboard::X && canTeleport)
 	{
 		const Portal& sourcePortal = activeWorld->FindNearestPortal();
@@ -59,11 +57,6 @@ void Game::KeyPressed(const sf::Keyboard::Key key)
 			subtitleHandler.Emplace(SubtitleHandler::SubtitleType::Warning, "Out of range!", 1.0f);
 		}
 	}
-}
-
-void Game::MouseClicked(const sf::Vector2f position)
-{
-	hud.MouseClicked(position);
 }
 
 void Game::UpdateModel()
@@ -143,6 +136,8 @@ void Game::UpdateModel()
 	}
 
 	subtitleHandler.Update();
+
+	hud.Update();
 }
 
 void Game::ComposeFrame()

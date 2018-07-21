@@ -54,7 +54,8 @@ Inventory::Inventory(Player& player)
 	{
 		Equip(CreateAndStore(equipment));
 	}
-
+		
+	
 	for (auto& pair : equipSlots)
 	{
 		allSlots.push_back(&pair.second);
@@ -66,14 +67,9 @@ Inventory::Inventory(Player& player)
 	}
 }
 
-void Inventory::OnDraw(const Graphics& gfx)
+void Inventory::OnUpdate()
 {
-	const sf::Vector2f worldPosition = gfx.MapPixelToCoords(sf::Vector2i{ 0, 0 });
-
-	background.setPosition(worldPosition);
-	gfx.Draw(background);
-
-	for (InventorySlot* slot : allSlots)
+	for (InventorySlot* const slot : allSlots)
 	{
 		{
 			sf::Vector2f targetPosition;
@@ -89,8 +85,7 @@ void Inventory::OnDraw(const Graphics& gfx)
 			}
 		}
 
-		slot->UpdateWorldPosition(worldPosition);
-		slot->Draw(gfx);
+		//slot->UpdateWorldPosition(worldPosition);
 	}
 
 	{
@@ -117,30 +112,22 @@ void Inventory::OnDraw(const Graphics& gfx)
 			}
 		}
 	}
+}
+
+void Inventory::OnDraw(const Graphics& gfx)
+{
+	const sf::Vector2f worldPosition = gfx.MapPixelToCoords(sf::Vector2i{ 0, 0 });
+
+	background.setPosition(worldPosition);
+	gfx.Draw(background);
+
+	for (InventorySlot* const slot : allSlots)
+	{
+		slot->Draw(gfx);
+	}
 
 	// Pre-calculated values for the background dimensions of the central scroll
 	player.DrawAt(gfx, center(sf::FloatRect{ 125.0f, 32.0f, 316.0f, 443.0f }) + worldPosition);
-}
-
-void Inventory::OnMouseClicked(const sf::Vector2f position)
-{
-	/*for (auto& pair : equipSlots)
-	{
-		if (pair.second.IsAt(position) && pair.second.HasItem())
-		{
-			InventorySlot::Swap(pair.second, FindEmptySlot());
-			return;
-		}
-	}
-
-	for (InventorySlot& slot : inventorySlots)
-	{
-		if (slot.IsAt(position) && slot.HasItem())
-		{
-			InventorySlot::Swap(slot, equipSlots[slot.GetEquipmentType()]);
-			return;
-		}
-	}*/
 }
 
 Inventory::InventorySlot::InventorySlot(const sf::FloatRect dimensions)

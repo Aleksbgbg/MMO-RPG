@@ -1,5 +1,7 @@
 #include "HudWindow.h"
 
+#include "EventManager.h"
+
 HudWindow::HudWindow(const sf::Keyboard::Key toggleOpenKey)
 	:
 	toggleOpenKey{ toggleOpenKey },
@@ -12,43 +14,36 @@ void HudWindow::ToggleOpened()
 	opened = !opened;
 }
 
+void HudWindow::Update()
+{
+	OnUpdate();
+}
+
 void HudWindow::Draw(const Graphics& gfx)
 {
-	if (opened)
+	OnDraw(gfx);
+}
+
+void HudWindow::CheckOpened()
+{
+	for (const sf::Event& event : EventManager::Query(sf::Event::EventType::KeyPressed))
 	{
-		OnDraw(gfx);
+		if (event.key.code == toggleOpenKey)
+		{
+			ToggleOpened();
+		}
 	}
 }
 
-void HudWindow::KeyPressed(const sf::Keyboard::Key key)
+bool HudWindow::IsOpened() const
 {
-	if (key == toggleOpenKey)
-	{
-		ToggleOpened();
-	}
-
-	if (opened)
-	{
-		OnKeyPressed(key);
-	}
+	return opened;
 }
 
-void HudWindow::MouseClicked(const sf::Vector2f position)
+void HudWindow::OnUpdate()
 {
-	if (opened)
-	{
-		OnMouseClicked(position);
-	}
 }
 
 void HudWindow::OnDraw(const Graphics& gfx)
-{
-}
-
-void HudWindow::OnKeyPressed(const sf::Keyboard::Key key)
-{
-}
-
-void HudWindow::OnMouseClicked(const sf::Vector2f position)
 {
 }
