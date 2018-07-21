@@ -54,6 +54,16 @@ Inventory::Inventory(Player& player)
 	{
 		Equip(CreateAndStore(equipment));
 	}
+
+	for (auto& pair : equipSlots)
+	{
+		allSlots.push_back(&pair.second);
+	}
+
+	for (InventorySlot& slot : inventorySlots)
+	{
+		allSlots.push_back(&slot);
+	}
 }
 
 void Inventory::OnDraw(const Graphics& gfx)
@@ -63,44 +73,24 @@ void Inventory::OnDraw(const Graphics& gfx)
 	background.setPosition(worldPosition);
 	gfx.Draw(background);
 
-	for (auto& pair : equipSlots)
+	for (InventorySlot* slot : allSlots)
 	{
 		{
 			sf::Vector2f targetPosition;
 
-			if (pair.second.RequiresSwap(targetPosition))
+			if (slot->RequiresSwap(targetPosition))
 			{
 				InventorySlot* target = FindSlot(targetPosition);
 
 				if (target != nullptr)
 				{
-					InventorySlot::Swap(pair.second, *target);
+					InventorySlot::Swap(*slot, *target);
 				}
 			}
 		}
 
-		pair.second.UpdateWorldPosition(worldPosition);
-		pair.second.Draw(gfx);
-	}
-
-	for (InventorySlot& slot : inventorySlots)
-	{
-		{
-			sf::Vector2f targetPosition;
-
-			if (slot.RequiresSwap(targetPosition))
-			{
-				InventorySlot* target = FindSlot(targetPosition);
-
-				if (target != nullptr)
-				{
-					InventorySlot::Swap(slot, *target);
-				}
-			}
-		}
-
-		slot.UpdateWorldPosition(worldPosition);
-		slot.Draw(gfx);
+		slot->UpdateWorldPosition(worldPosition);
+		slot->Draw(gfx);
 	}
 
 	{
@@ -113,7 +103,7 @@ void Inventory::OnDraw(const Graphics& gfx)
 				if (pair.second.IsAt(sf::Vector2f{ doubleClick.position }) && pair.second.HasItem())
 				{
 					InventorySlot::Swap(pair.second, FindEmptySlot());
-					return;
+					break;
 				}
 			}
 
@@ -122,7 +112,7 @@ void Inventory::OnDraw(const Graphics& gfx)
 				if (slot.IsAt(sf::Vector2f{ doubleClick.position }) && slot.HasItem())
 				{
 					InventorySlot::Swap(slot, equipSlots[slot.GetEquipmentType()]);
-					return;
+					break;
 				}
 			}
 		}
@@ -347,19 +337,11 @@ sf::IntRect Inventory::ComputeTextureRectangle(const int equipmentPosition) cons
 
 Inventory::InventorySlot* Inventory::FindSlot(const sf::Vector2f position)
 {
-	for (auto& pair : equipSlots)
+	for (InventorySlot* slot : allSlots)
 	{
-		if (pair.second.IsAt(position))
+		if (slot->IsAt(position))
 		{
-			return &pair.second;
-		}
-	}
-
-	for (InventorySlot& slot : inventorySlots)
-	{
-		if (slot.IsAt(position))
-		{
-			return &slot;
+			return slot;
 		}
 	}
 

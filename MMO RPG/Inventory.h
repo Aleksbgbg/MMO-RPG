@@ -106,5 +106,7 @@ private:
 
 	std::vector<InventorySlot> inventorySlots;
 
+	std::vector<InventorySlot*> allSlots;
+
 	Player& player;
 };
