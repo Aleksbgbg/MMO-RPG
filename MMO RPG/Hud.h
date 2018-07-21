@@ -11,11 +11,13 @@ public:
 	explicit Hud(Player& player);
 
 public:
-	void Draw(const Graphics& gfx);
+	void Draw(Graphics& gfx);
 
 	void KeyPressed(const sf::Keyboard::Key key);
 	void MouseClicked(const sf::Vector2f position);
 
 private:
+	sf::View view;
+
 	std::vector<std::unique_ptr<HudWindow>> windows;
 };
