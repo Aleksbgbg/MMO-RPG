@@ -3,7 +3,6 @@
 #include <SFML/Window/Event.hpp>
 
 #include "EventManager.h"
-#include "Graphics.h"
 
 Draggable::Draggable()
 	:
@@ -12,21 +11,21 @@ Draggable::Draggable()
 {
 }
 
-void Draggable::Update(const Graphics& gfx, const sf::Vector2f position)
+void Draggable::Update(const sf::Vector2f position)
 {
 	if (mouseClicked)
 	{
 		for (const sf::Event& movement : EventManager::Query(sf::Event::EventType::MouseMoved))
 		{
-			dragOffset = gfx.MapPixelToCoords(sf::Vector2i{ movement.mouseMove.x, movement.mouseMove.y }) - initialPosition;
+			dragOffset = sf::Vector2f{ static_cast<float>(movement.mouseMove.x), static_cast<float>(movement.mouseMove.y) } - initialPosition;
 		}
 
-		CheckMouseClicked(gfx, sf::Event::EventType::MouseButtonReleased, false);
+		CheckMouseClicked(sf::Event::EventType::MouseButtonReleased, false);
 	}
 	else
 	{
-		CheckMouseClicked(gfx, sf::Event::EventType::MouseButtonPressed, true);
-		//CheckMouseClicked(gfx, sf::Event::EventType::MouseButtonReleased, false);
+		CheckMouseClicked(sf::Event::EventType::MouseButtonPressed, true);
+		//CheckMouseClicked(sf::Event::EventType::MouseButtonReleased, false);
 
 		if (!IsDragging())
 		{
@@ -56,11 +55,11 @@ void Draggable::ConsumeRelease()
 	dragOffset = sf::Vector2f{ 0.0f, 0.0f };
 }
 
-void Draggable::CheckMouseClicked(const Graphics& gfx, const sf::Event::EventType eventType, const bool mouseClickValue)
+void Draggable::CheckMouseClicked(const sf::Event::EventType eventType, const bool mouseClickValue)
 {
 	for (const sf::Event& click : EventManager::Query(eventType))
 	{
-		if (click.mouseButton.button == sf::Mouse::Left && (!mouseClickValue || IsAt(gfx.MapPixelToCoords(sf::Vector2i{ click.mouseButton.x, click.mouseButton.y }))))
+		if (click.mouseButton.button == sf::Mouse::Left && (!mouseClickValue || IsAt(sf::Vector2f{ static_cast<float>(click.mouseButton.x), static_cast<float>(click.mouseButton.y) })))
 		{
 			SetMouseClicked(mouseClickValue);
 		}

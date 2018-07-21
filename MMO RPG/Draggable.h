@@ -1,10 +1,7 @@
 #pragma once
 
-
 #include <SFML/Window/Event.hpp>
 #include <SFML/System/Vector2.hpp>
-
-#include "Graphics.h"
 
 class Draggable
 {
@@ -23,12 +20,12 @@ public:
 	void ConsumeRelease();
 
 protected:
-	void Update(const Graphics& gfx, const sf::Vector2f position);
+	void Update(const sf::Vector2f position);
 
 	virtual bool IsAt(const sf::Vector2f position) const = 0;
 
 private:
-	void CheckMouseClicked(const Graphics& gfx, const sf::Event::EventType eventType, const bool mouseClickValue);
+	void CheckMouseClicked(const sf::Event::EventType eventType, const bool mouseClickValue);
 	void SetMouseClicked(const bool value);
 
 private:

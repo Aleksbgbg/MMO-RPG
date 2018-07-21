@@ -56,8 +56,7 @@ Inventory::Inventory(Player& player)
 	{
 		Equip(CreateAndStore(equipment));
 	}
-		
-	
+
 	for (auto& pair : equipSlots)
 	{
 		allSlots.push_back(&pair.second);
@@ -73,49 +72,43 @@ void Inventory::OnUpdate()
 {
 	for (InventorySlot* const slot : allSlots)
 	{
+		sf::Vector2f targetPosition;
+
+		if (slot->RequiresSwap(targetPosition))
 		{
-			sf::Vector2f targetPosition;
+			InventorySlot* target = FindSlot(targetPosition);
 
-			if (slot->RequiresSwap(targetPosition))
+			if (target != nullptr)
 			{
-				InventorySlot* target = FindSlot(targetPosition);
+				const InventorySlotWithPlaceholder* const inventorySlotWithPlaceholder = dynamic_cast<const InventorySlotWithPlaceholder* const>(target);
 
-				if (target != nullptr)
+				if (inventorySlotWithPlaceholder == nullptr || inventorySlotWithPlaceholder->GetPlaceholderType() == slot->GetEquipmentType())
 				{
-					const InventorySlotWithPlaceholder* const inventorySlotWithPlaceholder = dynamic_cast<const InventorySlotWithPlaceholder* const>(target);
-
-					if (inventorySlotWithPlaceholder == nullptr || inventorySlotWithPlaceholder->GetPlaceholderType() == slot->GetEquipmentType())
-					{
-						slot->Swap(*target);
-					}
+					slot->Swap(*target);
 				}
 			}
 		}
-
-		//slot->UpdateWorldPosition(worldPosition);
 	}
 
+	const EventManager::DoubleClick doubleClick = EventManager::GetDoubleClick();
+
+	if (doubleClick.didOccur)
 	{
-		const EventManager::DoubleClick doubleClick = EventManager::GetDoubleClick();
-
-		if (doubleClick.didOccur)
+		for (auto& pair : equipSlots)
 		{
-			for (auto& pair : equipSlots)
+			if (pair.second.IsAt(sf::Vector2f{ doubleClick.position }) && pair.second.HasItem())
 			{
-				if (pair.second.IsAt(sf::Vector2f{ doubleClick.position }) && pair.second.HasItem())
-				{
-					pair.second.Swap(FindEmptySlot());
-					break;
-				}
+				pair.second.Swap(FindEmptySlot());
+				break;
 			}
+		}
 
-			for (InventorySlot& slot : inventorySlots)
+		for (InventorySlot& slot : inventorySlots)
+		{
+			if (slot.IsAt(sf::Vector2f{ doubleClick.position }) && slot.HasItem())
 			{
-				if (slot.IsAt(sf::Vector2f{ doubleClick.position }) && slot.HasItem())
-				{
-					slot.Swap(equipSlots[slot.GetEquipmentType()]);
-					break;
-				}
+				slot.Swap(equipSlots[slot.GetEquipmentType()]);
+				break;
 			}
 		}
 	}
@@ -123,9 +116,6 @@ void Inventory::OnUpdate()
 
 void Inventory::OnDraw(const Graphics& gfx)
 {
-	const sf::Vector2f worldPosition = gfx.MapPixelToCoords(sf::Vector2i{ 0, 0 });
-
-	background.setPosition(worldPosition);
 	gfx.Draw(background);
 
 	for (InventorySlot* const slot : allSlots)
@@ -134,7 +124,7 @@ void Inventory::OnDraw(const Graphics& gfx)
 	}
 
 	// Pre-calculated values for the background dimensions of the central scroll
-	player.DrawAt(gfx, center(sf::FloatRect{ 125.0f, 32.0f, 316.0f, 443.0f }) + worldPosition);
+	player.DrawAt(gfx, center(sf::FloatRect{ 125.0f, 32.0f, 316.0f, 443.0f }));
 }
 
 Inventory::InventorySlot::InventorySlot(const sf::FloatRect dimensions)
@@ -164,21 +154,16 @@ std::optional<InventoryItem> Inventory::InventorySlot::Dequip()
 	return item;
 }
 
-void Inventory::InventorySlot::UpdateWorldPosition(const sf::Vector2f worldPosition)
-{
-	this->worldPosition = worldPosition;
-}
-
 void Inventory::InventorySlot::Draw(const Graphics& gfx)
 {
 	if (!HasItem()) return;
 
-	item.value().Render(gfx, GetWorldDimensions());
+	item.value().Render(gfx, GetDimensions());
 }
 
 bool Inventory::InventorySlot::IsAt(const sf::Vector2f point) const
 {
-	return GetWorldDimensions().contains(point);
+	return GetDimensions().contains(point);
 }
 
 void Inventory::InventorySlot::Swap(InventorySlot& second)
@@ -225,19 +210,9 @@ bool Inventory::InventorySlot::RequiresSwap(sf::Vector2f& position)
 	return false;
 }
 
-sf::Vector2f Inventory::InventorySlot::GetWorldPosition() const
+sf::FloatRect Inventory::InventorySlot::GetDimensions() const
 {
-	return worldPosition;
-}
-
-sf::FloatRect Inventory::InventorySlot::GetWorldDimensions() const
-{
-	sf::FloatRect dimensions = this->dimensions;
-
-	dimensions.left += worldPosition.x;
-	dimensions.top += worldPosition.y;
-
-	return dimensions;
+	return this->dimensions;
 }
 
 Inventory::InventorySlotWithPlaceholder::InventorySlotWithPlaceholder(const InventoryItem::EquipmentType placeholderType, const sf::FloatRect dimensions, const sf::IntRect viewport)
@@ -266,7 +241,7 @@ void Inventory::InventorySlotWithPlaceholder::Draw(const Graphics& gfx)
 		return;
 	}
 
-	placeholderSprite.setPosition(center(GetWorldDimensions()));
+	placeholderSprite.setPosition(center(GetDimensions()));
 
 	gfx.Draw(placeholderSprite, *grayscale);
 }

@@ -39,8 +39,6 @@ private:
 		void Equip(const InventoryItem& item);
 		std::optional<InventoryItem> Dequip();
 
-		void UpdateWorldPosition(const sf::Vector2f worldPosition);
-
 		virtual void Draw(const Graphics& gfx);
 
 		bool IsAt(const sf::Vector2f point) const;
@@ -51,15 +49,11 @@ private:
 		bool RequiresSwap(sf::Vector2f& position);
 
 	protected:
-		sf::Vector2f GetWorldPosition() const;
-
-	protected:
-		sf::FloatRect GetWorldDimensions() const;
+		sf::FloatRect GetDimensions() const;
 
 	private:
 		std::optional<InventoryItem> item;
 		sf::FloatRect dimensions;
-		sf::Vector2f worldPosition;
 	};
 
 public:

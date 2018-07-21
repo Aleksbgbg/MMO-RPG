@@ -59,9 +59,7 @@ InventoryItem::InventoryItem(const Equipment equipment, const sf::IntRect rectan
 
 void InventoryItem::Render(const Graphics& gfx, const sf::FloatRect location)
 {
-	sprite.setPosition(center(location));
-
-	Update(gfx, sprite.getPosition());
+	Update(center(location));
 
 	sprite.setPosition(GetPosition());
 
