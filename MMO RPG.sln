@@ -7,7 +7,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MMO RPG", "MMO RPG\MMO RPG.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Network Shared", "Network Shared\Network Shared.vcxitems", "{27051719-2484-4767-96A9-EEFCBB77F6FB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MMO RPG Server", "MMO RPG Server\MMO RPG Server.vcxproj", "{A3F6E35C-DAE2-4583-AF83-FFE49E42C232}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Network Shared\Network Shared.vcxitems*{27051719-2484-4767-96a9-eefcbb77f6fb}*SharedItemsImports = 9
+		Network Shared\Network Shared.vcxitems*{a3f6e35c-dae2-4583-af83-ffe49e42c232}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
@@ -23,6 +29,14 @@ Global
 		{9B7CD11F-409C-476C-9395-C3BCAB11809F}.Release|x64.Build.0 = Release|x64
 		{9B7CD11F-409C-476C-9395-C3BCAB11809F}.Release|x86.ActiveCfg = Release|Win32
 		{9B7CD11F-409C-476C-9395-C3BCAB11809F}.Release|x86.Build.0 = Release|Win32
+		{A3F6E35C-DAE2-4583-AF83-FFE49E42C232}.Debug|x64.ActiveCfg = Debug|x64
+		{A3F6E35C-DAE2-4583-AF83-FFE49E42C232}.Debug|x64.Build.0 = Debug|x64
+		{A3F6E35C-DAE2-4583-AF83-FFE49E42C232}.Debug|x86.ActiveCfg = Debug|Win32
+		{A3F6E35C-DAE2-4583-AF83-FFE49E42C232}.Debug|x86.Build.0 = Debug|Win32
+		{A3F6E35C-DAE2-4583-AF83-FFE49E42C232}.Release|x64.ActiveCfg = Release|x64
+		{A3F6E35C-DAE2-4583-AF83-FFE49E42C232}.Release|x64.Build.0 = Release|x64
+		{A3F6E35C-DAE2-4583-AF83-FFE49E42C232}.Release|x86.ActiveCfg = Release|Win32
+		{A3F6E35C-DAE2-4583-AF83-FFE49E42C232}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
