@@ -15,5 +15,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)MessageType.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ServerInfo.h" />
   </ItemGroup>
 </Project>
