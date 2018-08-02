@@ -42,8 +42,18 @@ void ServerConnection::Run()
 
 			sf::Packet helloPacket{ };
 
-			while (Receive(serverSocket, helloPacket) != sf::Socket::Done)
+			sf::Socket::Status handshakeStatus;
+
+			do
 			{
+				handshakeStatus = Receive(serverSocket, helloPacket);
+			} while (handshakeStatus == sf::Socket::NotReady);
+
+			if (handshakeStatus != sf::Socket::Done)
+			{
+				OutputDebugStringA("Error in receiving handshake");
+				Disconnect();
+				continue;
 			}
 
 			int messageType;
@@ -58,7 +68,8 @@ void ServerConnection::Run()
 			}
 			else
 			{
-				OutputDebugStringA("Error in handshake");
+				OutputDebugStringA("Received non-handshake message when expecting handshake");
+				Disconnect();
 				continue;
 			}
 		}
@@ -73,8 +84,8 @@ void ServerConnection::Run()
 
 				if (!heartbeatAcknowledged)
 				{
-					connected = false;
 					OutputDebugStringA("No heartbeat ACK\n");
+					Disconnect();
 				}
 
 				if (Send(serverSocket, heartbeat) == sf::Socket::Done)
@@ -113,8 +124,7 @@ void ServerConnection::Run()
 				break;
 
 				case sf::Socket::Disconnected:
-					connected = false;
-					OutputDebugStringA("Disconnected\n");
+					Disconnect();
 					break;
 
 				default:
@@ -128,4 +138,11 @@ void ServerConnection::Run()
 bool ServerConnection::IsConnected() const
 {
 	return connected;
+}
+
+void ServerConnection::Disconnect()
+{
+	connected = false;
+	serverSocket.disconnect();
+	OutputDebugStringA("Disconnected");
 }

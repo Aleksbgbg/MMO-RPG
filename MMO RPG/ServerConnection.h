@@ -26,6 +26,9 @@ public:
 	bool IsConnected() const;
 
 private:
+	void Disconnect();
+
+private:
 	sf::TcpSocket serverSocket;
 	
 	bool running;
