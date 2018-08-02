@@ -2,11 +2,13 @@
 
 #include <cassert>
 
-static sf::Socket::Status Dispatch(sf::Packet& packet, sf::Socket::Status (*dispatchFunc)(sf::Packet&))
+static sf::Socket::Status Dispatch(sf::TcpSocket& socket, sf::Packet& packet, sf::Socket::Status (sf::TcpSocket::*dispatchFunc)(sf::Packet&))
 {
+	assert(!socket.isBlocking());
+	
 	while (true)
 	{
-		const sf::Socket::Status status = dispatchFunc(packet);
+		const sf::Socket::Status status = (socket.*dispatchFunc)(packet);
 
 		if (status != sf::Socket::Partial)
 		{
@@ -17,14 +19,10 @@ static sf::Socket::Status Dispatch(sf::Packet& packet, sf::Socket::Status (*disp
 
 sf::Socket::Status Send(sf::TcpSocket& socket, sf::Packet& packet)
 {
-	assert(!socket.isBlocking());
-
-	return Dispatch(packet, socket.send);
+	return Dispatch(socket, packet, &sf::TcpSocket::send);
 }
 
 sf::Socket::Status Receive(sf::TcpSocket& socket, sf::Packet& packet)
 {
-	assert(!socket.isBlocking());
-
-	return Dispatch(packet, socket.receive);
+	return Dispatch(socket, packet, &sf::TcpSocket::receive);
 }
