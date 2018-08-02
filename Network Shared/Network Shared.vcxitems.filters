@@ -11,10 +11,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="E:\Programming\C C++\MMO RPG\Network Shared\MessageType.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)ServerInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ServerInfo.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)MessageType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
