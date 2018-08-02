@@ -13,7 +13,8 @@ ServerConnection::ServerConnection()
 	running{ true },
 	connected{ false },
 	connectionThread{ &ServerConnection::Run, this },
-	heartbeatAcknowledged{ true }
+	heartbeatAcknowledged{ true },
+	heartbeatThresholdMs{ 0 }
 {
 }
 
@@ -31,7 +32,7 @@ void ServerConnection::Run()
 {
 	while (running)
 	{
-		connected = serverSocket.connect(sf::IpAddress{ ServerIp }, ServerPort, sf::milliseconds(static_cast<sf::Uint32>(HeartbeatThresholdMs))) == sf::Socket::Done;
+		connected = serverSocket.connect(sf::IpAddress{ ServerIp }, ServerPort, sf::milliseconds(static_cast<sf::Uint32>(5000u))) == sf::Socket::Done;
 
 		serverSocket.setBlocking(false);
 
@@ -51,11 +52,9 @@ void ServerConnection::Run()
 
 			if (static_cast<MessageType>(messageType) == MessageType::Hello)
 			{
-				std::string message;
+				helloPacket >> heartbeatThresholdMs;
 
-				helloPacket >> message;
-
-				OutputDebugStringA((message + "\n").c_str());
+				OutputDebugStringA(("Handshake completed; threshold " + std::to_string(heartbeatThresholdMs) + "ms\n").c_str());
 			}
 			else
 			{
@@ -66,8 +65,7 @@ void ServerConnection::Run()
 
 		while (connected)
 		{
-			// Half heartbeat time in order to ensure received on time
-			if (heartbeatTimer.getElapsedTime().asMilliseconds() > HeartbeatThresholdMs)
+			if (heartbeatTimer.getElapsedTime().asMilliseconds() > heartbeatThresholdMs)
 			{
 				sf::Packet heartbeat{ };
 
@@ -75,10 +73,6 @@ void ServerConnection::Run()
 
 				if (!heartbeatAcknowledged)
 				{
-					// TODO:
-					// Disconnected from server
-					// Try to re-establish connection
-
 					connected = false;
 					OutputDebugStringA("No heartbeat ACK\n");
 				}
@@ -119,10 +113,6 @@ void ServerConnection::Run()
 				break;
 
 				case sf::Socket::Disconnected:
-					// TODO:
-					// Disconnected from server
-					// Try to re-establish connection
-
 					connected = false;
 					OutputDebugStringA("Disconnected\n");
 					break;

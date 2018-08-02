@@ -36,4 +36,6 @@ private:
 	sf::Clock heartbeatTimer;
 
 	bool heartbeatAcknowledged;
+
+	int heartbeatThresholdMs;
 };
