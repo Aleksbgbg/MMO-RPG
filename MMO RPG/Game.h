@@ -9,6 +9,7 @@
 #include "Reticle.h"
 #include "SubtitleHandler.h"
 #include "Hud.h"
+#include "ServerConnection.h"
 
 class Game
 {
@@ -52,4 +53,6 @@ private:
 	SubtitleHandler subtitleHandler;
 
 	Hud hud;
+
+	ServerConnection serverConnection;
 };
