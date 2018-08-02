@@ -38,7 +38,7 @@ void ServerConnection::Update()
 		{
 			sf::Packet heartbeat{ };
 
-			heartbeat << static_cast<int>(MessageType::HeartbeatAck);
+			heartbeat << static_cast<int>(MessageType::Heartbeat);
 
 			if (Send(serverSocket, heartbeat) == sf::Socket::Done)
 			{
