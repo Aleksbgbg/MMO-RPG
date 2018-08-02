@@ -12,7 +12,7 @@ ServerConnection::ServerConnection()
 	:
 	heartbeatAcknowledged{ true }
 {
-	connected = serverSocket.connect(sf::IpAddress{ ServerIp }, ServerPort, sf::milliseconds(HeartbeatThresholdMs)) == sf::Socket::Done;
+	connected = serverSocket.connect(sf::IpAddress{ ServerIp }, ServerPort, sf::milliseconds(static_cast<sf::Uint32>(HeartbeatThresholdMs))) == sf::Socket::Done;
 
 	serverSocket.setBlocking(false);
 
@@ -38,7 +38,7 @@ void ServerConnection::Update()
 	while (connected)
 	{
 		// Half heartbeat time in order to ensure received on time
-		if (heartbeatTimer.getElapsedTime().asMilliseconds() > (HeartbeatThresholdMs / 2.0f))
+		if (heartbeatTimer.getElapsedTime().asMilliseconds() > HeartbeatThresholdMs)
 		{
 			sf::Packet heartbeat{ };
 
