@@ -14,7 +14,11 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DataTransfer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MessageType.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ServerInfo.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DataTransfer.cpp" />
   </ItemGroup>
 </Project>
