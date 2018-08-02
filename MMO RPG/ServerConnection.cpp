@@ -2,6 +2,7 @@
 
 #include <SFML/Network.hpp>
 
+#include "../Network Shared/DataTransfer.h"
 #include "../Network Shared/ServerInfo.h"
 #include "../Network Shared/MessageType.h"
 
@@ -39,7 +40,7 @@ void ServerConnection::Update()
 
 			heartbeat << static_cast<int>(MessageType::HeartbeatAck);
 
-			if (serverSocket.send(heartbeat) == sf::Socket::Done)
+			if (Send(serverSocket, heartbeat) == sf::Socket::Done)
 			{
 				heartbeatTimer.restart();
 			}
