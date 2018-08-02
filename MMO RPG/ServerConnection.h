@@ -21,16 +21,17 @@ public:
 	ServerConnection& operator=(ServerConnection&&) = delete;
 
 public:
-	void Update();
+	void Run();
 
 	bool IsConnected() const;
 
 private:
 	sf::TcpSocket serverSocket;
-
+	
+	bool running;
 	bool connected;
 
-	std::thread updateThread;
+	std::thread connectionThread;
 
 	sf::Clock heartbeatTimer;
 

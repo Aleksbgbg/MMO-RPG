@@ -10,97 +10,126 @@
 
 ServerConnection::ServerConnection()
 	:
+	running{ true },
+	connected{ false },
+	connectionThread{ &ServerConnection::Run, this },
 	heartbeatAcknowledged{ true }
 {
-	connected = serverSocket.connect(sf::IpAddress{ ServerIp }, ServerPort, sf::milliseconds(static_cast<sf::Uint32>(HeartbeatThresholdMs))) == sf::Socket::Done;
-
-	serverSocket.setBlocking(false);
-
-	if (connected)
-	{
-		updateThread = std::thread{ &ServerConnection::Update, this };
-
-		// TODO: Handshake?
-	}
 }
 
 ServerConnection::~ServerConnection()
 {
+	running = false;
 	connected = false;
 
-	updateThread.join();
+	connectionThread.join();
 
 	serverSocket.disconnect();
 }
 
-void ServerConnection::Update()
+void ServerConnection::Run()
 {
-	while (connected)
+	while (running)
 	{
-		// Half heartbeat time in order to ensure received on time
-		if (heartbeatTimer.getElapsedTime().asMilliseconds() > HeartbeatThresholdMs)
+		connected = serverSocket.connect(sf::IpAddress{ ServerIp }, ServerPort, sf::milliseconds(static_cast<sf::Uint32>(HeartbeatThresholdMs))) == sf::Socket::Done;
+
+		serverSocket.setBlocking(false);
+
+		if (connected)
 		{
-			sf::Packet heartbeat{ };
+			OutputDebugStringA("Connected\n");
 
-			heartbeat << static_cast<int>(MessageType::Heartbeat);
+			sf::Packet helloPacket{ };
 
-			if (!heartbeatAcknowledged)
+			while (Receive(serverSocket, helloPacket) != sf::Socket::Done)
 			{
-				// TODO:
-				// Disconnected from server
-				// Try to re-establish connection
-
-				connected = false;
-				OutputDebugStringA("No heartbeat ACK\n");
-				return;
 			}
 
-			if (Send(serverSocket, heartbeat) == sf::Socket::Done)
+			int messageType;
+
+			helloPacket >> messageType;
+
+			if (static_cast<MessageType>(messageType) == MessageType::Hello)
 			{
-				heartbeatTimer.restart();
-				heartbeatAcknowledged = false;
+				std::string message;
+
+				helloPacket >> message;
+
+				OutputDebugStringA((message + "\n").c_str());
+			}
+			else
+			{
+				OutputDebugStringA("Error in handshake");
+				continue;
 			}
 		}
 
-		bool receiving = true;
-
-		while (receiving)
+		while (connected)
 		{
-			receiving = false;
-
-			sf::Packet message{ };
-
-			switch (Receive(serverSocket, message))
+			// Half heartbeat time in order to ensure received on time
+			if (heartbeatTimer.getElapsedTime().asMilliseconds() > HeartbeatThresholdMs)
 			{
-			case sf::Socket::Done:
-			{
-				int messageType;
+				sf::Packet heartbeat{ };
 
-				message >> messageType;
+				heartbeat << static_cast<int>(MessageType::Heartbeat);
 
-				switch (static_cast<MessageType>(messageType))
+				if (!heartbeatAcknowledged)
 				{
-				case MessageType::HeartbeatAck:
-					heartbeatAcknowledged = true;
-					OutputDebugStringA("Heartbeat acknowledged\n");
-					break;
+					// TODO:
+					// Disconnected from server
+					// Try to re-establish connection
+
+					connected = false;
+					OutputDebugStringA("No heartbeat ACK\n");
 				}
 
-				receiving = true;
+				if (Send(serverSocket, heartbeat) == sf::Socket::Done)
+				{
+					heartbeatTimer.restart();
+					heartbeatAcknowledged = false;
+				}
 			}
-			break;
 
-			case sf::Socket::Disconnected:
-				// TODO:
-				// Disconnected from server
-				// Try to re-establish connection
+			bool receiving = true;
 
-				connected = false;
-				OutputDebugStringA("Disconnected\n");
+			while (receiving)
+			{
+				receiving = false;
+
+				sf::Packet message{ };
+
+				switch (Receive(serverSocket, message))
+				{
+				case sf::Socket::Done:
+				{
+					int messageType;
+
+					message >> messageType;
+
+					switch (static_cast<MessageType>(messageType))
+					{
+					case MessageType::HeartbeatAck:
+						heartbeatAcknowledged = true;
+						OutputDebugStringA("Heartbeat acknowledged\n");
+						break;
+					}
+
+					receiving = true;
+				}
 				break;
 
-			default:
-				break;
+				case sf::Socket::Disconnected:
+					// TODO:
+					// Disconnected from server
+					// Try to re-establish connection
+
+					connected = false;
+					OutputDebugStringA("Disconnected\n");
+					break;
+
+				default:
+					break;
+				}
 			}
 		}
 	}
