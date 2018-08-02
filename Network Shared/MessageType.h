@@ -2,5 +2,6 @@
 
 enum class MessageType
 {
+	Heartbeat,
 	HeartbeatAck
 };
