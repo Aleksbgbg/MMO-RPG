@@ -14,6 +14,13 @@ public:
 	~ServerConnection();
 
 public:
+	ServerConnection(const ServerConnection&) = delete;
+	ServerConnection(ServerConnection&&) = delete;
+
+	ServerConnection& operator=(const ServerConnection&) = delete;
+	ServerConnection& operator=(ServerConnection&&) = delete;
+
+public:
 	void Update();
 
 	bool IsConnected() const;
