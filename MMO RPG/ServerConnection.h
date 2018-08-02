@@ -33,4 +33,6 @@ private:
 	std::thread updateThread;
 
 	sf::Clock heartbeatTimer;
+
+	bool heartbeatAcknowledged;
 };
