@@ -121,6 +121,9 @@
     <ClCompile Include="Draggable.cpp">
       <Filter>Source Files\Entities\HUD</Filter>
     </ClCompile>
+    <ClCompile Include="ServerConnection.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -254,6 +257,9 @@
     </ClInclude>
     <ClInclude Include="Draggable.h">
       <Filter>Header Files\Entities\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerConnection.h">
+      <Filter>Header Files\Framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
