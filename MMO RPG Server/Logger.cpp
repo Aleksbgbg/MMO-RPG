@@ -10,5 +10,5 @@ void Log(const sf::TcpSocket& playerSocket, const std::string& message)
 	std::cout << "[" << std::put_time(std::localtime(&time), "%d/%m/%Y %H:%M:%S") << "] "
 		<< "(" << playerSocket.getRemoteAddress() << ":" << playerSocket.getRemotePort() << ") "
 		<< message
-		<< "\n";
+		<< std::endl;
 }
