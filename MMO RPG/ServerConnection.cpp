@@ -32,6 +32,8 @@ void ServerConnection::Run()
 {
 	while (running)
 	{
+		serverSocket.setBlocking(true);
+
 		connected = serverSocket.connect(sf::IpAddress{ ServerIp }, ServerPort, sf::milliseconds(static_cast<sf::Uint32>(5000u))) == sf::Socket::Done;
 
 		serverSocket.setBlocking(false);
