@@ -38,42 +38,45 @@ void ServerConnection::Run()
 
 		serverSocket.setBlocking(false);
 
-		if (connected)
+		if (!connected) // Server will not connect - TODO: retry later or report failure
 		{
-			OutputDebugStringA("Connected\n");
+			running = false;
+			return;
+		}
 
-			sf::Packet helloPacket{ };
+		OutputDebugStringA("Connected\n");
 
-			sf::Socket::Status handshakeStatus;
+		sf::Packet helloPacket{ };
 
-			do
-			{
-				handshakeStatus = Receive(serverSocket, helloPacket);
-			} while (handshakeStatus == sf::Socket::NotReady);
+		sf::Socket::Status handshakeStatus;
 
-			if (handshakeStatus != sf::Socket::Done)
-			{
-				OutputDebugStringA("Error in receiving handshake");
-				Disconnect();
-				continue;
-			}
+		do
+		{
+			handshakeStatus = Receive(serverSocket, helloPacket);
+		} while (handshakeStatus == sf::Socket::NotReady);
 
-			int messageType;
+		if (handshakeStatus != sf::Socket::Done)
+		{
+			OutputDebugStringA("Error in receiving handshake");
+			Disconnect();
+			continue;
+		}
 
-			helloPacket >> messageType;
+		int messageType;
 
-			if (static_cast<MessageType>(messageType) == MessageType::Hello)
-			{
-				helloPacket >> heartbeatThresholdMs;
+		helloPacket >> messageType;
 
-				OutputDebugStringA(("Handshake completed; threshold " + std::to_string(heartbeatThresholdMs) + "ms\n").c_str());
-			}
-			else
-			{
-				OutputDebugStringA("Received non-handshake message when expecting handshake");
-				Disconnect();
-				continue;
-			}
+		if (static_cast<MessageType>(messageType) == MessageType::Hello)
+		{
+			helloPacket >> heartbeatThresholdMs;
+
+			OutputDebugStringA(("Handshake completed; threshold " + std::to_string(heartbeatThresholdMs) + "ms\n").c_str());
+		}
+		else
+		{
+			OutputDebugStringA("Received non-handshake message when expecting handshake");
+			Disconnect();
+			continue;
 		}
 
 		while (connected)
